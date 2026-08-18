@@ -3,160 +3,616 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FLEXI-SUB™ — ระบบคำนวณค่าบริการ LG Subscribe สิงหาคม 2569</title>
+    <title>FLEXI-SUB™ | LG Subscribe เช่าเครื่องใช้ไฟฟ้ารายเดือน</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-
-        body {
-            background-color: #fafafa;
-            color: #222;
-            line-height: 1.6;
+        :root {
+            --lg-red: #A50034;
+            --lg-red-dark: #7a0026;
+            --lg-red-soft: #fdf3f5;
+            --ink: #111111;
+            --ink-2: #3a3a3c;
+            --muted: #6e6e73;
+            --line: #e8e4e6;
+            --bg: #ffffff;
+            --bg-soft: #f6f4f5;
+            --accent-orange: #F08A24;
+            --radius: 16px;
+            --radius-sm: 12px;
         }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', 'IBM Plex Sans Thai', Tahoma, Geneva, Verdana, sans-serif; }
+        html { scroll-behavior: smooth; }
+        body { background: var(--bg); color: var(--ink); line-height: 1.6; }
 
-        /* ---- Header ---- */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 22px; }
+        a { text-decoration: none; color: inherit; }
+
+        /* ================= Header ================= */
         header {
-            background-color: #fff;
-            border-bottom: 1px solid #f0f0f0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
+            position: sticky; top: 0; z-index: 1000;
+            background: rgba(255,255,255,0.96);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--line);
         }
-        .nav-container {
-            max-width: 1120px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 18px 22px;
+        .header-inner {
+            max-width: 1200px; margin: 0 auto;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 14px 22px; gap: 20px;
         }
-        .logo { font-size: 22px; font-weight: 700; letter-spacing: 2px; }
-        .logo span { color: #C8102E; } /* LG Red */
-        .nav-badge {
-            background-color: #111;
-            color: #fff;
-            padding: 8px 16px;
-            border-radius: 4px;
-            font-size: 13px;
-            font-weight: 600;
+        .brand { display: flex; align-items: center; gap: 10px; }
+        .brand .lg-mark {
+            font-size: 26px; font-weight: 800; letter-spacing: -1px;
+            color: var(--lg-red);
+        }
+        .brand .lg-mark small { font-size: 10px; letter-spacing: 1px; color: var(--muted); display: block; font-weight: 600; }
+        .nav-links { display: flex; gap: 34px; }
+        .nav-links a {
+            font-size: 14px; font-weight: 500; color: var(--ink-2);
+            transition: color 0.2s; padding: 4px 0; border-bottom: 2px solid transparent;
+        }
+        .nav-links a:hover { color: var(--lg-red); border-bottom-color: var(--lg-red); }
+        .header-actions { display: flex; gap: 10px; align-items: center; }
+        .icon-btn {
+            width: 42px; height: 42px; border-radius: 50%;
+            border: 1px solid var(--line); background: #fff;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 17px; cursor: pointer; transition: all 0.2s;
+        }
+        .icon-btn:hover { border-color: var(--lg-red); color: var(--lg-red); }
+        @media (max-width: 820px) { .nav-links { display: none; } }
+
+        /* ================= Hero carousel ================= */
+        .hero { position: relative; overflow: hidden; }
+        .slides { position: relative; height: min(78vh, 660px); }
+        .slide {
+            position: absolute; inset: 0; opacity: 0;
+            transition: opacity 0.8s ease;
+            background-size: cover; background-position: center;
+            display: flex; align-items: center;
+        }
+        .slide.active { opacity: 1; }
+        .slide::before {
+            content: ''; position: absolute; inset: 0;
+            background: linear-gradient(90deg, rgba(10,10,12,0.72) 0%, rgba(10,10,12,0.35) 45%, rgba(10,10,12,0.05) 100%);
+        }
+        .slide-content { position: relative; z-index: 2; max-width: 1200px; margin: 0 auto; width: 100%; padding: 0 22px; color: #fff; text-shadow: 0 1px 2px rgba(0,0,0,0.35), 0 2px 12px rgba(0,0,0,0.45); }
+        .slide-content .btn-pill, .slide-content .slide-kicker { text-shadow: none; }
+        .slide-kicker {
+            display: inline-block; background: rgba(255,255,255,0.16); border: 1px solid rgba(255,255,255,0.35);
+            padding: 6px 16px; border-radius: 999px; font-size: 13px; font-weight: 600; letter-spacing: 0.5px;
+            margin-bottom: 18px; backdrop-filter: blur(4px);
+        }
+        .slide h1 { font-size: clamp(30px, 5vw, 56px); font-weight: 700; line-height: 1.2; max-width: 640px; margin-bottom: 16px; }
+        .slide p { font-size: 17px; max-width: 500px; color: rgba(255,255,255,0.9); margin-bottom: 28px; }
+        .btn-pill {
+            display: inline-block; background: var(--lg-red); color: #fff;
+            padding: 14px 34px; border-radius: 999px; font-weight: 700; font-size: 15px;
+            transition: all 0.25s; border: none; cursor: pointer;
+        }
+        .btn-pill:hover { background: var(--lg-red-dark); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(165,0,52,0.35); }
+        .btn-pill.ghost { background: transparent; border: 1.5px solid #fff; }
+        .btn-pill.ghost:hover { background: rgba(255,255,255,0.15); }
+        .arrow-btn {
+            position: absolute; top: 50%; transform: translateY(-50%); z-index: 5;
+            width: 52px; height: 52px; border-radius: 50%;
+            background: rgba(255,255,255,0.92); border: none; cursor: pointer;
+            font-size: 20px; box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+            transition: all 0.2s; display: flex; align-items: center; justify-content: center;
+        }
+        .arrow-btn:hover { background: #fff; transform: translateY(-50%) scale(1.08); }
+        .arrow-btn.prev { left: 18px; }
+        .arrow-btn.next { right: 18px; }
+        .dots { position: absolute; bottom: 26px; left: 0; right: 0; display: flex; justify-content: center; gap: 10px; z-index: 5; }
+        .dots button {
+            width: 10px; height: 10px; border-radius: 50%; border: none; cursor: pointer;
+            background: rgba(255,255,255,0.5); transition: all 0.25s; padding: 0;
+        }
+        .dots button.active { background: #fff; width: 28px; border-radius: 999px; }
+
+        /* ================= Sections ================= */
+        section { padding: 72px 0; }
+        .section-head { text-align: center; max-width: 720px; margin: 0 auto 44px; }
+        .section-head h2 { font-size: clamp(26px, 3.4vw, 36px); font-weight: 700; margin-bottom: 12px; }
+        .section-head p { color: var(--muted); font-size: 15px; }
+        .kicker {
+            display: inline-block; color: var(--lg-red); font-weight: 700; font-size: 13px;
+            letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px;
         }
 
-        /* ---- Hero ---- */
-        .hero {
-            padding: 46px 22px 36px;
-            text-align: center;
-            background: #fff;
-            border-bottom: 1px solid #f0f0f0;
-            margin-bottom: 28px;
+        /* --- Toggle pills + category icons --- */
+        .mode-toggle {
+            display: flex; gap: 6px; background: var(--bg-soft);
+            padding: 6px; border-radius: 999px; width: fit-content; margin: 0 auto 38px;
         }
-        .hero h1 { font-size: 30px; font-weight: 400; letter-spacing: 0.5px; margin-bottom: 10px; }
-        .hero h1 strong { color: #C8102E; font-weight: 700; }
-        .hero p { color: #666; font-size: 15px; max-width: 640px; margin: 0 auto; }
+        .mode-toggle button {
+            border: none; background: transparent; padding: 10px 28px; border-radius: 999px;
+            font-size: 14px; font-weight: 600; color: var(--muted); cursor: pointer; transition: all 0.25s;
+        }
+        .mode-toggle button.active { background: var(--lg-red); color: #fff; box-shadow: 0 4px 14px rgba(165,0,52,0.3); }
+        .cat-icons { display: flex; flex-wrap: wrap; gap: 18px; justify-content: center; margin-bottom: 40px; }
+        .cat-item { cursor: pointer; text-align: center; width: 84px; }
+        .cat-item .circle {
+            width: 74px; height: 74px; border-radius: 50%;
+            border: 1.5px solid var(--line); background: #fff;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 30px; margin: 0 auto 8px; transition: all 0.25s;
+        }
+        .cat-item:hover .circle { border-color: var(--lg-red); transform: translateY(-2px); }
+        .cat-item.active .circle { border-color: var(--lg-red); background: var(--lg-red-soft); box-shadow: 0 0 0 4px rgba(165,0,52,0.1); }
+        .cat-item span { font-size: 12px; color: var(--muted); font-weight: 600; }
+        .cat-item.active span { color: var(--lg-red); }
 
-        /* ---- Web container (โครงหลัก) ---- */
-        .web-container {
-            max-width: 1120px;
-            margin: 0 auto;
-            padding: 0 22px 20px;
+        /* --- Lifestyle cards --- */
+        .lifestyle-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; margin-bottom: 40px; }
+        .lifestyle-card {
+            border: 1.5px solid var(--line); border-radius: var(--radius);
+            padding: 22px; cursor: pointer; transition: all 0.25s; background: #fff;
         }
-        .web-container h2 {
-            font-size: 20px;
-            font-weight: 600;
-            margin-bottom: 18px;
-            text-align: center;
-            color: #333;
+        .lifestyle-card:hover { border-color: var(--lg-red); transform: translateY(-3px); box-shadow: 0 10px 26px rgba(0,0,0,0.06); }
+        .lifestyle-card.active { border-color: var(--lg-red); background: var(--lg-red-soft); }
+        .lifestyle-card .l-emoji { font-size: 30px; margin-bottom: 10px; }
+        .lifestyle-card h4 { font-size: 16px; margin-bottom: 4px; }
+        .lifestyle-card p { font-size: 13px; color: var(--muted); }
+        .lifestyle-card .l-count { font-size: 12px; color: var(--lg-red); font-weight: 700; margin-top: 8px; display: inline-block; }
+
+        /* --- Product grid --- */
+        .product-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
+        @media (max-width: 1024px) { .product-grid { grid-template-columns: repeat(3, 1fr); } }
+        @media (max-width: 720px) { .product-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 460px) { .product-grid { grid-template-columns: 1fr; } }
+        .p-card {
+            background: linear-gradient(180deg, #ffffff 0%, #faf8f9 100%);
+            border-radius: var(--radius); padding: 18px 18px 20px;
+            display: flex; flex-direction: column; transition: transform 0.25s;
         }
+        .p-card:hover { transform: translateY(-5px); }
+        .p-img { background: #fff; border-radius: var(--radius-sm); height: 170px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .p-img img { width: 100%; height: 100%; object-fit: contain; padding: 12px; }
+        .p-emoji { font-size: 52px; }
+        .p-cat { font-size: 12px; color: var(--muted); margin-top: 14px; font-weight: 600; }
+        .p-name { font-size: 17px; font-weight: 700; margin: 2px 0 4px; line-height: 1.35; }
+        .p-model { font-size: 12px; color: var(--muted); margin-bottom: 8px; }
+        .p-price { font-size: 22px; font-weight: 800; color: var(--lg-red); }
+        .p-price small { font-size: 12px; color: var(--muted); font-weight: 600; }
+        .p-badge {
+            display: inline-block; background: var(--accent-orange); color: #fff;
+            font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 999px; margin-top: 8px; width: fit-content;
+        }
+        .p-cta { margin-top: 14px; font-size: 13px; font-weight: 700; color: var(--lg-red); }
+        .grid-note { text-align: center; margin-top: 30px; font-size: 14px; color: var(--muted); }
+        .grid-note a { color: var(--lg-red); font-weight: 700; }
+        .grid-empty { grid-column: 1 / -1; text-align: center; color: var(--muted); padding: 50px 0; }
+
+        /* ================= Calculator section ================= */
+        #calculator { background: var(--bg-soft); }
         .calc-frame {
-            width: 100%;
-            height: 800px;
-            border: 1px solid #eee;
-            border-radius: 8px;
-            background: #fff;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+            width: 100%; height: 900px; border: none; border-radius: var(--radius);
+            background: #fff; box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        }
+        .calc-hint { text-align: center; font-size: 13px; color: var(--muted); margin-top: 14px; }
+
+        /* ================= Promotions ================= */
+        #promotions { background: var(--bg-soft); }
+        .promo-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+        @media (max-width: 1024px) { .promo-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 560px) { .promo-grid { grid-template-columns: 1fr; } }
+        .promo-card {
+            position: relative; border-radius: var(--radius); overflow: hidden;
+            min-height: 300px; display: flex; align-items: flex-end; cursor: pointer;
+            background-size: cover; background-position: center;
+        }
+        .promo-card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0.05) 30%, rgba(0,0,0,0.72) 100%); }
+        .promo-card.dark::before { background: linear-gradient(180deg, rgba(10,10,12,0.15) 30%, rgba(10,10,12,0.8) 100%); }
+        .promo-body { position: relative; z-index: 2; padding: 24px; color: #fff; }
+        .promo-body h3 { font-size: 21px; font-weight: 700; margin-bottom: 6px; }
+        .promo-body p { font-size: 13px; color: rgba(255,255,255,0.9); margin-bottom: 10px; }
+        .promo-body .promo-link { font-size: 13px; font-weight: 700; border-bottom: 1.5px solid rgba(255,255,255,0.7); padding-bottom: 2px; }
+        .promo-tag {
+            position: absolute; top: 16px; left: 16px; z-index: 3;
+            background: var(--accent-orange); color: #fff; font-size: 12px; font-weight: 700;
+            padding: 5px 14px; border-radius: 999px;
         }
 
-        /* ---- Contact zone ---- */
-        .contact-zone {
-            text-align: center;
-            margin-top: 24px;
-            padding: 28px 20px;
-            background: #fff;
-            border: 1px solid #f0f0f0;
-            border-radius: 8px;
+        /* ================= Service banner ================= */
+        #services { padding: 40px 0; }
+        .service-banner {
+            background: linear-gradient(120deg, var(--lg-red) 0%, #c11043 100%);
+            border-radius: 28px; padding: 48px 22px 48px 48px;
+            display: grid; grid-template-columns: 1.6fr 1fr; gap: 30px; align-items: center;
+            color: #fff; position: relative; overflow: hidden;
         }
-        .contact-zone p {
-            font-size: 14px;
-            color: #666;
-            margin-bottom: 16px;
+        @media (max-width: 860px) { .service-banner { grid-template-columns: 1fr; padding: 34px 24px; } .service-img { display: none; } }
+        .service-banner h2 { font-size: 30px; font-weight: 700; margin-bottom: 8px; }
+        .service-banner .sub { font-size: 14px; color: rgba(255,255,255,0.85); margin-bottom: 26px; max-width: 480px; }
+        .service-feats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-bottom: 30px; }
+        @media (max-width: 560px) { .service-feats { grid-template-columns: 1fr; } }
+        .s-feat {
+            background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.22);
+            border-radius: var(--radius-sm); padding: 14px 16px; backdrop-filter: blur(6px);
+            display: flex; gap: 12px; align-items: flex-start;
         }
-        .line-btn {
-            display: inline-block;
-            background: #25d366;
-            color: #fff;
-            padding: 14px 30px;
-            text-decoration: none;
-            border-radius: 6px;
-            font-weight: 700;
-            font-size: 15px;
-            transition: opacity 0.3s;
-        }
-        .line-btn:hover { opacity: 0.9; }
-        .contact-note { font-size: 12px; color: #999; margin-top: 10px; }
+        .s-feat .f-emoji { font-size: 22px; }
+        .s-feat b { display: block; font-size: 14px; margin-bottom: 2px; }
+        .s-feat span { font-size: 12px; color: rgba(255,255,255,0.85); }
+        .service-img { border-radius: 20px; height: 100%; min-height: 320px; background-size: cover; background-position: center; box-shadow: 0 16px 40px rgba(0,0,0,0.25); }
+        .btn-pill.light { background: #fff; color: var(--lg-red); }
+        .btn-pill.light:hover { background: var(--lg-red-soft); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
 
-        footer {
-            text-align: center;
-            padding: 36px 20px;
-            color: #aaa;
-            font-size: 13px;
-            border-top: 1px solid #f0f0f0;
-            background: #fff;
-            margin-top: 30px;
+        /* ================= Footer ================= */
+        footer { background: linear-gradient(180deg, #2b0a16 0%, #20060f 100%); color: #d9c8ce; padding-top: 60px; }
+        .footer-grid {
+            max-width: 1200px; margin: 0 auto; padding: 0 22px 40px;
+            display: grid; grid-template-columns: 1.4fr repeat(5, 1fr); gap: 30px;
         }
-
-        @media (max-width: 600px) {
-            .calc-frame { height: 640px; }
-            .hero h1 { font-size: 24px; }
+        @media (max-width: 1024px) { .footer-grid { grid-template-columns: repeat(3, 1fr); } }
+        @media (max-width: 640px) { .footer-grid { grid-template-columns: repeat(2, 1fr); } }
+        .f-brand .lg-mark { font-size: 30px; font-weight: 800; color: #fff; letter-spacing: -1px; }
+        .f-brand .lg-mark span { color: #ff8aa8; }
+        .f-brand p { font-size: 12px; color: #a98f99; margin: 10px 0 16px; max-width: 220px; }
+        .socials { display: flex; gap: 10px; }
+        .socials a {
+            width: 38px; height: 38px; border-radius: 50%;
+            background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.18);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 15px; color: #fff; transition: all 0.2s;
         }
+        .socials a:hover { background: var(--lg-red); border-color: var(--lg-red); transform: translateY(-2px); }
+        .f-col h4 { font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 16px; }
+        .f-col a { display: block; font-size: 13px; color: #b99aa6; margin-bottom: 10px; font-weight: 400; transition: color 0.2s; }
+        .f-col a:hover { color: #fff; }
+        .payments {
+            border-top: 1px solid rgba(255,255,255,0.12);
+            padding: 20px 22px; display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; align-items: center;
+        }
+        .payments span {
+            font-size: 11px; color: #a98f99; font-weight: 600;
+            padding: 6px 16px; border: 1px solid rgba(255,255,255,0.16); border-radius: 6px;
+            background: rgba(255,255,255,0.05);
+        }
+        .copyright { text-align: center; font-size: 12px; color: #8a7280; padding: 18px 22px 26px; }
     </style>
 </head>
 <body>
 
+    <!-- ================= Header ================= -->
     <header>
-        <div class="nav-container">
-            <div class="logo">FLEXI-<span>SUB</span>™</div>
-            <div class="nav-badge">LG Subscribe · ส.ค. 2569</div>
+        <div class="header-inner">
+            <div class="brand">
+                <div class="lg-mark">LG<small>FLEXI-SUB™</small></div>
+            </div>
+            <nav class="nav-links">
+                <a href="#products">ซื้อสินค้า</a>
+                <a href="#promotions">โปรโมชัน</a>
+                <a href="#calculator">คำนวณแพ็กเกจ</a>
+                <a href="#services">บริการ</a>
+                <a href="#contact">สนับสนุน</a>
+            </nav>
+            <div class="header-actions">
+                <button class="icon-btn" title="ค้นหา" onclick="document.getElementById('products').scrollIntoView()">🔍</button>
+                <button class="icon-btn" title="ตะกร้า" onclick="document.getElementById('calculator').scrollIntoView()">🛒</button>
+            </div>
         </div>
     </header>
 
-    <section class="hero">
-        <h1>ระบบคำนวณค่าบริการ <strong>LG Subscribe</strong></h1>
-        <p>เลือกสินค้าและแผนการชำระ ระบบคำนวณราคาและส่วนลดให้อัตโนมัติ จากนั้นส่งรายการให้เจ้าหน้าที่เปิดบิลได้ทันที</p>
+    <!-- ================= Hero Carousel ================= -->
+    <section class="hero" id="top">
+        <div class="slides" id="heroSlides">
+            <div class="slide active" style="background-image:url('https://www.lg.com/content/dam/channel/wcms/th/monthly-lg-25/25-july/feature/article-image/monthly-lg-25-jul-th-00-16-9.jpg')">
+                <div class="slide-content">
+                    <span class="slide-kicker">LG SUBSCRIBE · เช่ารายเดือน</span>
+                    <h1>เช่าง่าย ใช้สบาย ครบทุกไลฟ์สไตล์</h1>
+                    <p>เครื่องใช้ไฟฟ้า LG ระดับพรีเมียม — จ่ายรายเดือนคงที่ ไม่ต้องควักเงินก้อน ได้ใช้ของใหม่ล่าสุดทันที</p>
+                    <a class="btn-pill" href="#calculator">ดูแพ็กเกจ</a>
+                    <a class="btn-pill ghost" href="#products">ดูสินค้า</a>
+                </div>
+            </div>
+            <div class="slide" style="background-image:url('https://www.lg.com/content/dam/channel/wcms/th/monthly-lg-25/25-november/feature/article-image/monthly-lg-2025-nov-th-1920x1080-00-16-9.jpg')">
+                <div class="slide-content">
+                    <span class="slide-kicker">เริ่มต้นเพียง ฿89/เดือน</span>
+                    <h1>ทุกบ้านมีของดีติดบ้านได้ ไม่ต้องรอ</h1>
+                    <p>จากไมโครเวฟถึงทีวี OLED ครบทุกหมวด — บิลแรกแค่ ฿149 แล้วสนุกกับโปรลด 50% นานสูงสุด 12 เดือน</p>
+                    <a class="btn-pill" href="#calculator">ดูแพ็กเกจ</a>
+                </div>
+            </div>
+            <div class="slide" style="background-image:url('https://www.lg.com/content/dam/channel/wcms/th/monthly-lg-25/25-december/feature/article-image/monthly-lg-2025-dec-th-03-1920x1080-00-16-9.jpg')">
+                <div class="slide-content">
+                    <span class="slide-kicker">บริการครบวงจร</span>
+                    <h1>ทีมช่าง LG ดูแลถึงบ้าน ตลอดสัญญา</h1>
+                    <p>ติดตั้งฟรี บริการตามรอบ ซ่อมฟรีทุกอาการตลอดอายุสัญญา — สบายใจได้ทั้งครอบครัว</p>
+                    <a class="btn-pill light" href="#services">ดูบริการ</a>
+                </div>
+            </div>
+        </div>
+        <button class="arrow-btn prev" onclick="moveSlide(-1)">‹</button>
+        <button class="arrow-btn next" onclick="moveSlide(1)">›</button>
+        <div class="dots" id="heroDots"></div>
     </section>
 
-    <!-- โครงหน้าเว็บหลักของคุณ -->
-    <div class="web-container">
-        <h2>ระบบคำนวณค่าบริการ LG Subscribe ประจำเดือน สิงหาคม 2569</h2>
+    <!-- ================= Products ================= -->
+    <section id="products">
+        <div class="container">
+            <div class="section-head">
+                <span class="kicker">เลือกได้ตามใจ</span>
+                <h2>เลือกเครื่องใช้ไฟฟ้าที่ใช่สำหรับคุณ</h2>
+                <p>กวาดดูหมวดหมู่ หรือเลือกตามไลฟ์สไตล์ของคุณ — ทุกรุ่นมีแผนรายเดือนพร้อมโปรโมชันประจำเดือนสิงหาคม 2569</p>
+            </div>
 
-        <!-- เครื่องคำนวณของเรา (subscribe-store.html) — โหลดจาก path เดียวกันเมื่อ deploy ขึ้น GitHub Pages -->
-        <iframe
-            class="calc-frame"
-            src="subscribe-store.html"
-            title="FLEXI-SUB เครื่องคำนวณ LG Subscribe สิงหาคม 2569">
-        </iframe>
+            <div class="mode-toggle">
+                <button id="modeCat" class="active" onclick="setMode('cat')">ประเภทสินค้า</button>
+                <button id="modeLife" onclick="setMode('life')">ไลฟ์สไตล์</button>
+            </div>
 
-        <!-- ปุ่มติดต่อเจ้าหน้าที่ด้านล่างเครื่องมือ -->
-        <div class="contact-zone">
-            <p>เมื่อคำนวณราคาและกด "คัดลอกข้อความ" จากระบบเสร็จแล้ว สามารถส่งให้เจ้าหน้าที่เปิดบิลได้ทันที</p>
-            <!-- เปลี่ยน @yourlineid เป็น Line ID จริงของคุณ -->
-            <a href="https://line.me/R/ti/p/@yourlineid" class="line-btn">
-                💬 ส่งรายการให้เจ้าหน้าที่ทาง Line
-            </a>
-            <p class="contact-note">*ระบบจะเปิด Line เพื่อส่งสรุปรายการที่คุณคำนวณไว้ให้เจ้าหน้าที่</p>
+            <!-- หมวดหมู่ทรงกลม -->
+            <div class="cat-icons" id="catIcons"></div>
+
+            <!-- การ์ดไลฟ์สไตล์ -->
+            <div class="lifestyle-grid" id="lifestyleGrid" style="display:none;"></div>
+
+            <!-- Grid สินค้า -->
+            <div class="product-grid" id="productGrid"></div>
+
+            <p class="grid-note">ยังไม่เจอของถูกใจ? เปิดเครื่องคำนวณเพื่อดูสินค้าครบ <a href="#calculator">ทุกรุ่น 78 รายการ →</a></p>
         </div>
-    </div>
+    </section>
 
-    <footer>
-        <p>© 2026 FLEXI-SUB Store. ข้อมูลอ้างอิงจาก Price List ส.ค. 2569 (V3) และ Sale Price 8</p>
+    <!-- ================= Calculator ================= -->
+    <section id="calculator">
+        <div class="container">
+            <div class="section-head">
+                <span class="kicker">ลองคำนวณเลย</span>
+                <h2>คำนวณแพ็กเกจรายเดือนของคุณ</h2>
+                <p>เลือกสินค้าและแผนการชำระ ระบบคำนวณยอดรวม + ส่วนลดคอมโบ 10% ให้อัตโนมัติ แล้วส่งรายการให้เจ้าหน้าที่เปิดบิล</p>
+            </div>
+            <iframe class="calc-frame" src="subscribe-store.html" title="เครื่องคำนวณ LG Subscribe"></iframe>
+            <p class="calc-hint">💡 ยังไม่ต้องกรอกข้อมูล — ทดลองเลือกสินค้าแล้วกด "ส่งรายการ" เพื่อดูสรุปใน LINE ได้เลย</p>
+        </div>
+    </section>
+
+    <!-- ================= Promotions ================= -->
+    <section id="promotions">
+        <div class="container">
+            <div class="section-head">
+                <span class="kicker">โปรโมชันสิงหาคม 2569</span>
+                <h2>โปรฯ เดือนนี้ อัปเดตให้แล้ว</h2>
+                <p>สิทธิพิเศษมีจำนวนจำกัด — หมดเขต 31 สิงหาคม 2569</p>
+            </div>
+            <div class="promo-grid">
+                <div class="promo-card dark" onclick="location.href='#calculator'"
+                     style="background-image:url('https://www.lg.com/content/dam/channel/wcms/th/images/washing-machine/wt2116sheg_abgpeth_eath_th_c/feature/wd-it-objet-washtower-gb-heatpump-06-3-center-panel-desktop.jpg')">
+                    <span class="promo-tag">คอมโบ</span>
+                    <div class="promo-body"><h3>สมัคร 2 เครื่องขึ้นไป ลดเพิ่ม 10%</h3><p>ลูกค้าใหม่ 2 เครื่องขึ้นไป / ลูกค้าเดิม 1 เครื่องขึ้นไป</p><span class="promo-link">ดูเงื่อนไข →</span></div>
+                </div>
+                <div class="promo-card" onclick="location.href='#calculator'"
+                     style="background-image:url('https://www.lg.com/content/dam/channel/wcms/th/housewarming/image/asia-k-house-2026-lg-com-lgeth-housewarming-image-OG-img.jpg')">
+                    <span class="promo-tag">บิลแรก</span>
+                    <div class="promo-body"><h3>บิลแรกเพียง ฿149</h3><p>ชำระล่วงหน้าแค่ 1 เดือน ก็เริ่มใช้ได้เลย</p><span class="promo-link">ดูรายละเอียด →</span></div>
+                </div>
+                <div class="promo-card dark" onclick="location.href='#calculator'"
+                     style="background-image:url('https://www.lg.com/content/dam/channel/wcms/th/monthly-lg-25/25-july/feature/article-image/monthly-lg-25-jul-th-00-4-3.jpg')">
+                    <span class="promo-tag">ลด 50%</span>
+                    <div class="promo-body"><h3>ส่วนลด 50% นานสูงสุด 12 เดือน</h3><p>บางรุ่นลดเดือน 2–12 กันเลยทีเดียว</p><span class="promo-link">ดูรุ่นที่ร่วมรายการ →</span></div>
+                </div>
+                <div class="promo-card" onclick="location.href='#calculator'"
+                     style="background-image:url('https://www.lg.com/content/dam/channel/wcms/th/monthly-lg-25/25-july/feature/article-image/monthly-lg-25-jul-th-00-1-1.jpg')">
+                    <span class="promo-tag">ของแถม</span>
+                    <div class="promo-body"><h3>ของแถมเพียบ ตลอดสิงหาคม</h3><p>เครื่องกรองน้ำ · AeroMini · ลำโพง — ตามแพ็กเกจที่เลือก</p><span class="promo-link">ดูของแถม →</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= Service banner ================= -->
+    <section id="services">
+        <div class="container">
+            <div class="service-banner">
+                <div>
+                    <h2>สบายใจทุกเดือนกับบริการ LG ครบวงจร</h2>
+                    <p class="sub">สมัครสมาชิกครั้งเดียว — ดูแลครบทั้งติดตั้ง บริการตามรอบ และการซ่อม ตลอดอายุสัญญา</p>
+                    <div class="service-feats">
+                        <div class="s-feat"><span class="f-emoji">💳</span><div><b>ไม่ต้องจ่ายเงินก้อน</b><span>จ่ายรายเดือนคงที่ คุมงบได้ชัวร์</span></div></div>
+                        <div class="s-feat"><span class="f-emoji">🔧</span><div><b>ทีมช่างดูแลตามรอบ</b><span>บริการถึงบ้านตามรอบนัดหมาย</span></div></div>
+                        <div class="s-feat"><span class="f-emoji">🛡️</span><div><b>เสียซ่อมฟรีตลอดสัญญา</b><span>อะไหล่ + ค่าแรง ฟรี ไม่มีค่าใช้จ่ายแอบแฝง</span></div></div>
+                        <div class="s-feat"><span class="f-emoji">🔄</span><div><b>ยืดหยุ่นทุกแพ็กเกจ</b><span>ปรับแผนให้เข้ากับไลฟ์สไตล์ที่เปลี่ยนไป</span></div></div>
+                    </div>
+                    <!-- เปลี่ยน @yourlineid เป็น Line ID จริง -->
+                    <a class="btn-pill light" href="https://line.me/R/ti/p/@yourlineid">💬 ปรึกษาเจ้าหน้าที่</a>
+                </div>
+                <div class="service-img" style="background-image:url('https://www.lg.com/content/dam/channel/wcms/th/monthly-lg-25/25-december/feature/article-image/monthly-lg-2025-dec-th-02-1600x1200-00-4-3.jpg')"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= Footer ================= -->
+    <footer id="contact">
+        <div class="footer-grid">
+            <div class="f-brand">
+                <div class="lg-mark">LG <span>·</span> FLEXI-SUB™</div>
+                <p>ตัวแทนจำหน่ายบริการ LG Subscribe — เช่าเครื่องใช้ไฟฟ้า LG รายเดือน ครบทุกไลฟ์สไตล์</p>
+                <div class="socials">
+                    <a href="#" title="Facebook">f</a>
+                    <a href="#" title="Instagram">◎</a>
+                    <a href="#" title="YouTube">▶</a>
+                    <a href="#" title="LINE">💬</a>
+                    <a href="#" title="TikTok">♪</a>
+                </div>
+            </div>
+            <div class="f-col">
+                <h4>สินค้า</h4>
+                <a href="#products">ตู้เย็น</a><a href="#products">เครื่องซักผ้า</a><a href="#products">เครื่องปรับอากาศ</a><a href="#products">ทีวี</a><a href="#products">เครื่องฟอกอากาศ</a>
+            </div>
+            <div class="f-col">
+                <h4>โปรโมชัน</h4>
+                <a href="#promotions">คอมโบลด 10%</a><a href="#promotions">บิลแรก ฿149</a><a href="#promotions">ส่วนลด 50%</a><a href="#promotions">ของแถมสิงหาคม</a>
+            </div>
+            <div class="f-col">
+                <h4>บริการ</h4>
+                <a href="#services">ติดตั้งฟรี</a><a href="#services">บริการตามรอบ</a><a href="#services">ซ่อมฟรีตลอดสัญญา</a><a href="#calculator">คำนวณแพ็กเกจ</a>
+            </div>
+            <div class="f-col">
+                <h4>แคมเปญ</h4>
+                <a href="#promotions">โปรโมชันสิงหาคม</a><a href="#promotions">โปรสมาชิกใหม่</a><a href="#promotions">คอมโบเพิ่มเครื่อง</a>
+            </div>
+            <div class="f-col">
+                <h4>สนับสนุน</h4>
+                <a href="https://line.me/R/ti/p/@yourlineid">ติดต่อเจ้าหน้าที่</a><a href="#calculator">วิธีใช้เครื่องคำนวณ</a><a href="#">คำถามที่พบบ่อย</a><a href="#">เงื่อนไขบริการ</a>
+            </div>
+        </div>
+        <div class="payments">
+            <span>VISA</span><span>Mastercard</span><span>JCB</span><span>UnionPay</span><span>TrueMoney</span><span>Rabbit LINE Pay</span><span>ShopeePay</span><span>PromptPay</span>
+        </div>
+        <p class="copyright">© 2026 FLEXI-SUB™ — ตัวแทนจำหน่าย LG Subscribe · ข้อมูลราคาอ้างอิงจาก Price List ส.ค. 2569 (V3) · หมดเขตโปรโมชัน 31 ส.ค. 2569</p>
     </footer>
+
+    <script src="products.js"></script>
+    <script>
+        /* ---------- ข้อมูลสินค้า: ใช้ products.js ถ้ามี, fallback เป็นรายการเด่น ---------- */
+        const FEATURED_FALLBACK = [
+            { model: 'WT2520NHEG', name: 'WashTower ซัก 25 / อบ 20 กก.', category: 'เครื่องซักผ้า', emoji: '🌀', price: 2399, img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/washing-machine/2026/wt2520nheg-abgpeth/gallery/wt2520nheg-450-0604.jpg' },
+            { model: 'GC-L257KQKW', name: 'ตู้เย็น Side-by-Side 22.4 คิว', category: 'ตู้เย็น', emoji: '🧊', price: 749, img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/refrigerator/2024/gc-l257kqkw-aepplmt/gallery/GC-L257KQKW_Front_450.jpg' },
+            { model: 'FV1409H4W', name: 'เครื่องซักผ้าฝาหน้า 9/5 กก.', category: 'เครื่องซักผ้า', emoji: '🌀', price: 399, img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/washing-machine/2024/fv1409h4w-abwpeth/gallery/450.jpg' },
+            { model: 'SAQ11A', name: 'แอร์ DUALCOOL AI 9,200 Btu', category: 'แอร์', emoji: '🌬️', price: 799, img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2025/image-with-icon/saq/RAC2025-Web-Thumbnail_SAQ-450X450.jpg' },
+            { model: 'OLED48C6PSA', name: 'ทีวี OLED evo C6 48 นิ้ว', category: 'ทีวี', emoji: '📺', price: 749, img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/oled/oled81-42c6psa-atm/gallery/48-c6/update/OLED48C6PSA-450-01.jpg' },
+            { model: 'A9T-ULTRA', name: 'เครื่องดูดฝุ่น CordZero All-in-One', category: 'เครื่องดูดฝุ่น', emoji: '🧹', price: 749, img: 'https://www.lg.com/content/dam/channel/wcms/th/images/vacuum-cleaner/a9t-ultra_dcbpeth_eath_th_c/Basic-450.jpg' },
+            { model: 'DFC335HM', name: 'เครื่องล้างจาน (Wi-Fi control)', category: 'เครื่องล้างจาน', emoji: '🍽️', price: 899, img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/dishwasher/dfc335hm/gallery/01_XD-G3_MatteBlack_DFC335HM_TH_Front-450.jpg' },
+            { model: 'AS25GCBY0', name: 'เครื่องฟอกอากาศ AeroCat Tower', category: 'อื่นๆ', emoji: '🌫️', price: 599, img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/air-puricare/2025/as25gcby0-abae/gallery/basic/air-purifier-aerocattower-2025-as207cbz0-gallery-basic-large.jpg' }
+        ];
+        let PRODUCTS = (window.LG_PRODUCTS && window.LG_PRODUCTS.length) ? window.LG_PRODUCTS : FEATURED_FALLBACK;
+        const CAT_EMOJI = { 'เครื่องซักผ้า': '🌀', 'ตู้เย็น': '🧊', 'แอร์': '🌬️', 'ทีวี': '📺', 'จอคอม': '🖥️', 'ลำโพง': '🔊', 'เครื่องฟอกอากาศ': '🌫️', 'เครื่องล้างจาน': '🍽️', 'เครื่องดูดฝุ่น': '🧹', 'เครื่องลดความชื้น': '💧', 'อื่นๆ': '📦' };
+
+        const LIFESTYLES = [
+            { id: 'family', emoji: '🏠', name: 'ครอบครัวใหญ่', desc: 'จุของเยอะ ซักเยอะ อาหารสดตลอด', ids: ['wt2520nheg','wt2116sheg','wt1410nheg','f2520rntb','tx2723st5j','gc-g24ffqkb','100mrgb96bs','oled77c6psa','oled65c6psa'] },
+            { id: 'condo', emoji: '🏙️', name: 'คอนโด / หอพัก', desc: 'ประหยัดพื้นที่ ใช้พลังงานต่ำ', ids: ['fv1409h4w','gn-f392pqak','gn-f452pqak','27gx704a','34u650a','ms3032jas','as35ggw10','ixy11a','siq11b'] },
+            { id: 'vacation', emoji: '🏖️', name: 'บ้านพักตากอากาศ', desc: 'สุขสันต์ทุกวันพักผ่อน', ids: ['oled48c6psa','oled55c6psa','saq18b','saq24b','as65gdby0','xboom-bounce','dd23gmwe1','gn-v389fqef'] },
+            { id: 'cafe', emoji: '☕', name: 'คาเฟ่ / ธุรกิจเล็ก', desc: 'อุปกรณ์มาตรฐานร้านค้า', ids: ['zt4q18','zt4q24','dfc335hm','dfc533fv','gc-b257sqyl','s95tr','a9t-ultra'] }
+        ];
+
+        let mode = 'cat';
+        let activeCat = 'ทั้งหมด';
+        let activeLife = null;
+
+        const fmt = n => n.toLocaleString('en-US');
+
+        function badgeFor(p) {
+            if (p.category === 'ตู้เย็น') return 'ประหยัดไฟ เบอร์ 5';
+            if (p.category === 'เครื่องซักผ้า') return p.model.includes('WT') ? 'AI DD™ ประหยัดไฟ' : 'ประหยัดไฟ เบอร์ 5';
+            if (p.category === 'แอร์') return 'ประหยัดไฟ เบอร์ 5';
+            if (p.category === 'ทีวี') return p.model.includes('OLED') ? 'OLED แท้ เปล่งแสงเอง' : 'AI Processor';
+            if (p.category === 'จอคอม') return 'Gaming / Work ครบ';
+            if (p.category === 'ลำโพง') return p.model.includes('xboom') ? 'tuned by will.i.am' : 'Dolby Atmos';
+            if (p.category === 'เครื่องล้างจาน') return 'ฟรีติดตั้ง';
+            if (p.category === 'เครื่องดูดฝุ่น') return 'แบตอัปเกรดได้';
+            if (p.category === 'เครื่องลดความชื้น') return 'เปิด-ปิดอัตโนมัติ';
+            if (p.category === 'อื่นๆ') return 'บิลแรก ฿149';
+            return 'ฟรีติดตั้ง';
+        }
+
+        /* ---------- Category icons ---------- */
+        function renderCats() {
+            const cats = ['ทั้งหมด', ...Array.from(new Set(PRODUCTS.map(p => p.category)))];
+            const el = document.getElementById('catIcons');
+            el.innerHTML = '';
+            cats.forEach(c => {
+                const d = document.createElement('div');
+                d.className = 'cat-item' + (c === activeCat ? ' active' : '');
+                d.innerHTML = '<div class="circle">' + (c === 'ทั้งหมด' ? '🛒' : (CAT_EMOJI[c] || '📦')) + '</div><span>' + c + '</span>';
+                d.onclick = () => { activeCat = c; renderCats(); renderProducts(); };
+                el.appendChild(d);
+            });
+        }
+
+        /* ---------- Lifestyle cards ---------- */
+        function renderLifestyle() {
+            const el = document.getElementById('lifestyleGrid');
+            el.innerHTML = '';
+            LIFESTYLES.forEach(l => {
+                const count = l.ids.filter(id => PRODUCTS.some(p => p.id === id || String(p.model || '').toLowerCase() === id)).length;
+                const d = document.createElement('div');
+                d.className = 'lifestyle-card' + (activeLife === l.id ? ' active' : '');
+                d.innerHTML = '<div class="l-emoji">' + l.emoji + '</div><h4>' + l.name + '</h4><p>' + l.desc + '</p><span class="l-count">' + count + ' รุ่นที่แนะนำ →</span>';
+                d.onclick = () => { activeLife = (activeLife === l.id ? null : l.id); renderLifestyle(); renderProducts(); };
+                el.appendChild(d);
+            });
+        }
+
+        /* ---------- Product grid ---------- */
+        function visibleProducts() {
+            if (mode === 'life') {
+                const life = LIFESTYLES.find(l => l.id === activeLife);
+                if (!life) return PRODUCTS.filter(p => FEATURED_FALLBACK.some(f => f.model === p.model) || !window.LG_PRODUCTS).slice(0, 8);
+                return PRODUCTS.filter(p => life.ids.includes(p.id) || life.ids.includes(String(p.model || '').toLowerCase()));
+            }
+            if (activeCat === 'ทั้งหมด') {
+                const featured = PRODUCTS.filter(p => FEATURED_FALLBACK.some(f => f.model === p.model));
+                if (featured.length >= 4) return featured;
+                return PRODUCTS.slice(0, 8);
+            }
+            return PRODUCTS.filter(p => p.category === activeCat).slice(0, 12);
+        }
+
+        function renderProducts() {
+            const grid = document.getElementById('productGrid');
+            const list = visibleProducts();
+            grid.innerHTML = '';
+            if (!list.length) { grid.innerHTML = '<div class="grid-empty">ยังไม่มีสินค้าในหมวดนี้ — ดูหมวดอื่น หรือเปิดเครื่องคำนวณ</div>'; return; }
+            list.forEach(p => {
+                const price = Math.min(...(p.plans ? p.plans.map(x => x.price) : [p.price]));
+                const card = document.createElement('div');
+                card.className = 'p-card';
+                card.innerHTML =
+                    '<div class="p-img">' +
+                        (p.img ? '<img src="' + p.img + '" alt="' + p.name + '" loading="lazy" onerror="this.remove()">' : '<span class="p-emoji">' + (p.emoji || CAT_EMOJI[p.category] || '📦') + '</span>') +
+                    '</div>' +
+                    '<div class="p-cat">' + (p.category || '') + '</div>' +
+                    '<div class="p-name">' + (p.name || '') + '</div>' +
+                    '<div class="p-model">' + (p.model || '') + '</div>' +
+                    '<div class="p-price">฿' + fmt(price) + ' <small>/เดือน</small></div>' +
+                    '<span class="p-badge">' + badgeFor(p) + '</span>' +
+                    '<div class="p-cta">ดูแผนการชำระ →</div>';
+                card.onclick = () => location.href = '#calculator';
+                grid.appendChild(card);
+            });
+        }
+
+        /* ---------- Mode toggle ---------- */
+        function setMode(m) {
+            mode = m;
+            document.getElementById('modeCat').className = m === 'cat' ? 'active' : '';
+            document.getElementById('modeLife').className = m === 'life' ? 'active' : '';
+            document.getElementById('catIcons').style.display = m === 'cat' ? 'flex' : 'none';
+            document.getElementById('lifestyleGrid').style.display = m === 'life' ? 'grid' : 'none';
+            renderProducts();
+        }
+
+        /* ---------- Hero carousel ---------- */
+        let slideIndex = 0;
+        const slides = document.querySelectorAll('.slide');
+        const dotsEl = document.getElementById('heroDots');
+        slides.forEach((_, i) => {
+            const b = document.createElement('button');
+            if (i === 0) b.className = 'active';
+            b.onclick = () => goSlide(i);
+            dotsEl.appendChild(b);
+        });
+        const dots = dotsEl.querySelectorAll('button');
+        function goSlide(i) {
+            slideIndex = (i + slides.length) % slides.length;
+            slides.forEach((s, k) => s.classList.toggle('active', k === slideIndex));
+            dots.forEach((d, k) => d.classList.toggle('active', k === slideIndex));
+        }
+        function moveSlide(d) { goSlide(slideIndex + d); }
+        let autoTimer = setInterval(() => moveSlide(1), 6000);
+        document.querySelector('.hero').addEventListener('mouseenter', () => clearInterval(autoTimer));
+        document.querySelector('.hero').addEventListener('mouseleave', () => { autoTimer = setInterval(() => moveSlide(1), 6000); });
+        document.querySelector('.hero').addEventListener('touchstart', function (e) { this._tx = e.touches[0].clientX; }, { passive: true });
+        document.querySelector('.hero').addEventListener('touchend', function (e) {
+            const dx = e.changedTouches[0].clientX - (this._tx || 0);
+            if (Math.abs(dx) > 50) moveSlide(dx < 0 ? 1 : -1);
+        }, { passive: true });
+
+        /* ---------- Init ---------- */
+        renderCats();
+        renderLifestyle();
+        renderProducts();
+    </script>
 
 </body>
 </html>
