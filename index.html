@@ -114,6 +114,8 @@
         .h-btn-outline:hover { background: rgba(255,255,255,0.14); }
         .h-btn-solid { background: var(--hero-solid-bg); color: var(--hero-solid-text); border: 1.5px solid var(--hero-solid-bg); }
         .h-btn-solid:hover { transform: translateY(-2px); box-shadow: 0 10px 26px rgba(0,0,0,0.22); }
+        .h-btn-soft { border: 1.5px solid var(--hero-outline); background: rgba(255,255,255,0.16); color: var(--hero-fg); }
+        .h-btn-soft:hover { background: rgba(255,255,255,0.3); }
         .h-logo {
             align-self: flex-start; background: #fff; color: var(--hero-logo-text);
             border: 1.5px solid var(--hero-logo-border); border-radius: 999px;
@@ -123,16 +125,25 @@
         .hero-campaign {
             position: absolute; inset: 0; width: 100%; height: 100%;
             object-fit: cover; object-position: right center;
-            display: block;
+            display: block; transition: opacity 0.4s;
         }
-        .hero-campaign.dim::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0,0,0,0.25) 0%, transparent 60%); }
+        /* สไลด์ OLED WEEK: ซูมค่อยๆ (Ken Burns) + แสงวิ่งแบบหน้าจอทีวี */
+        .hero-campaign.kenburns { animation: heroKenburns 16s ease-in-out infinite alternate; will-change: transform; }
+        @keyframes heroKenburns { from { transform: scale(1); } to { transform: scale(1.09); } }
+        .hero-shimmer {
+            position: absolute; inset: 0; z-index: 2; pointer-events: none;
+            background: linear-gradient(115deg, transparent 32%, rgba(255,255,255,0.14) 44%, rgba(255,255,255,0.26) 50%, rgba(255,255,255,0.14) 56%, transparent 68%);
+            background-size: 260% 100%;
+            animation: heroShimmer 4.8s linear infinite;
+        }
+        @keyframes heroShimmer { from { background-position: 130% 0; } to { background-position: -130% 0; } }
+        /* badge สไตล์แคมเปญ LG: พื้นแดง ขอบขาว ตัวหนังสือขาว */
         .hero-badge {
-            position: absolute; top: 12%; right: 9%; z-index: 3;
-            background: #fff; color: #CE0000; border: 2px solid #fff;
-            border-radius: 50%; width: 108px; height: 108px;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 14px; font-weight: 800; text-align: center; line-height: 1.25;
-            transform: rotate(9deg); box-shadow: 0 14px 30px rgba(0,0,0,0.22);
+            position: absolute; top: 14%; right: 8%; z-index: 3;
+            background: #CE0000; color: #fff; border: 2px solid #fff;
+            border-radius: 999px; padding: 8px 18px;
+            font-size: 14px; font-weight: 800; letter-spacing: 0.3px; white-space: nowrap;
+            box-shadow: 0 8px 22px rgba(0,0,0,0.28);
         }
         /* แถบควบคุมด้านล่าง */
         .hero-controls {
@@ -176,9 +187,9 @@
             .hero-slide { position: relative; display: none; grid-template-columns: 1fr; }
             .hero-slide.active { display: block; }
             .hero-left { padding: 38px 24px 96px; }
-            .hero-right { min-height: 300px; }
+            .hero-right { min-height: 320px; }
             .hero-campaign { object-position: center; }
-            .hero-badge { width: 84px; height: 84px; font-size: 12px; top: 8%; right: 6%; }
+            .hero-badge { padding: 6px 14px; font-size: 12px; top: 8%; right: 5%; }
             .hero-controls { padding: 0 18px 16px; }
             .hero-note { max-width: 46vw; }
         }
@@ -672,6 +683,7 @@
             {
                 theme: 'red', local: 'images/hero-1.jpg',
                 img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/subscription/promotion/2026/08-birthday/-Birthday_1920x720.jpg',
+                imgM: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/subscription/promotion/2026/08-birthday/-Birthday_720x960.jpg',
                 label: 'LG Subscribe',
                 title: 'โปรปังฉลองครบรอบ 38 ปี LG',
                 dates: '7 ส.ค. 69 – 11 ก.ย. 69',
@@ -683,6 +695,8 @@
             {
                 theme: 'red', local: 'images/hero-2.jpg',
                 img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/subscription/promotion/2026/08-birthday/OLEDWEEK_1920x720.jpg',
+                imgM: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/subscription/promotion/2026/08-birthday/OLED-WEEK_720x960.jpg',
+                fx: 'oled',
                 label: 'LG Subscribe',
                 title: 'SUBSCRIBE OLED WEEK',
                 dates: '1 ส.ค. 69 – 31 ส.ค. 69',
@@ -694,6 +708,7 @@
             {
                 theme: 'red', local: 'images/hero-3.jpg',
                 img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/subscription/promotion/2026/08-birthday/IXY_1920x720.jpg',
+                imgM: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/subscription/promotion/2026/08-birthday/IXY_720x960.jpg',
                 label: 'LG Subscribe',
                 title: 'ซับ 2 แถม 1',
                 dates: '1 ส.ค. 69 – 31 ส.ค. 69',
@@ -705,6 +720,7 @@
             {
                 theme: 'red', local: 'images/hero-4.jpg',
                 img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/subscription/promotion/2026/08-birthday/OLED-S80TY_1920x720.jpg',
+                imgM: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/subscription/promotion/2026/08-birthday/OLED-S80TY_720x960.jpg',
                 label: 'LG Subscribe',
                 title: 'ซับ 1 แถม 1',
                 dates: '1 ส.ค. 69 – 31 ส.ค. 69',
@@ -716,6 +732,7 @@
             {
                 theme: 'red', local: 'images/hero-5.jpg',
                 img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/subscription/promotion/2026/08-birthday/AP_1920x720.jpg',
+                imgM: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/subscription/promotion/2026/08-birthday/AP_720x960.jpg',
                 label: 'LG Subscribe',
                 title: 'โปรคุ้ม 2 ต่อ',
                 dates: '1 ส.ค. 69 – 31 ส.ค. 69',
@@ -727,17 +744,20 @@
             {
                 theme: 'cream', local: 'images/hero-6.jpg',
                 img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/subscription/promotion/2026/08-birthday/-Mother_1920x720.png',
+                imgM: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/subscription/promotion/2026/08-birthday/-Mother_720x960.png',
                 label: 'LG Subscribe',
                 title: 'ชวนเพื่อนซับ ยิ่งรับ ยิ่งได้!',
                 dates: '7 ส.ค. 69 – 11 ก.ย. 69',
                 detail: '1. ผู้แนะนำ รับฟรี! ค่าบริการ 1 เดือน 2. ลูกค้าใหม่ รับส่วนลด 50% เพิ่ม 2 รอบบิล',
                 badge: 'ของขวัญ',
                 btn1: { text: 'ดูโปรโมชันอื่นๆ', href: 'promotions.html' },
-                btn2: { text: 'Subscribe เลย!', href: '#calculator' }
+                btn2: { text: 'Subscribe เลย!', href: '#calculator' },
+                btn3: { text: 'กรอกฟอร์มรับสิทธิ์', href: 'https://line.me/R/ti/p/@yourlineid' }
             },
             {
                 theme: 'cream', local: 'images/hero-7.jpg',
                 img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/subscription/promotion/2026/07-sub/AWO-Subscribe-Banner_1920x720.jpg',
+                imgM: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/subscription/promotion/2026/07-sub/AWO-Subscribe-Banner_720x960.jpg',
                 label: 'LG Subscribe',
                 title: 'ความคุ้มค่าที่เหนือกว่า',
                 dates: 'ตลอดเดือน ส.ค. 69',
@@ -749,6 +769,7 @@
             {
                 theme: 'cream', local: 'images/hero-8.jpg',
                 img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/subscription/promotion/2026/07-sub/all-Banner_1920x720.jpg',
+                imgM: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/subscription/promotion/2026/07-sub/all-Banner_720x960.jpg',
                 label: 'LG Subscribe',
                 title: 'เช่าง่าย ใช้สบาย ครบทุกไลฟ์สไตล์',
                 dates: 'โปรโมชัน ส.ค. 69',
@@ -762,6 +783,9 @@
         let heroIndex = 0;
         let heroPlaying = true;
         let heroTimer = null;
+        const heroMobile = window.matchMedia('(max-width: 860px)');
+        const localHeroLoaded = {};
+        function heroImgFor(s) { return (heroMobile.matches && s.imgM) ? s.imgM : s.img; }
 
         function buildHero() {
             const track = document.getElementById('heroTrack');
@@ -782,11 +806,13 @@
                         '<div class="h-btns">' +
                             '<a class="h-btn h-btn-outline" href="' + s.btn1.href + '">' + s.btn1.text + '</a>' +
                             '<a class="h-btn h-btn-solid" href="' + s.btn2.href + '">' + s.btn2.text + '</a>' +
+                            (s.btn3 ? '<a class="h-btn h-btn-soft" href="' + s.btn3.href + '">' + s.btn3.text + '</a>' : '') +
                         '</div>' +
                         '<span class="h-logo">LG Subscribe™</span>' +
                     '</div>' +
                     '<div class="hero-right">' +
-                        '<img class="hero-campaign" src="' + s.img + '" alt="' + s.title + '" data-slot="' + i + '" />' +
+                        '<img class="hero-campaign' + (s.fx === 'oled' ? ' kenburns' : '') + '" src="' + heroImgFor(s) + '" alt="' + s.title + '" data-slot="' + i + '" />' +
+                        (s.fx === 'oled' ? '<div class="hero-shimmer"></div>' : '') +
                         (s.badge ? '<span class="hero-badge">' + s.badge + '</span>' : '') +
                     '</div>';
                 track.appendChild(slide);
@@ -795,15 +821,25 @@
                 pb.title = 'สไลด์ ' + (i + 1);
                 pb.onclick = () => goHero(i);
                 progress.appendChild(pb);
-                // รูปถ่ายของคุณ (images/hero-N.jpg) จะแทนรูปสินค้าเมื่อมีไฟล์
+                // รูปถ่ายของคุณ (images/hero-N.jpg) จะแทนรูปแคมเปญเมื่อมีไฟล์
                 const probe = new Image();
                 probe.onload = function () {
+                    localHeroLoaded[i] = true;
                     const img = track.querySelector('.hero-campaign[data-slot="' + i + '"]');
                     if (img) img.src = s.local;
                 };
                 probe.src = s.local;
             });
         }
+
+        /* สลับเป็นภาพแนวตั้ง (720×960) เมื่อเปิดบนมือถือ — เห็นสินค้าชัดขึ้น */
+        function refreshHeroImgs() {
+            HERO_SLIDES.forEach((s, i) => {
+                const img = document.querySelector('.hero-campaign[data-slot="' + i + '"]');
+                if (img && !localHeroLoaded[i]) img.src = heroImgFor(s);
+            });
+        }
+        heroMobile.addEventListener('change', refreshHeroImgs);
 
         function goHero(i, restart) {
             heroIndex = (i + HERO_SLIDES.length) % HERO_SLIDES.length;
