@@ -130,6 +130,13 @@
         /* สไลด์ OLED WEEK: ซูมค่อยๆ (Ken Burns) + แสงวิ่งแบบหน้าจอทีวี */
         .hero-campaign.kenburns { animation: heroKenburns 16s ease-in-out infinite alternate; will-change: transform; }
         @keyframes heroKenburns { from { transform: scale(1); } to { transform: scale(1.09); } }
+        /* โหมดอ่านเร็ว (reduced motion): ปิดการเคลื่อนไหวทั้งหมดใน hero */
+        @media (prefers-reduced-motion: reduce) {
+            .hero-campaign.kenburns { animation: none; }
+            .hero-shimmer { display: none; }
+            .hero-progress button.active::after { animation: none; }
+            .hero-slide { transition: none; }
+        }
         .hero-shimmer {
             position: absolute; inset: 0; z-index: 2; pointer-events: none;
             background: linear-gradient(115deg, transparent 32%, rgba(255,255,255,0.14) 44%, rgba(255,255,255,0.26) 50%, rgba(255,255,255,0.14) 56%, transparent 68%);
@@ -784,6 +791,7 @@
         let heroPlaying = true;
         let heroTimer = null;
         const heroMobile = window.matchMedia('(max-width: 860px)');
+        const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         const localHeroLoaded = {};
         const heroLoaded = {};
         function heroImgFor(s) { return (heroMobile.matches && s.imgM) ? s.imgM : s.img; }
@@ -914,6 +922,11 @@
         renderProducts();
         buildHero();
         preloadHero(1);
+        /* โหมดอ่านเร็ว: เริ่มแบบหยุดนิ่ง ไม่เลื่อนอัตโนมัติ (ยังสลับสไลด์ด้วยปุ่มได้) */
+        if (reducedMotion) {
+            heroPlaying = false;
+            document.getElementById('heroPlay').textContent = '▶';
+        }
         restartHero();
     </script>
 
