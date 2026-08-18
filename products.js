@@ -30,10 +30,10 @@ window.LG_PRODUCTS = [
     emoji: "🌀",
     plans: [
       { label: "Outright ผ่อน 9 งวด", months: 9, price: 3490, promo: "ราคาเต็ม ฿34,900 ลด 10% = ฿31,410" },
-      { label: "Visit 5 ปี (60 เดือน)", months: 60, price: 549, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-12" },
-      { label: "Self 5 ปี (60 เดือน)", months: 60, price: 499, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-12" },
-      { label: "Visit 7 ปี (84 เดือน)", months: 84, price: 449, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-12" },
-      { label: "Self 7 ปี (84 เดือน)", months: 84, price: 399, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-12" }
+      { label: "Visit 5 ปี (60 เดือน)", months: 60, price: 799, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-12" },
+      { label: "Self 5 ปี (60 เดือน)", months: 60, price: 699, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-12" },
+      { label: "Visit 7 ปี (84 เดือน)", months: 84, price: 599, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-12" },
+      { label: "Self 7 ปี (84 เดือน)", months: 84, price: 499, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-12" }
     ]
   },
   {
@@ -537,10 +537,10 @@ window.LG_PRODUCTS = [
     category: "เครื่องฟอกอากาศ",
     emoji: "🌬️",
     plans: [
-      { label: "Visit 5 ปี (60 เดือน)", months: 60, price: 449, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-3" },
-      { label: "Self 5 ปี (60 เดือน)", months: 60, price: 399, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-3" },
-      { label: "Visit 5 ปี (60 เดือน)", months: 60, price: 499, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-3" },
-      { label: "Self 5 ปี (60 เดือน)", months: 60, price: 449, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-3" }
+      { label: "Visit 5 ปี (60 เดือน · 12 งวด)", months: 60, price: 449, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-3" },
+      { label: "Self 5 ปี (60 เดือน · 12 งวด)", months: 60, price: 399, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-3" },
+      { label: "Visit 5 ปี (60 เดือน · 6 งวด)", months: 60, price: 499, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-3" },
+      { label: "Self 5 ปี (60 เดือน · 6 งวด)", months: 60, price: 449, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-3" }
     ]
   },
   {
@@ -551,10 +551,10 @@ window.LG_PRODUCTS = [
     category: "เครื่องฟอกอากาศ",
     emoji: "🌬️",
     plans: [
-      { label: "Visit 5 ปี (60 เดือน)", months: 60, price: 749, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-3" },
-      { label: "Self 5 ปี (60 เดือน)", months: 60, price: 699, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-3" },
-      { label: "Visit 5 ปี (60 เดือน)", months: 60, price: 799, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-3" },
-      { label: "Self 5 ปี (60 เดือน)", months: 60, price: 749, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-3" }
+      { label: "Visit 5 ปี (60 เดือน · 12 งวด)", months: 60, price: 749, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-3" },
+      { label: "Self 5 ปี (60 เดือน · 12 งวด)", months: 60, price: 699, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-3" },
+      { label: "Visit 5 ปี (60 เดือน · 6 งวด)", months: 60, price: 799, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-3" },
+      { label: "Self 5 ปี (60 เดือน · 6 งวด)", months: 60, price: 749, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-3" }
     ]
   },
   {
@@ -565,10 +565,10 @@ window.LG_PRODUCTS = [
     category: "เครื่องฟอกอากาศ",
     emoji: "🌬️",
     plans: [
-      { label: "Visit 5 ปี (60 เดือน)", months: 60, price: 1149, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-3" },
-      { label: "Self 5 ปี (60 เดือน)", months: 60, price: 1099, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-3" },
-      { label: "Visit 5 ปี (60 เดือน)", months: 60, price: 1199, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-3" },
-      { label: "Self 5 ปี (60 เดือน)", months: 60, price: 1149, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-3" }
+      { label: "Visit 5 ปี (60 เดือน · 12 งวด)", months: 60, price: 1149, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-3" },
+      { label: "Self 5 ปี (60 เดือน · 12 งวด)", months: 60, price: 1099, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-3" },
+      { label: "Visit 5 ปี (60 เดือน · 6 งวด)", months: 60, price: 1199, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-3" },
+      { label: "Self 5 ปี (60 เดือน · 6 งวด)", months: 60, price: 1149, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-3" }
     ]
   },
   {
@@ -579,8 +579,8 @@ window.LG_PRODUCTS = [
     category: "เครื่องปรับอากาศ IXY",
     emoji: "❄️",
     plans: [
-      { label: "Visit 5 ปี (60 เดือน)", months: 60, price: 499, promo: "บิลแรก ฿149 · ซับ 2 แถม 1" },
-      { label: "Visit 5 ปี (60 เดือน)", months: 60, price: 399, promo: "บิลแรก ฿149 · ซับ 2 แถม 1" }
+      { label: "Visit 5 ปี (60 เดือน · 6 งวด)", months: 60, price: 499, promo: "บิลแรก ฿149 · ซับ 2 แถม 1" },
+      { label: "Visit 5 ปี (60 เดือน · 12 งวด)", months: 60, price: 399, promo: "บิลแรก ฿149 · ซับ 2 แถม 1" }
     ]
   },
   {
@@ -591,8 +591,8 @@ window.LG_PRODUCTS = [
     category: "เครื่องปรับอากาศ IXY",
     emoji: "❄️",
     plans: [
-      { label: "Visit 5 ปี (60 เดือน)", months: 60, price: 549, promo: "บิลแรก ฿149 · ซับ 2 แถม 1" },
-      { label: "Visit 5 ปี (60 เดือน)", months: 60, price: 449, promo: "บิลแรก ฿149 · ซับ 2 แถม 1" }
+      { label: "Visit 5 ปี (60 เดือน · 6 งวด)", months: 60, price: 549, promo: "บิลแรก ฿149 · ซับ 2 แถม 1" },
+      { label: "Visit 5 ปี (60 เดือน · 12 งวด)", months: 60, price: 449, promo: "บิลแรก ฿149 · ซับ 2 แถม 1" }
     ]
   },
   {
@@ -603,8 +603,8 @@ window.LG_PRODUCTS = [
     category: "เครื่องปรับอากาศ IXY",
     emoji: "❄️",
     plans: [
-      { label: "Visit 5 ปี (60 เดือน)", months: 60, price: 699, promo: "บิลแรก ฿149 · ซับ 2 แถม 1" },
-      { label: "Visit 5 ปี (60 เดือน)", months: 60, price: 599, promo: "บิลแรก ฿149 · ซับ 2 แถม 1" }
+      { label: "Visit 5 ปี (60 เดือน · 6 งวด)", months: 60, price: 699, promo: "บิลแรก ฿149 · ซับ 2 แถม 1" },
+      { label: "Visit 5 ปี (60 เดือน · 12 งวด)", months: 60, price: 599, promo: "บิลแรก ฿149 · ซับ 2 แถม 1" }
     ]
   },
   {
@@ -615,8 +615,8 @@ window.LG_PRODUCTS = [
     category: "เครื่องปรับอากาศ IXY",
     emoji: "❄️",
     plans: [
-      { label: "Visit 5 ปี (60 เดือน)", months: 60, price: 849, promo: "บิลแรก ฿149 · ซับ 2 แถม 1" },
-      { label: "Visit 5 ปี (60 เดือน)", months: 60, price: 749, promo: "บิลแรก ฿149 · ซับ 2 แถม 1" }
+      { label: "Visit 5 ปี (60 เดือน · 6 งวด)", months: 60, price: 849, promo: "บิลแรก ฿149 · ซับ 2 แถม 1" },
+      { label: "Visit 5 ปี (60 เดือน · 12 งวด)", months: 60, price: 749, promo: "บิลแรก ฿149 · ซับ 2 แถม 1" }
     ]
   },
   {
@@ -627,8 +627,8 @@ window.LG_PRODUCTS = [
     category: "เครื่องปรับอากาศ SIQ",
     emoji: "❄️",
     plans: [
-      { label: "Visit 5 ปี (60 เดือน)", months: 60, price: 699, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-8" },
-      { label: "Visit 5 ปี (60 เดือน)", months: 60, price: 599, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-8" }
+      { label: "Visit 5 ปี (60 เดือน · 6 งวด)", months: 60, price: 699, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-8" },
+      { label: "Visit 5 ปี (60 เดือน · 12 งวด)", months: 60, price: 599, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-8" }
     ]
   },
   {
@@ -639,8 +639,8 @@ window.LG_PRODUCTS = [
     category: "เครื่องปรับอากาศ SIQ",
     emoji: "❄️",
     plans: [
-      { label: "Visit 5 ปี (60 เดือน)", months: 60, price: 799, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-8" },
-      { label: "Visit 5 ปี (60 เดือน)", months: 60, price: 699, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-8" }
+      { label: "Visit 5 ปี (60 เดือน · 6 งวด)", months: 60, price: 799, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-8" },
+      { label: "Visit 5 ปี (60 เดือน · 12 งวด)", months: 60, price: 699, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-8" }
     ]
   },
   {
@@ -651,8 +651,8 @@ window.LG_PRODUCTS = [
     category: "เครื่องปรับอากาศ SIQ",
     emoji: "❄️",
     plans: [
-      { label: "Visit 5 ปี (60 เดือน)", months: 60, price: 999, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-8" },
-      { label: "Visit 5 ปี (60 เดือน)", months: 60, price: 899, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-8" }
+      { label: "Visit 5 ปี (60 เดือน · 6 งวด)", months: 60, price: 999, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-8" },
+      { label: "Visit 5 ปี (60 เดือน · 12 งวด)", months: 60, price: 899, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-8" }
     ]
   },
   {
@@ -663,8 +663,8 @@ window.LG_PRODUCTS = [
     category: "เครื่องปรับอากาศ SIQ",
     emoji: "❄️",
     plans: [
-      { label: "Visit 5 ปี (60 เดือน)", months: 60, price: 1199, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-8" },
-      { label: "Visit 5 ปี (60 เดือน)", months: 60, price: 1099, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-8" }
+      { label: "Visit 5 ปี (60 เดือน · 6 งวด)", months: 60, price: 1199, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-8" },
+      { label: "Visit 5 ปี (60 เดือน · 12 งวด)", months: 60, price: 1099, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-8" }
     ]
   },
   {
@@ -675,8 +675,8 @@ window.LG_PRODUCTS = [
     category: "เครื่องปรับอากาศ SAQ",
     emoji: "❄️",
     plans: [
-      { label: "Visit 5 ปี (60 เดือน)", months: 60, price: 899, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-8" },
-      { label: "Visit 5 ปี (60 เดือน)", months: 60, price: 799, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-8" }
+      { label: "Visit 5 ปี (60 เดือน · 6 งวด)", months: 60, price: 899, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-8" },
+      { label: "Visit 5 ปี (60 เดือน · 12 งวด)", months: 60, price: 799, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-8" }
     ]
   },
   {
@@ -687,8 +687,8 @@ window.LG_PRODUCTS = [
     category: "เครื่องปรับอากาศ SAQ",
     emoji: "❄️",
     plans: [
-      { label: "Visit 5 ปี (60 เดือน)", months: 60, price: 949, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-8" },
-      { label: "Visit 5 ปี (60 เดือน)", months: 60, price: 849, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-8" }
+      { label: "Visit 5 ปี (60 เดือน · 6 งวด)", months: 60, price: 949, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-8" },
+      { label: "Visit 5 ปี (60 เดือน · 12 งวด)", months: 60, price: 849, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-8" }
     ]
   },
   {
@@ -699,8 +699,8 @@ window.LG_PRODUCTS = [
     category: "เครื่องปรับอากาศ SAQ",
     emoji: "❄️",
     plans: [
-      { label: "Visit 5 ปี (60 เดือน)", months: 60, price: 1149, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-8" },
-      { label: "Visit 5 ปี (60 เดือน)", months: 60, price: 1049, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-8" }
+      { label: "Visit 5 ปี (60 เดือน · 6 งวด)", months: 60, price: 1149, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-8" },
+      { label: "Visit 5 ปี (60 เดือน · 12 งวด)", months: 60, price: 1049, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-8" }
     ]
   },
   {
@@ -711,8 +711,8 @@ window.LG_PRODUCTS = [
     category: "เครื่องปรับอากาศ SAQ",
     emoji: "❄️",
     plans: [
-      { label: "Visit 5 ปี (60 เดือน)", months: 60, price: 1299, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-8" },
-      { label: "Visit 5 ปี (60 เดือน)", months: 60, price: 1199, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-8" }
+      { label: "Visit 5 ปี (60 เดือน · 6 งวด)", months: 60, price: 1299, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-8" },
+      { label: "Visit 5 ปี (60 เดือน · 12 งวด)", months: 60, price: 1199, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-8" }
     ]
   },
   {
@@ -723,8 +723,8 @@ window.LG_PRODUCTS = [
     category: "เครื่องปรับอากาศ ART",
     emoji: "❄️",
     plans: [
-      { label: "Visit 5 ปี (60 เดือน)", months: 60, price: 1049, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-8" },
-      { label: "Visit 5 ปี (60 เดือน)", months: 60, price: 949, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-8" }
+      { label: "Visit 5 ปี (60 เดือน · 6 งวด)", months: 60, price: 1049, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-8" },
+      { label: "Visit 5 ปี (60 เดือน · 12 งวด)", months: 60, price: 949, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-8" }
     ]
   },
   {
@@ -735,8 +735,8 @@ window.LG_PRODUCTS = [
     category: "เครื่องปรับอากาศ ART",
     emoji: "❄️",
     plans: [
-      { label: "Visit 5 ปี (60 เดือน)", months: 60, price: 1249, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-8" },
-      { label: "Visit 5 ปี (60 เดือน)", months: 60, price: 1149, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-8" }
+      { label: "Visit 5 ปี (60 เดือน · 6 งวด)", months: 60, price: 1249, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-8" },
+      { label: "Visit 5 ปี (60 เดือน · 12 งวด)", months: 60, price: 1149, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-8" }
     ]
   },
   {
@@ -837,7 +837,7 @@ window.LG_PRODUCTS = [
     category: "โทรทัศน์ OLED",
     emoji: "📺",
     plans: [
-      { label: "ไม่รับบริการ 5 ปี (60 เดือน) · โปร 8 เดือน", months: 60, price: 699, promo: "50% เดือน 1-20" },
+      { label: "ไม่รับบริการ 5 ปี (60 เดือน) · โปร 8 เดือน", months: 60, price: 749, promo: "50% เดือน 1-20" },
       { label: "ไม่รับบริการ 5 ปี (60 เดือน) · โปร 3 เดือน", months: 60, price: 749, promo: "50% เดือน 1-15" }
     ]
   },
