@@ -120,21 +120,12 @@
             padding: 9px 20px; font-size: 13px; font-weight: 800; letter-spacing: 0.5px;
         }
         .hero-right { background: var(--hero-bg); position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; }
-        .pedestal {
-            position: absolute; bottom: -46px; left: 50%; transform: translateX(-50%);
-            width: 78%; height: 210px; border-radius: 50%; pointer-events: none;
-            background: radial-gradient(ellipse at center, var(--hero-pedestal) 0%, transparent 66%);
+        .hero-campaign {
+            position: absolute; inset: 0; width: 100%; height: 100%;
+            object-fit: cover; object-position: right center;
+            display: block;
         }
-        .pedestal::before {
-            content: ''; position: absolute; left: 50%; bottom: 8px; transform: translateX(-50%);
-            width: 52%; height: 84px; border-radius: 50%;
-            background: radial-gradient(ellipse at center, var(--hero-glow) 0%, transparent 72%);
-        }
-        .hero-product {
-            position: relative; z-index: 2; width: min(74%, 470px);
-            mix-blend-mode: multiply; object-fit: contain;
-            filter: drop-shadow(0 26px 44px rgba(0,0,0,0.3));
-        }
+        .hero-campaign.dim::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0,0,0,0.25) 0%, transparent 60%); }
         .hero-badge {
             position: absolute; top: 12%; right: 9%; z-index: 3;
             background: #fff; color: #CE0000; border: 2px solid #fff;
@@ -186,7 +177,7 @@
             .hero-slide.active { display: block; }
             .hero-left { padding: 38px 24px 96px; }
             .hero-right { min-height: 300px; }
-            .hero-product { width: min(72%, 340px); }
+            .hero-campaign { object-position: center; }
             .hero-badge { width: 84px; height: 84px; font-size: 12px; top: 8%; right: 6%; }
             .hero-controls { padding: 0 18px 16px; }
             .hero-note { max-width: 46vw; }
@@ -673,62 +664,96 @@
         }
 
         /* ---------- Hero carousel สไตล์ LG Subscribe ----------
-           สไลด์: ธีมแดง (โปร/ลด/ของแถม) + ธีมครีม (คุณค่า/บริการ)
-           วิธีใช้รูปถ่ายของคุณ: วาง hero-1.jpg … hero-5.jpg ในโฟลเดอร์ images/ แล้วระบบจะใช้แทนรูปสินค้า
+           สไลด์ 8 ใบ ใช้ภาพแคมเปญจริงจากเว็บ LG Subscribe (สิงหาคม 2569):
+           ธีมแดง = โปร/ลด/ของแถม · ธีมครีม = คุณค่า/บริการ
+           วิธีใช้รูปถ่ายของคุณ: วาง hero-1.jpg … hero-8.jpg ในโฟลเดอร์ images/ แล้วระบบจะใช้แทนอัตโนมัติ
            (แก้ไขเนื้อหาสไลด์ได้ที่อาร์เรย์ HERO_SLIDES ด้านล่าง) */
         const HERO_SLIDES = [
             {
                 theme: 'red', local: 'images/hero-1.jpg',
-                img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/oled/oled81-42c6psa-atm/gallery/48-c6/update/OLED48C6PSA-450-01.jpg',
+                img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/subscription/promotion/2026/08-birthday/-Birthday_1920x720.jpg',
                 label: 'LG Subscribe',
-                title: 'SUBSCRIBE OLED WEEK',
-                dates: '1 ส.ค. 69 – 31 ส.ค. 69',
-                detail: 'ทีวี OLED รายเดือน เริ่มต้น ฿749 — งวดแรก 50% + ส่วนลด 50% เดือน 2–8',
-                badge: 'ลด 50%',
+                title: 'โปรปังฉลองครบรอบ 38 ปี LG',
+                dates: '7 ส.ค. 69 – 11 ก.ย. 69',
+                detail: 'ลดเลย 15% ตลอดสัญญา — ฉลอง 38 ปี กับโปรสุดปังเฉพาะเดือนสิงหาคมนี้',
+                badge: 'ลด 15%',
                 btn1: { text: 'ดูโปรโมชันอื่นๆ', href: 'promotions.html' },
                 btn2: { text: 'Subscribe เลย!', href: '#calculator' }
             },
             {
-                theme: 'cream', local: 'images/hero-2.jpg',
-                img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/washing-machine/2026/wt2520nheg-abgpeth/gallery/wt2520nheg-450-0604.jpg',
+                theme: 'red', local: 'images/hero-2.jpg',
+                img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/subscription/promotion/2026/08-birthday/OLEDWEEK_1920x720.jpg',
                 label: 'LG Subscribe',
-                title: 'ความคุ้มค่าที่เหนือกว่า',
-                dates: 'ตลอดเดือน ส.ค. 69',
-                detail: 'จ่ายรายเดือนคงที่ ไม่ต้องควักเงินก้อน — ทีมช่างดูแลถึงบ้าน ซ่อมฟรีตลอดสัญญา',
-                badge: 'ดูแลครบวงจร',
+                title: 'SUBSCRIBE OLED WEEK',
+                dates: '1 ส.ค. 69 – 31 ส.ค. 69',
+                detail: '50% OFF ลดแรงทะลุจอ — ทีวี OLED รายเดือน เริ่มต้น ฿749/เดือน',
+                badge: '50% OFF',
                 btn1: { text: 'ดูโปรโมชันอื่นๆ', href: 'promotions.html' },
                 btn2: { text: 'Subscribe เลย!', href: '#calculator' }
             },
             {
                 theme: 'red', local: 'images/hero-3.jpg',
-                img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/refrigerator/2024/gc-l257kqkw-aepplmt/gallery/GC-L257KQKW_Front_450.jpg',
+                img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/subscription/promotion/2026/08-birthday/IXY_1920x720.jpg',
                 label: 'LG Subscribe',
-                title: 'สมัคร 2 เครื่องขึ้นไป ลดเพิ่ม 10%',
+                title: 'ซับ 2 แถม 1',
                 dates: '1 ส.ค. 69 – 31 ส.ค. 69',
-                detail: 'ลูกค้าเดิม 1 เครื่องขึ้นไป / ลูกค้าใหม่ 2 เครื่องขึ้นไป + บิลแรกเพียง ฿149',
-                badge: 'คอมโบ 10%',
+                detail: 'Subscribe แอร์ IXY 2 ตัว รับฟรี! เครื่องฟอกอากาศ มูลค่า 6,900.-',
+                badge: 'รับฟรี!',
                 btn1: { text: 'ดูโปรโมชันอื่นๆ', href: 'promotions.html' },
                 btn2: { text: 'Subscribe เลย!', href: '#calculator' }
             },
             {
-                theme: 'cream', local: 'images/hero-4.jpg',
-                img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2025/image-with-icon/saq/RAC2025-Web-Thumbnail_SAQ-450X450.jpg',
+                theme: 'red', local: 'images/hero-4.jpg',
+                img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/subscription/promotion/2026/08-birthday/OLED-S80TY_1920x720.jpg',
                 label: 'LG Subscribe',
-                title: 'เช่าง่าย ใช้สบาย ครบทุกไลฟ์สไตล์',
-                dates: 'โปรโมชัน ส.ค. 69',
-                detail: 'ไมโครเวฟเริ่ม ฿89/เดือน แอร์เริ่ม ฿399/เดือน — ติดตั้งฟรี พร้อมทีมช่างดูแล',
-                badge: 'ติดตั้งฟรี',
+                title: 'ซับ 1 แถม 1',
+                dates: '1 ส.ค. 69 – 31 ส.ค. 69',
+                detail: 'ซับ TV OLED 65\" รับฟรี! Soundbar (มูลค่า 15,151.-)',
+                badge: 'รับฟรี!',
                 btn1: { text: 'ดูโปรโมชันอื่นๆ', href: 'promotions.html' },
                 btn2: { text: 'Subscribe เลย!', href: '#calculator' }
             },
             {
                 theme: 'red', local: 'images/hero-5.jpg',
-                img: 'https://www.lg.com/content/dam/channel/wcms/th/images/vacuum-cleaner/a9t-ultra_dcbpeth_eath_th_c/Basic-450.jpg',
+                img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/subscription/promotion/2026/08-birthday/AP_1920x720.jpg',
                 label: 'LG Subscribe',
-                title: 'โปรปังฉลองครบรอบ 38 ปี LG',
+                title: 'โปรคุ้ม 2 ต่อ',
+                dates: '1 ส.ค. 69 – 31 ส.ค. 69',
+                detail: '1. จ่ายเพียง ฿149 เดือนแรก 2. ลด 50% นาน 2 รอบบิล',
+                badge: '฿149',
+                btn1: { text: 'ดูโปรโมชันอื่นๆ', href: 'promotions.html' },
+                btn2: { text: 'Subscribe เลย!', href: '#calculator' }
+            },
+            {
+                theme: 'cream', local: 'images/hero-6.jpg',
+                img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/subscription/promotion/2026/08-birthday/-Mother_1920x720.png',
+                label: 'LG Subscribe',
+                title: 'ชวนเพื่อนซับ ยิ่งรับ ยิ่งได้!',
                 dates: '7 ส.ค. 69 – 11 ก.ย. 69',
-                detail: 'ขอบคุณทุกบ้านที่เชื่อมั่น — รวมโปรพิเศษทั้งเดือน รับของแถมเพียบตามแพ็กเกจ',
-                badge: '38 ปี',
+                detail: '1. ผู้แนะนำ รับฟรี! ค่าบริการ 1 เดือน 2. ลูกค้าใหม่ รับส่วนลด 50% เพิ่ม 2 รอบบิล',
+                badge: 'ของขวัญ',
+                btn1: { text: 'ดูโปรโมชันอื่นๆ', href: 'promotions.html' },
+                btn2: { text: 'Subscribe เลย!', href: '#calculator' }
+            },
+            {
+                theme: 'cream', local: 'images/hero-7.jpg',
+                img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/subscription/promotion/2026/07-sub/AWO-Subscribe-Banner_1920x720.jpg',
+                label: 'LG Subscribe',
+                title: 'ความคุ้มค่าที่เหนือกว่า',
+                dates: 'ตลอดเดือน ส.ค. 69',
+                detail: 'เปลี่ยนไส้กรอง · ทำความสะอาดทั้งภายใน/ภายนอก · ตรวจสอบประสิทธิภาพการใช้งาน — ดูแลครบตลอดสัญญา',
+                badge: 'ดูแลครบวงจร',
+                btn1: { text: 'ดูโปรโมชันอื่นๆ', href: 'promotions.html' },
+                btn2: { text: 'Subscribe เลย!', href: '#calculator' }
+            },
+            {
+                theme: 'cream', local: 'images/hero-8.jpg',
+                img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/subscription/promotion/2026/07-sub/all-Banner_1920x720.jpg',
+                label: 'LG Subscribe',
+                title: 'เช่าง่าย ใช้สบาย ครบทุกไลฟ์สไตล์',
+                dates: 'โปรโมชัน ส.ค. 69',
+                detail: 'ตู้เย็น · เครื่องซักผ้า · แอร์ · ทีวี — ทุกหมวดมีแผนรายเดือน ติดตั้งฟรี พร้อมทีมช่างดูแล',
+                badge: 'ติดตั้งฟรี',
                 btn1: { text: 'ดูโปรโมชันอื่นๆ', href: 'promotions.html' },
                 btn2: { text: 'Subscribe เลย!', href: '#calculator' }
             }
@@ -761,8 +786,7 @@
                         '<span class="h-logo">LG Subscribe™</span>' +
                     '</div>' +
                     '<div class="hero-right">' +
-                        '<div class="pedestal"></div>' +
-                        '<img class="hero-product" src="' + s.img + '" alt="' + s.title + '" data-slot="' + i + '" />' +
+                        '<img class="hero-campaign" src="' + s.img + '" alt="' + s.title + '" data-slot="' + i + '" />' +
                         (s.badge ? '<span class="hero-badge">' + s.badge + '</span>' : '') +
                     '</div>';
                 track.appendChild(slide);
@@ -774,7 +798,7 @@
                 // รูปถ่ายของคุณ (images/hero-N.jpg) จะแทนรูปสินค้าเมื่อมีไฟล์
                 const probe = new Image();
                 probe.onload = function () {
-                    const img = track.querySelector('.hero-product[data-slot="' + i + '"]');
+                    const img = track.querySelector('.hero-campaign[data-slot="' + i + '"]');
                     if (img) img.src = s.local;
                 };
                 probe.src = s.local;
