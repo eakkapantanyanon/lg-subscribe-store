@@ -796,12 +796,8 @@
                     '<span class="p-badge">' + badgeFor(p) + '</span>' +
                     '<div class="p-cta">ดูแผนการชำระ →</div>';
                 card.onclick = () => {
-                    // เปิดเครื่องคำนวณพร้อมเลือกหมวด/สินค้านั้นให้อัตโนมัติ (ผ่าน param ใน URL iframe)
-                    const cat = encodeURIComponent(p.category || '');
-                    const prod = encodeURIComponent(String(p.id || p.model || '').toLowerCase());
-                    const f = document.querySelector('.calc-frame');
-                    if (f) f.src = 'subscribe-store.html?cat=' + cat + '&product=' + prod;
-                    location.href = '#calculator';
+                    // ไปยังหน้ารายละเอียดสินค้า (PDP) — route แยกตาม slug
+                    location.href = 'product.html?slug=' + encodeURIComponent(String(p.id || p.model || '').toLowerCase());
                 };
                 grid.appendChild(card);
             });

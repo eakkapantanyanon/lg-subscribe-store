@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>สินค้า — FLEXI-SUB™ LG Subscribe</title>
+<style>
+    :root {
+        --accent: #2563eb;
+        --accent-soft: #eff6ff;
+        --accent-border: #bfdbfe;
+        --accent-text: #1e40af;
+        --accent-glow: rgba(37, 99, 235, 0.15);
+        --bg: #f7f9fc;
+        --card: #ffffff;
+        --line: #e5e9f0;
+        --text: #1f2937;
+        --muted: #6b7280;
+        --green: #16a34a;
+        --red: #dc2626;
+    }
+    body.theme-orange {
+        --accent: #e67e22;
+        --accent-soft: #fff7ed;
+        --accent-border: #fde3c4;
+        --accent-text: #9a5b13;
+        --accent-glow: rgba(230, 126, 34, 0.18);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+        font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        background: var(--bg); color: var(--text); line-height: 1.5;
+    }
+
+    /* ---------- Top bar ---------- */
+    .pdp-top {
+        position: sticky; top: 0; z-index: 40;
+        display: flex; align-items: center; justify-content: space-between; gap: 12px;
+        background: var(--card); border-bottom: 1px solid var(--line);
+        padding: 10px 20px;
+    }
+    .pdp-top .back { color: var(--accent-text); text-decoration: none; font-weight: 600; font-size: 14px; }
+    .pdp-top .brand { font-weight: 800; letter-spacing: 0.5px; color: var(--accent-text); }
+    .pdp-top .brand small { font-weight: 400; color: var(--muted); font-size: 11px; }
+    .cart-btn {
+        position: relative; text-decoration: none; font-size: 20px;
+        background: var(--accent-soft); border: 1px solid var(--accent-border);
+        border-radius: 10px; padding: 6px 10px;
+    }
+    .cart-btn .count {
+        position: absolute; top: -7px; right: -7px; min-width: 18px; height: 18px;
+        background: var(--accent); color: #fff; border-radius: 9px;
+        font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center;
+        padding: 0 4px;
+    }
+
+    /* ---------- Layout ---------- */
+    .pdp-layout {
+        display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr) 340px;
+        gap: 24px; max-width: 1280px; margin: 0 auto; padding: 24px 20px 120px;
+        align-items: start;
+    }
+    @media (max-width: 1080px) {
+        main .pdp-layout { grid-template-columns: 1fr; }
+        aside.pdp-summary { position: fixed; left: 0; right: 0; bottom: 0; top: auto; z-index: 50;
+            border-radius: 14px 14px 0 0; box-shadow: 0 -6px 24px rgba(0,0,0,.12); max-height: 62vh; overflow-y: auto; }
+    }
+
+    /* ---------- Gallery ---------- */
+    .pdp-gallery { position: sticky; top: 70px; }
+    @media (max-width: 1080px) { section.pdp-gallery { position: static; } }
+    .gallery-main {
+        background: var(--card); border: 1px solid var(--line); border-radius: 16px;
+        height: 400px; display: flex; align-items: center; justify-content: center;
+        overflow: hidden; padding: 16px;
+    }
+    .gallery-main img { max-width: 100%; max-height: 100%; object-fit: contain; }
+    .gallery-main .g-tile { text-align: center; color: var(--muted); }
+    .gallery-main .g-tile .g-emoji { font-size: 96px; line-height: 1.2; }
+    .gallery-main .g-tile .g-title { font-size: 18px; font-weight: 700; color: var(--text); margin-top: 8px; }
+    .gallery-main .g-tile .g-sub { font-size: 13px; margin-top: 4px; }
+    .gallery-thumbs {
+        display: flex; gap: 10px; margin-top: 12px; overflow-x: auto; padding-bottom: 4px;
+    }
+    .g-thumb {
+        flex: 0 0 74px; height: 74px; border-radius: 12px; border: 2px solid var(--line);
+        background: var(--card); cursor: pointer; overflow: hidden;
+        display: flex; align-items: center; justify-content: center;
+    }
+    .g-thumb img { max-width: 100%; max-height: 100%; object-fit: contain; }
+    .g-thumb .t-emoji { font-size: 30px; }
+    .g-thumb.active { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-glow); }
+
+    /* ---------- Info ---------- */
+    .crumbs { font-size: 12px; color: var(--muted); margin-bottom: 10px; }
+    .crumbs a { color: var(--accent-text); text-decoration: none; }
+    .pdp-info h1 { font-size: 24px; font-weight: 800; line-height: 1.3; }
+    .model-chip {
+        display: inline-block; margin-top: 6px; font-size: 12px; font-weight: 600;
+        color: var(--accent-text); background: var(--accent-soft);
+        border: 1px solid var(--accent-border); border-radius: 20px; padding: 3px 10px;
+    }
+    .rating-row { margin-top: 10px; font-size: 13px; color: var(--muted); display: flex; align-items: center; gap: 6px; }
+    .stars { color: #f59e0b; letter-spacing: 1px; }
+    .feature-list { margin-top: 14px; display: grid; gap: 6px; }
+    .feature-list li { list-style: none; font-size: 14px; padding-left: 22px; position: relative; }
+    .feature-list li::before { content: '✓'; position: absolute; left: 0; color: var(--green); font-weight: 700; }
+    details.specs { margin-top: 14px; }
+    details.specs summary { cursor: pointer; color: var(--accent-text); font-weight: 600; font-size: 14px; }
+    .specs-body { margin-top: 10px; background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 12px; }
+    .specs-body table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .specs-body th, .specs-body td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--line); }
+    .specs-body tr:last-child td { border-bottom: none; }
+    .specs-body .price { font-weight: 700; white-space: nowrap; }
+
+    /* ---------- Plan selection ---------- */
+    .plan-section { margin-top: 26px; background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 18px; }
+    .plan-section h2 { font-size: 18px; font-weight: 800; margin-bottom: 4px; }
+    .plan-section .sub { font-size: 12px; color: var(--muted); margin-bottom: 14px; }
+    .opt-group { margin-bottom: 16px; }
+    .opt-group .g-title { font-size: 13px; font-weight: 700; margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+    .req { color: var(--red); }
+    .opt-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
+    .opt-card {
+        position: relative; text-align: left; cursor: pointer; border-radius: 12px;
+        border: 2px solid var(--line); background: var(--bg); padding: 12px 14px;
+        font: inherit; transition: border-color .15s, background .15s, box-shadow .15s;
+    }
+    .opt-card:hover { border-color: var(--accent-border); }
+    .opt-card .t { font-weight: 700; font-size: 14px; display: block; }
+    .opt-card .d { font-size: 12px; color: var(--muted); margin-top: 2px; display: block; }
+    .opt-card .p { font-size: 12px; font-weight: 700; color: var(--accent-text); margin-top: 6px; display: block; }
+    .opt-card.selected {
+        border-color: var(--accent); background: var(--accent-soft);
+        box-shadow: 0 0 0 3px var(--accent-glow);
+    }
+    .opt-card.selected .d { color: var(--accent-text); }
+    .opt-card:disabled { opacity: .45; cursor: not-allowed; }
+    .info-btn {
+        width: 20px; height: 20px; border-radius: 50%; border: 1px solid var(--accent-border);
+        background: var(--accent-soft); color: var(--accent-text); font-size: 12px; font-weight: 700;
+        cursor: pointer; line-height: 18px; text-align: center;
+    }
+    .popover {
+        position: absolute; z-index: 60; max-width: 280px;
+        background: #1f2937; color: #f9fafb; font-size: 12.5px; line-height: 1.5;
+        border-radius: 10px; padding: 10px 12px; box-shadow: 0 8px 24px rgba(0,0,0,.25);
+        display: none;
+    }
+    .popover.show { display: block; }
+    .popover::after {
+        content: ''; position: absolute; top: -6px; left: 16px;
+        border: 6px solid transparent; border-bottom-color: #1f2937; border-top: 0;
+    }
+    .variant-group { margin-top: 10px; }
+    .variant-group .vg-title { font-size: 12px; font-weight: 700; color: var(--muted); margin-bottom: 6px; }
+
+    /* ---------- Summary ---------- */
+    .pdp-summary {
+        background: var(--card); border: 1px solid var(--line); border-radius: 16px;
+        padding: 18px; position: sticky; top: 70px;
+        box-shadow: 0 4px 20px rgba(0,0,0,.06);
+    }
+    .price-block { border-bottom: 1px dashed var(--line); padding-bottom: 12px; }
+    .strike { font-size: 13px; color: var(--muted); text-decoration: line-through; }
+    .strike small { text-decoration: none; }
+    .big-price { font-size: 32px; font-weight: 800; color: var(--accent-text); line-height: 1.15; margin-top: 2px; }
+    .big-label { font-size: 12px; color: var(--muted); font-weight: 600; }
+    .promo-note { font-size: 12.5px; color: var(--text); margin-top: 10px; }
+    .promo-note .tag { display: inline-block; background: #dcfce7; color: #166534; border-radius: 6px; padding: 1px 7px; font-size: 11px; font-weight: 700; margin-right: 4px; }
+    .breakdown-link { display: inline-block; margin-top: 8px; font-size: 13px; color: var(--accent-text); font-weight: 600; cursor: pointer; text-decoration: underline; }
+    .term-row {
+        display: flex; justify-content: space-between; align-items: center;
+        margin-top: 12px; font-size: 13.5px; padding: 9px 0; border-bottom: 1px dashed var(--line);
+    }
+    .term-row strong { color: var(--text); }
+    .s-row { display: flex; justify-content: space-between; font-size: 13.5px; padding: 5px 0; }
+    .s-row b { color: var(--text); }
+    .s-row.save b { color: var(--green); }
+    .combo-hint { font-size: 12px; color: var(--accent-text); background: var(--accent-soft); border: 1px solid var(--accent-border); border-radius: 8px; padding: 8px 10px; margin-top: 10px; }
+    .combo-hint.off { color: var(--muted); background: transparent; border-color: var(--line); }
+    .btn-row { display: flex; gap: 10px; margin-top: 14px; }
+    .btn-outline, .btn-primary {
+        flex: 1; text-align: center; border-radius: 12px; padding: 12px 10px;
+        font-size: 14px; font-weight: 700; cursor: pointer; text-decoration: none;
+        border: 2px solid transparent;
+    }
+    .btn-outline { border-color: var(--accent); color: var(--accent-text); background: transparent; }
+    .btn-outline:hover { background: var(--accent-soft); }
+    .btn-primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+    .btn-primary:hover { filter: brightness(1.06); }
+    .btn-primary:disabled { background: #cbd5e1; border-color: #cbd5e1; color: #f1f5f9; cursor: not-allowed; }
+    .missing-hint { font-size: 12px; color: var(--red); margin-top: 8px; min-height: 16px; }
+
+    /* ---------- Modal ---------- */
+    .modal-backdrop {
+        position: fixed; inset: 0; background: rgba(15, 23, 42, .55); z-index: 80;
+        display: flex; align-items: center; justify-content: center; padding: 20px;
+    }
+    .modal-backdrop[hidden] { display: none; }
+    .modal {
+        background: var(--card); border-radius: 16px; max-width: 640px; width: 100%;
+        max-height: 85vh; overflow-y: auto; padding: 20px; position: relative;
+    }
+    .modal h3 { font-size: 17px; font-weight: 800; margin-bottom: 4px; }
+    .modal .m-sub { font-size: 12px; color: var(--muted); margin-bottom: 12px; }
+    .modal-close {
+        position: absolute; top: 12px; right: 12px; width: 30px; height: 30px;
+        border-radius: 50%; border: 1px solid var(--line); background: var(--bg);
+        cursor: pointer; font-size: 14px;
+    }
+    .bill-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .bill-table th, .bill-table td { text-align: left; padding: 8px; border-bottom: 1px solid var(--line); }
+    .bill-table th { color: var(--muted); font-weight: 600; font-size: 12px; }
+    .bill-table td:last-child { text-align: right; font-weight: 700; white-space: nowrap; }
+    .bill-table .note { font-size: 11px; color: var(--accent-text); background: var(--accent-soft); border-radius: 5px; padding: 1px 6px; margin-left: 6px; }
+    .modal-total { margin-top: 12px; display: grid; gap: 5px; font-size: 13.5px; }
+    .modal-total .row { display: flex; justify-content: space-between; }
+    .modal-total .row b { font-weight: 800; }
+    .modal-total .row.grand { border-top: 2px solid var(--line); padding-top: 8px; font-size: 15px; }
+    .modal-total .row.grand b { color: var(--accent-text); }
+
+    /* ---------- Toast ---------- */
+    .toast {
+        position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); z-index: 90;
+        background: #111827; color: #f9fafb; border-radius: 12px; padding: 12px 20px;
+        font-size: 14px; font-weight: 600; box-shadow: 0 10px 30px rgba(0,0,0,.3);
+        display: flex; align-items: center; gap: 8px;
+    }
+    .toast[hidden] { display: none; }
+
+    .not-found { max-width: 640px; margin: 80px auto; text-align: center; padding: 30px; }
+    .not-found a { color: var(--accent-text); }
+</style>
+</head>
+<body>
+
+<header class="pdp-top">
+    <a class="back" href="index.html#products">← กลับหน้าหลัก</a>
+    <div class="brand">FLEXI-SUB<small>™ LG Subscribe</small></div>
+    <a class="cart-btn" href="subscribe-store.html" title="ดูตะกร้า">🛒<span class="count" id="cartCount">0</span></a>
+</header>
+
+<main class="pdp-layout" id="pdpLayout">
+    <!-- Left: gallery -->
+    <section class="pdp-gallery" id="galleryBox"></section>
+
+    <!-- Center: info + plan selection -->
+    <section class="pdp-info" id="infoBox"></section>
+
+    <!-- Right: sticky summary -->
+    <aside class="pdp-summary" id="summaryBox">
+        <div class="price-block">
+            <div class="strike" id="sumStrike"></div>
+            <div class="big-price" id="sumBig">฿—</div>
+            <div class="big-label" id="sumBigLabel"></div>
+        </div>
+        <p class="promo-note" id="sumPromo"></p>
+        <a class="breakdown-link" id="sumBreakdown">คลิกเพื่อดูค่าบริการและรายละเอียดทั้งหมด</a>
+        <div class="term-row"><span>ระยะเวลาสัญญา</span><strong id="sumTerm">—</strong></div>
+        <div class="summary-totals">
+            <div class="s-row"><span>ยอดชำระครั้งแรก</span><b id="sumFirstPay">—</b></div>
+            <div class="s-row"><span>รวมตลอดสัญญา</span><b id="sumContract">—</b></div>
+            <div class="s-row save"><span>ประหยัดรวม</span><b id="sumSaving">—</b></div>
+        </div>
+        <div class="combo-hint off" id="sumCombo"></div>
+        <div class="btn-row">
+            <a class="btn-outline" href="https://line.me/R/ti/p/@yourlineid" target="_blank" rel="noopener">💬 ปรึกษาเจ้าหน้าที่</a>
+            <button class="btn-primary" id="addBtn" disabled>ใส่ตะกร้า</button>
+        </div>
+        <p class="missing-hint" id="missingHint"></p>
+    </aside>
+</main>
+
+<!-- Modal: ค่าบริการและรายละเอียดทั้งหมด -->
+<div class="modal-backdrop" id="breakdownModal" hidden>
+    <div class="modal">
+        <button class="modal-close" id="modalClose">✕</button>
+        <h3 id="modalTitle">ค่าบริการและรายละเอียดทั้งหมด</h3>
+        <p class="m-sub" id="modalSub"></p>
+        <div id="modalBody"></div>
+    </div>
+</div>
+
+<div class="toast" id="toast" hidden></div>
+
+<script src="products.js"></script>
+<script src="calculator-core.js"></script>
+<script src="cart.js"></script>
+<script src="product-select.js"></script>
+<script>
+(function () {
+    'use strict';
+    const LG = window.LGCalc;
+    const SEL = window.FLEXISelect;
+    const CART = window.FLEXICart;
+    const fmt = n => LG.fmtMoney(n);
+    const CAT_EMOJI = {
+        'Wash Tower': '🌀', 'เครื่องซักผ้า ฝาหน้า': '🌀', 'เครื่องซักผ้า ฝาบน': '🌀', 'เครื่องอบผ้า': '🌬️',
+        'ตู้เย็น Side by Side': '🧊', 'ตู้เย็น Multi-Door': '🧊', 'ตู้เย็น 2 ประตู': '🧊',
+        'เครื่องปรับอากาศ IXY': '❄️', 'เครื่องปรับอากาศ SIQ': '❄️', 'เครื่องปรับอากาศ SAQ': '❄️', 'เครื่องปรับอากาศ ART': '❄️',
+        'เครื่องปรับอากาศ SAC 4Way Cassette': '❄️', 'เครื่องปรับอากาศ SAC 1 Way Cassette': '❄️', 'เครื่องปรับอากาศ SAC Round Cassette': '❄️',
+        'โทรทัศน์ OLED': '📺', 'โทรทัศน์ QNED': '📺', 'โทรทัศน์ NanoCell': '📺', 'โทรทัศน์ StanbyME': '📺',
+        'มอนิเตอร์': '🖥️', 'Sound bar': '🔊', 'Bluetooth Speaker': '🎵',
+        'เครื่องฟอกอากาศ': '🌫️', 'เครื่องล้างจาน': '🍽️', 'เครื่องดูดฝุ่น': '🧹', 'เครื่องลดความชื้น': '💧',
+        'เครื่องกรองน้ำ': '🚰', 'ตู้ถนอมผ้า': '👕', 'ไมโครเวฟ': '🔥'
+    };
+
+    let PRODUCTS = [];
+    let product = null;
+    let adminSettings = { comboPct: 10, oldMin: 1, newMin: 2 };
+    const sel = { customerType: null, planType: 'monthly', careType: null, term: null, variant: null };
+    let currentPlanIndex = -1;
+
+    /* ---------- โหลดข้อมูล (เหมือน subscribe-store: รองรับโหมดผู้ดูแล) ---------- */
+    function loadData() {
+        const DEFAULT = (window.LG_PRODUCTS || []).map(p => ({ ...p, plans: (p.plans || []).map(LG.normalizePlan) }));
+        try {
+            const saved = localStorage.getItem('flexiAdminProducts');
+            PRODUCTS = saved ? JSON.parse(saved) : JSON.parse(JSON.stringify(DEFAULT));
+            const s = JSON.parse(localStorage.getItem('flexiAdminSettings') || 'null');
+            if (s) adminSettings = Object.assign({ comboPct: 10, oldMin: 1, newMin: 2 }, s);
+            PRODUCTS = PRODUCTS.map(p => ({ ...p, plans: (p.plans || []).map(LG.normalizePlan) }));
+        } catch (e) { PRODUCTS = JSON.parse(JSON.stringify(DEFAULT)); }
+    }
+    loadData();
+
+    /* ---------- theme ---------- */
+    if (localStorage.getItem('flexiTheme') === 'orange') document.body.classList.add('theme-orange');
+
+    /* ---------- slug ---------- */
+    function parseSlug() {
+        const q = new URLSearchParams(location.search).get('slug');
+        if (q) return q;
+        const m = location.hash.match(/\/products\/([^/?#]+)/);
+        return m ? m[1] : null;
+    }
+    function setRoute(slug) {
+        if (location.search) history.replaceState(null, '', 'product.html?slug=' + slug);
+        else history.replaceState(null, '', '#/products/' + slug);
+    }
+
+    /* ---------- Cart badge ---------- */
+    function updateCartBadge() {
+        const n = CART.totalQty(CART.load());
+        document.getElementById('cartCount').textContent = n > 99 ? '99+' : String(n);
+    }
+    window.addEventListener('flexi-cart-changed', updateCartBadge);
+
+    /* ---------- Gallery ---------- */
+    function renderGallery(p) {
+        const box = document.getElementById('galleryBox');
+        const items = [];
+        if (p.img) items.push({ type: 'img', src: p.img, title: p.name });
+        items.push({ type: 'emoji', emoji: p.emoji || CAT_EMOJI[p.category] || '📦',
+            title: p.category, sub: 'หมวด ' + p.category });
+        const minPrice = Math.min.apply(null, p.plans.map(x => x.outright ? (x.advancePayment || x.price) : x.price));
+        items.push({ type: 'emoji', emoji: '🏷️', title: 'เริ่ม ' + fmt(minPrice) + (p.plans.some(x => x.outright) ? ' บาท' : ' บาท/เดือน'), sub: 'โปรสิงหาคม 2569' });
+
+        let active = 0;
+        const main = document.createElement('div');
+        main.className = 'gallery-main';
+        const thumbs = document.createElement('div');
+        thumbs.className = 'gallery-thumbs';
+
+        function paint(i) {
+            active = i;
+            const it = items[i];
+            if (it.type === 'img') main.innerHTML = '<img src="' + it.src + '" alt="' + it.title + '" onerror="this.parentElement.innerHTML=this.parentElement.innerHTML">';
+            else main.innerHTML = '<div class="g-tile"><div class="g-emoji">' + it.emoji + '</div><div class="g-title">' + it.title + '</div><div class="g-sub">' + (it.sub || '') + '</div></div>';
+            thumbs.querySelectorAll('.g-thumb').forEach((th, k) => th.classList.toggle('active', k === i));
+        }
+        items.forEach((it, i) => {
+            const th = document.createElement('button');
+            th.className = 'g-thumb' + (i === 0 ? ' active' : '');
+            th.innerHTML = it.type === 'img' ? '<img src="' + it.src + '" alt="" loading="lazy">' : '<span class="t-emoji">' + it.emoji + '</span>';
+            th.onclick = () => paint(i);
+            thumbs.appendChild(th);
+        });
+        box.innerHTML = '';
+        box.appendChild(main); box.appendChild(thumbs);
+        paint(0);
+    }
+
+    /* ---------- ข้อมูลสินค้า ---------- */
+    function derivedFeatures(p) {
+        const f = [];
+        const sts = Array.from(new Set(p.plans.map(x => x.serviceType)));
+        const stLabel = sts.map(s => (SEL.CARE_INFO[s] || {}).label || s).join(' / ');
+        f.push('แผน ' + stLabel);
+        const terms = Array.from(new Set(p.plans.filter(x => !x.outright).map(x => x.totalContractMonths))).sort((a, b) => a - b);
+        if (terms.length) f.push('สัญญาเช่า ' + terms.map(t => t / 12 + ' ปี (' + t + ' เดือน)').join(' / '));
+        if (p.plans.some(x => x.outright)) f.push('มีแบบซื้อขาด (จ่ายครั้งเดียว 2 ปี)');
+        const promos = Array.from(new Set(p.plans.map(x => (x.promo || '').replace(/^บิลแรก /, 'บิลแรก ').trim()).filter(Boolean)));
+        if (promos.length) f.push('โปร ' + promos[0]);
+        if (p.plans.some(x => x.advancePayment > 0)) f.push('ทีวี/จอ/ลำโพง: จ่ายล่วงหน้า 12 เดือน 50%');
+        return f.slice(0, 6);
+    }
+    function renderInfo(p) {
+        const box = document.getElementById('infoBox');
+        const feats = (p.features && p.features.length ? p.features : derivedFeatures(p));
+        const rating = Number(p.rating) || 0;
+        const reviews = Number(p.reviewCount) || 0;
+        const ratingHtml = rating > 0
+            ? '<div class="rating-row"><span class="stars">' + '★'.repeat(Math.round(rating)) + '☆'.repeat(5 - Math.round(rating)) + '</span>' +
+              '<span>' + rating.toFixed(1) + ' (' + fmt(reviews) + ' รีวิว)</span></div>'
+            : '<div class="rating-row"><span class="stars">☆☆☆☆☆</span><span>ยังไม่มีรีวิว</span></div>';
+
+        const planRows = p.plans.map(pl => {
+            const segs = LG.itemComboSegments(pl, 0).segments;
+            const desc = segs.map(s => 'งวด ' + s.start + (s.end !== s.start ? '–' + s.end : '') + ' = ฿' + fmt(s.price)).join(' · ');
+            return '<tr><td>' + pl.label + '</td><td class="price">' +
+                (pl.outright ? '฿' + fmt(pl.advancePayment || pl.price) : '฿' + fmt(pl.price) + '/เดือน') +
+                '</td><td>' + desc + '</td></tr>';
+        }).join('');
+
+        box.innerHTML =
+            '<div class="crumbs"><a href="index.html#products">หน้าหลัก</a> / ' +
+            '<a href="index.html?cat=' + encodeURIComponent(p.category || '') + '#products">' + (p.category || '') + '</a> / ' + p.model + '</div>' +
+            '<h1>' + (p.name || '') + '</h1>' +
+            '<span class="model-chip">รหัสรุ่น ' + (p.model || '') + '</span>' +
+            ratingHtml +
+            '<ul class="feature-list">' + feats.map(f => '<li>' + f + '</li>').join('') + '</ul>' +
+            '<details class="specs"><summary>ดูสเปกและแผนทั้งหมด (คลิกเพื่อขยาย)</summary>' +
+                '<div class="specs-body"><table><thead><tr><th>แผน</th><th>ราคา</th><th>รอบบิล</th></tr></thead>' +
+                '<tbody>' + planRows + '</tbody></table></div></details>' +
+            '<section class="plan-section">' +
+                '<h2>เลือกประเภทของคุณ</h2>' +
+                '<p class="sub">เลือกให้ครบทุกหัวข้อ ระบบจะคำนวณราคาให้อัตโนมัติ</p>' +
+                '<div id="optionGroups"></div>' +
+            '</section>';
+        renderOptions();
+    }
+
+    /* ---------- Option groups ---------- */
+    function optCard(html, cls) {
+        const b = document.createElement('button');
+        b.className = 'opt-card' + (cls ? ' ' + cls : '');
+        b.innerHTML = html;
+        return b;
+    }
+
+    function renderOptions() {
+        const wrap = document.getElementById('optionGroups');
+        if (!wrap) return;
+        wrap.innerHTML = '';
+
+        // 1) ข้อมูลลูกค้า
+        wrap.appendChild(group('ข้อมูลลูกค้า', true, '', function () {
+            const g = document.createElement('div'); g.className = 'opt-cards';
+            [['old', 'ลูกค้าเดิม LG Subscribe', 'เคยใช้บริการอยู่แล้ว — คอมโบเริ่มที่ 1 เครื่อง'],
+             ['new', 'ลูกค้าใหม่', 'ยังไม่เคยใช้บริการ — คอมโบเริ่มที่ 2 เครื่อง']].forEach(function (c) {
+                const b = optCard('<span class="t">' + c[1] + '</span><span class="d">' + c[2] + '</span>',
+                    sel.customerType === c[0] ? 'selected' : '');
+                b.onclick = () => { sel.customerType = c[0]; renderOptions(); updateSummary(); };
+                g.appendChild(b);
+            });
+            return g;
+        }));
+
+        // 2) ประเภทแผน
+        const pts = SEL.planTypes(product);
+        if (pts.length > 1) {
+            wrap.appendChild(group('ประเภทแผน', true, '', function () {
+                const g = document.createElement('div'); g.className = 'opt-cards';
+                [['monthly', 'เช่ารายเดือน', 'จ่ายทุกเดือนตลอดสัญญา'],
+                 ['outright', 'ซื้อขาด', 'จ่ายครั้งเดียว รวมเครื่อง + บริการ 2 ปี']].forEach(function (c) {
+                    if (!pts.includes(c[0])) return;
+                    const b = optCard('<span class="t">' + c[1] + '</span><span class="d">' + c[2] + '</span>',
+                        sel.planType === c[0] ? 'selected' : '');
+                    b.onclick = () => {
+                        sel.planType = c[0];
+                        sel.careType = null; sel.term = null; sel.variant = null;
+                        renderOptions(); updateSummary();
+                    };
+                    g.appendChild(b);
+                });
+                return g;
+            }));
+        }
+
+        // 3) ประเภทการดูแล
+        const cares = SEL.careTypes(product, sel.planType);
+        wrap.appendChild(group('ประเภทการดูแล', true, '', function () {
+            const g = document.createElement('div'); g.className = 'opt-cards';
+            cares.forEach(function (st) {
+                const info = SEL.CARE_INFO[st] || { label: st, short: st, desc: '' };
+                const b = optCard(
+                    '<span class="t">' + info.label + '</span>' +
+                    '<span class="d">' + info.desc + '</span>' +
+                    '<span class="p">' + priceForCare(product, sel.planType, st) + '</span>',
+                    sel.careType === st ? 'selected' : '');
+                b.style.position = 'relative';
+                if (info.desc) {
+                    const iBtn = document.createElement('button');
+                    iBtn.className = 'info-btn'; iBtn.type = 'button'; iBtn.textContent = 'i';
+                    iBtn.style.cssText = 'position:absolute;top:8px;right:8px;';
+                    iBtn.onclick = (e) => { e.stopPropagation(); togglePopover(iBtn, info.desc); };
+                    b.appendChild(iBtn);
+                }
+                b.onclick = () => {
+                    if (sel.careType === st) { sel.careType = null; sel.term = null; sel.variant = null; }
+                    else { sel.careType = st; if (!SEL.terms(product, sel.planType, st).includes(Number(sel.term))) { sel.term = null; sel.variant = null; } }
+                    renderOptions(); updateSummary();
+                };
+                g.appendChild(b);
+            });
+            return g;
+        }));
+
+        // 4) ระยะเวลาสัญญา
+        const terms = sel.careType ? SEL.terms(product, sel.planType, sel.careType) : SEL.terms(product, sel.planType);
+        wrap.appendChild(group('ระยะเวลาสัญญา', true, '', function () {
+            const g = document.createElement('div'); g.className = 'opt-cards';
+            terms.forEach(function (t) {
+                const priceInfo = termPrice(product, sel.planType, sel.careType, t);
+                const b = optCard(
+                    '<span class="t">' + (t === 24 ? '2 ปี' : (t / 12) + ' ปี') + '</span>' +
+                    '<span class="d">' + t + ' เดือน' + (t === 24 ? ' · ซื้อขาด' : '') + '</span>' +
+                    '<span class="p">' + priceInfo + '</span>',
+                    sel.term === t ? 'selected' : '');
+                b.disabled = !priceInfo;
+                b.onclick = () => {
+                    if (sel.term === t) { sel.term = null; sel.variant = null; }
+                    else { sel.term = t; sel.variant = null; }
+                    renderOptions(); updateSummary();
+                };
+                g.appendChild(b);
+            });
+            return g;
+        }));
+
+        // 5) variant (รอบการดูแล / โปรโมชัน) — เฉพาะเมื่อกำกวม
+        const cands = SEL.filterPlans(product, { planType: sel.planType, careType: sel.careType, term: sel.term });
+        const variants = SEL.variantOptions(cands);
+        if (variants.length > 1) {
+            const hint = variants[0].hint;
+            wrap.appendChild(group(hint || 'ตัวเลือกเพิ่มเติม', true, 'เลือก ' + hint + ' เพื่อระบุราคาให้ชัดเจน', function () {
+                const g = document.createElement('div'); g.className = 'opt-cards variant-group';
+                variants.forEach(function (v) {
+                    const pl = v.plans[0];
+                    const price = pl.outright ? '฿' + fmt(pl.advancePayment || pl.price) : '฿' + fmt(pl.price) + '/เดือน';
+                    const b = optCard('<span class="t">' + v.label + '</span><span class="p">' + price + '</span>',
+                        sel.variant === v.key ? 'selected' : '');
+                    b.onclick = () => { sel.variant = (sel.variant === v.key ? null : v.key); renderOptions(); updateSummary(); };
+                    g.appendChild(b);
+                });
+                return g;
+            }));
+        }
+    }
+
+    function group(title, required, sub, build) {
+        const g = document.createElement('div');
+        g.className = 'opt-group';
+        g.innerHTML = '<div class="g-title">' + title + (required ? ' <span class="req">*</span>' : '') + '</div>';
+        if (sub) g.innerHTML += '<div class="g-sub" style="font-size:12px;color:var(--muted);margin-bottom:6px;">' + sub + '</div>';
+        g.appendChild(build());
+        return g;
+    }
+
+    function priceForCare(product, planType, care) {
+        const plans = product.plans.filter(p => (planType === 'outright' ? p.outright : !p.outright) && p.serviceType === care);
+        if (!plans.length) return '';
+        const min = Math.min.apply(null, plans.map(p => p.price));
+        return 'เริ่ม ฿' + fmt(min) + (planType === 'outright' ? '' : '/เดือน');
+    }
+    function termPrice(product, planType, careType, term) {
+        const plans = product.plans.filter(p => {
+            if (planType === 'outright') return p.outright && p.totalContractMonths === term;
+            return !p.outright && (!careType || p.serviceType === careType) && p.totalContractMonths === term;
+        });
+        if (!plans.length) return '';
+        const min = Math.min.apply(null, plans.map(p => p.price));
+        return planType === 'outright' ? '฿' + fmt(min) + ' จ่ายครั้งเดียว' : '฿' + fmt(min) + '/เดือน';
+    }
+
+    /* ---------- Popover (i) ---------- */
+    let activePopover = null;
+    function togglePopover(btn, text) {
+        if (activePopover && activePopover.btn === btn) { activePopover.el.remove(); activePopover = null; return; }
+        if (activePopover) activePopover.el.remove();
+        const el = document.createElement('div');
+        el.className = 'popover show';
+        el.textContent = text;
+        btn.parentElement.appendChild(el);
+        activePopover = { btn, el };
+        document.addEventListener('click', function h(e) {
+            if (!el.contains(e.target) && e.target !== btn && !btn.contains(e.target)) {
+                el.remove(); activePopover = null; document.removeEventListener('click', h);
+            }
+        });
+    }
+
+    /* ---------- Summary ---------- */
+    function updateSummary() {
+        const idx = SEL.resolvePlanIndex(product, sel);
+        currentPlanIndex = idx;
+        const complete = SEL.isComplete(product, sel);
+        const addBtn = document.getElementById('addBtn');
+        addBtn.disabled = !complete;
+
+        document.getElementById('missingHint').textContent = complete
+            ? '' : ('กรุณาเลือก: ' + SEL.missing(product, sel).join(', '));
+
+        const el = id => document.getElementById(id);
+        if (idx < 0) {
+            el('sumStrike').textContent = '';
+            el('sumBig').textContent = '฿—';
+            el('sumBigLabel').textContent = 'เลือกตัวเลือกให้ครบเพื่อดูราคา';
+            el('sumPromo').textContent = '';
+            el('sumTerm').textContent = '—';
+            el('sumFirstPay').textContent = '—';
+            el('sumContract').textContent = '—';
+            el('sumSaving').textContent = '—';
+            el('sumCombo').textContent = '';
+            el('sumCombo').className = 'combo-hint off';
+            return;
+        }
+
+        const cartQty = CART.totalQty(CART.load());
+        const s = SEL.itemSummary(product, idx, sel.customerType || 'new', cartQty, adminSettings);
+
+        // ราคาเต็ม (ขีดฆ่า) + ราคาจริงเดือนนี้
+        el('sumStrike').innerHTML = s.strike ? 'ราคาเต็ม ฿' + fmt(s.strike) + ' <small>' + s.strikeLabel + '</small>' : '';
+        el('sumBig').textContent = '฿' + fmt(s.big);
+        el('sumBigLabel').textContent = s.bigLabel;
+
+        // เงื่อนไขส่วนลด
+        const promoBits = [];
+        if (s.plan.promo) promoBits.push('<span class="tag">' + s.plan.promo.replace(/·/g, '·') + '</span>');
+        promoBits.push('ราคาโปรนี้ใช้ได้เฉพาะช่วงโปรโมชันปัจจุบัน');
+        el('sumPromo').innerHTML = promoBits.join(' ');
+
+        // ระยะเวลาสัญญา
+        const t = s.termMonths;
+        el('sumTerm').textContent = s.plan.outright ? 'ซื้อขาด 2 ปี (24 เดือน)'
+            : (t === 24 ? '2 ปี (24 เดือน)' : (t / 12) + ' ปี (' + t + ' เดือน)');
+
+        // ยอดรวม
+        el('sumFirstPay').textContent = '฿' + fmt(s.firstPay);
+        el('sumContract').textContent = '฿' + fmt(s.contract);
+        el('sumSaving').textContent = s.totalSaving > 0 ? '฿' + fmt(s.totalSaving) : '—';
+
+        // หมายเหตุคอมโบ
+        const combo = s.combo;
+        const comboEl = el('sumCombo');
+        if (combo.rate > 0 && combo.needed === 0) {
+            comboEl.textContent = '🎉 ได้ส่วนลดคอมโบ ' + Math.round(combo.rate * 100) + '% (' + combo.promo.name + (combo.special ? ' · SPECIAL' : '') + ') แล้ว — ราคาข้างต้นรวมส่วนลดแล้ว';
+            comboEl.className = 'combo-hint';
+        } else if (combo.needed > 0) {
+            comboEl.textContent = '🎁 เพิ่มอีก ' + combo.needed + ' รายการ (รวมรายการนี้) ถึงได้คอมโบ ' +
+                (combo.special ? '15%' : adminSettings.comboPct + '%') +
+                ' — ' + (sel.customerType === 'old' ? 'ลูกค้าเดิมเริ่ม 1 เครื่อง' : 'ลูกค้าใหม่เริ่ม 2 เครื่อง');
+            comboEl.className = 'combo-hint off';
+        } else {
+            comboEl.textContent = '';
+            comboEl.className = 'combo-hint off';
+        }
+    }
+
+    /* ---------- Modal breakdown ---------- */
+    function openBreakdown() {
+        if (currentPlanIndex < 0) return;
+        const s = SEL.itemSummary(product, currentPlanIndex, sel.customerType || 'new', CART.totalQty(CART.load()), adminSettings);
+        const modal = document.getElementById('breakdownModal');
+        document.getElementById('modalTitle').textContent = 'ค่าบริการและรายละเอียดทั้งหมด';
+        document.getElementById('modalSub').textContent = (product.name || '') + ' · ' + s.plan.label;
+
+        let rows = '<table class="bill-table"><tbody>';
+        if (s.plan.outright) {
+            rows += '<tr><td>ซื้อขาด (จ่ายครั้งเดียว)</td><td>฿' + fmt(s.big) + '</td></tr>';
+        } else {
+            if (s.sched.advance > 0) {
+                rows += '<tr><td>💰 จ่ายล่วงหน้า (ตอนเริ่มสัญญา)<span class="note">เก็บเต็ม ยังไม่หักคอมโบ</span></td><td>฿' + fmt(s.sched.advance) + '</td></tr>';
+            }
+            s.segments.forEach(seg => {
+                const note = segNote(s, seg);
+                rows += '<tr><td>งวดที่ ' + seg.start + (seg.end !== seg.start ? '–' + seg.end : '') +
+                    (note ? '<span class="note">' + note + '</span>' : '') + '</td><td>฿' + fmt(seg.price) + '</td></tr>';
+            });
+        }
+        rows += '</tbody></table>';
+
+        document.getElementById('modalBody').innerHTML =
+            rows +
+            '<div class="modal-total">' +
+                '<div class="row"><span>ยอดชำระครั้งแรก</span><b>฿' + fmt(s.firstPay) + '</b></div>' +
+                '<div class="row"><span>รวมตลอดสัญญา' + (s.plan.outright ? '' : ' (' + s.termMonths + ' งวด)') + '</span><b>฿' + fmt(s.contract) + '</b></div>' +
+                '<div class="row"><span>ประหยัดรวม</span><b>' + (s.totalSaving > 0 ? '฿' + fmt(s.totalSaving) : '—') + '</b></div>' +
+            '</div>';
+        modal.hidden = false;
+    }
+    function segNote(s, seg) {
+        const half = s.plan.postPromoPrice / 2;
+        const isHalf = seg.end <= 12 && Math.abs(seg.price - half) < 1 && s.plan.advancePayment > 0;
+        if (isHalf) return 'ครึ่งราคา (จ่ายล่วงหน้าแล้ว)';
+        // งวดที่ 2 หลังบิลแรก: รับส่วนลดคอมโบของบิลแรกทั้งก้อน
+        if (s.comboRate > 0 && !s.plan.advancePayment && seg.start === 2 && seg.price < seg.base) {
+            return 'หักคอมโบของบิลแรกด้วย';
+        }
+        if (seg.price < seg.base) return 'หักคอมโบ ' + Math.round(s.comboRate * 100) + '%';
+        if (seg.price < s.plan.postPromoPrice) return 'โปร';
+        return '';
+    }
+
+    /* ---------- Add to cart ---------- */
+    function addToCart() {
+        if (!SEL.isComplete(product, sel)) return;
+        const cart = CART.load();
+        const next = CART.addItem(cart, product.id, currentPlanIndex, 1, sel.customerType);
+        CART.save(next);
+        const toast = document.getElementById('toast');
+        toast.textContent = '✓ เพิ่ม "' + product.model + '" ลงตะกร้าแล้ว — กำลังไปหน้าตะกร้า...';
+        toast.hidden = false;
+        setTimeout(() => { location.href = 'subscribe-store.html'; }, 900);
+    }
+
+    /* ---------- Init ---------- */
+    function init() {
+        updateCartBadge();
+        const slug = parseSlug();
+        product = SEL.findBySlug(PRODUCTS, slug);
+        if (!product) {
+            document.getElementById('pdpLayout').innerHTML =
+                '<div class="not-found"><h2>ไม่พบสินค้านี้</h2><p>ลองกลับไปเลือกสินค้าจากหน้าหลัก</p>' +
+                '<p><a href="index.html#products">← กลับหน้าหลัก</a></p></div>';
+            return;
+        }
+        document.title = (product.name || product.model) + ' — FLEXI-SUB™ LG Subscribe';
+        setRoute(SEL.slugFor(product));
+        renderGallery(product);
+        renderInfo(product);
+        updateSummary();
+
+        document.getElementById('sumBreakdown').addEventListener('click', openBreakdown);
+        document.getElementById('modalClose').addEventListener('click', () => {
+            document.getElementById('breakdownModal').hidden = true;
+        });
+        document.getElementById('breakdownModal').addEventListener('click', e => {
+            if (e.target.id === 'breakdownModal') document.getElementById('breakdownModal').hidden = true;
+        });
+        document.getElementById('addBtn').addEventListener('click', addToCart);
+    }
+
+    init();
+})();
+</script>
+</body>
+</html>
