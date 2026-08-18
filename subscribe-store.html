@@ -2196,6 +2196,29 @@ window.LG_PRODUCTS =  [
         backdrop.addEventListener('click', function (e) { if (e.target === backdrop) closeAdmin(); });
         document.body.appendChild(backdrop);
 
+        /* ---------- รองรับ param จากหน้าแรก (?cat=หมวด&product=รุ่น) ----------
+           กดการ์ดสินค้าบน index.html → iframe โหลดพร้อมเลือกหมวด + เพิ่มสินค้านั้นในตะกร้า */
+        function applyUrlParams() {
+            const q = new URLSearchParams(location.search);
+            const cat = q.get('cat');
+            const prod = q.get('product');
+            if (cat && CATEGORIES.includes(cat)) activeCategory = cat;
+            if (prod) {
+                const p = PRODUCTS.find(x => x.id === prod || String(x.model || '').toLowerCase() === prod);
+                if (p) {
+                    if (!cat) activeCategory = p.category;
+                    // เลือกแผนราคาต่ำสุด (ตรงกับราคาที่การ์ดหน้าแรกแสดง)
+                    let best = 0;
+                    if (p.plans && p.plans.length) {
+                        let min = Infinity;
+                        p.plans.forEach((pl, i) => { if (pl.price < min) { min = pl.price; best = i; } });
+                    }
+                    selected[p.id] = { product: p, planIndex: best, qty: 1 };
+                }
+            }
+        }
+        applyUrlParams();
+
         renderTabs();
         renderCatalog();
         updateCart();
