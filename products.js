@@ -1,15 +1,12 @@
 /* =====================================================================
-   แคตตาล็อกสินค้า LG Subscribe — ดึงข้อมูลจากไฟล์ PDF ในโปรเจกต์
-   - Price list_Aug_V3.pdf (ราคาเต็ม ส.ค. 2569)
-   - Sale Price8 - Subscription_V3.pdf (โปรโมชัน OBS ส.ค. 2569)
+   แคตตาล็อกสินค้า LG Subscribe — ตรวจทานเทียบ PDF ครบถ้วน (ส.ค. 2569)
+   - Price list_Aug_V3.pdf (ราคาเต็ม: Visit/Self บิลแรก ฿149 + โปร 50%)
+   - Sale Price8 - Subscription_V3.pdf (OBS: โปร 50% เดือน 1-3 / 1-8,
+     ทีวี/จอ/ลำโพงไม่รับบริการ: งวดแรก 50% เดือน 1-12 + โปร 50% ต่อ)
    แผน (plans): { label, months (จำนวนงวด), price (฿/เดือน), promo }
-   หมายเหตุ: ตัวอักษรไทยใน PDF ถูกเข้ารหัสแบบเก่า (อ่านจาก pdftotext แล้ว
-   เพี้ยน) จึงจัดเรียงชื่อสินค้าเป็นภาษาไทยใหม่จากรุ่นโมเดลและหมวดหมู่ —
-   ราคาและรุ่นโมเดลอ้างอิงโดยตรงจาก PDF ควรตรวจทานก่อนเผยแพร่
    ===================================================================== */
 
 window.LG_PRODUCTS = [
-  /* ============ ตู้เย็น ============ */
   {
     id: "gc-l257kqkw",
     img: "https://www.lg.com/content/dam/channel/wcms/th/image-update/refrigerator/2024/gc-l257kqkw-aepplmt/gallery/GC-L257KQKW_Front_450.jpg",
@@ -18,8 +15,8 @@ window.LG_PRODUCTS = [
     category: "ตู้เย็น",
     emoji: "❄️",
     plans: [
-      { label: "Visit 5 ปี (24 งวด)", months: 24, price: 749, promo: "โปร 50% เดือน 2-3" },
-      { label: "Visit 6 ปี (24 งวด)", months: 24, price: 649, promo: "โปร 50% เดือน 2-3" }
+      { label: "Visit 5 ปี (24 งวด)", months: 24, price: 749, promo: "โปร 50% เดือน 1-3" },
+      { label: "Visit 6 ปี (24 งวด)", months: 24, price: 649, promo: "โปร 50% เดือน 1-3" }
     ]
   },
   {
@@ -54,8 +51,8 @@ window.LG_PRODUCTS = [
     category: "ตู้เย็น",
     emoji: "❄️",
     plans: [
-      { label: "Visit 5 ปี (24 งวด)", months: 24, price: 449, promo: "โปร 50% เดือน 2-3" },
-      { label: "Visit 6 ปี (24 งวด)", months: 24, price: 349, promo: "โปร 50% เดือน 2-3" }
+      { label: "Visit 5 ปี (24 งวด)", months: 24, price: 449, promo: "โปร 50% เดือน 1-3" },
+      { label: "Visit 6 ปี (24 งวด)", months: 24, price: 349, promo: "โปร 50% เดือน 1-3" }
     ]
   },
   {
@@ -66,8 +63,8 @@ window.LG_PRODUCTS = [
     category: "ตู้เย็น",
     emoji: "❄️",
     plans: [
-      { label: "Visit 5 ปี (6 งวด)", months: 6, price: 1249, promo: "โปร 50% เดือน 2-3" },
-      { label: "Visit 6 ปี (6 งวด)", months: 6, price: 1049, promo: "โปร 50% เดือน 2-3" }
+      { label: "Visit 5 ปี (6 งวด)", months: 6, price: 1249, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-3" },
+      { label: "Visit 6 ปี (6 งวด)", months: 6, price: 1049, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-3" }
     ]
   },
   {
@@ -101,8 +98,8 @@ window.LG_PRODUCTS = [
     category: "ตู้เย็น",
     emoji: "❄️",
     plans: [
-      { label: "Visit 5 ปี (24 งวด)", months: 24, price: 1249, promo: "โปร 50% เดือน 2-8" },
-      { label: "Visit 6 ปี (24 งวด)", months: 24, price: 1049, promo: "โปร 50% เดือน 2-8" }
+      { label: "Visit 5 ปี (24 งวด)", months: 24, price: 1249, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-8" },
+      { label: "Visit 6 ปี (24 งวด)", months: 24, price: 1049, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-8" }
     ]
   },
   {
@@ -113,8 +110,8 @@ window.LG_PRODUCTS = [
     category: "ตู้เย็น",
     emoji: "❄️",
     plans: [
-      { label: "Visit 5 ปี (24 งวด)", months: 24, price: 1049, promo: "โปร 50% เดือน 2-3" },
-      { label: "Visit 6 ปี (24 งวด)", months: 24, price: 899, promo: "โปร 50% เดือน 2-3" }
+      { label: "Visit 5 ปี (24 งวด)", months: 24, price: 1049, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-3" },
+      { label: "Visit 6 ปี (24 งวด)", months: 24, price: 899, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-3" }
     ]
   },
   {
@@ -125,8 +122,8 @@ window.LG_PRODUCTS = [
     category: "ตู้เย็น",
     emoji: "❄️",
     plans: [
-      { label: "Visit 5 ปี (24 งวด)", months: 24, price: 1349, promo: "โปร 50% เดือน 2-8" },
-      { label: "Visit 6 ปี (24 งวด)", months: 24, price: 1149, promo: "โปร 50% เดือน 2-8" }
+      { label: "Visit 5 ปี (24 งวด)", months: 24, price: 1349, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-8" },
+      { label: "Visit 6 ปี (24 งวด)", months: 24, price: 1149, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-8" }
     ]
   },
   {
@@ -137,8 +134,8 @@ window.LG_PRODUCTS = [
     category: "ตู้เย็น",
     emoji: "❄️",
     plans: [
-      { label: "Visit 5 ปี (24 งวด)", months: 24, price: 949, promo: "โปร 50% เดือน 2-3" },
-      { label: "Visit 6 ปี (24 งวด)", months: 24, price: 799, promo: "โปร 50% เดือน 2-3" }
+      { label: "Visit 5 ปี (24 งวด)", months: 24, price: 949, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-3" },
+      { label: "Visit 6 ปี (24 งวด)", months: 24, price: 799, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-3" }
     ]
   },
   {
@@ -149,8 +146,8 @@ window.LG_PRODUCTS = [
     category: "ตู้เย็น",
     emoji: "❄️",
     plans: [
-      { label: "Visit 5 ปี (24 งวด)", months: 24, price: 799, promo: "โปร 50% เดือน 2-3" },
-      { label: "Visit 6 ปี (24 งวด)", months: 24, price: 699, promo: "โปร 50% เดือน 2-3" }
+      { label: "Visit 5 ปี (24 งวด)", months: 24, price: 799, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-3" },
+      { label: "Visit 6 ปี (24 งวด)", months: 24, price: 699, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-3" }
     ]
   },
   {
@@ -173,8 +170,8 @@ window.LG_PRODUCTS = [
     category: "ตู้เย็น",
     emoji: "❄️",
     plans: [
-      { label: "Visit 5 ปี (24 งวด)", months: 24, price: 599, promo: "โปร 50% เดือน 2-3" },
-      { label: "Visit 6 ปี (24 งวด)", months: 24, price: 499, promo: "โปร 50% เดือน 2-3" }
+      { label: "Visit 5 ปี (24 งวด)", months: 24, price: 599, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-3" },
+      { label: "Visit 6 ปี (24 งวด)", months: 24, price: 499, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-3" }
     ]
   },
   {
@@ -185,12 +182,10 @@ window.LG_PRODUCTS = [
     category: "ตู้เย็น",
     emoji: "❄️",
     plans: [
-      { label: "Visit 5 ปี (24 งวด)", months: 24, price: 649, promo: "โปร 50% เดือน 2-3" },
-      { label: "Visit 6 ปี (24 งวด)", months: 24, price: 549, promo: "โปร 50% เดือน 2-3" }
+      { label: "Visit 5 ปี (24 งวด)", months: 24, price: 649, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-3" },
+      { label: "Visit 6 ปี (24 งวด)", months: 24, price: 549, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-3" }
     ]
   },
-
-  /* ============ เครื่องซักผ้า / อบผ้า ============ */
   {
     id: "fv1409h4w",
     img: "https://www.lg.com/content/dam/channel/wcms/th/image-update/washing-machine/2024/fv1409h4w-abwpeth/gallery/450.jpg",
@@ -199,9 +194,10 @@ window.LG_PRODUCTS = [
     category: "เครื่องซักผ้า",
     emoji: "🌀",
     plans: [
-      { label: "Visit 5 ปี (12 งวด)", months: 12, price: 399, promo: "โปร 50% เดือน 2-8" },
-      { label: "Self 5 ปี (12 งวด)", months: 12, price: 349, promo: "โปร 50% เดือน 2-8" },
-      { label: "Self 6 ปี (12 งวด)", months: 12, price: 299, promo: "โปร 50% เดือน 2-8" }
+      { label: "Visit 5 ปี (12 งวด)", months: 12, price: 399, promo: "โปร 50% เดือน 1-8" },
+      { label: "Self 5 ปี (12 งวด)", months: 12, price: 349, promo: "โปร 50% เดือน 1-8" },
+      { label: "Visit 6 ปี (12 งวด)", months: 12, price: 349, promo: "โปร 50% เดือน 1-8" },
+      { label: "Self 6 ปี (12 งวด)", months: 12, price: 299, promo: "โปร 50% เดือน 1-8" }
     ]
   },
   {
@@ -212,9 +208,10 @@ window.LG_PRODUCTS = [
     category: "เครื่องซักผ้า",
     emoji: "🌀",
     plans: [
-      { label: "Visit 5 ปี (12 งวด)", months: 12, price: 899, promo: "โปร 50% เดือน 2-8" },
-      { label: "Self 5 ปี (12 งวด)", months: 12, price: 849, promo: "โปร 50% เดือน 2-8" },
-      { label: "Self 6 ปี (12 งวด)", months: 12, price: 799, promo: "โปร 50% เดือน 2-8" }
+      { label: "Visit 5 ปี (12 งวด)", months: 12, price: 899, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-8" },
+      { label: "Self 5 ปี (12 งวด)", months: 12, price: 849, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-8" },
+      { label: "Visit 6 ปี (12 งวด)", months: 12, price: 849, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-8" },
+      { label: "Self 6 ปี (12 งวด)", months: 12, price: 799, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-8" }
     ]
   },
   {
@@ -225,9 +222,10 @@ window.LG_PRODUCTS = [
     category: "เครื่องซักผ้า",
     emoji: "🌀",
     plans: [
-      { label: "Visit 5 ปี (12 งวด)", months: 12, price: 749, promo: "โปร 50% เดือน 2-8" },
-      { label: "Self 5 ปี (12 งวด)", months: 12, price: 649, promo: "โปร 50% เดือน 2-8" },
-      { label: "Self 6 ปี (12 งวด)", months: 12, price: 599, promo: "โปร 50% เดือน 2-8" }
+      { label: "Visit 5 ปี (12 งวด)", months: 12, price: 749, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-8" },
+      { label: "Self 5 ปี (12 งวด)", months: 12, price: 649, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-8" },
+      { label: "Visit 6 ปี (12 งวด)", months: 12, price: 649, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-8" },
+      { label: "Self 6 ปี (12 งวด)", months: 12, price: 599, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-8" }
     ]
   },
   {
@@ -238,9 +236,10 @@ window.LG_PRODUCTS = [
     category: "เครื่องซักผ้า",
     emoji: "🌀",
     plans: [
-      { label: "Visit 5 ปี (12 งวด)", months: 12, price: 699, promo: "โปร 50% เดือน 2-3" },
-      { label: "Self 5 ปี (12 งวด)", months: 12, price: 599, promo: "โปร 50% เดือน 2-3" },
-      { label: "Self 6 ปี (12 งวด)", months: 12, price: 549, promo: "โปร 50% เดือน 2-3" }
+      { label: "Visit 5 ปี (12 งวด)", months: 12, price: 699, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-3" },
+      { label: "Self 5 ปี (12 งวด)", months: 12, price: 599, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-3" },
+      { label: "Visit 6 ปี (12 งวด)", months: 12, price: 599, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-3" },
+      { label: "Self 6 ปี (12 งวด)", months: 12, price: 549, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-3" }
     ]
   },
   {
@@ -251,9 +250,10 @@ window.LG_PRODUCTS = [
     category: "เครื่องซักผ้า",
     emoji: "🌀",
     plans: [
-      { label: "Visit 5 ปี (12 งวด)", months: 12, price: 649, promo: "โปร 50% เดือน 2-3" },
-      { label: "Self 5 ปี (12 งวด)", months: 12, price: 599, promo: "โปร 50% เดือน 2-3" },
-      { label: "Self 6 ปี (12 งวด)", months: 12, price: 549, promo: "โปร 50% เดือน 2-3" }
+      { label: "Visit 5 ปี (12 งวด)", months: 12, price: 649, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-3" },
+      { label: "Self 5 ปี (12 งวด)", months: 12, price: 599, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-3" },
+      { label: "Visit 6 ปี (12 งวด)", months: 12, price: 599, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-3" },
+      { label: "Self 6 ปี (12 งวด)", months: 12, price: 549, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-3" }
     ]
   },
   {
@@ -278,48 +278,10 @@ window.LG_PRODUCTS = [
     category: "เครื่องซักผ้า",
     emoji: "🌀",
     plans: [
-      { label: "Visit 5 ปี (12 งวด)", months: 12, price: 849, promo: "โปร 50% เดือน 2-8" },
-      { label: "Self 5 ปี (12 งวด)", months: 12, price: 749, promo: "โปร 50% เดือน 2-8" },
-      { label: "Self 6 ปี (12 งวด)", months: 12, price: 649, promo: "โปร 50% เดือน 2-8" }
-    ]
-  },
-  {
-    id: "dfc335hm",
-    img: "https://www.lg.com/content/dam/channel/wcms/th/image-update/dishwasher/dfc335hm/gallery/01_XD-G3_MatteBlack_DFC335HM_TH_Front-450.jpg",
-    model: "DFC335HM",
-    name: "เครื่องล้างจาน DFC335HM (Wi-Fi control, Auto Open Dry)",
-    category: "เครื่องล้างจาน",
-    emoji: "🍽️",
-    plans: [
-      { label: "Visit 5 ปี (12 งวด)", months: 12, price: 899, promo: "โปร 50% เดือน 2-8" },
-      { label: "Self 5 ปี (12 งวด)", months: 12, price: 849, promo: "โปร 50% เดือน 2-8" },
-      { label: "Visit 6 ปี (12 งวด)", months: 12, price: 799, promo: "โปร 50% เดือน 2-8" },
-      { label: "Self 6 ปี (12 งวด)", months: 12, price: 749, promo: "โปร 50% เดือน 2-8" }
-    ]
-  },
-  {
-    id: "dfc533fv",
-    img: "https://www.lg.com/content/dam/channel/wcms/th/image-update/dishwasher/dfc533fv/gallery/01_XD5_PS4_DFC533FV_TH_Front-450.jpg",
-    model: "DFC533FV + MS2032GAS",
-    name: "เครื่องล้างจาน DFC533FV (Wi-Fi control) + เครื่องทำน้ำอุ่น (ของแถม)",
-    category: "เครื่องล้างจาน",
-    emoji: "🍽️",
-    plans: [
-      { label: "Visit 5 ปี (12 งวด)", months: 12, price: 749, promo: "โปร 50% เดือน 2-8" },
-      { label: "Self 5 ปี (12 งวด)", months: 12, price: 699, promo: "โปร 50% เดือน 2-8" },
-      { label: "Self 6 ปี (12 งวด)", months: 12, price: 599, promo: "โปร 50% เดือน 2-8" }
-    ]
-  },
-  {
-    id: "s3mfc",
-    img: "https://www.lg.com/content/dam/channel/wcms/th/images/washing-machine/s3mfc_albpeth_eath_th_c/TH-450.jpg",
-    model: "S3MFC",
-    name: "LG Styler ตู้ถนอมผ้า (ดูแลเสื้อผ้า)",
-    category: "อื่นๆ",
-    emoji: "👔",
-    plans: [
-      { label: "Self 5 ปี (12 งวด)", months: 12, price: 899, promo: "โปร 50% เดือน 2-8" },
-      { label: "Self 6 ปี (12 งวด)", months: 12, price: 799, promo: "โปร 50% เดือน 2-8" }
+      { label: "Visit 5 ปี (12 งวด)", months: 12, price: 849, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-8" },
+      { label: "Self 5 ปี (12 งวด)", months: 12, price: 749, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-8" },
+      { label: "Visit 6 ปี (12 งวด)", months: 12, price: 749, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-8" },
+      { label: "Self 6 ปี (12 งวด)", months: 12, price: 649, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-8" }
     ]
   },
   {
@@ -330,9 +292,10 @@ window.LG_PRODUCTS = [
     category: "เครื่องซักผ้า",
     emoji: "🌀",
     plans: [
-      { label: "Visit 5 ปี (12 งวด)", months: 12, price: 2399, promo: "โปร 50% เดือน 2-12" },
-      { label: "Self 5 ปี (12 งวด)", months: 12, price: 2199, promo: "โปร 50% เดือน 2-12" },
-      { label: "Self 6 ปี (12 งวด)", months: 12, price: 1999, promo: "โปร 50% เดือน 2-12" }
+      { label: "Visit 5 ปี (12 งวด)", months: 12, price: 2399, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-12" },
+      { label: "Self 5 ปี (12 งวด)", months: 12, price: 2199, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-12" },
+      { label: "Visit 6 ปี (12 งวด)", months: 12, price: 2199, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-12" },
+      { label: "Self 6 ปี (12 งวด)", months: 12, price: 1999, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-12" }
     ]
   },
   {
@@ -343,9 +306,10 @@ window.LG_PRODUCTS = [
     category: "เครื่องซักผ้า",
     emoji: "🌀",
     plans: [
-      { label: "Visit 5 ปี (12 งวด)", months: 12, price: 1999, promo: "โปร 50% เดือน 2-12" },
-      { label: "Self 5 ปี (12 งวด)", months: 12, price: 1899, promo: "โปร 50% เดือน 2-12" },
-      { label: "Self 6 ปี (12 งวด)", months: 12, price: 1649, promo: "โปร 50% เดือน 2-12" }
+      { label: "Visit 5 ปี (12 งวด)", months: 12, price: 1999, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-12" },
+      { label: "Self 5 ปี (12 งวด)", months: 12, price: 1899, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-12" },
+      { label: "Visit 6 ปี (12 งวด)", months: 12, price: 1749, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-12" },
+      { label: "Self 6 ปี (12 งวด)", months: 12, price: 1649, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-12" }
     ]
   },
   {
@@ -356,9 +320,10 @@ window.LG_PRODUCTS = [
     category: "เครื่องซักผ้า",
     emoji: "🌀",
     plans: [
-      { label: "Visit 5 ปี (12 งวด)", months: 12, price: 1599, promo: "โปร 50% เดือน 2-12" },
-      { label: "Self 5 ปี (12 งวด)", months: 12, price: 1499, promo: "โปร 50% เดือน 2-12" },
-      { label: "Self 6 ปี (12 งวด)", months: 12, price: 1299, promo: "โปร 50% เดือน 2-12" }
+      { label: "Visit 5 ปี (12 งวด)", months: 12, price: 1599, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-12" },
+      { label: "Self 5 ปี (12 งวด)", months: 12, price: 1499, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-12" },
+      { label: "Visit 6 ปี (12 งวด)", months: 12, price: 1399, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-12" },
+      { label: "Self 6 ปี (12 งวด)", months: 12, price: 1299, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-12" }
     ]
   },
   {
@@ -368,7 +333,11 @@ window.LG_PRODUCTS = [
     category: "เครื่องซักผ้า",
     emoji: "🌀",
     plans: [
-      { label: "Outright ผ่อน 9 งวด", months: 9, price: 3790, promo: "ราคาเต็ม ฿37,900 ลด 10% = ฿34,110" }
+      { label: "Outright ผ่อน 9 งวด", months: 9, price: 3790, promo: "ราคาเต็ม ฿37,900 ลด 10% = ฿34,110" },
+      { label: "Visit 5 ปี (6 งวด)", months: 6, price: 799, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-12" },
+      { label: "Self 5 ปี (6 งวด)", months: 6, price: 699, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-12" },
+      { label: "Visit 7 ปี (6 งวด)", months: 6, price: 599, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-12" },
+      { label: "Self 7 ปี (6 งวด)", months: 6, price: 499, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-12" }
     ]
   },
   {
@@ -378,11 +347,41 @@ window.LG_PRODUCTS = [
     category: "เครื่องซักผ้า",
     emoji: "🌀",
     plans: [
-      { label: "Outright ผ่อน 9 งวด", months: 9, price: 3490, promo: "ราคาเต็ม ฿34,900 ลด 10% = ฿31,410" }
+      { label: "Outright ผ่อน 9 งวด", months: 9, price: 3490, promo: "ราคาเต็ม ฿34,900 ลด 10% = ฿31,410" },
+      { label: "Visit 5 ปี (6 งวด)", months: 6, price: 799, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-12" },
+      { label: "Self 5 ปี (6 งวด)", months: 6, price: 699, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-12" },
+      { label: "Visit 7 ปี (6 งวด)", months: 6, price: 599, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-12" },
+      { label: "Self 7 ปี (6 งวด)", months: 6, price: 499, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-12" }
     ]
   },
-
-  /* ============ แอร์ ============ */
+  {
+    id: "wt2520nhen",
+    img: "https://www.lg.com/content/dam/channel/wcms/th/image-update/washing-machine/2026/wt2520nhen-abnpeth/gallery/wt2520nhen-450.jpg",
+    model: "WT2520NHEN",
+    name: "WashTower ซัก 25 / อบ 20 กก. (Navy/Beige) NEW",
+    category: "เครื่องซักผ้า",
+    emoji: "🌀",
+    plans: [
+      { label: "Visit 5 ปี (12 งวด)", months: 12, price: 2399, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-12" },
+      { label: "Self 5 ปี (12 งวด)", months: 12, price: 2199, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-12" },
+      { label: "Visit 6 ปี (12 งวด)", months: 12, price: 2199, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-12" },
+      { label: "Self 6 ปี (12 งวด)", months: 12, price: 1999, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-12" }
+    ]
+  },
+  {
+    id: "wt1410nhen",
+    img: "https://www.lg.com/content/dam/channel/wcms/th/image-update/washing-machine/2025/wt1410nhen-anbppth/wt1410nhen/350-02.jpg",
+    model: "WT1410NHEN",
+    name: "WashTower ซัก 14 / อบ 10 กก. (Navy/Beige) NEW",
+    category: "เครื่องซักผ้า",
+    emoji: "🌀",
+    plans: [
+      { label: "Visit 5 ปี (12 งวด)", months: 12, price: 1599, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-12" },
+      { label: "Self 5 ปี (12 งวด)", months: 12, price: 1499, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-12" },
+      { label: "Visit 6 ปี (12 งวด)", months: 12, price: 1399, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-12" },
+      { label: "Self 6 ปี (12 งวด)", months: 12, price: 1299, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-12" }
+    ]
+  },
   {
     id: "ixy11a",
     img: "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2026/ixya/gallery/IXY11A_front_450.jpg",
@@ -391,8 +390,8 @@ window.LG_PRODUCTS = [
     category: "แอร์",
     emoji: "❄️",
     plans: [
-      { label: "Visit 5 ปี (6 งวด)", months: 6, price: 499, promo: "บิลแรก ฿149" },
-      { label: "Visit 5 ปี (12 งวด)", months: 12, price: 399, promo: "บิลแรก ฿149" }
+      { label: "Visit 5 ปี (6 งวด)", months: 6, price: 499, promo: "บิลแรก ฿149 · ซับ 2 แถม 1" },
+      { label: "Visit 5 ปี (12 งวด)", months: 12, price: 399, promo: "บิลแรก ฿149 · ซับ 2 แถม 1" }
     ]
   },
   {
@@ -403,8 +402,8 @@ window.LG_PRODUCTS = [
     category: "แอร์",
     emoji: "❄️",
     plans: [
-      { label: "Visit 5 ปี (6 งวด)", months: 6, price: 549, promo: "บิลแรก ฿149" },
-      { label: "Visit 5 ปี (12 งวด)", months: 12, price: 449, promo: "บิลแรก ฿149" }
+      { label: "Visit 5 ปี (6 งวด)", months: 6, price: 549, promo: "บิลแรก ฿149 · ซับ 2 แถม 1" },
+      { label: "Visit 5 ปี (12 งวด)", months: 12, price: 449, promo: "บิลแรก ฿149 · ซับ 2 แถม 1" }
     ]
   },
   {
@@ -415,8 +414,8 @@ window.LG_PRODUCTS = [
     category: "แอร์",
     emoji: "❄️",
     plans: [
-      { label: "Visit 5 ปี (6 งวด)", months: 6, price: 699, promo: "บิลแรก ฿149" },
-      { label: "Visit 5 ปี (12 งวด)", months: 12, price: 599, promo: "บิลแรก ฿149" }
+      { label: "Visit 5 ปี (6 งวด)", months: 6, price: 699, promo: "บิลแรก ฿149 · ซับ 2 แถม 1" },
+      { label: "Visit 5 ปี (12 งวด)", months: 12, price: 599, promo: "บิลแรก ฿149 · ซับ 2 แถม 1" }
     ]
   },
   {
@@ -427,8 +426,8 @@ window.LG_PRODUCTS = [
     category: "แอร์",
     emoji: "❄️",
     plans: [
-      { label: "Visit 5 ปี (6 งวด)", months: 6, price: 849, promo: "บิลแรก ฿149" },
-      { label: "Visit 5 ปี (12 งวด)", months: 12, price: 749, promo: "บิลแรก ฿149" }
+      { label: "Visit 5 ปี (6 งวด)", months: 6, price: 849, promo: "บิลแรก ฿149 · ซับ 2 แถม 1" },
+      { label: "Visit 5 ปี (12 งวด)", months: 12, price: 749, promo: "บิลแรก ฿149 · ซับ 2 แถม 1" }
     ]
   },
   {
@@ -439,8 +438,8 @@ window.LG_PRODUCTS = [
     category: "แอร์",
     emoji: "❄️",
     plans: [
-      { label: "Visit 5 ปี (6 งวด)", months: 6, price: 899, promo: "โปร 50% เดือน 2-8" },
-      { label: "Visit 5 ปี (12 งวด)", months: 12, price: 799, promo: "โปร 50% เดือน 2-8" }
+      { label: "Visit 5 ปี (6 งวด)", months: 6, price: 899, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-8" },
+      { label: "Visit 5 ปี (12 งวด)", months: 12, price: 799, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-8" }
     ]
   },
   {
@@ -451,8 +450,8 @@ window.LG_PRODUCTS = [
     category: "แอร์",
     emoji: "❄️",
     plans: [
-      { label: "Visit 5 ปี (6 งวด)", months: 6, price: 949, promo: "โปร 50% เดือน 2-8" },
-      { label: "Visit 5 ปี (12 งวด)", months: 12, price: 849, promo: "โปร 50% เดือน 2-8" }
+      { label: "Visit 5 ปี (6 งวด)", months: 6, price: 949, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-8" },
+      { label: "Visit 5 ปี (12 งวด)", months: 12, price: 849, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-8" }
     ]
   },
   {
@@ -463,8 +462,8 @@ window.LG_PRODUCTS = [
     category: "แอร์",
     emoji: "❄️",
     plans: [
-      { label: "Visit 5 ปี (6 งวด)", months: 6, price: 1149, promo: "โปร 50% เดือน 2-8" },
-      { label: "Visit 5 ปี (12 งวด)", months: 12, price: 1049, promo: "โปร 50% เดือน 2-8" }
+      { label: "Visit 5 ปี (6 งวด)", months: 6, price: 1149, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-8" },
+      { label: "Visit 5 ปี (12 งวด)", months: 12, price: 1049, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-8" }
     ]
   },
   {
@@ -475,8 +474,8 @@ window.LG_PRODUCTS = [
     category: "แอร์",
     emoji: "❄️",
     plans: [
-      { label: "Visit 5 ปี (6 งวด)", months: 6, price: 1299, promo: "โปร 50% เดือน 2-8" },
-      { label: "Visit 5 ปี (12 งวด)", months: 12, price: 1199, promo: "โปร 50% เดือน 2-8" }
+      { label: "Visit 5 ปี (6 งวด)", months: 6, price: 1299, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-8" },
+      { label: "Visit 5 ปี (12 งวด)", months: 12, price: 1199, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-8" }
     ]
   },
   {
@@ -487,8 +486,8 @@ window.LG_PRODUCTS = [
     category: "แอร์",
     emoji: "❄️",
     plans: [
-      { label: "Visit 5 ปี (6 งวด)", months: 6, price: 699, promo: "โปร 50% เดือน 2-8" },
-      { label: "Visit 5 ปี (12 งวด)", months: 12, price: 599, promo: "โปร 50% เดือน 2-8" }
+      { label: "Visit 5 ปี (6 งวด)", months: 6, price: 699, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-8" },
+      { label: "Visit 5 ปี (12 งวด)", months: 12, price: 599, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-8" }
     ]
   },
   {
@@ -499,8 +498,8 @@ window.LG_PRODUCTS = [
     category: "แอร์",
     emoji: "❄️",
     plans: [
-      { label: "Visit 5 ปี (6 งวด)", months: 6, price: 799, promo: "โปร 50% เดือน 2-8" },
-      { label: "Visit 5 ปี (12 งวด)", months: 12, price: 699, promo: "โปร 50% เดือน 2-8" }
+      { label: "Visit 5 ปี (6 งวด)", months: 6, price: 799, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-8" },
+      { label: "Visit 5 ปี (12 งวด)", months: 12, price: 699, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-8" }
     ]
   },
   {
@@ -511,8 +510,8 @@ window.LG_PRODUCTS = [
     category: "แอร์",
     emoji: "❄️",
     plans: [
-      { label: "Visit 5 ปี (6 งวด)", months: 6, price: 999, promo: "โปร 50% เดือน 2-8" },
-      { label: "Visit 5 ปี (12 งวด)", months: 12, price: 899, promo: "โปร 50% เดือน 2-8" }
+      { label: "Visit 5 ปี (6 งวด)", months: 6, price: 999, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-8" },
+      { label: "Visit 5 ปี (12 งวด)", months: 12, price: 899, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-8" }
     ]
   },
   {
@@ -523,8 +522,8 @@ window.LG_PRODUCTS = [
     category: "แอร์",
     emoji: "❄️",
     plans: [
-      { label: "Visit 5 ปี (6 งวด)", months: 6, price: 1199, promo: "โปร 50% เดือน 2-8" },
-      { label: "Visit 5 ปี (12 งวด)", months: 12, price: 1099, promo: "โปร 50% เดือน 2-8" }
+      { label: "Visit 5 ปี (6 งวด)", months: 6, price: 1199, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-8" },
+      { label: "Visit 5 ปี (12 งวด)", months: 12, price: 1099, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-8" }
     ]
   },
   {
@@ -535,8 +534,8 @@ window.LG_PRODUCTS = [
     category: "แอร์",
     emoji: "❄️",
     plans: [
-      { label: "Visit 5 ปี (6 งวด)", months: 6, price: 1049, promo: "โปร 50% เดือน 2-8" },
-      { label: "Visit 5 ปี (12 งวด)", months: 12, price: 949, promo: "โปร 50% เดือน 2-8" }
+      { label: "Visit 5 ปี (6 งวด)", months: 6, price: 1049, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-8" },
+      { label: "Visit 5 ปี (12 งวด)", months: 12, price: 949, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-8" }
     ]
   },
   {
@@ -547,8 +546,8 @@ window.LG_PRODUCTS = [
     category: "แอร์",
     emoji: "❄️",
     plans: [
-      { label: "Visit 5 ปี (6 งวด)", months: 6, price: 1249, promo: "โปร 50% เดือน 2-8" },
-      { label: "Visit 5 ปี (12 งวด)", months: 12, price: 1149, promo: "โปร 50% เดือน 2-8" }
+      { label: "Visit 5 ปี (6 งวด)", months: 6, price: 1249, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-8" },
+      { label: "Visit 5 ปี (12 งวด)", months: 12, price: 1149, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-8" }
     ]
   },
   {
@@ -591,8 +590,56 @@ window.LG_PRODUCTS = [
       { label: "Visit 5 ปี (4 งวด)", months: 4, price: 2499, promo: "รุ่นใหม่ Y2026" }
     ]
   },
-
-  /* ============ ทีวี ============ */
+  {
+    id: "zt1q12",
+    model: "ZT1Q12GULA1",
+    name: "แอร์ Cassette 1 ทิศ 10,500 Btu",
+    category: "แอร์",
+    emoji: "❄️",
+    plans: [
+      { label: "Visit 5 ปี (4 งวด)", months: 4, price: 1499, promo: "รุ่นใหม่ Y2026" }
+    ]
+  },
+  {
+    id: "zt1q18",
+    model: "ZT1Q18GTLA1",
+    name: "แอร์ Cassette 1 ทิศ 18,000 Btu",
+    category: "แอร์",
+    emoji: "❄️",
+    plans: [
+      { label: "Visit 5 ปี (4 งวด)", months: 4, price: 1599, promo: "รุ่นใหม่ Y2026" }
+    ]
+  },
+  {
+    id: "zt1q24",
+    model: "ZT1Q24GTLA1",
+    name: "แอร์ Cassette 1 ทิศ 23,500 Btu",
+    category: "แอร์",
+    emoji: "❄️",
+    plans: [
+      { label: "Visit 5 ปี (4 งวด)", months: 4, price: 1799, promo: "รุ่นใหม่ Y2026" }
+    ]
+  },
+  {
+    id: "ztrq36",
+    model: "ZTRQ36GYLA1",
+    name: "แอร์ Cassette กลม 36,700 Btu",
+    category: "แอร์",
+    emoji: "❄️",
+    plans: [
+      { label: "Visit 5 ปี (4 งวด)", months: 4, price: 2599, promo: "รุ่นใหม่ Y2026" }
+    ]
+  },
+  {
+    id: "ztrq48",
+    model: "ZTRQ48GYLA1",
+    name: "แอร์ Cassette กลม 47,100 Btu",
+    category: "แอร์",
+    emoji: "❄️",
+    plans: [
+      { label: "Visit 5 ปี (4 งวด)", months: 4, price: 2799, promo: "รุ่นใหม่ Y2026" }
+    ]
+  },
   {
     id: "oled48c6psa",
     img: "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/oled/oled81-42c6psa-atm/gallery/48-c6/update/OLED48C6PSA-450-01.jpg",
@@ -601,7 +648,8 @@ window.LG_PRODUCTS = [
     category: "ทีวี",
     emoji: "📺",
     plans: [
-      { label: "ไม่รับบริการ 5 ปี (12 งวด)", months: 12, price: 749, promo: "งวดแรก 50% + โปร 50% เดือน 2-8" }
+      { label: "ไม่รับบริการ 5 ปี (12 งวด) · โปร 8 เดือน", months: 12, price: 699, promo: "50% เดือน 1-20" },
+      { label: "ไม่รับบริการ 5 ปี (12 งวด) · โปร 3 เดือน", months: 12, price: 749, promo: "50% เดือน 1-15" }
     ]
   },
   {
@@ -612,7 +660,7 @@ window.LG_PRODUCTS = [
     category: "ทีวี",
     emoji: "📺",
     plans: [
-      { label: "ไม่รับบริการ 5 ปี (12 งวด)", months: 12, price: 849, promo: "งวดแรก 50% + โปร 50% เดือน 2-8" }
+      { label: "ไม่รับบริการ 5 ปี (12 งวด)", months: 12, price: 849, promo: "50% เดือน 1-12" }
     ]
   },
   {
@@ -623,7 +671,7 @@ window.LG_PRODUCTS = [
     category: "ทีวี",
     emoji: "📺",
     plans: [
-      { label: "ไม่รับบริการ 5 ปี (12 งวด)", months: 12, price: 1099, promo: "งวดแรก 50% + โปร 50% เดือน 2-8" }
+      { label: "ไม่รับบริการ 5 ปี (12 งวด)", months: 12, price: 1099, promo: "50% เดือน 1-20" }
     ]
   },
   {
@@ -634,7 +682,7 @@ window.LG_PRODUCTS = [
     category: "ทีวี",
     emoji: "📺",
     plans: [
-      { label: "ไม่รับบริการ 5 ปี (12 งวด)", months: 12, price: 1299, promo: "งวดแรก 50% + โปร 50% เดือน 2-8" }
+      { label: "ไม่รับบริการ 5 ปี (12 งวด)", months: 12, price: 1299, promo: "50% เดือน 1-20" }
     ]
   },
   {
@@ -645,7 +693,7 @@ window.LG_PRODUCTS = [
     category: "ทีวี",
     emoji: "📺",
     plans: [
-      { label: "ไม่รับบริการ 5 ปี (12 งวด)", months: 12, price: 1999, promo: "งวดแรก 50% + โปร 50% เดือน 2-8" }
+      { label: "ไม่รับบริการ 5 ปี (12 งวด)", months: 12, price: 1999, promo: "50% เดือน 1-20" }
     ]
   },
   {
@@ -656,7 +704,7 @@ window.LG_PRODUCTS = [
     category: "ทีวี",
     emoji: "📺",
     plans: [
-      { label: "ไม่รับบริการ 5 ปี (12 งวด)", months: 12, price: 4499, promo: "งวดแรก 50% + โปร 50% เดือน 2-8" }
+      { label: "ไม่รับบริการ 5 ปี (12 งวด)", months: 12, price: 4499, promo: "50% เดือน 1-20" }
     ]
   },
   {
@@ -667,7 +715,7 @@ window.LG_PRODUCTS = [
     category: "ทีวี",
     emoji: "📺",
     plans: [
-      { label: "ไม่รับบริการ 5 ปี (12 งวด)", months: 12, price: 749, promo: "งวดแรก 50% + โปร 50% เดือน 2-8" }
+      { label: "ไม่รับบริการ 5 ปี (12 งวด)", months: 12, price: 749, promo: "50% เดือน 1-20" }
     ]
   },
   {
@@ -678,11 +726,119 @@ window.LG_PRODUCTS = [
     category: "ทีวี",
     emoji: "📺",
     plans: [
-      { label: "ไม่รับบริการ 5 ปี (12 งวด)", months: 12, price: 849, promo: "งวดแรก 50% + โปร 50% เดือน 2-8" }
+      { label: "ไม่รับบริการ 5 ปี (12 งวด)", months: 12, price: 849, promo: "50% เดือน 1-20" }
     ]
   },
-
-  /* ============ จอคอมพิวเตอร์ ============ */
+  {
+    id: "100qned86bs",
+    img: "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/qned/100-55qned86bsa-atm/gallery/100-qned85/basic/lg-qned-evo-qned85-2026-100-gallery-basic.jpg",
+    model: "100QNED86BS",
+    name: "ทีวี QNED 100 นิ้ว",
+    category: "ทีวี",
+    emoji: "📺",
+    plans: [
+      { label: "ไม่รับบริการ 5 ปี (12 งวด)", months: 12, price: 2599, promo: "50% เดือน 1-12" }
+    ]
+  },
+  {
+    id: "85qned80bsa",
+    img: "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/qned/75-43qned80bsa-atm/gallery/85-qned80/basic/lg-qned-evo-qned80-2026-85-gallery-basic.jpg",
+    model: "85QNED80BSA",
+    name: "ทีวี QNED 85 นิ้ว",
+    category: "ทีวี",
+    emoji: "📺",
+    plans: [
+      { label: "ไม่รับบริการ 5 ปี (12 งวด)", months: 12, price: 1349, promo: "50% เดือน 1-12" }
+    ]
+  },
+  {
+    id: "65qned80bsa",
+    img: "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/qned/75-43qned80bsa-atm/gallery/65-qned80/basic/lg-qned-evo-qned80-2026-65-gallery-basic.jpg",
+    model: "65QNED80BSA",
+    name: "ทีวี QNED 65 นิ้ว",
+    category: "ทีวี",
+    emoji: "📺",
+    plans: [
+      { label: "ไม่รับบริการ 5 ปี (12 งวด)", months: 12, price: 649, promo: "50% เดือน 1-12" }
+    ]
+  },
+  {
+    id: "55qned80bsa",
+    img: "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/qned/75-43qned80bsa-atm/gallery/55-qned80/basic/lg-qned-evo-qned80-2026-55-gallery-basic.jpg",
+    model: "55QNED80BSA",
+    name: "ทีวี QNED 55 นิ้ว",
+    category: "ทีวี",
+    emoji: "📺",
+    plans: [
+      { label: "ไม่รับบริการ 5 ปี (12 งวด)", months: 12, price: 549, promo: "50% เดือน 1-12" }
+    ]
+  },
+  {
+    id: "75nu855bpsa",
+    img: "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/nano-4k-uhd/98-43nu855bpsa-atm/gallery/75-nu85/basic/lg-nano-4k-uhd-nu85-2026-75-gallery-basic.jpg",
+    model: "75NU855BPSA",
+    name: "ทีวี NanoCell 75 นิ้ว",
+    category: "ทีวี",
+    emoji: "📺",
+    plans: [
+      { label: "ไม่รับบริการ 5 ปี (12 งวด)", months: 12, price: 699, promo: "50% เดือน 1-12" }
+    ]
+  },
+  {
+    id: "65nu855bpsa",
+    img: "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/nano-4k-uhd/98-43nu855bpsa-atm/gallery/65-nu85/basic/lg-nano-4k-uhd-nu85-2026-65-gallery-basic.jpg",
+    model: "65NU855BPSA",
+    name: "ทีวี NanoCell 65 นิ้ว",
+    category: "ทีวี",
+    emoji: "📺",
+    plans: [
+      { label: "ไม่รับบริการ 5 ปี (12 งวด)", months: 12, price: 549, promo: "50% เดือน 1-12" }
+    ]
+  },
+  {
+    id: "oled77c6psa-s80ty",
+    img: "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/oled/oled81-42c6psa-atm/gallery/77-c6/update/OLED77C6PSA-450-01.jpg",
+    model: "OLED77C6PSA + S80TY",
+    name: "ทีวี OLED 77 นิ้ว + Soundbar S80TY (ของแถม)",
+    category: "ทีวี",
+    emoji: "📺",
+    plans: [
+      { label: "ไม่รับบริการ 5 ปี (12 งวด) · ของแถม S80TY", months: 12, price: 1999, promo: "50% เดือน 1-15 · ของแถม Soundbar S80TY" }
+    ]
+  },
+  {
+    id: "oled65c6psa-s80ty",
+    img: "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/oled/oled81-42c6psa-atm/gallery/65-c6/update/OLED65C6PSA-450-01.jpg",
+    model: "OLED65C6PSA + S80TY",
+    name: "ทีวี OLED 65 นิ้ว + Soundbar S80TY (ของแถม)",
+    category: "ทีวี",
+    emoji: "📺",
+    plans: [
+      { label: "ไม่รับบริการ 5 ปี (12 งวด) · ของแถม S80TY", months: 12, price: 1299, promo: "50% เดือน 1-15 · ของแถม Soundbar S80TY" }
+    ]
+  },
+  {
+    id: "oled55c6psa-s30a",
+    img: "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/oled/oled81-42c6psa-atm/gallery/55-c6/update/OLED55C6PSA-450-01.jpg",
+    model: "OLED55C6PSA + S30A",
+    name: "ทีวี OLED 55 นิ้ว + Soundbar S30A (ของแถม)",
+    category: "ทีวี",
+    emoji: "📺",
+    plans: [
+      { label: "ไม่รับบริการ 5 ปี (12 งวด) · ของแถม S30A", months: 12, price: 1099, promo: "50% เดือน 1-15 · ของแถม Soundbar S30A" }
+    ]
+  },
+  {
+    id: "27lx6tdga-grab",
+    img: "https://www.lg.com/content/dam/channel/wcms/th/image-update/pto/2026/27lx6tdga-grab/27LX6TDGA.GRAB-450.jpg",
+    model: "27LX6TDGA + xboom GRAB",
+    name: "LG StanbyME + xboom GRAB (ของแถม)",
+    category: "ทีวี",
+    emoji: "📺",
+    plans: [
+      { label: "ไม่รับบริการ 5 ปี (12 งวด) · ของแถม GRAB", months: 12, price: 749, promo: "50% เดือน 1-15 · ของแถม xboom GRAB" }
+    ]
+  },
   {
     id: "27gx704a",
     img: "https://www.lg.com/content/dam/channel/wcms/th/image-update/monitor/2026/27gx704a-atm/gallery/basic/ultragear-gaming-27gx704a-2025-gallery-basic-large.jpg",
@@ -691,7 +847,8 @@ window.LG_PRODUCTS = [
     category: "จอคอม",
     emoji: "🖥️",
     plans: [
-      { label: "ไม่รับบริการ 5 ปี (12 งวด)", months: 12, price: 349, promo: "งวดแรก 50% + โปร 50% เดือน 2-3" }
+      { label: "ไม่รับบริการ 5 ปี (12 งวด) · โปร 8 เดือน", months: 12, price: 349, promo: "50% เดือน 1-20" },
+      { label: "ไม่รับบริการ 5 ปี (12 งวด) · โปร 3 เดือน", months: 12, price: 399, promo: "50% เดือน 1-15" }
     ]
   },
   {
@@ -702,7 +859,7 @@ window.LG_PRODUCTS = [
     category: "จอคอม",
     emoji: "🖥️",
     plans: [
-      { label: "ไม่รับบริการ 5 ปี (12 งวด)", months: 12, price: 1499, promo: "งวดแรก 50%" }
+      { label: "ไม่รับบริการ 5 ปี (12 งวด)", months: 12, price: 1499, promo: "50% เดือน 1-12" }
     ]
   },
   {
@@ -713,7 +870,7 @@ window.LG_PRODUCTS = [
     category: "จอคอม",
     emoji: "🖥️",
     plans: [
-      { label: "ไม่รับบริการ 5 ปี (12 งวด)", months: 12, price: 1199, promo: "งวดแรก 50%" }
+      { label: "ไม่รับบริการ 5 ปี (12 งวด)", months: 12, price: 1199, promo: "50% เดือน 1-12" }
     ]
   },
   {
@@ -724,7 +881,7 @@ window.LG_PRODUCTS = [
     category: "จอคอม",
     emoji: "🖥️",
     plans: [
-      { label: "ไม่รับบริการ 5 ปี (12 งวด)", months: 12, price: 999, promo: "งวดแรก 50%" }
+      { label: "ไม่รับบริการ 5 ปี (12 งวด)", months: 12, price: 999, promo: "50% เดือน 1-12" }
     ]
   },
   {
@@ -734,7 +891,7 @@ window.LG_PRODUCTS = [
     category: "จอคอม",
     emoji: "🖥️",
     plans: [
-      { label: "ไม่รับบริการ 5 ปี (12 งวด)", months: 12, price: 399, promo: "งวดแรก 50%" }
+      { label: "ไม่รับบริการ 5 ปี (12 งวด)", months: 12, price: 399, promo: "50% เดือน 1-12" }
     ]
   },
   {
@@ -745,7 +902,18 @@ window.LG_PRODUCTS = [
     category: "จอคอม",
     emoji: "🖥️",
     plans: [
-      { label: "ไม่รับบริการ 5 ปี (12 งวด)", months: 12, price: 699, promo: "งวดแรก 50% + โปร 50% เดือน 2-8" }
+      { label: "ไม่รับบริการ 5 ปี (12 งวด)", months: 12, price: 699, promo: "50% เดือน 1-20" }
+    ]
+  },
+  {
+    id: "32u889sa-grab",
+    img: "https://www.lg.com/content/dam/channel/wcms/th/image-update/pto/2026/32u889sa-grab/32U889SA.GRAB-450.jpg",
+    model: "32U889SA + xboom GRAB",
+    name: "จอ Smart Monitor 31.5\" + xboom GRAB (ของแถม)",
+    category: "จอคอม",
+    emoji: "🖥️",
+    plans: [
+      { label: "ไม่รับบริการ 5 ปี (12 งวด) · ของแถม GRAB", months: 12, price: 699, promo: "50% เดือน 1-15 · ของแถม xboom GRAB" }
     ]
   },
   {
@@ -756,12 +924,77 @@ window.LG_PRODUCTS = [
     category: "เครื่องลดความชื้น",
     emoji: "💧",
     plans: [
-      { label: "Visit 5 ปี (12 งวด)", months: 12, price: 449, promo: "โปร 50% เดือน 2-3" },
-      { label: "Self 5 ปี (12 งวด)", months: 12, price: 399, promo: "โปร 50% เดือน 2-3" }
+      { label: "Visit 5 ปี (12 งวด)", months: 12, price: 449, promo: "โปร 50% เดือน 1-3" },
+      { label: "Self 5 ปี (12 งวด)", months: 12, price: 399, promo: "โปร 50% เดือน 1-3" }
     ]
   },
-
-  /* ============ ลำโพง ============ */
+  {
+    id: "dd23gmwe1",
+    img: "https://www.lg.com/content/dam/channel/wcms/th/image-update/dehumidifier/2026/dd23gmwe1-ath/aircare_hk_dehumidifier_mojave_2024_gp1/gallery/01-basic/aircare-hk-dehumidifier-mojave-dd14gmwe0-gp1-basic-large.jpg",
+    model: "DD23GMWE1 + AS30GGW10",
+    name: "เครื่องลดความชื้น PuriCare 23 (40 ลิตร) + AeroMini (ของแถม)",
+    category: "เครื่องลดความชื้น",
+    emoji: "💧",
+    plans: [
+      { label: "Visit 5 ปี (12 งวด)", months: 12, price: 599, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-3" },
+      { label: "Self 5 ปี (12 งวด)", months: 12, price: 549, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-3" }
+    ]
+  },
+  {
+    id: "xboom-grab",
+    img: "https://www.lg.com/content/dam/channel/wcms/th/image-update/audio/2025/grab-athalbk/gallery/gallery-1/xboom-grab-2025-gallery-basic.jpg",
+    model: "xboom GRAB",
+    name: "ลำโพง xboom GRAB (20W+10W)",
+    category: "ลำโพง",
+    emoji: "🔊",
+    plans: [
+      { label: "ไม่รับบริการ 5 ปี (12 งวด)", months: 12, price: 109, promo: "50% เดือน 1-12" }
+    ]
+  },
+  {
+    id: "xboom-bounce",
+    img: "https://www.lg.com/content/dam/channel/wcms/th/image-update/audio/2025/bounce-athalbk/gallery/01-basic/xboom-bounce-2025-gallery-basic.jpg",
+    model: "xboom BOUNCE",
+    name: "ลำโพง xboom BOUNCE (30W+10W)",
+    category: "ลำโพง",
+    emoji: "🔊",
+    plans: [
+      { label: "ไม่รับบริการ 5 ปี (12 งวด)", months: 12, price: 139, promo: "50% เดือน 1-12" }
+    ]
+  },
+  {
+    id: "xboom-stage301",
+    img: "https://www.lg.com/content/dam/channel/wcms/th/image-update/audio/2025/stage301-athalbk/gallery/01-basic/xboom-stage301-2025-gallery-basic.jpg",
+    model: "xboom STAGE301",
+    name: "ลำโพง xboom STAGE301",
+    category: "ลำโพง",
+    emoji: "🔊",
+    plans: [
+      { label: "ไม่รับบริการ 5 ปี (12 งวด)", months: 12, price: 299, promo: "50% เดือน 1-12" }
+    ]
+  },
+  {
+    id: "s95tr",
+    img: "https://www.lg.com/content/dam/channel/wcms/th/image-update/audio/2025/s95tr-dthallk/gallery/av-soundbar-s95tr-thumbnailanimation-01.jpg",
+    model: "S95TR",
+    name: "Soundbar Dolby Atmos 9.1.5 ช่อง (820W)",
+    category: "ลำโพง",
+    emoji: "🔊",
+    plans: [
+      { label: "ไม่รับบริการ 5 ปี (12 งวด)", months: 12, price: 449, promo: "50% เดือน 1-12" }
+    ]
+  },
+  {
+    id: "s70ty",
+    img: "https://www.lg.com/content/dam/channel/wcms/th/image-update/audio/2024/s70ty-dthallk/gallery/s70ty_basic_450.jpg",
+    model: "S70TY",
+    name: "Soundbar Dolby Atmos 3.1.1 ช่อง (400W)",
+    category: "ลำโพง",
+    emoji: "🔊",
+    plans: [
+      { label: "ไม่รับบริการ 5 ปี (12 งวด)", months: 12, price: 189, promo: "50% เดือน 1-12" }
+    ]
+  },
   {
     id: "a9t-ultra",
     img: "https://www.lg.com/content/dam/channel/wcms/th/images/vacuum-cleaner/a9t-ultra_dcbpeth_eath_th_c/Basic-450.jpg",
@@ -796,62 +1029,45 @@ window.LG_PRODUCTS = [
     ]
   },
   {
-    id: "xboom-grab",
-    img: "https://www.lg.com/content/dam/channel/wcms/th/image-update/audio/2025/grab-athalbk/gallery/gallery-1/xboom-grab-2025-gallery-basic.jpg",
-    model: "xboom GRAB",
-    name: "ลำโพง xboom GRAB (20W+10W)",
-    category: "ลำโพง",
-    emoji: "🔊",
+    id: "dfc335hm",
+    img: "https://www.lg.com/content/dam/channel/wcms/th/image-update/dishwasher/dfc335hm/gallery/01_XD-G3_MatteBlack_DFC335HM_TH_Front-450.jpg",
+    model: "DFC335HM",
+    name: "เครื่องล้างจาน DFC335HM (Wi-Fi control, Auto Open Dry)",
+    category: "เครื่องล้างจาน",
+    emoji: "🍽️",
     plans: [
-      { label: "ไม่รับบริการ 5 ปี (12 งวด)", months: 12, price: 109, promo: "งวดแรก 50%" }
+      { label: "Visit 5 ปี (12 งวด)", months: 12, price: 899, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-8" },
+      { label: "Self 5 ปี (12 งวด)", months: 12, price: 849, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-8" },
+      { label: "Visit 6 ปี (12 งวด)", months: 12, price: 799, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-8" },
+      { label: "Self 6 ปี (12 งวด)", months: 12, price: 749, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-8" }
     ]
   },
   {
-    id: "xboom-bounce",
-    img: "https://www.lg.com/content/dam/channel/wcms/th/image-update/audio/2025/bounce-athalbk/gallery/01-basic/xboom-bounce-2025-gallery-basic.jpg",
-    model: "xboom BOUNCE",
-    name: "ลำโพง xboom BOUNCE (30W+10W)",
-    category: "ลำโพง",
-    emoji: "🔊",
+    id: "dfc533fv",
+    img: "https://www.lg.com/content/dam/channel/wcms/th/image-update/dishwasher/dfc533fv/gallery/01_XD5_PS4_DFC533FV_TH_Front-450.jpg",
+    model: "DFC533FV + MS2032GAS",
+    name: "เครื่องล้างจาน DFC533FV (Wi-Fi control) + เครื่องทำน้ำอุ่น (ของแถม)",
+    category: "เครื่องล้างจาน",
+    emoji: "🍽️",
     plans: [
-      { label: "ไม่รับบริการ 5 ปี (12 งวด)", months: 12, price: 139, promo: "งวดแรก 50%" }
+      { label: "Visit 5 ปี (12 งวด)", months: 12, price: 749, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-8" },
+      { label: "Self 5 ปี (12 งวด)", months: 12, price: 699, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-8" },
+      { label: "Visit 6 ปี (12 งวด)", months: 12, price: 649, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-8" },
+      { label: "Self 6 ปี (12 งวด)", months: 12, price: 599, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-8" }
     ]
   },
   {
-    id: "xboom-stage301",
-    img: "https://www.lg.com/content/dam/channel/wcms/th/image-update/audio/2025/stage301-athalbk/gallery/01-basic/xboom-stage301-2025-gallery-basic.jpg",
-    model: "xboom STAGE301",
-    name: "ลำโพง xboom STAGE301",
-    category: "ลำโพง",
-    emoji: "🔊",
+    id: "s3mfc",
+    img: "https://www.lg.com/content/dam/channel/wcms/th/images/washing-machine/s3mfc_albpeth_eath_th_c/TH-450.jpg",
+    model: "S3MFC",
+    name: "LG Styler ตู้ถนอมผ้า (ดูแลเสื้อผ้า)",
+    category: "อื่นๆ",
+    emoji: "👔",
     plans: [
-      { label: "ไม่รับบริการ 5 ปี (12 งวด)", months: 12, price: 299, promo: "งวดแรก 50%" }
+      { label: "Self 5 ปี (12 งวด)", months: 12, price: 899, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-8" },
+      { label: "Self 6 ปี (12 งวด)", months: 12, price: 799, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-8" }
     ]
   },
-  {
-    id: "s95tr",
-    img: "https://www.lg.com/content/dam/channel/wcms/th/image-update/audio/2025/s95tr-dthallk/gallery/av-soundbar-s95tr-thumbnailanimation-01.jpg",
-    model: "S95TR",
-    name: "Soundbar Dolby Atmos 9.1.5 ช่อง (820W)",
-    category: "ลำโพง",
-    emoji: "🔊",
-    plans: [
-      { label: "ไม่รับบริการ 5 ปี (12 งวด)", months: 12, price: 449, promo: "งวดแรก 50%" }
-    ]
-  },
-  {
-    id: "s70ty",
-    img: "https://www.lg.com/content/dam/channel/wcms/th/image-update/audio/2024/s70ty-dthallk/gallery/s70ty_basic_450.jpg",
-    model: "S70TY",
-    name: "Soundbar Dolby Atmos 3.1.1 ช่อง (400W)",
-    category: "ลำโพง",
-    emoji: "🔊",
-    plans: [
-      { label: "ไม่รับบริการ 5 ปี (12 งวด)", months: 12, price: 189, promo: "งวดแรก 50%" }
-    ]
-  },
-
-  /* ============ เครื่องฟอกอากาศ / พัดลม / อื่นๆ ============ */
   {
     id: "as35ggw10",
     img: "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-puricare/2025/as35ggx0-abae/gallery/re-gallery/AP2025_AeroHit-Web-Thumbnail_450x450.jpg",
@@ -860,8 +1076,8 @@ window.LG_PRODUCTS = [
     category: "อื่นๆ",
     emoji: "💨",
     plans: [
-      { label: "Visit 5 ปี (6 งวด)", months: 6, price: 249, promo: "บิลแรก ฿149" },
-      { label: "Self 5 ปี (6 งวด)", months: 6, price: 199, promo: "บิลแรก ฿149" }
+      { label: "Visit 5 ปี (6 งวด)", months: 6, price: 249, promo: "โปร 50% เดือน 1-3" },
+      { label: "Self 5 ปี (6 งวด)", months: 6, price: 199, promo: "" }
     ]
   },
   {
@@ -872,19 +1088,7 @@ window.LG_PRODUCTS = [
     category: "อื่นๆ",
     emoji: "♨️",
     plans: [
-      { label: "ไม่รับบริการ 6 ปี (12 งวด)", months: 12, price: 89, promo: "บิลแรก ฿149" }
-    ]
-  },
-  {
-    id: "dd23gmwe1",
-    img: "https://www.lg.com/content/dam/channel/wcms/th/image-update/dehumidifier/2026/dd23gmwe1-ath/aircare_hk_dehumidifier_mojave_2024_gp1/gallery/01-basic/aircare-hk-dehumidifier-mojave-dd14gmwe0-gp1-basic-large.jpg",
-    model: "DD23GMWE1 + AS30GGW10",
-    name: "เครื่องลดความชื้น PuriCare 23 (40 ลิตร) + AeroMini (ของแถม)",
-    category: "เครื่องลดความชื้น",
-    emoji: "💧",
-    plans: [
-      { label: "Visit 5 ปี (12 งวด)", months: 12, price: 599, promo: "โปร 50% เดือน 2-3" },
-      { label: "Self 5 ปี (12 งวด)", months: 12, price: 549, promo: "โปร 50% เดือน 2-3" }
+      { label: "ไม่รับบริการ 6 ปี (12 งวด)", months: 12, price: 89, promo: "" }
     ]
   },
   {
@@ -895,8 +1099,8 @@ window.LG_PRODUCTS = [
     category: "อื่นๆ",
     emoji: "🌬️",
     plans: [
-      { label: "Visit 5 ปี (12 งวด)", months: 12, price: 599, promo: "โปร 50% เดือน 2-3" },
-      { label: "Self 5 ปี (12 งวด)", months: 12, price: 549, promo: "โปร 50% เดือน 2-3" }
+      { label: "Visit 5 ปี (12 งวด)", months: 12, price: 599, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-3" },
+      { label: "Self 5 ปี (12 งวด)", months: 12, price: 549, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-3" }
     ]
   },
   {
@@ -907,8 +1111,10 @@ window.LG_PRODUCTS = [
     category: "อื่นๆ",
     emoji: "🌬️",
     plans: [
-      { label: "Visit 5 ปี (12 งวด)", months: 12, price: 449, promo: "โปร 50% เดือน 2-3" },
-      { label: "Self 5 ปี (12 งวด)", months: 12, price: 399, promo: "โปร 50% เดือน 2-3" }
+      { label: "Visit 5 ปี (12 งวด)", months: 12, price: 449, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-3" },
+      { label: "Self 5 ปี (12 งวด)", months: 12, price: 399, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-3" },
+      { label: "Visit 5 ปี (6 งวด)", months: 6, price: 499, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-3" },
+      { label: "Self 5 ปี (6 งวด)", months: 6, price: 449, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-3" }
     ]
   },
   {
@@ -919,10 +1125,10 @@ window.LG_PRODUCTS = [
     category: "อื่นๆ",
     emoji: "🌬️",
     plans: [
-      { label: "Visit 5 ปี (12 งวด)", months: 12, price: 749, promo: "โปร 50% เดือน 2-3" },
-      { label: "Self 5 ปี (12 งวด)", months: 12, price: 699, promo: "โปร 50% เดือน 2-3" },
-      { label: "Visit 5 ปี (6 งวด)", months: 6, price: 799, promo: "โปร 50% เดือน 2-3" },
-      { label: "Self 5 ปี (6 งวด)", months: 6, price: 749, promo: "โปร 50% เดือน 2-3" }
+      { label: "Visit 5 ปี (12 งวด)", months: 12, price: 749, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-3" },
+      { label: "Self 5 ปี (12 งวด)", months: 12, price: 699, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-3" },
+      { label: "Visit 5 ปี (6 งวด)", months: 6, price: 799, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-3" },
+      { label: "Self 5 ปี (6 งวด)", months: 6, price: 749, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-3" }
     ]
   },
   {
@@ -933,9 +1139,24 @@ window.LG_PRODUCTS = [
     category: "อื่นๆ",
     emoji: "🌬️",
     plans: [
-      { label: "Visit 5 ปี (12 งวด)", months: 12, price: 1149, promo: "โปร 50% เดือน 2-3" },
-      { label: "Self 5 ปี (12 งวด)", months: 12, price: 1099, promo: "โปร 50% เดือน 2-3" },
-      { label: "Visit 5 ปี (6 งวด)", months: 6, price: 1199, promo: "โปร 50% เดือน 2-3" }
+      { label: "Visit 5 ปี (12 งวด)", months: 12, price: 1149, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-3" },
+      { label: "Self 5 ปี (12 งวด)", months: 12, price: 1099, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-3" },
+      { label: "Visit 5 ปี (6 งวด)", months: 6, price: 1199, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-3" },
+      { label: "Self 5 ปี (6 งวด)", months: 6, price: 1149, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-3" }
+    ]
+  },
+  {
+    id: "wd110mn",
+    img: "https://www.lg.com/content/dam/channel/wcms/th/image-update/water-purifier/2024/wd110mn-abgplmt/gallery/01-basic/wp-mx-wd110mn-calmingbeige-basic-large.jpg",
+    model: "WD110MN",
+    name: "เครื่องกรองน้ำ WD110MN (Calming Beige)",
+    category: "เครื่องกรองน้ำ",
+    emoji: "🚰",
+    plans: [
+      { label: "Visit 5 ปี (6 งวด)", months: 6, price: 549, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-12" },
+      { label: "Self 5 ปี (6 งวด)", months: 6, price: 499, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-12" },
+      { label: "Visit 7 ปี (6 งวด)", months: 6, price: 449, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-12" },
+      { label: "Self 7 ปี (6 งวด)", months: 6, price: 399, promo: "บิลแรก ฿149 + โปร 50% เดือน 2-12" }
     ]
   }
 ];

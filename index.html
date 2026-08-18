@@ -586,7 +586,7 @@
             { model: 'AS25GCBY0', name: 'เครื่องฟอกอากาศ AeroCat Tower', category: 'อื่นๆ', emoji: '🌫️', price: 599, img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/air-puricare/2025/as25gcby0-abae/gallery/basic/air-purifier-aerocattower-2025-as207cbz0-gallery-basic-large.jpg' }
         ];
         let PRODUCTS = (window.LG_PRODUCTS && window.LG_PRODUCTS.length) ? window.LG_PRODUCTS : FEATURED_FALLBACK;
-        const CAT_EMOJI = { 'เครื่องซักผ้า': '🌀', 'ตู้เย็น': '🧊', 'แอร์': '🌬️', 'ทีวี': '📺', 'จอคอม': '🖥️', 'ลำโพง': '🔊', 'เครื่องฟอกอากาศ': '🌫️', 'เครื่องล้างจาน': '🍽️', 'เครื่องดูดฝุ่น': '🧹', 'เครื่องลดความชื้น': '💧', 'อื่นๆ': '📦' };
+        const CAT_EMOJI = { 'เครื่องซักผ้า': '🌀', 'ตู้เย็น': '🧊', 'แอร์': '🌬️', 'ทีวี': '📺', 'จอคอม': '🖥️', 'ลำโพง': '🔊', 'เครื่องฟอกอากาศ': '🌫️', 'เครื่องล้างจาน': '🍽️', 'เครื่องดูดฝุ่น': '🧹', 'เครื่องลดความชื้น': '💧', 'เครื่องกรองน้ำ': '🚰', 'อื่นๆ': '📦' };
 
         const LIFESTYLES = [
             { id: 'family', emoji: '🏠', name: 'ครอบครัวใหญ่', desc: 'จุของเยอะ ซักเยอะ อาหารสดตลอด', ids: ['wt2520nheg','wt2116sheg','wt1410nheg','f2520rntb','tx2723st5j','gc-g24ffqkb','100mrgb96bs','oled77c6psa','oled65c6psa'] },
@@ -611,6 +611,7 @@
             if (p.category === 'เครื่องล้างจาน') return 'ฟรีติดตั้ง';
             if (p.category === 'เครื่องดูดฝุ่น') return 'แบตอัปเกรดได้';
             if (p.category === 'เครื่องลดความชื้น') return 'เปิด-ปิดอัตโนมัติ';
+            if (p.category === 'เครื่องกรองน้ำ') return 'น้ำสะอาดทุกหยด';
             if (p.category === 'อื่นๆ') return 'บิลแรก ฿149';
             return 'ฟรีติดตั้ง';
         }
