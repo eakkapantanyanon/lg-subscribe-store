@@ -236,6 +236,16 @@
         .cat-item span { font-size: 12px; color: var(--muted); font-weight: 600; }
         .cat-item.active span { color: var(--lg-red); }
 
+        /* --- หมวดหมู่ย่อย (chip) — แสดงเมื่อเลือกกลุ่ม --- */
+        .sub-cats { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin: -14px 0 40px; }
+        .sub-chip {
+            border: 1px solid var(--line); background: #fff; border-radius: 999px;
+            padding: 8px 16px; font-size: 13px; font-weight: 600; color: var(--muted);
+            cursor: pointer; transition: all 0.2s;
+        }
+        .sub-chip:hover { border-color: var(--lg-red); color: var(--lg-red); }
+        .sub-chip.active { background: var(--lg-red); border-color: var(--lg-red); color: #fff; }
+
         /* --- Lifestyle cards --- */
         .lifestyle-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; margin-bottom: 40px; }
         .lifestyle-card {
@@ -442,8 +452,11 @@
                 <button id="modeLife" onclick="setMode('life')">ไลฟ์สไตล์</button>
             </div>
 
-            <!-- หมวดหมู่ทรงกลม -->
+            <!-- หมวดหมู่ทรงกลม (กลุ่มใหญ่) -->
             <div class="cat-icons" id="catIcons"></div>
+
+            <!-- หมวดหมู่ย่อย — แสดงเมื่อเลือกกลุ่มแล้ว -->
+            <div class="sub-cats" id="subCats" style="display:none;"></div>
 
             <!-- การ์ดไลฟ์สไตล์ -->
             <div class="lifestyle-grid" id="lifestyleGrid" style="display:none;"></div>
@@ -451,7 +464,7 @@
             <!-- Grid สินค้า -->
             <div class="product-grid" id="productGrid"></div>
 
-            <p class="grid-note">ยังไม่เจอของถูกใจ? เปิดเครื่องคำนวณเพื่อดูสินค้าครบ <a href="#calculator">ทุกรุ่น 78 รายการ →</a></p>
+            <p class="grid-note">ยังไม่เจอของถูกใจ? เปิดเครื่องคำนวณเพื่อดูสินค้าครบ <a href="#calculator">ทุกรุ่น 97 รายการ →</a></p>
         </div>
     </section>
 
@@ -605,7 +618,6 @@
         ];
 
         let mode = 'cat';
-        let activeCat = 'ทั้งหมด';
         let activeLife = null;
 
         const fmt = n => n.toLocaleString('en-US');
@@ -630,17 +642,58 @@
             return 'ฟรีติดตั้ง';
         }
 
-        /* ---------- Category icons ---------- */
+        /* ---------- กลุ่มหมวดหมู่ใหญ่ (8 กลุ่ม) ---------- */
+        const CAT_GROUPS = [
+            { id: 'laundry', emoji: '🌀', name: 'เครื่องซักผ้า', cats: ['Wash Tower', 'เครื่องซักผ้า ฝาหน้า', 'เครื่องซักผ้า ฝาบน', 'เครื่องอบผ้า', 'ตู้ถนอมผ้า'] },
+            { id: 'fridge', emoji: '🧊', name: 'ตู้เย็น', cats: ['ตู้เย็น Side by Side', 'ตู้เย็น Multi-Door', 'ตู้เย็น 2 ประตู'] },
+            { id: 'ac', emoji: '❄️', name: 'เครื่องปรับอากาศ', cats: ['เครื่องปรับอากาศ IXY', 'เครื่องปรับอากาศ SIQ', 'เครื่องปรับอากาศ SAQ', 'เครื่องปรับอากาศ ART', 'เครื่องปรับอากาศ SAC 4Way Cassette', 'เครื่องปรับอากาศ SAC 1 Way Cassette', 'เครื่องปรับอากาศ SAC Round Cassette'] },
+            { id: 'tv', emoji: '📺', name: 'ทีวีและจอ', cats: ['โทรทัศน์ OLED', 'โทรทัศน์ QNED', 'โทรทัศน์ NanoCell', 'โทรทัศน์ StanbyME', 'มอนิเตอร์'] },
+            { id: 'audio', emoji: '🔊', name: 'เครื่องเสียง', cats: ['Sound bar', 'Bluetooth Speaker'] },
+            { id: 'kitchen', emoji: '🍽️', name: 'เครื่องใช้ในครัว', cats: ['เครื่องล้างจาน', 'ไมโครเวฟ'] },
+            { id: 'air', emoji: '💧', name: 'อากาศและน้ำ', cats: ['เครื่องฟอกอากาศ', 'เครื่องกรองน้ำ', 'เครื่องลดความชื้น'] },
+            { id: 'clean', emoji: '🧹', name: 'เครื่องดูดฝุ่น', cats: ['เครื่องดูดฝุ่น'] }
+        ];
+
+        let activeGroup = null;  // null = หน้าแรก (ทั้งหมด) · group id = กลุ่มที่เลือก
+        let activeCat = null;    // หมวดย่อยในกลุ่มที่เลือก (null = ทุกหมวดในกลุ่ม)
+
+        /* ---------- Category icons (กลุ่มใหญ่) ---------- */
         function renderCats() {
-            const cats = ['ทั้งหมด', ...Array.from(new Set(PRODUCTS.map(p => p.category)))];
             const el = document.getElementById('catIcons');
             el.innerHTML = '';
-            cats.forEach(c => {
+            const home = document.createElement('div');
+            home.className = 'cat-item' + (activeGroup === null ? ' active' : '');
+            home.innerHTML = '<div class="circle">🛒</div><span>ทั้งหมด</span>';
+            home.onclick = () => { activeGroup = null; activeCat = null; renderCats(); renderSubCats(); renderProducts(); };
+            el.appendChild(home);
+            CAT_GROUPS.forEach(g => {
                 const d = document.createElement('div');
-                d.className = 'cat-item' + (c === activeCat ? ' active' : '');
-                d.innerHTML = '<div class="circle">' + (c === 'ทั้งหมด' ? '🛒' : (CAT_EMOJI[c] || '📦')) + '</div><span>' + c + '</span>';
-                d.onclick = () => { activeCat = c; renderCats(); renderProducts(); };
+                d.className = 'cat-item' + (activeGroup === g.id ? ' active' : '');
+                d.innerHTML = '<div class="circle">' + g.emoji + '</div><span>' + g.name + '</span>';
+                d.onclick = () => { activeGroup = g.id; activeCat = null; renderCats(); renderSubCats(); renderProducts(); };
                 el.appendChild(d);
+            });
+        }
+
+        /* ---------- หมวดหมู่ย่อย (chip) — โผล่เมื่อเลือกกลุ่มแล้ว ---------- */
+        function renderSubCats() {
+            const el = document.getElementById('subCats');
+            const group = CAT_GROUPS.find(g => g.id === activeGroup);
+            if (!group) { el.style.display = 'none'; el.innerHTML = ''; return; }
+            el.style.display = 'flex';
+            el.innerHTML = '';
+            const all = document.createElement('button');
+            all.className = 'sub-chip' + (activeCat === null ? ' active' : '');
+            all.textContent = 'ทั้งหมดในกลุ่ม';
+            all.onclick = () => { activeCat = null; renderSubCats(); renderProducts(); };
+            el.appendChild(all);
+            group.cats.forEach(c => {
+                const count = PRODUCTS.filter(p => p.category === c).length;
+                const chip = document.createElement('button');
+                chip.className = 'sub-chip' + (activeCat === c ? ' active' : '');
+                chip.textContent = c + ' (' + count + ')';
+                chip.onclick = () => { activeCat = c; renderSubCats(); renderProducts(); };
+                el.appendChild(chip);
             });
         }
 
@@ -665,12 +718,16 @@
                 if (!life) return PRODUCTS.filter(p => FEATURED_FALLBACK.some(f => f.model === p.model) || !window.LG_PRODUCTS).slice(0, 8);
                 return PRODUCTS.filter(p => life.ids.includes(p.id) || life.ids.includes(String(p.model || '').toLowerCase()));
             }
-            if (activeCat === 'ทั้งหมด') {
+            if (activeGroup === null) {
                 const featured = PRODUCTS.filter(p => FEATURED_FALLBACK.some(f => f.model === p.model));
                 if (featured.length >= 4) return featured;
                 return PRODUCTS.slice(0, 8);
             }
-            return PRODUCTS.filter(p => p.category === activeCat).slice(0, 12);
+            const group = CAT_GROUPS.find(g => g.id === activeGroup);
+            if (!group) return [];
+            let list = PRODUCTS.filter(p => group.cats.includes(p.category));
+            if (activeCat) list = list.filter(p => p.category === activeCat);
+            return list.slice(0, 12);
         }
 
         function renderProducts() {
@@ -703,6 +760,7 @@
             document.getElementById('modeCat').className = m === 'cat' ? 'active' : '';
             document.getElementById('modeLife').className = m === 'life' ? 'active' : '';
             document.getElementById('catIcons').style.display = m === 'cat' ? 'flex' : 'none';
+            document.getElementById('subCats').style.display = (m === 'cat' && activeGroup) ? 'flex' : 'none';
             document.getElementById('lifestyleGrid').style.display = m === 'life' ? 'grid' : 'none';
             renderProducts();
         }
@@ -956,6 +1014,7 @@
 
         /* ---------- Init ---------- */
         renderCats();
+        renderSubCats();
         renderLifestyle();
         renderProducts();
         buildHero();
