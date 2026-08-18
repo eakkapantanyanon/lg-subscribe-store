@@ -785,7 +785,31 @@
         let heroTimer = null;
         const heroMobile = window.matchMedia('(max-width: 860px)');
         const localHeroLoaded = {};
+        const heroLoaded = {};
         function heroImgFor(s) { return (heroMobile.matches && s.imgM) ? s.imgM : s.img; }
+        /* โหลดภาพของสไลด์ที่กำลังแสดง (ครั้งแรกเท่านั้น) */
+        function loadHeroImg(i) {
+            const img = document.querySelector('.hero-campaign[data-slot="' + i + '"]');
+            if (!img || heroLoaded[i]) return;
+            const s = HERO_SLIDES[i];
+            img.src = localHeroLoaded[i] ? s.local : heroImgFor(s);
+            heroLoaded[i] = true;
+        }
+        /* preload ภาพสไลด์ถัดไปล่วงหน้า (ตามขนาดจอปัจจุบัน) ให้สลับภาพเนียน */
+        function preloadHero(i) {
+            const s = HERO_SLIDES[((i % HERO_SLIDES.length) + HERO_SLIDES.length) % HERO_SLIDES.length];
+            if (!s) return;
+            const url = heroImgFor(s);
+            let link = document.querySelector('link[data-hero-preload]');
+            if (link) link.href = url;
+            else {
+                link = document.createElement('link');
+                link.rel = 'preload'; link.as = 'image'; link.dataset.heroPreload = '1'; link.href = url;
+                document.head.appendChild(link);
+            }
+            const probe = new Image();
+            probe.src = url;
+        }
 
         function buildHero() {
             const track = document.getElementById('heroTrack');
@@ -811,7 +835,9 @@
                         '<span class="h-logo">LG Subscribe™</span>' +
                     '</div>' +
                     '<div class="hero-right">' +
-                        '<img class="hero-campaign' + (s.fx === 'oled' ? ' kenburns' : '') + '" src="' + heroImgFor(s) + '" alt="' + s.title + '" data-slot="' + i + '" />' +
+                        '<img class="hero-campaign' + (s.fx === 'oled' ? ' kenburns' : '') + '"' +
+                        (i === 0 ? ' src="' + heroImgFor(s) + '" fetchpriority="high" decoding="async"' : ' data-src="' + heroImgFor(s) + '"') +
+                        ' alt="' + s.title + '" data-slot="' + i + '" />' +
                         (s.fx === 'oled' ? '<div class="hero-shimmer"></div>' : '') +
                         (s.badge ? '<span class="hero-badge">' + s.badge + '</span>' : '') +
                     '</div>';
@@ -826,7 +852,7 @@
                 probe.onload = function () {
                     localHeroLoaded[i] = true;
                     const img = track.querySelector('.hero-campaign[data-slot="' + i + '"]');
-                    if (img) img.src = s.local;
+                    if (img && heroLoaded[i]) img.src = s.local;
                 };
                 probe.src = s.local;
             });
@@ -836,8 +862,11 @@
         function refreshHeroImgs() {
             HERO_SLIDES.forEach((s, i) => {
                 const img = document.querySelector('.hero-campaign[data-slot="' + i + '"]');
-                if (img && !localHeroLoaded[i]) img.src = heroImgFor(s);
+                if (!img) return;
+                if (heroLoaded[i]) { if (!localHeroLoaded[i]) img.src = heroImgFor(s); }
+                else img.dataset.src = heroImgFor(s);
             });
+            preloadHero(heroIndex + 1);
         }
         heroMobile.addEventListener('change', refreshHeroImgs);
 
@@ -850,6 +879,8 @@
                 b.classList.toggle('active', k === heroIndex);
                 if (k === heroIndex) { b.style.animation = 'none'; void b.offsetWidth; b.style.animation = ''; }
             });
+            loadHeroImg(heroIndex);
+            preloadHero(heroIndex + 1);
             if (restart !== false) restartHero();
         }
 
@@ -882,6 +913,7 @@
         renderLifestyle();
         renderProducts();
         buildHero();
+        preloadHero(1);
         restartHero();
     </script>
 
