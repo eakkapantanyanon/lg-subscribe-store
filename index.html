@@ -576,17 +576,26 @@
         }
         /* ---------- ข้อมูลสินค้า: ใช้ products.js ถ้ามี, fallback เป็นรายการเด่น ---------- */
         const FEATURED_FALLBACK = [
-            { model: 'WT2520NHEG', name: 'WashTower ซัก 25 / อบ 20 กก.', category: 'เครื่องซักผ้า', emoji: '🌀', price: 2399, img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/washing-machine/2026/wt2520nheg-abgpeth/gallery/wt2520nheg-450-0604.jpg' },
-            { model: 'GC-L257KQKW', name: 'ตู้เย็น Side-by-Side 22.4 คิว', category: 'ตู้เย็น', emoji: '🧊', price: 749, img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/refrigerator/2024/gc-l257kqkw-aepplmt/gallery/GC-L257KQKW_Front_450.jpg' },
-            { model: 'FV1409H4W', name: 'เครื่องซักผ้าฝาหน้า 9/5 กก.', category: 'เครื่องซักผ้า', emoji: '🌀', price: 399, img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/washing-machine/2024/fv1409h4w-abwpeth/gallery/450.jpg' },
-            { model: 'SAQ11A', name: 'แอร์ DUALCOOL AI 9,200 Btu', category: 'แอร์', emoji: '🌬️', price: 799, img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2025/image-with-icon/saq/RAC2025-Web-Thumbnail_SAQ-450X450.jpg' },
-            { model: 'OLED48C6PSA', name: 'ทีวี OLED evo C6 48 นิ้ว', category: 'ทีวี', emoji: '📺', price: 749, img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/oled/oled81-42c6psa-atm/gallery/48-c6/update/OLED48C6PSA-450-01.jpg' },
+            { model: 'WT2520NHEG', name: 'WashTower ซัก 25 / อบ 20 กก.', category: 'Wash Tower', emoji: '🌀', price: 2399, img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/washing-machine/2026/wt2520nheg-abgpeth/gallery/wt2520nheg-450-0604.jpg' },
+            { model: 'GC-L257KQKW', name: 'ตู้เย็น Side-by-Side 22.4 คิว', category: 'ตู้เย็น Side by Side', emoji: '🧊', price: 749, img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/refrigerator/2024/gc-l257kqkw-aepplmt/gallery/GC-L257KQKW_Front_450.jpg' },
+            { model: 'FV1409H4W', name: 'เครื่องซักผ้าฝาหน้า 9/5 กก.', category: 'เครื่องซักผ้า ฝาหน้า', emoji: '🌀', price: 399, img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/washing-machine/2024/fv1409h4w-abwpeth/gallery/450.jpg' },
+            { model: 'SAQ11A', name: 'แอร์ DUALCOOL AI 9,200 Btu', category: 'เครื่องปรับอากาศ SAQ', emoji: '❄️', price: 799, img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2025/image-with-icon/saq/RAC2025-Web-Thumbnail_SAQ-450X450.jpg' },
+            { model: 'OLED48C6PSA', name: 'ทีวี OLED evo C6 48 นิ้ว', category: 'โทรทัศน์ OLED', emoji: '📺', price: 749, img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/oled/oled81-42c6psa-atm/gallery/48-c6/update/OLED48C6PSA-450-01.jpg' },
             { model: 'A9T-ULTRA', name: 'เครื่องดูดฝุ่น CordZero All-in-One', category: 'เครื่องดูดฝุ่น', emoji: '🧹', price: 749, img: 'https://www.lg.com/content/dam/channel/wcms/th/images/vacuum-cleaner/a9t-ultra_dcbpeth_eath_th_c/Basic-450.jpg' },
             { model: 'DFC335HM', name: 'เครื่องล้างจาน (Wi-Fi control)', category: 'เครื่องล้างจาน', emoji: '🍽️', price: 899, img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/dishwasher/dfc335hm/gallery/01_XD-G3_MatteBlack_DFC335HM_TH_Front-450.jpg' },
-            { model: 'AS25GCBY0', name: 'เครื่องฟอกอากาศ AeroCat Tower', category: 'อื่นๆ', emoji: '🌫️', price: 599, img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/air-puricare/2025/as25gcby0-abae/gallery/basic/air-purifier-aerocattower-2025-as207cbz0-gallery-basic-large.jpg' }
+            { model: 'AS25GCBY0', name: 'เครื่องฟอกอากาศ AeroCat Tower', category: 'เครื่องฟอกอากาศ', emoji: '🌫️', price: 599, img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/air-puricare/2025/as25gcby0-abae/gallery/basic/air-purifier-aerocattower-2025-as207cbz0-gallery-basic-large.jpg' }
         ];
         let PRODUCTS = (window.LG_PRODUCTS && window.LG_PRODUCTS.length) ? window.LG_PRODUCTS : FEATURED_FALLBACK;
-        const CAT_EMOJI = { 'เครื่องซักผ้า': '🌀', 'ตู้เย็น': '🧊', 'แอร์': '🌬️', 'ทีวี': '📺', 'จอคอม': '🖥️', 'ลำโพง': '🔊', 'เครื่องฟอกอากาศ': '🌫️', 'เครื่องล้างจาน': '🍽️', 'เครื่องดูดฝุ่น': '🧹', 'เครื่องลดความชื้น': '💧', 'เครื่องกรองน้ำ': '🚰', 'อื่นๆ': '📦' };
+        const CAT_EMOJI = {
+            'Wash Tower': '🌀', 'เครื่องซักผ้า ฝาหน้า': '🌀', 'เครื่องซักผ้า ฝาบน': '🌀', 'เครื่องอบผ้า': '🌬️',
+            'ตู้เย็น Side by Side': '🧊', 'ตู้เย็น Multi-Door': '🧊', 'ตู้เย็น 2 ประตู': '🧊',
+            'เครื่องปรับอากาศ IXY': '❄️', 'เครื่องปรับอากาศ SIQ': '❄️', 'เครื่องปรับอากาศ SAQ': '❄️', 'เครื่องปรับอากาศ ART': '❄️',
+            'เครื่องปรับอากาศ SAC 4Way Cassette': '❄️', 'เครื่องปรับอากาศ SAC 1 Way Cassette': '❄️', 'เครื่องปรับอากาศ SAC Round Cassette': '❄️',
+            'โทรทัศน์ OLED': '📺', 'โทรทัศน์ QNED': '📺', 'โทรทัศน์ NanoCell': '📺', 'โทรทัศน์ StanbyME': '📺',
+            'มอนิเตอร์': '🖥️', 'Sound bar': '🔊', 'Bluetooth Speaker': '🎵',
+            'เครื่องฟอกอากาศ': '🌫️', 'เครื่องล้างจาน': '🍽️', 'เครื่องดูดฝุ่น': '🧹', 'เครื่องลดความชื้น': '💧',
+            'เครื่องกรองน้ำ': '🚰', 'ตู้ถนอมผ้า': '👕', 'ไมโครเวฟ': '🔥'
+        };
 
         const LIFESTYLES = [
             { id: 'family', emoji: '🏠', name: 'ครอบครัวใหญ่', desc: 'จุของเยอะ ซักเยอะ อาหารสดตลอด', ids: ['wt2520nheg','wt2116sheg','wt1410nheg','f2520rntb','tx2723st5j','gc-g24ffqkb','100mrgb96bs','oled77c6psa','oled65c6psa'] },
@@ -602,17 +611,22 @@
         const fmt = n => n.toLocaleString('en-US');
 
         function badgeFor(p) {
-            if (p.category === 'ตู้เย็น') return 'ประหยัดไฟ เบอร์ 5';
-            if (p.category === 'เครื่องซักผ้า') return p.model.includes('WT') ? 'AI DD™ ประหยัดไฟ' : 'ประหยัดไฟ เบอร์ 5';
-            if (p.category === 'แอร์') return 'ประหยัดไฟ เบอร์ 5';
-            if (p.category === 'ทีวี') return p.model.includes('OLED') ? 'OLED แท้ เปล่งแสงเอง' : 'AI Processor';
-            if (p.category === 'จอคอม') return 'Gaming / Work ครบ';
-            if (p.category === 'ลำโพง') return p.model.includes('xboom') ? 'tuned by will.i.am' : 'Dolby Atmos';
+            if (p.category === 'ตู้เย็น Side by Side' || p.category === 'ตู้เย็น Multi-Door' || p.category === 'ตู้เย็น 2 ประตู') return 'ประหยัดไฟ เบอร์ 5';
+            if (p.category === 'Wash Tower') return 'AI DD™ ประหยัดไฟ';
+            if (p.category === 'เครื่องซักผ้า ฝาหน้า' || p.category === 'เครื่องซักผ้า ฝาบน') return 'ประหยัดไฟ เบอร์ 5';
+            if (p.category === 'เครื่องอบผ้า') return 'Heat Pump™ ประหยัดไฟ';
+            if (p.category.indexOf('เครื่องปรับอากาศ') === 0) return 'ประหยัดไฟ เบอร์ 5';
+            if (p.category.indexOf('โทรทัศน์') === 0) return p.model.includes('OLED') ? 'OLED แท้ เปล่งแสงเอง' : 'AI Processor';
+            if (p.category === 'มอนิเตอร์') return 'Gaming / Work ครบ';
+            if (p.category === 'Sound bar') return 'Dolby Atmos';
+            if (p.category === 'Bluetooth Speaker') return p.model.toLowerCase().includes('xboom') ? 'tuned by will.i.am' : 'เสียงรอบทิศ';
             if (p.category === 'เครื่องล้างจาน') return 'ฟรีติดตั้ง';
             if (p.category === 'เครื่องดูดฝุ่น') return 'แบตอัปเกรดได้';
             if (p.category === 'เครื่องลดความชื้น') return 'เปิด-ปิดอัตโนมัติ';
+            if (p.category === 'เครื่องฟอกอากาศ') return 'กรอง PM2.5';
             if (p.category === 'เครื่องกรองน้ำ') return 'น้ำสะอาดทุกหยด';
-            if (p.category === 'อื่นๆ') return 'บิลแรก ฿149';
+            if (p.category === 'ตู้ถนอมผ้า') return 'ดูแลผ้าทุกชิ้น';
+            if (p.category === 'ไมโครเวฟ') return 'ฟรีติดตั้ง';
             return 'ฟรีติดตั้ง';
         }
 
