@@ -266,6 +266,9 @@
         }
         .sub-chip:hover { border-color: var(--lg-red); color: var(--lg-red); }
         .sub-chip.active { background: var(--lg-red); border-color: var(--lg-red); color: #fff; }
+        .sub-chip .chip-promo { color: var(--accent-orange); font-weight: 700; }
+        .sub-chip:hover .chip-promo { color: var(--accent-orange); }
+        .sub-chip.active .chip-promo { color: #fff; }
 
         /* --- Lifestyle cards --- */
         .lifestyle-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; margin-bottom: 40px; }
@@ -678,6 +681,24 @@
         let activeGroup = null;  // null = หน้าแรก (ทั้งหมด) · group id = กลุ่มที่เลือก
         let activeCat = null;    // หมวดย่อยในกลุ่มที่เลือก (null = ทุกหมวดในกลุ่ม)
 
+        /* โปรโมชันเด่นประจำหมวด (ไฮไลต์บน chip หมวดย่อย) — ตรงกับข้อมูลจริงในแคตตาล็อก */
+        const CAT_PROMO = {
+            'Wash Tower': 'ลด 50% 11 เดือน',
+            'เครื่องซักผ้า ฝาหน้า': 'ลด 50% 8 เดือน',
+            'ตู้เย็น Side by Side': 'ลด 50% งวดแรก',
+            'ตู้เย็น 2 ประตู': 'ลด 50% งวดแรก',
+            'เครื่องลดความชื้น': 'ลด 50% งวดแรก',
+            'เครื่องฟอกอากาศ': 'ลด 50% งวดแรก',
+            'เครื่องปรับอากาศ IXY': 'ซับ 2 แถม 1',
+            'เครื่องปรับอากาศ SAC 4Way Cassette': 'รุ่นใหม่ Y2026',
+            'เครื่องปรับอากาศ SAC 1 Way Cassette': 'รุ่นใหม่ Y2026',
+            'เครื่องปรับอากาศ SAC Round Cassette': 'รุ่นใหม่ Y2026',
+            'โทรทัศน์ OLED': 'ของแถม Soundbar',
+            'โทรทัศน์ StanbyME': 'ของแถม xboom',
+            'มอนิเตอร์': 'ของแถม xboom',
+            'เครื่องกรองน้ำ': 'ลด 10%'
+        };
+
         /* ---------- Category icons (กลุ่มใหญ่) ---------- */
         function renderCats() {
             const el = document.getElementById('catIcons');
@@ -711,9 +732,12 @@
             el.appendChild(all);
             group.cats.forEach(c => {
                 const count = PRODUCTS.filter(p => p.category === c).length;
+                const promo = CAT_PROMO[c];
                 const chip = document.createElement('button');
                 chip.className = 'sub-chip' + (activeCat === c ? ' active' : '');
-                chip.textContent = c + ' (' + count + ')';
+                chip.innerHTML = promo
+                    ? c + ' <span class="chip-n">(' + count + ')</span> <span class="chip-promo">· ' + promo + '</span>'
+                    : c + ' (' + count + ')';
                 chip.onclick = () => { activeCat = c; renderSubCats(); renderProducts(); };
                 el.appendChild(chip);
             });
@@ -1042,6 +1066,19 @@
         }, { passive: true });
 
         /* ---------- Init ---------- */
+        /* ---------- รองรับ param จากหน้าโปรโมชัน (?cat=..&product=..) ----------
+           กด 'คำนวณ →' บน promotions.html → มาที่หน้านี้พร้อมเครื่องคำนวณเลือกสินค้านั้นให้ */
+        function applyUrlParamsToCalc() {
+            const q = new URLSearchParams(location.search);
+            const cat = q.get('cat');
+            const prod = q.get('product');
+            if (cat || prod) {
+                const f = document.querySelector('.calc-frame');
+                if (f) f.src = 'subscribe-store.html?cat=' + encodeURIComponent(cat || '') + '&product=' + encodeURIComponent(prod || '');
+            }
+        }
+        applyUrlParamsToCalc();
+
         renderCats();
         renderSubCats();
         renderLifestyle();
