@@ -206,20 +206,20 @@
             <nav class="nav-links">
                 <a href="index.html">ซื้อสินค้า</a>
                 <a href="promotions.html" class="active">โปรโมชัน</a>
-                <a href="index.html#calculator">คำนวณแพ็กเกจ</a>
+                <a href="subscribe-store.html">ตะกร้าของฉัน</a>
                 <a href="index.html#services">บริการ</a>
                 <a href="index.html#contact">สนับสนุน</a>
             </nav>
             <div class="header-actions">
                 <button class="icon-btn" title="ค้นหา" onclick="location.href='index.html#products'">🔍</button>
-                <button class="icon-btn" title="ตะกร้า" onclick="location.href='index.html#calculator'">🛒</button>
+                <button class="icon-btn" title="ตะกร้า" onclick="location.href='subscribe-store.html'">🛒</button>
                 <button class="icon-btn hamburger" id="hamburgerBtn" title="เมนู" onclick="toggleMenu()">☰</button>
             </div>
         </div>
         <div class="mobile-menu" id="mobileMenu">
             <a href="index.html">ซื้อสินค้า</a>
             <a href="promotions.html" class="active">โปรโมชัน</a>
-            <a href="index.html#calculator">คำนวณแพ็กเกจ</a>
+            <a href="subscribe-store.html">ตะกร้าของฉัน</a>
             <a href="index.html#services">บริการ</a>
             <a href="index.html#contact">สนับสนุน</a>
         </div>
@@ -242,7 +242,7 @@
                     <span class="c-tag">คอมโบ</span>
                     <div class="c-emoji">🧩</div>
                     <h3>สมัคร 2 เครื่องขึ้นไป ลดเพิ่ม 10%</h3>
-                    <p>ลูกค้าใหม่ 2 เครื่องขึ้นไป / ลูกค้าเดิม 1 เครื่องขึ้นไป — ลดจากยอดรวมรายเดือนอัตโนมัติในเครื่องคำนวณ</p>
+                    <p>ลูกค้าใหม่ 2 เครื่องขึ้นไป / ลูกค้าเดิม 1 เครื่องขึ้นไป — ลดจากยอดรวมรายเดือนอัตโนมัติในตะกร้า</p>
                 </div>
                 <div class="cond-card orange">
                     <span class="c-tag">บิลแรก</span>
@@ -291,8 +291,8 @@
 
             <div class="cta-zone">
                 <h3>เจอของถูกใจแล้วใช่ไหม?</h3>
-                <p>เปิดเครื่องคำนวณ เลือกสินค้าและแผน ระบบคิดส่วนลดคอมโบ 10% ให้อัตโนมัติ</p>
-                <a class="btn-pill" href="index.html#calculator">เปิดเครื่องคำนวณแพ็กเกจ →</a>
+                <p>เปิดตะกร้า ตรวจสอบสินค้าที่เลือก ระบบคิดส่วนลดคอมโบ 10% ให้อัตโนมัติ</p>
+                <a class="btn-pill" href="subscribe-store.html">เปิดตะกร้าของฉัน →</a>
                 <a class="btn-pill ghost" href="index.html#products">← กลับหน้าหลัก</a>
             </div>
         </div>
@@ -322,7 +322,7 @@
             </div>
             <div class="f-col">
                 <h4>บริการ</h4>
-                <a href="index.html#services">ติดตั้งฟรี</a><a href="index.html#services">บริการตามรอบ</a><a href="index.html#services">ซ่อมฟรีตลอดสัญญา</a><a href="index.html#calculator">คำนวณแพ็กเกจ</a>
+                <a href="index.html#services">ติดตั้งฟรี</a><a href="index.html#services">บริการตามรอบ</a><a href="index.html#services">ซ่อมฟรีตลอดสัญญา</a><a href="subscribe-store.html">ตะกร้าของฉัน</a>
             </div>
             <div class="f-col">
                 <h4>แคมเปญ</h4>
@@ -330,7 +330,7 @@
             </div>
             <div class="f-col">
                 <h4>สนับสนุน</h4>
-                <a href="https://line.me/R/ti/p/0612670518">ติดต่อเจ้าหน้าที่</a><a href="index.html#calculator">วิธีใช้เครื่องคำนวณ</a><a href="#">คำถามที่พบบ่อย</a><a href="#">เงื่อนไขบริการ</a>
+                <a href="https://line.me/R/ti/p/0612670518">ติดต่อเจ้าหน้าที่</a><a href="subscribe-store.html">วิธีสั่งซื้อ</a><a href="#">คำถามที่พบบ่อย</a><a href="#">เงื่อนไขบริการ</a>
             </div>
         </div>
         <div class="payments">
@@ -4423,9 +4423,8 @@
                     ? '<img src="' + p.img + '" alt="" loading="lazy" onerror="this.remove()">'
                     : '<span class="p-emoji">' + (p.emoji || CAT_EMOJI[p.category] || '📦') + '</span>';
 
-                /* ลิงก์เปิดเครื่องคำนวณพร้อมเลือกหมวด/สินค้านี้ให้อัตโนมัติ */
-                const calcHref = 'index.html?cat=' + encodeURIComponent(p.category || '') +
-                    '&product=' + encodeURIComponent(String(p.id || p.model || '').toLowerCase()) + '#calculator';
+                /* ลิงก์เปิดหน้า PDP ของสินค้านี้โดยตรง */
+                const calcHref = 'product.html?slug=' + encodeURIComponent(String(p.id || p.model || '').toLowerCase());
 
                 /* แถวตาราง (desktop) */
                 const tr = document.createElement('tr');
@@ -4434,7 +4433,7 @@
                     '<td><span class="p-cat">' + (p.category || '') + '</span></td>' +
                     '<td><div class="p-price">฿' + fmt(bp.price) + ' <small>/เดือน</small></div><div class="p-plan">' + (bp.label || '') + '</div></td>' +
                     '<td><div class="promo-badges">' + promos + '</div></td>' +
-                    '<td><a class="row-cta" href="' + calcHref + '">คำนวณ →</a></td>';
+                    '<td><a class="row-cta" href="' + calcHref + '">ดูแผนและราคา →</a></td>';
                 tb.appendChild(tr);
 
                 /* การ์ด (mobile) */
@@ -4449,7 +4448,7 @@
                         '<div class="p-price" style="margin-top:8px;">฿' + fmt(bp.price) + ' <small>/เดือน</small></div>' +
                         '<div class="p-plan">' + (bp.label || '') + '</div>' +
                         '<div class="promo-badges">' + promos + '</div>' +
-                        '<a class="row-cta" style="display:inline-block;margin-top:10px;" href="' + calcHref + '">คำนวณแพ็กเกจ →</a>' +
+                        '<a class="row-cta" style="display:inline-block;margin-top:10px;" href="' + calcHref + '">ดูแผนและราคา →</a>' +
                     '</div>';
                 cards.appendChild(card);
             });

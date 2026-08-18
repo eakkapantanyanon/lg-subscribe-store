@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FLEXI-SUB™ — แคตตาล็อก LG Subscribe (ข้อมูลจากราคาจริง ส.ค. 2569)</title>
+    <title>FLEXI-SUB™ — ตะกร้าสินค้า LG Subscribe</title>
     <style>
         :root {
             --accent: #2563eb;
@@ -490,6 +490,7 @@
 
     <header>
         <div class="nav-container">
+            <a href="index.html#products" style="text-decoration:none;color:var(--accent-text);font-weight:600;font-size:14px;white-space:nowrap;">← กลับไปเลือกสินค้า</a>
             <div class="logo">FLEXI-<span>SUB</span>™</div>
             <div class="sub-summary-box">สุทธิ: <span id="topTotal">฿0</span>/เดือน</div>
             <button id="themeToggle" class="theme-toggle" title="สลับธีมสี ฟ้า/ส้ม">🎨</button>
@@ -497,28 +498,20 @@
     </header>
 
     <section class="hero">
-        <h1>เลือกบริการ LG Subscribe รายเดือน</h1>
-        <p>เลือกสินค้าและแผนการชำระที่ต้องการ ระบบคำนวณยอดรายเดือนให้อัตโนมัติ จากนั้นกดส่งรายการให้เจ้าหน้าที่เปิดบิลได้ทันที</p>
-        <div class="data-note">📄 อ้างอิงราคาจริงจาก Price List ส.ค. 2569 (V3) และ Sale Price 8 — โปรโมชันสิงหาคม 2569</div>
+        <h1>ตะกร้าสินค้าของคุณ</h1>
+        <p>ตรวจสอบรายการที่เลือกไว้ ปรับจำนวน/แผนได้ตามต้องการ แล้วกดส่งรายการให้เจ้าหน้าที่เปิดบิล</p>
+        <div class="data-note">📄 อ้างอิงราคาจริงจาก Price List ส.ค. 2569 (V3) — ส่วนลดคอมโบคำนวณอัตโนมัติตามเงื่อนไข</div>
     </section>
 
     <div class="combo-banner" id="comboBanner">
         🎁 คอมโบ: สมัคร 2 เครื่องขึ้นไป ลดเพิ่มอีก 10% — ลูกค้าใหม่ (2 เครื่องขึ้นไป) / ลูกค้าเดิม LG Subscribe (1 เครื่องขึ้นไป)
     </div>
 
-    <div class="toolbar">
-        <div class="search-box">
-            <span style="color:#aaa;">🔍</span>
-            <input type="text" id="searchInput" placeholder="ค้นหารุ่น หรือชื่อสินค้า เช่น ตู้เย็น, GC-L257, แอร์...">
-        </div>
-        <div class="category-tabs" id="categoryTabs"></div>
-    </div>
-
     <div class="main-layout">
-        <main class="products-grid" id="productsGrid"></main>
-
         <aside class="sidebar-cart">
-            <div class="sidebar-title">สรุปแผนการสมัครของคุณ</div>
+            <div class="sidebar-title">สรุปแผนการสมัครของคุณ
+                <a href="index.html#products" style="float:right;font-size:12px;font-weight:600;color:var(--accent-text);text-decoration:none;">➕ เพิ่มสินค้า →</a>
+            </div>
 
             <!-- ส่วนเลือกสถานะลูกค้า เพื่อคำนวณส่วนลดคอมโบ -->
             <div class="customer-type-zone">
@@ -584,7 +577,7 @@
 
 <script>
 /* =====================================================================
-   แคตตาล็อกสินค้า LG Subscribe — ดึงข้อมูลจากไฟล์ PDF ในโปรเจกต์
+   ข้อมูลสินค้า LG Subscribe (โครงสร้างแผนสำหรับหน้าตะข้า) — ดึงจากไฟล์ PDF ในโปรเจกต์
    - Price list_Aug_V3.pdf (ราคาเต็ม ส.ค. 2569)
    - Sale Price8 - Subscription_V3.pdf (โปรโมชัน OBS ส.ค. 2569)
    แผน (plans): { label, months (จำนวนเดือนตามสัญญา: 5ปี=60, 6ปี=72, 7ปี=84),
@@ -4594,7 +4587,6 @@ window.LG_PRODUCTS =  [
 ];
 </script>
     <script src="calculator-core.js"></script>
-    <script>    <script src="calculator-core.js"></script>
     <script src="cart.js"></script>
     <script src="product-select.js"></script>
     <script>
@@ -4624,10 +4616,6 @@ window.LG_PRODUCTS =  [
             }
         }
         loadData();
-        const CATEGORIES = ['ทั้งหมด', ...Array.from(new Set(PRODUCTS.map(p => p.category)))];
-
-        let activeCategory = 'ทั้งหมด';
-        let searchTerm = '';
         let selected = {};   // productId -> { product, planIndex, qty }
         let custType = 'new';  // 'new' | 'old'
         const fmt = n => LG.fmtMoney(n);
@@ -4695,105 +4683,19 @@ window.LG_PRODUCTS =  [
             return isAdvanceHalf ? 'ครึ่งราคา' : (isPromo ? 'โปร' : 'ปกติ');
         }
 
-        /* ---------- Category tabs ---------- */
-        function renderTabs() {
-            const tabsEl = document.getElementById('categoryTabs');
-            tabsEl.innerHTML = '';
-            CATEGORIES.forEach(cat => {
-                const btn = document.createElement('button');
-                btn.className = 'cat-tab' + (cat === activeCategory ? ' active' : '');
-                btn.textContent = cat;
-                btn.onclick = () => { activeCategory = cat; renderTabs(); renderCatalog(); };
-                tabsEl.appendChild(btn);
-            });
-        }
-
-        /* ---------- Product grid ---------- */
-        function visibleProducts() {
-            return PRODUCTS.filter(p => {
-                const catOk = activeCategory === 'ทั้งหมด' || p.category === activeCategory;
-                const term = searchTerm.trim().toLowerCase();
-                const textOk = !term ||
-                    (p.model + ' ' + p.name + ' ' + p.category).toLowerCase().includes(term);
-                return catOk && textOk;
-            });
-        }
-
-        function planPriceText(pl) {
-            return pl.outright
-                ? 'ซื้อขาด ฿' + fmt(pl.advancePayment || pl.price)
-                : '฿' + fmt(pl.price) + '/เดือน';
-        }
-
-        function renderCatalog() {
-            const grid = document.getElementById('productsGrid');
-            const list = visibleProducts();
-            if (list.length === 0) {
-                grid.innerHTML = '<div class="empty-state">ไม่พบสินค้าที่ค้นหา ลองเปลี่ยนคำค้นหรือหมวดหมู่</div>';
-                return;
-            }
-            grid.innerHTML = '';
-            list.forEach(p => {
-                const isSel = !!selected[p.id];
-                const sel = selected[p.id];
-                const card = document.createElement('div');
-                card.className = 'product-card' + (isSel ? ' selected' : '');
-                card.id = 'card-' + p.id;
-
-                const opts = p.plans.map((pl, i) =>
-                    '<option value="' + i + '"' + (isSel && sel.planIndex === i ? ' selected' : '') + '>' +
-                    pl.label + ' — ' + planPriceText(pl) + '</option>'
-                ).join('');
-
-                const selPlan = isSel ? p.plans[sel.planIndex] : p.plans[0];
-
-                card.innerHTML =
-                    '<div class="product-image" onclick="viewImage(\'' + p.id + '\')" title="คลิกดูรูปใหญ่">' +
-                        (p.img ? '<img class="p-img" src="' + p.img + '" alt="' + p.name + '" loading="lazy" onerror="this.remove()">' : '') +
-                        '<span class="p-emoji">' + p.emoji + '</span>' +
-                        '<span class="cat-badge">' + p.category + '</span>' +
-                    '</div>' +
-                    '<div class="product-info">' +
-                        '<div class="product-model">' + p.model + '</div>' +
-                        '<div class="product-name">' + p.name + '</div>' +
-                        '<select class="plan-select" onchange="changePlan(\'' + p.id + '\', this.value)">' + opts + '</select>' +
-                        '<div class="promo-badge' + (selPlan.promo ? ' show' : '') + '">🏷️ ' + (selPlan.promo || '') + '</div>' +
-                        '<button class="select-btn' + (isSel ? ' active' : '') + '" onclick="toggleProduct(\'' + p.id + '\')">' +
-                            (isSel ? '✓ เลือกแล้ว' : '+ เลือกบริการนี้') +
-                        '</button>' +
-                    '</div>';
-
-                grid.appendChild(card);
-            });
-        }
-
         /* ---------- Cart logic ---------- */
         function toggleProduct(id) {
             if (selected[id]) {
                 delete selected[id];
-            } else {
-                const product = PRODUCTS.find(p => p.id === id);
-                selected[id] = { product: product, planIndex: 0, qty: 1 };
             }
             saveCartState();
-            renderCatalog();
             updateCart();
-        }
-
-        function changePlan(id, index) {
-            if (selected[id]) {
-                selected[id].planIndex = parseInt(index, 10);
-                saveCartState();
-                renderCatalog();
-                updateCart();
-            }
         }
 
         function addQty(id, delta) {
             if (!selected[id]) return;
             selected[id].qty = Math.max(1, Math.min(99, (selected[id].qty || 1) + delta));
             saveCartState();
-            renderCatalog();
             updateCart();
         }
 
@@ -4862,6 +4764,12 @@ window.LG_PRODUCTS =  [
             return '฿' + fmt(item.postPromoPrice) + '/เดือน';
         }
 
+        function planPriceText(pl) {
+            return pl.outright
+                ? 'ซื้อขาด ฿' + fmt(pl.advancePayment || pl.price)
+                : '฿' + fmt(pl.price) + '/เดือน';
+        }
+
         function updateCart() {
             const list = document.getElementById('cartItems');
             const ids = Object.keys(selected);
@@ -4878,7 +4786,8 @@ window.LG_PRODUCTS =  [
             const saving = LG.grandTotalSaving(items, cr);
 
             if (ids.length === 0) {
-                list.innerHTML = '<li class="cart-empty">ยังไม่ได้เลือกสินค้า...</li>';
+                list.innerHTML = '<li class="cart-empty">ยังไม่มีสินค้าในตะกร้า<br>' +
+                    '<a href="index.html#products" style="color:var(--accent-text);font-weight:600;text-decoration:none;">← กลับไปเลือกสินค้า</a></li>';
             } else {
                 list.innerHTML = '';
                 ids.forEach(id => {
@@ -4987,7 +4896,6 @@ window.LG_PRODUCTS =  [
         function updateSummary() {
             custType = document.querySelector('input[name="custType"]:checked').value;
             saveCartState();
-            renderCatalog();
             updateCart();
         }
 
@@ -4995,7 +4903,6 @@ window.LG_PRODUCTS =  [
             if (selected[id]) {
                 selected[id].planIndex = parseInt(index, 10);
                 saveCartState();
-                renderCatalog();
                 updateCart();
             }
         }
@@ -5064,16 +4971,6 @@ window.LG_PRODUCTS =  [
         }
 
         /* ---------- ดูรูปใหญ่ (Lightbox) ---------- */
-        function viewImage(id) {
-            const p = PRODUCTS.find(x => x.id === id);
-            if (!p || !p.img) return;
-            const lb = document.createElement('div');
-            lb.className = 'lightbox';
-            lb.innerHTML = '<img src="' + p.img + '" alt="' + p.name + '"><div class="lb-caption">' + p.model + ' — ' + p.name + '</div>';
-            lb.onclick = function () { lb.remove(); };
-            document.body.appendChild(lb);
-        }
-
         /* ---------- โหมดผู้ดูแล (เปิดด้วยการกดโลโก้ 5 ครั้งติดกัน) ---------- */
         let adminProductId = PRODUCTS.length ? PRODUCTS[0].id : null;
         let logoClicks = 0, logoTimer = null;
@@ -5153,7 +5050,6 @@ window.LG_PRODUCTS =  [
                 Object.assign(pl, rebuilt);
             });
             localStorage.setItem('flexiAdminProducts', JSON.stringify(PRODUCTS));
-            renderCatalog();
             updateCart();
             alert('บันทึกสินค้าแล้ว');
         }
@@ -5173,16 +5069,9 @@ window.LG_PRODUCTS =  [
             localStorage.removeItem('flexiAdminSettings');
             PRODUCTS = JSON.parse(JSON.stringify(DEFAULT_PRODUCTS));
             adminSettings = { comboPct: 10, oldMin: 1, newMin: 2 };
-            renderCatalog();
             updateCart();
             renderAdmin();
         }
-
-        /* ---------- Search ---------- */
-        document.getElementById('searchInput').addEventListener('input', function (e) {
-            searchTerm = e.target.value;
-            renderCatalog();
-        });
 
         /* ---------- Init ---------- */
         function initTheme() {
@@ -5208,32 +5097,7 @@ window.LG_PRODUCTS =  [
         backdrop.addEventListener('click', function (e) { if (e.target === backdrop) closeAdmin(); });
         document.body.appendChild(backdrop);
 
-        /* ---------- รองรับ param จากหน้าแรก (?cat=หมวด&product=รุ่น) ----------
-           กดการ์ดสินค้าบน index.html → iframe โหลดพร้อมเลือกหมวด + เพิ่มสินค้านั้นในตะกร้า */
-        function applyUrlParams() {
-            const q = new URLSearchParams(location.search);
-            const cat = q.get('cat');
-            const prod = q.get('product');
-            if (cat && CATEGORIES.includes(cat)) activeCategory = cat;
-            if (prod) {
-                const p = PRODUCTS.find(x => x.id === prod || String(x.model || '').toLowerCase() === prod);
-                if (p) {
-                    if (!cat) activeCategory = p.category;
-                    // เลือกแผนราคาต่ำสุด (ตรงกับราคาที่การ์ดหน้าแรกแสดง)
-                    let best = 0;
-                    if (p.plans && p.plans.length) {
-                        let min = Infinity;
-                        p.plans.forEach((pl, i) => { if (pl.price < min) { min = pl.price; best = i; } });
-                    }
-                    selected[p.id] = { product: p, planIndex: best, qty: 1 };
-                    saveCartState();
-                }
-            }
-        }
-        applyUrlParams();
 
-        renderTabs();
-        renderCatalog();
         updateCart();
     </script>
 </body>

@@ -311,14 +311,6 @@
         .grid-note a { color: var(--lg-red); font-weight: 700; }
         .grid-empty { grid-column: 1 / -1; text-align: center; color: var(--muted); padding: 50px 0; }
 
-        /* ================= Calculator section ================= */
-        #calculator { background: var(--bg-soft); }
-        .calc-frame {
-            width: 100%; height: 900px; border: none; border-radius: var(--radius);
-            background: #fff; box-shadow: 0 10px 40px rgba(0,0,0,0.08);
-        }
-        .calc-hint { text-align: center; font-size: 13px; color: var(--muted); margin-top: 14px; }
-
         /* ================= Promotions ================= */
         #promotions { background: var(--bg-soft); }
         .promo-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
@@ -407,7 +399,7 @@
             .h-btn { padding: 11px 20px; font-size: 13px; }
             .h-detail { font-size: 14px; }
             .btn-pill { padding: 12px 26px; font-size: 14px; }
-            .calc-frame { height: 700px; }
+
             .service-banner { border-radius: 20px; }
             .service-banner h2 { font-size: 24px; }
             .p-img { height: 140px; }
@@ -427,20 +419,20 @@
             <nav class="nav-links">
                 <a href="#products">ซื้อสินค้า</a>
                 <a href="promotions.html">โปรโมชัน</a>
-                <a href="#calculator">คำนวณแพ็กเกจ</a>
+                <a href="subscribe-store.html">ตะกร้าของฉัน</a>
                 <a href="#services">บริการ</a>
                 <a href="#contact">สนับสนุน</a>
             </nav>
             <div class="header-actions">
                 <button class="icon-btn" title="ค้นหา" onclick="document.getElementById('products').scrollIntoView()">🔍</button>
-                <button class="icon-btn" title="ตะกร้า" onclick="document.getElementById('calculator').scrollIntoView()">🛒</button>
+                <button class="icon-btn" title="ตะกร้า" onclick="location.href='subscribe-store.html'">🛒</button>
                 <button class="icon-btn hamburger" id="hamburgerBtn" title="เมนู" onclick="toggleMenu()">☰</button>
             </div>
         </div>
         <div class="mobile-menu" id="mobileMenu">
             <a href="#products" onclick="toggleMenu()">ซื้อสินค้า</a>
             <a href="promotions.html">โปรโมชัน</a>
-            <a href="#calculator" onclick="toggleMenu()">คำนวณแพ็กเกจ</a>
+            <a href="subscribe-store.html">ตะกร้าของฉัน</a>
             <a href="#services" onclick="toggleMenu()">บริการ</a>
             <a href="#contact" onclick="toggleMenu()">สนับสนุน</a>
         </div>
@@ -488,20 +480,7 @@
             <!-- Grid สินค้า -->
             <div class="product-grid" id="productGrid"></div>
 
-            <p class="grid-note">ยังไม่เจอของถูกใจ? เปิดเครื่องคำนวณเพื่อดูสินค้าครบ <a href="#calculator">ทุกรุ่น 97 รายการ →</a></p>
-        </div>
-    </section>
-
-    <!-- ================= Calculator ================= -->
-    <section id="calculator">
-        <div class="container">
-            <div class="section-head">
-                <span class="kicker">ลองคำนวณเลย</span>
-                <h2>คำนวณแพ็กเกจรายเดือนของคุณ</h2>
-                <p>เลือกสินค้าและแผนการชำระ ระบบคำนวณยอดรวม + ส่วนลดคอมโบ 10% ให้อัตโนมัติ แล้วส่งรายการให้เจ้าหน้าที่เปิดบิล</p>
-            </div>
-            <iframe class="calc-frame" src="subscribe-store.html" title="เครื่องคำนวณ LG Subscribe"></iframe>
-            <p class="calc-hint">💡 ยังไม่ต้องกรอกข้อมูล — ทดลองเลือกสินค้าแล้วกด "ส่งรายการ" เพื่อดูสรุปใน LINE ได้เลย</p>
+            <p class="grid-note">ยังไม่เจอของถูกใจ? ดูสินค้าครบ <a href="product.html">ทุกรุ่น 97 รายการ →</a></p>
         </div>
     </section>
 
@@ -514,7 +493,7 @@
                 <p>สิทธิพิเศษมีจำนวนจำกัด — หมดเขต 31 สิงหาคม 2569</p>
             </div>
             <div class="promo-grid">
-                <div class="promo-card dark" onclick="location.href='#calculator'"
+                <div class="promo-card dark" onclick="location.href='subscribe-store.html'"
                      style="background-image:url('https://www.lg.com/content/dam/channel/wcms/th/images/washing-machine/wt2116sheg_abgpeth_eath_th_c/feature/wd-it-objet-washtower-gb-heatpump-06-3-center-panel-desktop.jpg')">
                     <span class="promo-tag">คอมโบ</span>
                     <div class="promo-body"><h3>สมัคร 2 เครื่องขึ้นไป ลดเพิ่ม 10%</h3><p>ลูกค้าใหม่ 2 เครื่องขึ้นไป / ลูกค้าเดิม 1 เครื่องขึ้นไป</p><span class="promo-link">ดูเงื่อนไข →</span></div>
@@ -583,7 +562,7 @@
             </div>
             <div class="f-col">
                 <h4>บริการ</h4>
-                <a href="#services">ติดตั้งฟรี</a><a href="#services">บริการตามรอบ</a><a href="#services">ซ่อมฟรีตลอดสัญญา</a><a href="#calculator">คำนวณแพ็กเกจ</a>
+                <a href="#services">ติดตั้งฟรี</a><a href="#services">บริการตามรอบ</a><a href="#services">ซ่อมฟรีตลอดสัญญา</a><a href="subscribe-store.html">ตะกร้าของฉัน</a>
             </div>
             <div class="f-col">
                 <h4>แคมเปญ</h4>
@@ -591,7 +570,7 @@
             </div>
             <div class="f-col">
                 <h4>สนับสนุน</h4>
-                <a href="https://line.me/R/ti/p/0612670518">ติดต่อเจ้าหน้าที่</a><a href="#calculator">วิธีใช้เครื่องคำนวณ</a><a href="#">คำถามที่พบบ่อย</a><a href="#">เงื่อนไขบริการ</a>
+                <a href="https://line.me/R/ti/p/0612670518">ติดต่อเจ้าหน้าที่</a><a href="subscribe-store.html">วิธีสั่งซื้อ</a><a href="#">คำถามที่พบบ่อย</a><a href="#">เงื่อนไขบริการ</a>
             </div>
         </div>
         <div class="payments">
@@ -780,7 +759,7 @@
             const grid = document.getElementById('productGrid');
             const list = visibleProducts();
             grid.innerHTML = '';
-            if (!list.length) { grid.innerHTML = '<div class="grid-empty">ยังไม่มีสินค้าในหมวดนี้ — ดูหมวดอื่น หรือเปิดเครื่องคำนวณ</div>'; return; }
+            if (!list.length) { grid.innerHTML = '<div class="grid-empty">ยังไม่มีสินค้าในหมวดนี้ — ดูหมวดอื่น หรือเปิด PDP ของสินค้าโดยตรง</div>'; return; }
             list.forEach(p => {
                 const price = Math.min(...(p.plans ? p.plans.map(x => x.price) : [p.price]));
                 const card = document.createElement('div');
@@ -830,7 +809,7 @@
                 detail: 'ลดเลย 15% ตลอดสัญญา — ฉลอง 38 ปี กับโปรสุดปังเฉพาะเดือนสิงหาคมนี้',
                 badge: 'ลด 15%',
                 btn1: { text: 'ดูโปรโมชันอื่นๆ', href: 'promotions.html' },
-                btn2: { text: 'Subscribe เลย!', href: '#calculator' }
+                btn2: { text: 'Subscribe เลย!', href: 'subscribe-store.html' }
             },
             {
                 theme: 'red', local: 'images/hero-2.jpg',
@@ -843,7 +822,7 @@
                 detail: '50% OFF ลดแรงทะลุจอ — ทีวี OLED รายเดือน เริ่มต้น ฿749/เดือน',
                 /* ภาพแคมเปญมีข้อความ 50% OFF อยู่แล้ว ไม่ใส่ badge ซ้ำ */
                 btn1: { text: 'ดูโปรโมชันอื่นๆ', href: 'promotions.html' },
-                btn2: { text: 'Subscribe เลย!', href: '#calculator' }
+                btn2: { text: 'Subscribe เลย!', href: 'subscribe-store.html' }
             },
             {
                 theme: 'red', local: 'images/hero-3.jpg',
@@ -855,7 +834,7 @@
                 detail: 'Subscribe แอร์ IXY 2 ตัว รับฟรี! เครื่องฟอกอากาศ มูลค่า 6,900.-',
                 /* ภาพแคมเปญมีป้าย รับฟรี! อยู่แล้ว ไม่ใส่ badge ซ้ำ */
                 btn1: { text: 'ดูโปรโมชันอื่นๆ', href: 'promotions.html' },
-                btn2: { text: 'Subscribe เลย!', href: '#calculator' }
+                btn2: { text: 'Subscribe เลย!', href: 'subscribe-store.html' }
             },
             {
                 theme: 'red', local: 'images/hero-4.jpg',
@@ -867,7 +846,7 @@
                 detail: 'ซับ TV OLED 65\" รับฟรี! Soundbar (มูลค่า 15,151.-)',
                 /* ภาพแคมเปญมีป้าย รับฟรี! อยู่แล้ว ไม่ใส่ badge ซ้ำ */
                 btn1: { text: 'ดูโปรโมชันอื่นๆ', href: 'promotions.html' },
-                btn2: { text: 'Subscribe เลย!', href: '#calculator' }
+                btn2: { text: 'Subscribe เลย!', href: 'subscribe-store.html' }
             },
             {
                 theme: 'red', local: 'images/hero-5.jpg',
@@ -879,7 +858,7 @@
                 detail: '1. จ่ายเพียง ฿149 เดือนแรก 2. ลด 50% นาน 2 รอบบิล',
                 badge: '฿149',
                 btn1: { text: 'ดูโปรโมชันอื่นๆ', href: 'promotions.html' },
-                btn2: { text: 'Subscribe เลย!', href: '#calculator' }
+                btn2: { text: 'Subscribe เลย!', href: 'subscribe-store.html' }
             },
             {
                 theme: 'cream', local: 'images/hero-6.jpg',
@@ -891,7 +870,7 @@
                 detail: '1. ผู้แนะนำ รับฟรี! ค่าบริการ 1 เดือน 2. ลูกค้าใหม่ รับส่วนลด 50% เพิ่ม 2 รอบบิล',
                 badge: 'ของขวัญ',
                 btn1: { text: 'ดูโปรโมชันอื่นๆ', href: 'promotions.html' },
-                btn2: { text: 'Subscribe เลย!', href: '#calculator' },
+                btn2: { text: 'Subscribe เลย!', href: 'subscribe-store.html' },
                 btn3: { text: 'กรอกฟอร์มรับสิทธิ์', href: 'https://line.me/R/ti/p/0612670518' }
             },
             {
@@ -904,7 +883,7 @@
                 detail: 'เปลี่ยนไส้กรอง · ทำความสะอาดทั้งภายใน/ภายนอก · ตรวจสอบประสิทธิภาพการใช้งาน — ดูแลครบตลอดสัญญา',
                 badge: 'ดูแลครบวงจร',
                 btn1: { text: 'ดูโปรโมชันอื่นๆ', href: 'promotions.html' },
-                btn2: { text: 'Subscribe เลย!', href: '#calculator' }
+                btn2: { text: 'Subscribe เลย!', href: 'subscribe-store.html' }
             },
             {
                 theme: 'cream', local: 'images/hero-8.jpg',
@@ -916,7 +895,7 @@
                 detail: 'ตู้เย็น · เครื่องซักผ้า · แอร์ · ทีวี — ทุกหมวดมีแผนรายเดือน ติดตั้งฟรี พร้อมทีมช่างดูแล',
                 badge: 'ติดตั้งฟรี',
                 btn1: { text: 'ดูโปรโมชันอื่นๆ', href: 'promotions.html' },
-                btn2: { text: 'Subscribe เลย!', href: '#calculator' }
+                btn2: { text: 'Subscribe เลย!', href: 'subscribe-store.html' }
             }
         ];
         const HERO_TIMER = 6000;
@@ -1063,14 +1042,12 @@
 
         /* ---------- Init ---------- */
         /* ---------- รองรับ param จากหน้าโปรโมชัน (?cat=..&product=..) ----------
-           กด 'คำนวณ →' บน promotions.html → มาที่หน้านี้พร้อมเครื่องคำนวณเลือกสินค้านั้นให้ */
+           กด 'คำนวณ →' บน promotions.html → ไปที่หน้า PDP ของสินค้านั้นโดยตรง */
         function applyUrlParamsToCalc() {
             const q = new URLSearchParams(location.search);
-            const cat = q.get('cat');
             const prod = q.get('product');
-            if (cat || prod) {
-                const f = document.querySelector('.calc-frame');
-                if (f) f.src = 'subscribe-store.html?cat=' + encodeURIComponent(cat || '') + '&product=' + encodeURIComponent(prod || '');
+            if (prod) {
+                location.replace('product.html?slug=' + encodeURIComponent(prod.toLowerCase()));
             }
         }
         applyUrlParamsToCalc();
