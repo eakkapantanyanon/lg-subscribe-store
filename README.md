@@ -7,9 +7,11 @@
 
 | ไฟล์ | หน้าที่ |
 |---|---|
-| `index.html` | หน้าเว็บหลัก — embed เครื่องคำนวณผ่าน iframe |
+| `index.html` | หน้าเว็บหลัก (landing) — hero carousel, เลือกสินค้าตามหมวด/ไลฟ์สไตล์, embed เครื่องคำนวณผ่าน iframe |
+| `promotions.html` | หน้าโปรโมชัน — เงื่อนไขรวม + ตารางโปรโมชันรายรุ่น (ข้อมูล inline ในไฟล์) |
 | `subscribe-store.html` | เครื่องคำนวณ/หน้าร้านค้า (ข้อมูลสินค้า inline ในไฟล์) |
 | `products.js` | ข้อมูลสินค้าแยก (เผื่ออัปเดต/ส่งออกจากโหมดผู้ดูแล) |
+| `images/` | วางรูป hero ของคุณ (hero-1.jpg / hero-2.jpg / hero-3.jpg) — ถ้าไม่มี ใช้ภาพ fallback อัตโนมัติ |
 
 ## ฟีเจอร์ของเครื่องคำนวณ (subscribe-store.html)
 
@@ -46,7 +48,7 @@ fs.writeFileSync('subscribe-store.html',h);
 ```bash
 cd lg-subscribe-site
 git init
-git add index.html subscribe-store.html products.js README.md
+git add index.html promotions.html subscribe-store.html products.js images/ README.md
 git commit -m "FLEXI-SUB LG Subscribe calculator"
 git branch -M main
 git remote add origin https://github.com/<your-user>/lg-subscribe-store.git

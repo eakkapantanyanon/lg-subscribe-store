@@ -58,7 +58,19 @@
             font-size: 17px; cursor: pointer; transition: all 0.2s;
         }
         .icon-btn:hover { border-color: var(--lg-red); color: var(--lg-red); }
-        @media (max-width: 820px) { .nav-links { display: none; } }
+        .hamburger { display: none; }
+        .mobile-menu {
+            display: none; flex-direction: column; gap: 4px;
+            background: #fff; border-top: 1px solid var(--line);
+            padding: 10px 22px 16px;
+        }
+        .mobile-menu a { font-size: 15px; font-weight: 600; color: var(--ink-2); padding: 12px 4px; border-bottom: 1px solid var(--line); }
+        .mobile-menu a:hover, .mobile-menu a.active { color: var(--lg-red); }
+        @media (max-width: 820px) {
+            .nav-links { display: none; }
+            .hamburger { display: flex; }
+            .mobile-menu.open { display: flex; }
+        }
 
         /* ================= Hero carousel ================= */
         .hero { position: relative; overflow: hidden; }
@@ -269,6 +281,26 @@
             background: rgba(255,255,255,0.05);
         }
         .copyright { text-align: center; font-size: 12px; color: #8a7280; padding: 18px 22px 26px; }
+
+        /* ================= Mobile refinements ================= */
+        @media (max-width: 640px) {
+            section { padding: 44px 0; }
+            .slides { height: 62vh; min-height: 440px; }
+            .slide h1 { font-size: 28px; }
+            .slide p { font-size: 15px; margin-bottom: 22px; }
+            .arrow-btn { width: 40px; height: 40px; font-size: 16px; }
+            .arrow-btn.prev { left: 10px; }
+            .arrow-btn.next { right: 10px; }
+            .dots { bottom: 18px; }
+            .btn-pill { padding: 12px 26px; font-size: 14px; }
+            .calc-frame { height: 700px; }
+            .service-banner { border-radius: 20px; }
+            .service-banner h2 { font-size: 24px; }
+            .hero-slide-kicker { font-size: 12px; }
+            .p-img { height: 140px; }
+            .p-price { font-size: 19px; }
+            .cond-grid, .promo-grid { gap: 12px; }
+        }
     </style>
 </head>
 <body>
@@ -281,7 +313,7 @@
             </div>
             <nav class="nav-links">
                 <a href="#products">ซื้อสินค้า</a>
-                <a href="#promotions">โปรโมชัน</a>
+                <a href="promotions.html">โปรโมชัน</a>
                 <a href="#calculator">คำนวณแพ็กเกจ</a>
                 <a href="#services">บริการ</a>
                 <a href="#contact">สนับสนุน</a>
@@ -289,14 +321,22 @@
             <div class="header-actions">
                 <button class="icon-btn" title="ค้นหา" onclick="document.getElementById('products').scrollIntoView()">🔍</button>
                 <button class="icon-btn" title="ตะกร้า" onclick="document.getElementById('calculator').scrollIntoView()">🛒</button>
+                <button class="icon-btn hamburger" id="hamburgerBtn" title="เมนู" onclick="toggleMenu()">☰</button>
             </div>
+        </div>
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="#products" onclick="toggleMenu()">ซื้อสินค้า</a>
+            <a href="promotions.html">โปรโมชัน</a>
+            <a href="#calculator" onclick="toggleMenu()">คำนวณแพ็กเกจ</a>
+            <a href="#services" onclick="toggleMenu()">บริการ</a>
+            <a href="#contact" onclick="toggleMenu()">สนับสนุน</a>
         </div>
     </header>
 
     <!-- ================= Hero Carousel ================= -->
     <section class="hero" id="top">
         <div class="slides" id="heroSlides">
-            <div class="slide active" style="background-image:url('https://www.lg.com/content/dam/channel/wcms/th/monthly-lg-25/25-july/feature/article-image/monthly-lg-25-jul-th-00-16-9.jpg')">
+            <div class="slide active" data-slot="0" style="background-image:url('https://www.lg.com/content/dam/channel/wcms/th/monthly-lg-25/25-july/feature/article-image/monthly-lg-25-jul-th-00-16-9.jpg')">
                 <div class="slide-content">
                     <span class="slide-kicker">LG SUBSCRIBE · เช่ารายเดือน</span>
                     <h1>เช่าง่าย ใช้สบาย ครบทุกไลฟ์สไตล์</h1>
@@ -305,7 +345,7 @@
                     <a class="btn-pill ghost" href="#products">ดูสินค้า</a>
                 </div>
             </div>
-            <div class="slide" style="background-image:url('https://www.lg.com/content/dam/channel/wcms/th/monthly-lg-25/25-november/feature/article-image/monthly-lg-2025-nov-th-1920x1080-00-16-9.jpg')">
+            <div class="slide" data-slot="1" style="background-image:url('https://www.lg.com/content/dam/channel/wcms/th/monthly-lg-25/25-november/feature/article-image/monthly-lg-2025-nov-th-1920x1080-00-16-9.jpg')">
                 <div class="slide-content">
                     <span class="slide-kicker">เริ่มต้นเพียง ฿89/เดือน</span>
                     <h1>ทุกบ้านมีของดีติดบ้านได้ ไม่ต้องรอ</h1>
@@ -313,7 +353,7 @@
                     <a class="btn-pill" href="#calculator">ดูแพ็กเกจ</a>
                 </div>
             </div>
-            <div class="slide" style="background-image:url('https://www.lg.com/content/dam/channel/wcms/th/monthly-lg-25/25-december/feature/article-image/monthly-lg-2025-dec-th-03-1920x1080-00-16-9.jpg')">
+            <div class="slide" data-slot="2" style="background-image:url('https://www.lg.com/content/dam/channel/wcms/th/monthly-lg-25/25-december/feature/article-image/monthly-lg-2025-dec-th-03-1920x1080-00-16-9.jpg')">
                 <div class="slide-content">
                     <span class="slide-kicker">บริการครบวงจร</span>
                     <h1>ทีมช่าง LG ดูแลถึงบ้าน ตลอดสัญญา</h1>
@@ -381,17 +421,17 @@
                     <span class="promo-tag">คอมโบ</span>
                     <div class="promo-body"><h3>สมัคร 2 เครื่องขึ้นไป ลดเพิ่ม 10%</h3><p>ลูกค้าใหม่ 2 เครื่องขึ้นไป / ลูกค้าเดิม 1 เครื่องขึ้นไป</p><span class="promo-link">ดูเงื่อนไข →</span></div>
                 </div>
-                <div class="promo-card" onclick="location.href='#calculator'"
+                <div class="promo-card" onclick="location.href='promotions.html#conditions'"
                      style="background-image:url('https://www.lg.com/content/dam/channel/wcms/th/housewarming/image/asia-k-house-2026-lg-com-lgeth-housewarming-image-OG-img.jpg')">
                     <span class="promo-tag">บิลแรก</span>
                     <div class="promo-body"><h3>บิลแรกเพียง ฿149</h3><p>ชำระล่วงหน้าแค่ 1 เดือน ก็เริ่มใช้ได้เลย</p><span class="promo-link">ดูรายละเอียด →</span></div>
                 </div>
-                <div class="promo-card dark" onclick="location.href='#calculator'"
+                <div class="promo-card dark" onclick="location.href='promotions.html#promos'"
                      style="background-image:url('https://www.lg.com/content/dam/channel/wcms/th/monthly-lg-25/25-july/feature/article-image/monthly-lg-25-jul-th-00-4-3.jpg')">
                     <span class="promo-tag">ลด 50%</span>
                     <div class="promo-body"><h3>ส่วนลด 50% นานสูงสุด 12 เดือน</h3><p>บางรุ่นลดเดือน 2–12 กันเลยทีเดียว</p><span class="promo-link">ดูรุ่นที่ร่วมรายการ →</span></div>
                 </div>
-                <div class="promo-card" onclick="location.href='#calculator'"
+                <div class="promo-card" onclick="location.href='promotions.html#promos'"
                      style="background-image:url('https://www.lg.com/content/dam/channel/wcms/th/monthly-lg-25/25-july/feature/article-image/monthly-lg-25-jul-th-00-1-1.jpg')">
                     <span class="promo-tag">ของแถม</span>
                     <div class="promo-body"><h3>ของแถมเพียบ ตลอดสิงหาคม</h3><p>เครื่องกรองน้ำ · AeroMini · ลำโพง — ตามแพ็กเกจที่เลือก</p><span class="promo-link">ดูของแถม →</span></div>
@@ -582,7 +622,29 @@
             renderProducts();
         }
 
-        /* ---------- Hero carousel ---------- */
+        /* ---------- Hero carousel: ใช้ภาพถ่ายจริงจากโฟลเดอร์ images/ ถ้ามี ----------
+           วิธีใช้: วางไฟล์ hero-1.jpg, hero-2.jpg, hero-3.jpg (แนะนำ 1920×1080) ลงในโฟลเดอร์ images/
+           ของคุณ — ถ้าไม่มี ระบบจะใช้ภาพ fallback จากเว็บ LG ให้อัตโนมัติ */
+        const HERO_SLOTS = [
+            { local: 'images/hero-1.jpg', fallback: 'https://www.lg.com/content/dam/channel/wcms/th/monthly-lg-25/25-july/feature/article-image/monthly-lg-25-jul-th-00-16-9.jpg' },
+            { local: 'images/hero-2.jpg', fallback: 'https://www.lg.com/content/dam/channel/wcms/th/monthly-lg-25/25-november/feature/article-image/monthly-lg-2025-nov-th-1920x1080-00-16-9.jpg' },
+            { local: 'images/hero-3.jpg', fallback: 'https://www.lg.com/content/dam/channel/wcms/th/monthly-lg-25/25-december/feature/article-image/monthly-lg-2025-dec-th-03-1920x1080-00-16-9.jpg' }
+        ];
+        function loadHeroSlots() {
+            HERO_SLOTS.forEach((slot, i) => {
+                const slide = document.querySelector('.slide[data-slot="' + i + '"]');
+                if (!slide) return;
+                const probe = new Image();
+                probe.onload = function () {
+                    // เจอภาพถ่ายจริงในโฟลเดอร์ images/ → ใช้แทน fallback
+                    if (slide) slide.style.backgroundImage = "url('" + slot.local + "')";
+                };
+                probe.src = slot.local;
+            });
+        }
+        function toggleMenu() {
+            document.getElementById('mobileMenu').classList.toggle('open');
+        }
         let slideIndex = 0;
         const slides = document.querySelectorAll('.slide');
         const dotsEl = document.getElementById('heroDots');
@@ -612,6 +674,7 @@
         renderCats();
         renderLifestyle();
         renderProducts();
+        loadHeroSlots();
     </script>
 
 </body>
