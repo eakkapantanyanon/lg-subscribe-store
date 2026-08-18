@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FLEXI-SUB™ | LG Subscribe เช่าเครื่องใช้ไฟฟ้ารายเดือน</title>
+    <!-- TODO: ติดตั้ง GA4 / Google Tag Manager ตรงนี้ (วาง snippet ก่อน </head>)
+         เมื่อติดตั้งแล้ว dataLayer event จาก hero (hero_cta_click) จะถูกส่งถึง GA4 อัตโนมัติ -->
     <style>
         :root {
             --lg-red: #A50034;
@@ -563,6 +565,15 @@
 
     <script src="products.js"></script>
     <script>
+        /* ---------- dataLayer / GA4: พร้อมใช้ทันทีที่ติดตั้ง GTM/GA4 ----------
+           event ที่ push:
+             - hero_ready     เมื่อ hero โหลดเสร็จ (จำนวนสไลด์)
+             - hero_cta_click เมื่อกดปุ่ม CTA ในสไลด์ (slide_index, slide_title, theme, cta_text, cta_href)
+           ใช้วิเคราะห์ conversion ได้เลยใน GA4 (event: hero_cta_click, พารามิเตอร์ตามข้างบน) */
+        window.dataLayer = window.dataLayer || [];
+        function pushDataLayer(event, params) {
+            window.dataLayer.push(Object.assign({ event: event }, params || {}));
+        }
         /* ---------- ข้อมูลสินค้า: ใช้ products.js ถ้ามี, fallback เป็นรายการเด่น ---------- */
         const FEATURED_FALLBACK = [
             { model: 'WT2520NHEG', name: 'WashTower ซัก 25 / อบ 20 กก.', category: 'เครื่องซักผ้า', emoji: '🌀', price: 2399, img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/washing-machine/2026/wt2520nheg-abgpeth/gallery/wt2520nheg-450-0604.jpg' },
@@ -850,6 +861,18 @@
                         (s.badge ? '<span class="hero-badge">' + s.badge + '</span>' : '') +
                     '</div>';
                 track.appendChild(slide);
+                /* ติดตามการคลิก CTA ของสไลด์นี้ → GA4 (dataLayer) */
+                slide.querySelectorAll('.h-btns a').forEach(a => {
+                    a.addEventListener('click', function () {
+                        pushDataLayer('hero_cta_click', {
+                            slide_index: i + 1,
+                            slide_title: s.title,
+                            theme: s.theme,
+                            cta_text: a.textContent,
+                            cta_href: a.getAttribute('href')
+                        });
+                    });
+                });
                 const pb = document.createElement('button');
                 pb.className = i === 0 ? 'active' : '';
                 pb.title = 'สไลด์ ' + (i + 1);
@@ -921,6 +944,7 @@
         renderLifestyle();
         renderProducts();
         buildHero();
+        pushDataLayer('hero_ready', { hero_slides: HERO_SLIDES.length, page_title: document.title });
         preloadHero(1);
         /* โหมดอ่านเร็ว: เริ่มแบบหยุดนิ่ง ไม่เลื่อนอัตโนมัติ (ยังสลับสไลด์ด้วยปุ่มได้) */
         if (reducedMotion) {
