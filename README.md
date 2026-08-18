@@ -18,7 +18,7 @@
 | `calculator.test.js` | เทสต์ 10 เคส A–J เทียบตัวเลขอ้างอิงจากเว็บต้นแบบ (รัน: `node calculator.test.js`) |
 | `pdp.test.js` | เทสต์ flow เลือกซื้อ: ทุกแผน reachable ผ่าน selection, เปลี่ยนตัวเลือก → ราคาเปลี่ยนถูกต้อง, ใส่ตะกร้าได้เมื่อเลือกครบ (รัน: `node pdp.test.js`) |
 | `migrate-plans.js` | ตัวแปลงแผนข้อมูลเก่า → โครงสร้างใหม่ (รันหลังแก้ `products.js` ด้วยมือ) |
-| `images/` | รูป hero 8 ใบ (hero-1.svg … hero-8.svg) — สร้างใหม่ได้ด้วย `node gen-hero.js` · วางไฟล์แทนที่เพื่อใช้รูปของคุณเอง |
+| `images/` | ภาพแคมเปญจริงของ LG 16 ใบ (hero-1..8-d.jpg / -m.jpg, desktop 1920×720 + mobile 720×960) — ดึงใหม่/อัปเดตด้วย `node fetch-hero.js` |
 
 ## Flow การเลือกซื้อ (หน้าแรก → PDP → ตะกร้า)
 
@@ -58,6 +58,12 @@ node reinline.js   # นำ products.js ไป re-inline เข้า subscribe-
 ```
 
 ถ้าแก้ `products.js` ด้วยมือ ต้องแปลงแผนให้เป็นโครงสร้างใหม่ก่อน (รัน `node migrate-plans.js`) แล้ว re-inline ตามเดิม
+
+## Hero images (หน้าแรก)
+
+- ภาพแคมเปญจริงของ LG ถูกดาวน์โหลดไว้ใน `images/` (`hero-N-d.jpg` desktop + `hero-N-m.jpg` mobile)
+- ดึงใหม่/อัปเดตเมื่อ URL ใน `HERO_SLIDES` เปลี่ยน: `node fetch-hero.js`
+- เว็บจะใช้ภาพ local เสมอเมื่อมีไฟล์ (fallback เป็น remote URL จาก LG ถ้าไม่มี)
 
 ## Deploy ขึ้น GitHub Pages
 

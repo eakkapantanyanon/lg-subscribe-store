@@ -796,11 +796,11 @@
         /* ---------- Hero carousel สไตล์ LG Subscribe ----------
            สไลด์ 8 ใบ ใช้ภาพแคมเปญจริงจากเว็บ LG Subscribe (สิงหาคม 2569):
            ธีมแดง = โปร/ลด/ของแถม · ธีมครีม = คุณค่า/บริการ
-           วิธีใช้รูปถ่ายของคุณ: วาง hero-1.svg … hero-8.svg ในโฟลเดอร์ images/ แล้วระบบจะใช้แทนอัตโนมัติ
+           ภาพแคมเปญจริงถูกดาวน์โหลดไว้ใน images/ (hero-1-d/m.jpg … hero-8-d/m.jpg) — ดึงใหม่/อัปเดตด้วย node fetch-hero.js
            (แก้ไขเนื้อหาสไลด์ได้ที่อาร์เรย์ HERO_SLIDES ด้านล่าง) */
         const HERO_SLIDES = [
             {
-                theme: 'red', local: 'images/hero-1.svg',
+                theme: 'red', 
                 img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/subscription/promotion/2026/08-birthday/-Birthday_1920x720.jpg',
                 imgM: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/subscription/promotion/2026/08-birthday/-Birthday_720x960.jpg',
                 label: 'LG Subscribe',
@@ -812,7 +812,7 @@
                 btn2: { text: 'Subscribe เลย!', href: 'subscribe-store.html' }
             },
             {
-                theme: 'red', local: 'images/hero-2.svg',
+                theme: 'red', 
                 img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/subscription/promotion/2026/08-birthday/OLEDWEEK_1920x720.jpg',
                 imgM: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/subscription/promotion/2026/08-birthday/OLED-WEEK_720x960.jpg',
                 fx: 'oled',
@@ -825,7 +825,7 @@
                 btn2: { text: 'Subscribe เลย!', href: 'subscribe-store.html' }
             },
             {
-                theme: 'red', local: 'images/hero-3.svg',
+                theme: 'red', 
                 img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/subscription/promotion/2026/08-birthday/IXY_1920x720.jpg',
                 imgM: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/subscription/promotion/2026/08-birthday/IXY_720x960.jpg',
                 label: 'LG Subscribe',
@@ -837,7 +837,7 @@
                 btn2: { text: 'Subscribe เลย!', href: 'subscribe-store.html' }
             },
             {
-                theme: 'red', local: 'images/hero-4.svg',
+                theme: 'red', 
                 img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/subscription/promotion/2026/08-birthday/OLED-S80TY_1920x720.jpg',
                 imgM: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/subscription/promotion/2026/08-birthday/OLED-S80TY_720x960.jpg',
                 label: 'LG Subscribe',
@@ -849,7 +849,7 @@
                 btn2: { text: 'Subscribe เลย!', href: 'subscribe-store.html' }
             },
             {
-                theme: 'red', local: 'images/hero-5.svg',
+                theme: 'red', 
                 img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/subscription/promotion/2026/08-birthday/AP_1920x720.jpg',
                 imgM: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/subscription/promotion/2026/08-birthday/AP_720x960.jpg',
                 label: 'LG Subscribe',
@@ -861,7 +861,7 @@
                 btn2: { text: 'Subscribe เลย!', href: 'subscribe-store.html' }
             },
             {
-                theme: 'cream', local: 'images/hero-6.svg',
+                theme: 'cream', 
                 img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/subscription/promotion/2026/08-birthday/-Mother_1920x720.png',
                 imgM: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/subscription/promotion/2026/08-birthday/-Mother_720x960.png',
                 label: 'LG Subscribe',
@@ -874,7 +874,7 @@
                 btn3: { text: 'กรอกฟอร์มรับสิทธิ์', href: 'https://line.me/R/ti/p/0612670518' }
             },
             {
-                theme: 'cream', local: 'images/hero-7.svg',
+                theme: 'cream', 
                 img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/subscription/promotion/2026/07-sub/AWO-Subscribe-Banner_1920x720.jpg',
                 imgM: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/subscription/promotion/2026/07-sub/AWO-Subscribe-Banner_720x960.jpg',
                 label: 'LG Subscribe',
@@ -886,7 +886,7 @@
                 btn2: { text: 'Subscribe เลย!', href: 'subscribe-store.html' }
             },
             {
-                theme: 'cream', local: 'images/hero-8.svg',
+                theme: 'cream', 
                 img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/subscription/promotion/2026/07-sub/all-Banner_1920x720.jpg',
                 imgM: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/subscription/promotion/2026/07-sub/all-Banner_720x960.jpg',
                 label: 'LG Subscribe',
@@ -907,8 +907,12 @@
         const localHeroLoaded = {};
         const heroLoaded = {};
         function heroImgFor(s) { return (heroMobile.matches && s.imgM) ? s.imgM : s.img; }
-        /* เลือกภาพ: ใช้รูปถ่ายของคุณ (images/hero-N.svg) เมื่อมีไฟล์จริง */
-        function heroSrcFor(i) { return localHeroLoaded[i] ? HERO_SLIDES[i].local : heroImgFor(HERO_SLIDES[i]); }
+        /* เลือกภาพ: ใช้ภาพแคมเปญจริงที่ดาวน์โหลดไว้ (images/hero-N-d/m.jpg) เมื่อมีไฟล์ */
+        function heroLocalFor(i) {
+            const s = HERO_SLIDES[i];
+            return (heroMobile.matches && s.localM) ? s.localM : s.local;
+        }
+        function heroSrcFor(i) { return localHeroLoaded[i] ? heroLocalFor(i) : heroImgFor(HERO_SLIDES[i]); }
         /* โหลดภาพของสไลด์ที่กำลังแสดง (ครั้งแรกเท่านั้น) */
         function loadHeroImg(i) {
             const img = document.querySelector('.hero-campaign[data-slot="' + i + '"]');
@@ -942,6 +946,10 @@
                 const slide = document.createElement('div');
                 slide.className = 'hero-slide' + (i === 0 ? ' active' : '');
                 slide.dataset.theme = s.theme;
+                const extD = (s.img || '').split('.').pop().split('?')[0] || 'jpg';
+                const extM = (s.imgM || '').split('.').pop().split('?')[0] || extD;
+                s.local = 'images/hero-' + (i + 1) + '-d.' + extD;
+                s.localM = 'images/hero-' + (i + 1) + '-m.' + extM;
                 slide.innerHTML =
                     '<div class="hero-left">' +
                         '<span class="h-label">' + s.label + '</span>' +
@@ -980,12 +988,12 @@
                 pb.title = 'สไลด์ ' + (i + 1);
                 pb.onclick = () => goHero(i);
                 progress.appendChild(pb);
-                // รูปถ่ายของคุณ (images/hero-N.svg) จะแทนรูปแคมเปญเมื่อมีไฟล์
+                // ภาพแคมเปญจริงที่ดาวน์โหลดไว้ (images/hero-N-d/m.jpg) จะแทน remote เมื่อมีไฟล์
                 const probe = new Image();
                 probe.onload = function () {
                     localHeroLoaded[i] = true;
                     const img = track.querySelector('.hero-campaign[data-slot="' + i + '"]');
-                    if (img) img.src = s.local;
+                    if (img) img.src = heroLocalFor(i);
                 };
                 probe.src = s.local;
             });
@@ -996,8 +1004,8 @@
             HERO_SLIDES.forEach((s, i) => {
                 const img = document.querySelector('.hero-campaign[data-slot="' + i + '"]');
                 if (!img) return;
-                if (heroLoaded[i]) { if (!localHeroLoaded[i]) img.src = heroImgFor(s); }
-                else img.dataset.src = heroImgFor(s);
+                if (heroLoaded[i]) { img.src = localHeroLoaded[i] ? heroLocalFor(i) : heroImgFor(s); }
+                else img.dataset.src = heroSrcFor(i);
             });
             preloadHero(heroIndex + 1);
         }
