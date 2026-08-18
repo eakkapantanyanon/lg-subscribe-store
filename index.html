@@ -72,53 +72,125 @@
             .mobile-menu.open { display: flex; }
         }
 
-        /* ================= Hero carousel ================= */
-        .hero { position: relative; overflow: hidden; }
-        .slides { position: relative; height: min(78vh, 660px); }
-        .slide {
-            position: absolute; inset: 0; opacity: 0;
-            transition: opacity 0.8s ease;
-            background-size: cover; background-position: center;
-            display: flex; align-items: center;
+        /* ================= Hero carousel (สไตล์ LG Subscribe) ================= */
+        .hero { position: relative; overflow: hidden; --hero-timer: 6s; }
+        .hero-track { position: relative; min-height: min(72vh, 640px); }
+        .hero-slide {
+            position: absolute; inset: 0;
+            display: grid; grid-template-columns: 40fr 60fr;
+            opacity: 0; visibility: hidden;
+            transition: opacity 0.6s ease, visibility 0.6s ease;
         }
-        .slide.active { opacity: 1; }
-        .slide::before {
-            content: ''; position: absolute; inset: 0;
-            background: linear-gradient(90deg, rgba(10,10,12,0.72) 0%, rgba(10,10,12,0.35) 45%, rgba(10,10,12,0.05) 100%);
+        .hero-slide.active { opacity: 1; visibility: visible; z-index: 2; }
+        /* ธีมสไลด์: แดงแบรนด์ (โปร/ลด/ของแถม) vs ครีม-เบจ (คุณค่า/บริการ) */
+        .hero-slide[data-theme="red"] {
+            --hero-bg: #CE0000; --hero-fg: #ffffff;
+            --hero-fg-soft: rgba(255,255,255,0.88); --hero-label: rgba(255,255,255,0.72);
+            --hero-solid-bg: #ffffff; --hero-solid-text: #CE0000;
+            --hero-outline: rgba(255,255,255,0.9);
+            --hero-logo-border: #CE0000; --hero-logo-text: #CE0000;
+            --hero-pedestal: rgba(90,0,0,0.4); --hero-glow: rgba(255,255,255,0.18);
         }
-        .slide-content { position: relative; z-index: 2; max-width: 1200px; margin: 0 auto; width: 100%; padding: 0 22px; color: #fff; text-shadow: 0 1px 2px rgba(0,0,0,0.35), 0 2px 12px rgba(0,0,0,0.45); }
-        .slide-content .btn-pill, .slide-content .slide-kicker { text-shadow: none; }
-        .slide-kicker {
-            display: inline-block; background: rgba(255,255,255,0.16); border: 1px solid rgba(255,255,255,0.35);
-            padding: 6px 16px; border-radius: 999px; font-size: 13px; font-weight: 600; letter-spacing: 0.5px;
-            margin-bottom: 18px; backdrop-filter: blur(4px);
+        .hero-slide[data-theme="cream"] {
+            --hero-bg: #F3EBDD; --hero-fg: #241a10;
+            --hero-fg-soft: rgba(36,26,16,0.8); --hero-label: rgba(36,26,16,0.55);
+            --hero-solid-bg: #241a10; --hero-solid-text: #F3EBDD;
+            --hero-outline: rgba(36,26,16,0.85);
+            --hero-logo-border: #A50034; --hero-logo-text: #A50034;
+            --hero-pedestal: rgba(120,85,40,0.28); --hero-glow: rgba(255,255,255,0.35);
         }
-        .slide h1 { font-size: clamp(30px, 5vw, 56px); font-weight: 700; line-height: 1.2; max-width: 640px; margin-bottom: 16px; }
-        .slide p { font-size: 17px; max-width: 500px; color: rgba(255,255,255,0.9); margin-bottom: 28px; }
-        .btn-pill {
-            display: inline-block; background: var(--lg-red); color: #fff;
-            padding: 14px 34px; border-radius: 999px; font-weight: 700; font-size: 15px;
-            transition: all 0.25s; border: none; cursor: pointer;
+        .hero-left {
+            background: var(--hero-bg); color: var(--hero-fg);
+            padding: 52px clamp(28px, 5vw, 76px) 96px;
+            display: flex; flex-direction: column; justify-content: center;
         }
-        .btn-pill:hover { background: var(--lg-red-dark); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(165,0,52,0.35); }
-        .btn-pill.ghost { background: transparent; border: 1.5px solid #fff; }
-        .btn-pill.ghost:hover { background: rgba(255,255,255,0.15); }
-        .arrow-btn {
-            position: absolute; top: 50%; transform: translateY(-50%); z-index: 5;
-            width: 52px; height: 52px; border-radius: 50%;
-            background: rgba(255,255,255,0.92); border: none; cursor: pointer;
-            font-size: 20px; box-shadow: 0 4px 16px rgba(0,0,0,0.18);
-            transition: all 0.2s; display: flex; align-items: center; justify-content: center;
+        .h-label { font-size: 13px; font-weight: 300; letter-spacing: 3px; text-transform: uppercase; color: var(--hero-label); margin-bottom: 16px; }
+        .hero-left h1 { font-size: clamp(26px, 3.4vw, 44px); font-weight: 800; line-height: 1.14; margin-bottom: 12px; }
+        .h-dates { font-size: 13px; color: var(--hero-label); letter-spacing: 0.4px; margin-bottom: 14px; font-weight: 500; }
+        .h-detail { font-size: 15px; color: var(--hero-fg-soft); max-width: 400px; margin-bottom: 28px; }
+        .h-btns { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 36px; }
+        .h-btn { padding: 12px 24px; border-radius: 999px; font-size: 14px; font-weight: 700; transition: all 0.25s; cursor: pointer; }
+        .h-btn-outline { border: 1.5px solid var(--hero-outline); color: var(--hero-fg); background: transparent; }
+        .h-btn-outline:hover { background: rgba(255,255,255,0.14); }
+        .h-btn-solid { background: var(--hero-solid-bg); color: var(--hero-solid-text); border: 1.5px solid var(--hero-solid-bg); }
+        .h-btn-solid:hover { transform: translateY(-2px); box-shadow: 0 10px 26px rgba(0,0,0,0.22); }
+        .h-logo {
+            align-self: flex-start; background: #fff; color: var(--hero-logo-text);
+            border: 1.5px solid var(--hero-logo-border); border-radius: 999px;
+            padding: 9px 20px; font-size: 13px; font-weight: 800; letter-spacing: 0.5px;
         }
-        .arrow-btn:hover { background: #fff; transform: translateY(-50%) scale(1.08); }
-        .arrow-btn.prev { left: 18px; }
-        .arrow-btn.next { right: 18px; }
-        .dots { position: absolute; bottom: 26px; left: 0; right: 0; display: flex; justify-content: center; gap: 10px; z-index: 5; }
-        .dots button {
-            width: 10px; height: 10px; border-radius: 50%; border: none; cursor: pointer;
-            background: rgba(255,255,255,0.5); transition: all 0.25s; padding: 0;
+        .hero-right { background: var(--hero-bg); position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+        .pedestal {
+            position: absolute; bottom: -46px; left: 50%; transform: translateX(-50%);
+            width: 78%; height: 210px; border-radius: 50%; pointer-events: none;
+            background: radial-gradient(ellipse at center, var(--hero-pedestal) 0%, transparent 66%);
         }
-        .dots button.active { background: #fff; width: 28px; border-radius: 999px; }
+        .pedestal::before {
+            content: ''; position: absolute; left: 50%; bottom: 8px; transform: translateX(-50%);
+            width: 52%; height: 84px; border-radius: 50%;
+            background: radial-gradient(ellipse at center, var(--hero-glow) 0%, transparent 72%);
+        }
+        .hero-product {
+            position: relative; z-index: 2; width: min(74%, 470px);
+            mix-blend-mode: multiply; object-fit: contain;
+            filter: drop-shadow(0 26px 44px rgba(0,0,0,0.3));
+        }
+        .hero-badge {
+            position: absolute; top: 12%; right: 9%; z-index: 3;
+            background: #fff; color: #CE0000; border: 2px solid #fff;
+            border-radius: 50%; width: 108px; height: 108px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 14px; font-weight: 800; text-align: center; line-height: 1.25;
+            transform: rotate(9deg); box-shadow: 0 14px 30px rgba(0,0,0,0.22);
+        }
+        /* แถบควบคุมด้านล่าง */
+        .hero-controls {
+            position: absolute; bottom: 0; left: 0; right: 0; z-index: 6;
+            display: flex; justify-content: space-between; align-items: flex-end;
+            padding: 0 clamp(18px, 3vw, 44px) 20px; pointer-events: none;
+        }
+        .hero-progress-wrap { display: flex; flex-direction: column; gap: 8px; }
+        .hero-progress { display: flex; gap: 6px; pointer-events: auto; }
+        .hero-progress button {
+            width: 26px; height: 3px; border-radius: 2px; border: none; cursor: pointer; padding: 0;
+            background: var(--ctl-idle); position: relative; overflow: hidden; transition: width 0.4s;
+        }
+        .hero-progress button.active { width: 46px; background: var(--ctl-idle); }
+        .hero-progress button.active::after {
+            content: ''; position: absolute; inset: 0; background: var(--ctl-active);
+            animation: heroFill var(--hero-timer) linear forwards;
+        }
+        @keyframes heroFill { from { width: 0; } to { width: 100%; } }
+        .hero-note { font-size: 10px; color: var(--ctl-muted); max-width: 300px; line-height: 1.5; }
+        .hero-nav { display: flex; gap: 10px; align-items: center; pointer-events: auto; }
+        .hero-nav button {
+            width: 40px; height: 40px; border-radius: 50%; border: 1.5px solid var(--ctl-outline);
+            background: transparent; color: var(--ctl-fg); font-size: 16px; cursor: pointer;
+            display: flex; align-items: center; justify-content: center; transition: all 0.2s;
+        }
+        .hero-nav button:hover { background: var(--ctl-hover-bg); color: var(--ctl-hover-fg); border-color: var(--ctl-hover-bg); }
+        .hero-nav .play-btn { width: 46px; height: 46px; font-size: 14px; }
+        .hero[data-current-theme="red"] {
+            --ctl-muted: rgba(255,255,255,0.62); --ctl-idle: rgba(255,255,255,0.35);
+            --ctl-active: #ffffff; --ctl-fg: #ffffff; --ctl-outline: rgba(255,255,255,0.9);
+            --ctl-hover-bg: #ffffff; --ctl-hover-fg: #CE0000;
+        }
+        .hero[data-current-theme="cream"] {
+            --ctl-muted: rgba(36,26,16,0.5); --ctl-idle: rgba(36,26,16,0.25);
+            --ctl-active: #241a10; --ctl-fg: #241a10; --ctl-outline: rgba(36,26,16,0.8);
+            --ctl-hover-bg: #241a10; --ctl-hover-fg: #ffffff;
+        }
+        @media (max-width: 860px) {
+            .hero-track { min-height: 0; }
+            .hero-slide { position: relative; display: none; grid-template-columns: 1fr; }
+            .hero-slide.active { display: block; }
+            .hero-left { padding: 38px 24px 96px; }
+            .hero-right { min-height: 300px; }
+            .hero-product { width: min(72%, 340px); }
+            .hero-badge { width: 84px; height: 84px; font-size: 12px; top: 8%; right: 6%; }
+            .hero-controls { padding: 0 18px 16px; }
+            .hero-note { max-width: 46vw; }
+        }
 
         /* ================= Sections ================= */
         section { padding: 72px 0; }
@@ -285,18 +357,14 @@
         /* ================= Mobile refinements ================= */
         @media (max-width: 640px) {
             section { padding: 44px 0; }
-            .slides { height: 62vh; min-height: 440px; }
-            .slide h1 { font-size: 28px; }
-            .slide p { font-size: 15px; margin-bottom: 22px; }
-            .arrow-btn { width: 40px; height: 40px; font-size: 16px; }
-            .arrow-btn.prev { left: 10px; }
-            .arrow-btn.next { right: 10px; }
-            .dots { bottom: 18px; }
+            .hero-left { padding: 32px 20px 92px; }
+            .hero-left h1 { font-size: 26px; }
+            .h-btn { padding: 11px 20px; font-size: 13px; }
+            .h-detail { font-size: 14px; }
             .btn-pill { padding: 12px 26px; font-size: 14px; }
             .calc-frame { height: 700px; }
             .service-banner { border-radius: 20px; }
             .service-banner h2 { font-size: 24px; }
-            .hero-slide-kicker { font-size: 12px; }
             .p-img { height: 140px; }
             .p-price { font-size: 19px; }
             .cond-grid, .promo-grid { gap: 12px; }
@@ -333,38 +401,20 @@
         </div>
     </header>
 
-    <!-- ================= Hero Carousel ================= -->
-    <section class="hero" id="top">
-        <div class="slides" id="heroSlides">
-            <div class="slide active" data-slot="0" style="background-image:url('https://www.lg.com/content/dam/channel/wcms/th/monthly-lg-25/25-july/feature/article-image/monthly-lg-25-jul-th-00-16-9.jpg')">
-                <div class="slide-content">
-                    <span class="slide-kicker">LG SUBSCRIBE · เช่ารายเดือน</span>
-                    <h1>เช่าง่าย ใช้สบาย ครบทุกไลฟ์สไตล์</h1>
-                    <p>เครื่องใช้ไฟฟ้า LG ระดับพรีเมียม — จ่ายรายเดือนคงที่ ไม่ต้องควักเงินก้อน ได้ใช้ของใหม่ล่าสุดทันที</p>
-                    <a class="btn-pill" href="#calculator">ดูแพ็กเกจ</a>
-                    <a class="btn-pill ghost" href="#products">ดูสินค้า</a>
-                </div>
+    <!-- ================= Hero Carousel (สไตล์ LG Subscribe) ================= -->
+    <section class="hero" id="top" data-current-theme="red">
+        <div class="hero-track" id="heroTrack"></div>
+        <div class="hero-controls">
+            <div class="hero-progress-wrap">
+                <div class="hero-progress" id="heroProgress"></div>
+                <p class="hero-note">* ราคารวมภาษีมูลค่าเพิ่มแล้ว · เงื่อนไขเป็นไปตามที่บริษัทฯ กำหนด · ข้อมูล ณ ส.ค. 2569</p>
             </div>
-            <div class="slide" data-slot="1" style="background-image:url('https://www.lg.com/content/dam/channel/wcms/th/monthly-lg-25/25-november/feature/article-image/monthly-lg-2025-nov-th-1920x1080-00-16-9.jpg')">
-                <div class="slide-content">
-                    <span class="slide-kicker">เริ่มต้นเพียง ฿89/เดือน</span>
-                    <h1>ทุกบ้านมีของดีติดบ้านได้ ไม่ต้องรอ</h1>
-                    <p>จากไมโครเวฟถึงทีวี OLED ครบทุกหมวด — บิลแรกแค่ ฿149 แล้วสนุกกับโปรลด 50% นานสูงสุด 12 เดือน</p>
-                    <a class="btn-pill" href="#calculator">ดูแพ็กเกจ</a>
-                </div>
-            </div>
-            <div class="slide" data-slot="2" style="background-image:url('https://www.lg.com/content/dam/channel/wcms/th/monthly-lg-25/25-december/feature/article-image/monthly-lg-2025-dec-th-03-1920x1080-00-16-9.jpg')">
-                <div class="slide-content">
-                    <span class="slide-kicker">บริการครบวงจร</span>
-                    <h1>ทีมช่าง LG ดูแลถึงบ้าน ตลอดสัญญา</h1>
-                    <p>ติดตั้งฟรี บริการตามรอบ ซ่อมฟรีทุกอาการตลอดอายุสัญญา — สบายใจได้ทั้งครอบครัว</p>
-                    <a class="btn-pill light" href="#services">ดูบริการ</a>
-                </div>
+            <div class="hero-nav">
+                <button id="heroPrev" title="ก่อนหน้า" onclick="goHero(heroIndex - 1)">‹</button>
+                <button class="play-btn" id="heroPlay" title="เล่น/หยุดอัตโนมัติ" onclick="toggleHeroPlay()">⏸</button>
+                <button id="heroNext" title="ถัดไป" onclick="goHero(heroIndex + 1)">›</button>
             </div>
         </div>
-        <button class="arrow-btn prev" onclick="moveSlide(-1)">‹</button>
-        <button class="arrow-btn next" onclick="moveSlide(1)">›</button>
-        <div class="dots" id="heroDots"></div>
     </section>
 
     <!-- ================= Products ================= -->
@@ -622,59 +672,157 @@
             renderProducts();
         }
 
-        /* ---------- Hero carousel: ใช้ภาพถ่ายจริงจากโฟลเดอร์ images/ ถ้ามี ----------
-           วิธีใช้: วางไฟล์ hero-1.jpg, hero-2.jpg, hero-3.jpg (แนะนำ 1920×1080) ลงในโฟลเดอร์ images/
-           ของคุณ — ถ้าไม่มี ระบบจะใช้ภาพ fallback จากเว็บ LG ให้อัตโนมัติ */
-        const HERO_SLOTS = [
-            { local: 'images/hero-1.jpg', fallback: 'https://www.lg.com/content/dam/channel/wcms/th/monthly-lg-25/25-july/feature/article-image/monthly-lg-25-jul-th-00-16-9.jpg' },
-            { local: 'images/hero-2.jpg', fallback: 'https://www.lg.com/content/dam/channel/wcms/th/monthly-lg-25/25-november/feature/article-image/monthly-lg-2025-nov-th-1920x1080-00-16-9.jpg' },
-            { local: 'images/hero-3.jpg', fallback: 'https://www.lg.com/content/dam/channel/wcms/th/monthly-lg-25/25-december/feature/article-image/monthly-lg-2025-dec-th-03-1920x1080-00-16-9.jpg' }
+        /* ---------- Hero carousel สไตล์ LG Subscribe ----------
+           สไลด์: ธีมแดง (โปร/ลด/ของแถม) + ธีมครีม (คุณค่า/บริการ)
+           วิธีใช้รูปถ่ายของคุณ: วาง hero-1.jpg … hero-5.jpg ในโฟลเดอร์ images/ แล้วระบบจะใช้แทนรูปสินค้า
+           (แก้ไขเนื้อหาสไลด์ได้ที่อาร์เรย์ HERO_SLIDES ด้านล่าง) */
+        const HERO_SLIDES = [
+            {
+                theme: 'red', local: 'images/hero-1.jpg',
+                img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/oled/oled81-42c6psa-atm/gallery/48-c6/update/OLED48C6PSA-450-01.jpg',
+                label: 'LG Subscribe',
+                title: 'SUBSCRIBE OLED WEEK',
+                dates: '1 ส.ค. 69 – 31 ส.ค. 69',
+                detail: 'ทีวี OLED รายเดือน เริ่มต้น ฿749 — งวดแรก 50% + ส่วนลด 50% เดือน 2–8',
+                badge: 'ลด 50%',
+                btn1: { text: 'ดูโปรโมชันอื่นๆ', href: 'promotions.html' },
+                btn2: { text: 'Subscribe เลย!', href: '#calculator' }
+            },
+            {
+                theme: 'cream', local: 'images/hero-2.jpg',
+                img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/washing-machine/2026/wt2520nheg-abgpeth/gallery/wt2520nheg-450-0604.jpg',
+                label: 'LG Subscribe',
+                title: 'ความคุ้มค่าที่เหนือกว่า',
+                dates: 'ตลอดเดือน ส.ค. 69',
+                detail: 'จ่ายรายเดือนคงที่ ไม่ต้องควักเงินก้อน — ทีมช่างดูแลถึงบ้าน ซ่อมฟรีตลอดสัญญา',
+                badge: 'ดูแลครบวงจร',
+                btn1: { text: 'ดูโปรโมชันอื่นๆ', href: 'promotions.html' },
+                btn2: { text: 'Subscribe เลย!', href: '#calculator' }
+            },
+            {
+                theme: 'red', local: 'images/hero-3.jpg',
+                img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/refrigerator/2024/gc-l257kqkw-aepplmt/gallery/GC-L257KQKW_Front_450.jpg',
+                label: 'LG Subscribe',
+                title: 'สมัคร 2 เครื่องขึ้นไป ลดเพิ่ม 10%',
+                dates: '1 ส.ค. 69 – 31 ส.ค. 69',
+                detail: 'ลูกค้าเดิม 1 เครื่องขึ้นไป / ลูกค้าใหม่ 2 เครื่องขึ้นไป + บิลแรกเพียง ฿149',
+                badge: 'คอมโบ 10%',
+                btn1: { text: 'ดูโปรโมชันอื่นๆ', href: 'promotions.html' },
+                btn2: { text: 'Subscribe เลย!', href: '#calculator' }
+            },
+            {
+                theme: 'cream', local: 'images/hero-4.jpg',
+                img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2025/image-with-icon/saq/RAC2025-Web-Thumbnail_SAQ-450X450.jpg',
+                label: 'LG Subscribe',
+                title: 'เช่าง่าย ใช้สบาย ครบทุกไลฟ์สไตล์',
+                dates: 'โปรโมชัน ส.ค. 69',
+                detail: 'ไมโครเวฟเริ่ม ฿89/เดือน แอร์เริ่ม ฿399/เดือน — ติดตั้งฟรี พร้อมทีมช่างดูแล',
+                badge: 'ติดตั้งฟรี',
+                btn1: { text: 'ดูโปรโมชันอื่นๆ', href: 'promotions.html' },
+                btn2: { text: 'Subscribe เลย!', href: '#calculator' }
+            },
+            {
+                theme: 'red', local: 'images/hero-5.jpg',
+                img: 'https://www.lg.com/content/dam/channel/wcms/th/images/vacuum-cleaner/a9t-ultra_dcbpeth_eath_th_c/Basic-450.jpg',
+                label: 'LG Subscribe',
+                title: 'โปรปังฉลองครบรอบ 38 ปี LG',
+                dates: '7 ส.ค. 69 – 11 ก.ย. 69',
+                detail: 'ขอบคุณทุกบ้านที่เชื่อมั่น — รวมโปรพิเศษทั้งเดือน รับของแถมเพียบตามแพ็กเกจ',
+                badge: '38 ปี',
+                btn1: { text: 'ดูโปรโมชันอื่นๆ', href: 'promotions.html' },
+                btn2: { text: 'Subscribe เลย!', href: '#calculator' }
+            }
         ];
-        function loadHeroSlots() {
-            HERO_SLOTS.forEach((slot, i) => {
-                const slide = document.querySelector('.slide[data-slot="' + i + '"]');
-                if (!slide) return;
+        const HERO_TIMER = 6000;
+        let heroIndex = 0;
+        let heroPlaying = true;
+        let heroTimer = null;
+
+        function buildHero() {
+            const track = document.getElementById('heroTrack');
+            const progress = document.getElementById('heroProgress');
+            const hero = document.querySelector('.hero');
+            track.innerHTML = '';
+            progress.innerHTML = '';
+            HERO_SLIDES.forEach((s, i) => {
+                const slide = document.createElement('div');
+                slide.className = 'hero-slide' + (i === 0 ? ' active' : '');
+                slide.dataset.theme = s.theme;
+                slide.innerHTML =
+                    '<div class="hero-left">' +
+                        '<span class="h-label">' + s.label + '</span>' +
+                        '<h1>' + s.title + '</h1>' +
+                        '<div class="h-dates">' + s.dates + '</div>' +
+                        '<p class="h-detail">' + s.detail + '</p>' +
+                        '<div class="h-btns">' +
+                            '<a class="h-btn h-btn-outline" href="' + s.btn1.href + '">' + s.btn1.text + '</a>' +
+                            '<a class="h-btn h-btn-solid" href="' + s.btn2.href + '">' + s.btn2.text + '</a>' +
+                        '</div>' +
+                        '<span class="h-logo">LG Subscribe™</span>' +
+                    '</div>' +
+                    '<div class="hero-right">' +
+                        '<div class="pedestal"></div>' +
+                        '<img class="hero-product" src="' + s.img + '" alt="' + s.title + '" data-slot="' + i + '" />' +
+                        (s.badge ? '<span class="hero-badge">' + s.badge + '</span>' : '') +
+                    '</div>';
+                track.appendChild(slide);
+                const pb = document.createElement('button');
+                pb.className = i === 0 ? 'active' : '';
+                pb.title = 'สไลด์ ' + (i + 1);
+                pb.onclick = () => goHero(i);
+                progress.appendChild(pb);
+                // รูปถ่ายของคุณ (images/hero-N.jpg) จะแทนรูปสินค้าเมื่อมีไฟล์
                 const probe = new Image();
                 probe.onload = function () {
-                    // เจอภาพถ่ายจริงในโฟลเดอร์ images/ → ใช้แทน fallback
-                    if (slide) slide.style.backgroundImage = "url('" + slot.local + "')";
+                    const img = track.querySelector('.hero-product[data-slot="' + i + '"]');
+                    if (img) img.src = s.local;
                 };
-                probe.src = slot.local;
+                probe.src = s.local;
             });
         }
+
+        function goHero(i, restart) {
+            heroIndex = (i + HERO_SLIDES.length) % HERO_SLIDES.length;
+            const hero = document.querySelector('.hero');
+            hero.dataset.currentTheme = HERO_SLIDES[heroIndex].theme;
+            document.querySelectorAll('.hero-slide').forEach((el, k) => el.classList.toggle('active', k === heroIndex));
+            document.querySelectorAll('.hero-progress button').forEach((b, k) => {
+                b.classList.toggle('active', k === heroIndex);
+                if (k === heroIndex) { b.style.animation = 'none'; void b.offsetWidth; b.style.animation = ''; }
+            });
+            if (restart !== false) restartHero();
+        }
+
+        function restartHero() {
+            clearInterval(heroTimer);
+            if (heroPlaying) heroTimer = setInterval(() => goHero(heroIndex + 1, false), HERO_TIMER);
+        }
+
+        function toggleHeroPlay() {
+            heroPlaying = !heroPlaying;
+            document.getElementById('heroPlay').textContent = heroPlaying ? '⏸' : '▶';
+            restartHero();
+        }
+
         function toggleMenu() {
             document.getElementById('mobileMenu').classList.toggle('open');
         }
-        let slideIndex = 0;
-        const slides = document.querySelectorAll('.slide');
-        const dotsEl = document.getElementById('heroDots');
-        slides.forEach((_, i) => {
-            const b = document.createElement('button');
-            if (i === 0) b.className = 'active';
-            b.onclick = () => goSlide(i);
-            dotsEl.appendChild(b);
-        });
-        const dots = dotsEl.querySelectorAll('button');
-        function goSlide(i) {
-            slideIndex = (i + slides.length) % slides.length;
-            slides.forEach((s, k) => s.classList.toggle('active', k === slideIndex));
-            dots.forEach((d, k) => d.classList.toggle('active', k === slideIndex));
-        }
-        function moveSlide(d) { goSlide(slideIndex + d); }
-        let autoTimer = setInterval(() => moveSlide(1), 6000);
-        document.querySelector('.hero').addEventListener('mouseenter', () => clearInterval(autoTimer));
-        document.querySelector('.hero').addEventListener('mouseleave', () => { autoTimer = setInterval(() => moveSlide(1), 6000); });
-        document.querySelector('.hero').addEventListener('touchstart', function (e) { this._tx = e.touches[0].clientX; }, { passive: true });
-        document.querySelector('.hero').addEventListener('touchend', function (e) {
+
+        const heroEl = document.querySelector('.hero');
+        heroEl.addEventListener('mouseenter', () => clearInterval(heroTimer));
+        heroEl.addEventListener('mouseleave', restartHero);
+        heroEl.addEventListener('touchstart', function (e) { this._tx = e.touches[0].clientX; }, { passive: true });
+        heroEl.addEventListener('touchend', function (e) {
             const dx = e.changedTouches[0].clientX - (this._tx || 0);
-            if (Math.abs(dx) > 50) moveSlide(dx < 0 ? 1 : -1);
+            if (Math.abs(dx) > 50) goHero(heroIndex + (dx < 0 ? 1 : -1));
         }, { passive: true });
 
         /* ---------- Init ---------- */
         renderCats();
         renderLifestyle();
         renderProducts();
-        loadHeroSlots();
+        buildHero();
+        restartHero();
     </script>
 
 </body>
