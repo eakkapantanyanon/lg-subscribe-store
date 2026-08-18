@@ -18,7 +18,7 @@
 | `calculator.test.js` | เทสต์ 10 เคส A–J เทียบตัวเลขอ้างอิงจากเว็บต้นแบบ (รัน: `node calculator.test.js`) |
 | `pdp.test.js` | เทสต์ flow เลือกซื้อ: ทุกแผน reachable ผ่าน selection, เปลี่ยนตัวเลือก → ราคาเปลี่ยนถูกต้อง, ใส่ตะกร้าได้เมื่อเลือกครบ (รัน: `node pdp.test.js`) |
 | `migrate-plans.js` | ตัวแปลงแผนข้อมูลเก่า → โครงสร้างใหม่ (รันหลังแก้ `products.js` ด้วยมือ) |
-| `images/` | วางรูป hero ของคุณ (hero-1.jpg / hero-2.jpg / hero-3.jpg) — ถ้าไม่มี ใช้ภาพ fallback อัตโนมัติ |
+| `images/` | รูป hero 8 ใบ (hero-1.svg … hero-8.svg) — สร้างใหม่ได้ด้วย `node gen-hero.js` · วางไฟล์แทนที่เพื่อใช้รูปของคุณเอง |
 
 ## Flow การเลือกซื้อ (หน้าแรก → PDP → ตะกร้า)
 
