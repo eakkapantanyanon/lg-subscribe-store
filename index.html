@@ -704,6 +704,14 @@
                 <p>บอกเราว่าคุณอยู่แบบไหน เราจะคัดผลิตภัณฑ์และแพ็กเกจที่เข้ากับพื้นที่ งบประมาณ และกิจวัตรของคุณ</p>
             </div>
 
+            <div class="calculator-entry" id="calculator-start" role="note" aria-labelledby="calculator-entry-title">
+                <span class="calculator-entry-step" aria-hidden="true">01</span>
+                <div>
+                    <strong id="calculator-entry-title">เริ่มคำนวณจากสินค้าที่คุณสนใจ</strong>
+                    <p>เลือกสินค้าแล้วกด “ดูแพ็กเกจ” เพื่อเลือกแผนและคำนวณค่าใช้จ่ายรายเดือนที่เหมาะกับคุณ</p>
+                </div>
+            </div>
+
             <div class="mode-toggle">
                 <button id="modeLife" class="active" onclick="setMode('life')">เลือกตามไลฟ์สไตล์</button>
                 <button id="modeCat" onclick="setMode('cat')">ดูตามประเภทสินค้า</button>
@@ -926,15 +934,19 @@
         function renderCats() {
             const el = document.getElementById('catIcons');
             el.innerHTML = '';
-            const home = document.createElement('div');
+            const home = document.createElement('button');
+            home.type = 'button';
             home.className = 'cat-item' + (activeGroup === null ? ' active' : '');
+            home.setAttribute('aria-pressed', activeGroup === null ? 'true' : 'false');
             home.innerHTML = '<div class="circle"><i class="line-icon icon-cart" aria-hidden="true"></i></div><span>ทั้งหมด</span>';
             home.onclick = () => { activeGroup = null; activeCat = null; renderCats(); renderSubCats(); renderProducts(); };
             el.appendChild(home);
             CAT_GROUPS.forEach(g => {
                 const count = PRODUCTS.filter(p => g.cats.includes(p.category)).length;
-                const d = document.createElement('div');
+                const d = document.createElement('button');
+                d.type = 'button';
                 d.className = 'cat-item' + (activeGroup === g.id ? ' active' : '');
+                d.setAttribute('aria-pressed', activeGroup === g.id ? 'true' : 'false');
                 d.innerHTML = '<div class="circle">' + g.emoji + '</div><span>' + g.name + '</span>' +
                     (count ? '<span class="cat-count" aria-label="' + count + ' รุ่น">' + count + ' รุ่น</span>' : '');
                 d.onclick = () => { activeGroup = g.id; activeCat = null; renderCats(); renderSubCats(); renderProducts(); };
@@ -950,6 +962,7 @@
             el.style.display = 'flex';
             el.innerHTML = '';
             const all = document.createElement('button');
+            all.type = 'button';
             all.className = 'sub-chip' + (activeCat === null ? ' active' : '');
             all.textContent = 'ทั้งหมดในกลุ่ม';
             all.onclick = () => { activeCat = null; renderSubCats(); renderProducts(); };
@@ -958,6 +971,7 @@
                 const count = PRODUCTS.filter(p => p.category === c).length;
                 const promo = CAT_PROMO[c];
                 const chip = document.createElement('button');
+                chip.type = 'button';
                 chip.className = 'sub-chip' + (activeCat === c ? ' active' : '');
                 chip.innerHTML = promo
                     ? c + ' <span class="chip-n">(' + count + ')</span> <span class="chip-promo">· ' + promo + '</span>'
@@ -973,8 +987,10 @@
             el.innerHTML = '';
             LIFESTYLES.forEach(l => {
                 const count = l.ids.filter(id => PRODUCTS.some(p => p.id === id || String(p.model || '').toLowerCase() === id)).length;
-                const d = document.createElement('div');
+                const d = document.createElement('button');
+                d.type = 'button';
                 d.className = 'lifestyle-card' + (activeLife === l.id ? ' active' : '');
+                d.setAttribute('aria-pressed', activeLife === l.id ? 'true' : 'false');
                 d.innerHTML = '<div class="l-emoji">' + l.emoji + '</div><h4>' + l.name + '</h4><p>' + l.desc + '</p><span class="l-count">' + count + ' รุ่นที่แนะนำ →</span>';
                 d.onclick = () => { activeLife = (activeLife === l.id ? null : l.id); renderLifestyle(); renderProducts(); };
                 el.appendChild(d);
@@ -1007,10 +1023,10 @@
             if (!list.length) { grid.innerHTML = '<div class="grid-empty">ยังไม่มีสินค้าในหมวดนี้ — ดูหมวดอื่น หรือเปิด PDP ของสินค้าโดยตรง</div>'; return; }
             list.forEach(p => {
                 const price = Math.min(...(p.plans ? p.plans.map(x => x.price) : [p.price]));
-                const card = document.createElement('div');
+                const productHref = 'product.html?slug=' + encodeURIComponent(String(p.id || p.model || '').toLowerCase());
+                const card = document.createElement('a');
                 card.className = 'p-card';
-                card.tabIndex = 0;
-                card.setAttribute('role', 'link');
+                card.href = productHref;
                 card.setAttribute('aria-label', 'ดูแพ็กเกจ ' + (p.name || p.model || 'สินค้า'));
                 card.innerHTML =
                     '<div class="p-img">' +
@@ -1019,15 +1035,9 @@
                     '<div class="p-cat">' + (p.category || '') + '</div>' +
                     '<div class="p-name">' + (p.name || '') + '</div>' +
                     '<div class="p-model">' + (p.model || '') + '</div>' +
-                    '<div class="p-price"><small>เริ่มต้น</small> ฿' + fmt(price) + ' <small>/เดือน</small></div>' +
+                    '<div class="p-price"><small>เริ่มต้น</small> ฿<strong>' + fmt(price) + '</strong> <small>/เดือน</small></div>' +
                     '<span class="p-badge">' + badgeFor(p) + '</span>' +
-                    '<div class="p-cta">ดูแผนการชำระ →</div>';
-                const openProduct = () => {
-                    // ไปยังหน้ารายละเอียดสินค้า (PDP) — route แยกตาม slug
-                    location.href = 'product.html?slug=' + encodeURIComponent(String(p.id || p.model || '').toLowerCase());
-                };
-                card.onclick = openProduct;
-                card.onkeydown = e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openProduct(); } };
+                    '<span class="p-cta">ดูแพ็กเกจ</span>';
                 grid.appendChild(card);
             });
         }
@@ -1068,7 +1078,7 @@
                 detail: 'บริการเครื่องใช้ไฟฟ้า LG แบบรายเดือน พร้อมติดตั้งและบริการดูแลตามรายละเอียดของแพ็กเกจ',
                 badge: 'ดูแลตามแพ็กเกจ',
                 btn1: { text: 'เลือกสินค้า', href: '#products', variant: 'primary' },
-                btn2: { text: 'คำนวณค่าใช้จ่าย', href: 'product.html?slug=wt2520nheg', variant: 'secondary' }
+                btn2: { text: 'คำนวณค่าใช้จ่าย', href: '#calculator-start', variant: 'secondary' }
             },
             {
                 theme: 'red', 
