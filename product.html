@@ -382,7 +382,8 @@
 <div class="toast" id="toast" hidden></div>
 
 <script src="analytics.js"></script>
-<script src="products.js?v=d53ed5c"></script>
+<script src="products.js?v=galleries-all"></script>
+<script src="product-galleries.js?v=galleries-all"></script>
 <script src="calculator-core.js"></script>
 <script src="cart.js"></script>
 <script src="product-select.js"></script>
@@ -449,7 +450,9 @@
     function renderGallery(p) {
         const box = document.getElementById('galleryBox');
         const items = [];
-        const gallery = Array.isArray(p.gallery) ? p.gallery.slice(0, 4) : [];
+        const sharedGallery = (window.LG_PRODUCT_GALLERIES || {})[p.id];
+        const gallerySource = Array.isArray(p.gallery) && p.gallery.length ? p.gallery : sharedGallery;
+        const gallery = Array.isArray(gallerySource) ? gallerySource.slice(0, 4) : [];
         gallery.forEach((entry, i) => {
             const item = typeof entry === 'string' ? { src: entry } : entry;
             if (item && item.src) items.push({ type: 'img', src: item.src, title: item.alt || (p.name + ' ภาพที่ ' + (i + 1)) });
