@@ -62,6 +62,7 @@ for (const page of pages) {
 
 console.log('\n· Conversion flow anchors');
 const home = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8');
+const promotions = fs.readFileSync(path.join(ROOT, 'promotions.html'), 'utf8');
 check(/id="planner"/.test(home), 'Home มี Package Planner');
 check(/id="products"/.test(home), 'Home มี Product section');
 check(/id="faq"/.test(home), 'Home มี FAQ');
@@ -70,6 +71,8 @@ check(!/class="trust-strip"/.test(home), 'Home ไม่มี trust strip ท�
 check(/rel="preload"\s+as="image"\s+href="images\/hero-8-d\.jpg"/.test(home), 'Home preload Hero desktop');
 check(/rel="preload"\s+as="image"\s+href="images\/hero-8-m\.jpg"/.test(home), 'Home preload Hero mobile');
 check((home.match(/all-Banner_1920x720\.jpg/g) || []).length === 1, 'Home Hero ไม่มีภาพแคมเปญซ้ำ');
+check(/-Birthday_1920x720\.jpg/.test(home) && /15 ส\.ค\. 69 – 23 ส\.ค\. 69/.test(home), 'Home Hero มีโปรครบรอบ 38 ปีตามช่วงเวลา');
+check(/OFFICIAL LG CAMPAIGNS/.test(promotions) && /ลด 15% ตลอดสัญญา/.test(promotions), 'Promotions มีแคมเปญล่าสุดจาก LG Thailand');
 
 const pdp = fs.readFileSync(path.join(ROOT, 'product.html'), 'utf8');
 const productSource = fs.readFileSync(path.join(ROOT, 'products.js'), 'utf8');

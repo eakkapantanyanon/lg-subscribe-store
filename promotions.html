@@ -94,6 +94,21 @@
         .cond-card.green .c-tag { background: #1f9d55; }
         .cond-card.purple .c-tag { background: #7c3aed; }
 
+        /* ================= Official campaign cards ================= */
+        #official-campaigns { padding: 76px 0 0; }
+        .campaign-head { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: 24px; }
+        .campaign-head .kicker { color: var(--lg-red); font-size: 11px; font-weight: 800; letter-spacing: .14em; }
+        .campaign-head h2 { font-size: clamp(27px,4vw,38px); letter-spacing: -.04em; }
+        .campaign-source { color: var(--lg-red); font-size: 13px; font-weight: 800; white-space: nowrap; }
+        .campaign-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+        .campaign-card { overflow: hidden; border: 1px solid var(--line); border-radius: 24px; background: #fff; box-shadow: 0 14px 38px rgba(38,10,20,.07); }
+        .campaign-card img { display: block; width: 100%; aspect-ratio: 8/3; object-fit: cover; background: #f5efeb; }
+        .campaign-copy { padding: 22px 24px 24px; }
+        .campaign-date { display: inline-flex; margin-bottom: 10px; padding: 5px 10px; border-radius: 999px; background: var(--lg-red-soft); color: var(--lg-red); font-size: 11px; font-weight: 800; }
+        .campaign-card h3 { margin: 0 0 7px; font-size: 20px; }
+        .campaign-card p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.65; }
+        .campaign-card a { display: inline-flex; margin-top: 16px; color: var(--lg-red); font-size: 13px; font-weight: 800; }
+
         /* ================= Filter tabs ================= */
         #promos { padding: 48px 0 72px; }
         .filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 26px; }
@@ -242,8 +257,8 @@
         .row-cta { display: inline-flex; padding: 8px 13px; border: 1px solid var(--lg-red); border-radius: 999px; }
         .row-cta:hover { background: var(--lg-red-soft); text-decoration: none; }
         .cta-zone { border-radius: 24px; padding: 48px 22px; background: linear-gradient(135deg,#f8edef,#fff); border: 1px solid var(--line); }
-        #conditions, #promos, footer { content-visibility: auto; contain-intrinsic-size: 800px; }
-        @media (max-width: 760px) { .page-hero { padding: 60px 0 74px; } .promo-stats { margin: 0; border-radius: 0; grid-template-columns: 1fr; box-shadow: none; } .promo-stat + .promo-stat { border-left: 0; border-top: 1px solid var(--line); } .promo-list-head { display: block; } .promo-list-head p { margin-top: 8px; } .filters { width: 100%; border-radius: 18px; } .p-card-m { border-radius: 18px; } }
+        #official-campaigns, #conditions, #promos, footer { content-visibility: auto; contain-intrinsic-size: 800px; }
+        @media (max-width: 760px) { .page-hero { padding: 60px 0 74px; } .promo-stats { margin: 0; border-radius: 0; grid-template-columns: 1fr; box-shadow: none; } .promo-stat + .promo-stat { border-left: 0; border-top: 1px solid var(--line); } .campaign-head { display: block; } .campaign-source { display: inline-flex; margin-top: 10px; } .campaign-grid { grid-template-columns: 1fr; } .campaign-card img { aspect-ratio: 3/2; } .promo-list-head { display: block; } .promo-list-head p { margin-top: 8px; } .filters { width: 100%; border-radius: 18px; } .p-card-m { border-radius: 18px; } }
     </style>
 </head>
 <body data-page="promotions">
@@ -286,16 +301,30 @@
         <div class="container">
             <span class="kicker">โปรโมชันประจำเดือน สิงหาคม 2569</span>
             <h1>โปรฯ เดือนนี้ อัปเดตให้แล้ว</h1>
-            <p>รวมเงื่อนไขและรายการโปรโมชันทั้งหมดจาก Price List ส.ค. 2569 — กรองดูรุ่นที่ร่วมรายการ คำนวณยอด แล้วส่งให้เจ้าหน้าที่เปิดบิลได้ทันที หมดเขต 31 ส.ค. 2569</p>
+            <p>อัปเดตแคมเปญจาก LG Thailand และรายการส่งเสริมการขายใน Price List ส.ค. 2569 — ตรวจสอบสิทธิ์ รุ่นที่ร่วมรายการ และยอดชำระกับเจ้าหน้าที่ก่อนสมัคร</p>
             <div class="hero-actions"><a class="hero-primary" href="#promos">ดูรุ่นที่ร่วมรายการ</a><a class="hero-secondary" href="index.html#planner">สร้างแพ็กเกจของคุณ</a></div>
         </div>
     </section>
 
     <div class="promo-stats" aria-label="สรุปโปรโมชั่น">
         <div class="promo-stat"><strong>฿149</strong><span>ค่าใช้จ่ายรอบบิลแรก สำหรับแผนที่ร่วมรายการ</span></div>
-        <div class="promo-stat"><strong>สูงสุด 15%</strong><span>ส่วนลดคอมโบตามช่วงเวลาและเงื่อนไขลูกค้า</span></div>
+        <div class="promo-stat"><strong>ลด 15%</strong><span>ตลอดสัญญา เฉพาะแคมเปญครบรอบ 15–23 ส.ค. 2569</span></div>
         <div class="promo-stat"><strong>97 รุ่น</strong><span>ผลิตภัณฑ์ในแคตตาล็อกที่เลือกดูแผนได้</span></div>
     </div>
+
+    <section id="official-campaigns">
+        <div class="container">
+            <div class="campaign-head"><div><span class="kicker">OFFICIAL LG CAMPAIGNS</span><h2>แคมเปญ LG Subscribe ล่าสุด</h2></div><a class="campaign-source" href="https://www.lg.com/th/subscribe/promotion_subscription/" target="_blank" rel="noopener">ตรวจสอบที่ LG Thailand ↗</a></div>
+            <div class="campaign-grid">
+                <article class="campaign-card"><img src="https://www.lg.com/content/dam/channel/wcms/th/image-update/subscription/promotion/2026/08-birthday/-Birthday_1920x720.jpg" alt="โปรปังฉลองวันครบรอบ 38 ปี LG" loading="lazy"><div class="campaign-copy"><span class="campaign-date">15–23 ส.ค. 2569</span><h3>โปรปังฉลองวันครบรอบ 38 ปี LG</h3><p>รับส่วนลด 15% ตลอดสัญญา สำหรับสินค้าและแพ็กเกจที่ร่วมรายการ</p><a href="subscribe-store.html">จัดแพ็กเกจเพื่อสอบถามสิทธิ์ →</a></div></article>
+                <article class="campaign-card"><img src="https://www.lg.com/content/dam/channel/wcms/th/image-update/subscription/promotion/2026/07-sub/WP_1920x720.jpg" alt="โปรใจป้ำ คุ้ม 2 ต่อ" loading="lazy"><div class="campaign-copy"><span class="campaign-date">1–31 ส.ค. 2569</span><h3>โปรใจป้ำ คุ้ม 2 ต่อ</h3><p>เดือนแรก 149 บาท และลด 50% นาน 7 รอบบิล สำหรับรุ่นที่ร่วมรายการ</p><a href="#promos">ดูรุ่นและแพ็กเกจ →</a></div></article>
+                <article class="campaign-card"><img src="https://www.lg.com/content/dam/channel/wcms/th/image-update/subscription/promotion/2026/08-birthday/IXY_1920x720.jpg" alt="ซับ 2 แถม 1 เครื่องปรับอากาศ IXY" loading="lazy"><div class="campaign-copy"><span class="campaign-date">1–31 ส.ค. 2569</span><h3>ซับ 2 แถม 1</h3><p>Subscribe แอร์ IXY 2 ตัว รับฟรีเครื่องฟอกอากาศ มูลค่า 6,900 บาท</p><a href="#promos">ดูสินค้าเครื่องปรับอากาศ →</a></div></article>
+                <article class="campaign-card"><img src="https://www.lg.com/content/dam/channel/wcms/th/image-update/subscription/promotion/2026/08-birthday/OLED-S80TY_1920x720.jpg" alt="ซับ 1 แถม 1 ทีวี OLED 65 นิ้ว" loading="lazy"><div class="campaign-copy"><span class="campaign-date">1–31 ส.ค. 2569</span><h3>ซับ 1 แถม 1</h3><p>Subscribe TV OLED 65 นิ้ว รับฟรี Soundbar มูลค่า 15,151 บาท</p><a href="#promos">ดูสินค้าโทรทัศน์ OLED →</a></div></article>
+                <article class="campaign-card"><img src="https://www.lg.com/content/dam/channel/wcms/th/image-update/subscription/promotion/2026/08-birthday/AP_1920x720.jpg" alt="โปรคุ้ม 2 ต่อ เครื่องฟอกอากาศ" loading="lazy"><div class="campaign-copy"><span class="campaign-date">1–31 ส.ค. 2569</span><h3>โปรคุ้ม 2 ต่อ</h3><p>เดือนแรก 149 บาท และลด 50% นาน 2 รอบบิล สำหรับรุ่นที่ร่วมรายการ</p><a href="#promos">ดูสินค้าเครื่องฟอกอากาศ →</a></div></article>
+                <article class="campaign-card"><img src="https://www.lg.com/content/dam/channel/wcms/th/image-update/subscription/promotion/2026/07-sub/Sub07-TV_1920x720.jpg" alt="โปรแรงทั้งลด ทั้งแถม ทีวี OLED 48 นิ้ว" loading="lazy"><div class="campaign-copy"><span class="campaign-date">1–31 ส.ค. 2569</span><h3>โปรแรงทั้งลด ทั้งแถม</h3><p>Subscribe TV OLED 48 นิ้ว รับฟรี xboom Bounce ตามเงื่อนไขแคมเปญ</p><a href="#promos">ดูสินค้าโทรทัศน์ OLED →</a></div></article>
+            </div>
+        </div>
+    </section>
 
     <!-- ================= Global conditions ================= -->
     <section id="conditions">
@@ -303,22 +332,22 @@
             <div class="conditions-head"><span class="kicker">KEY BENEFITS</span><h2>สิทธิพิเศษหลักในเดือนนี้</h2></div>
             <div class="cond-grid">
                 <div class="cond-card">
-                    <span class="c-tag">คอมโบ</span>
-                    <div class="c-emoji">🧩</div>
-                    <h3>สมัคร 2 เครื่องขึ้นไป ลดเพิ่ม 10%</h3>
-                    <p>ลูกค้าใหม่ 2 เครื่องขึ้นไป / ลูกค้าเดิม 1 เครื่องขึ้นไป — ลดจากยอดรวมรายเดือนอัตโนมัติในตะกร้า</p>
+                    <span class="c-tag">ครบรอบ 38 ปี</span>
+                    <div class="c-emoji">🎂</div>
+                    <h3>ลด 15% ตลอดสัญญา</h3>
+                    <p>เฉพาะวันที่ 15–23 ส.ค. 2569 และสินค้า/แพ็กเกจที่ร่วมรายการ โปรดตรวจสอบสิทธิ์ก่อนสมัคร</p>
                 </div>
                 <div class="cond-card orange">
                     <span class="c-tag">บิลแรก</span>
                     <div class="c-emoji">🎉</div>
                     <h3>บิลแรกเพียง ฿149</h3>
-                    <p>ชำระล่วงหน้าแค่ 1 เดือน (แทนค่าบริการเต็ม) ก็เริ่มใช้ได้ทันที</p>
+                    <p>สิทธิ์แตกต่างกันตามสินค้าและแผนบริการ โปรดดูตารางชำระของรุ่นที่เลือกก่อนยืนยัน</p>
                 </div>
                 <div class="cond-card green">
                     <span class="c-tag">ลด 50%</span>
                     <div class="c-emoji">⚡</div>
-                    <h3>ส่วนลด 50% นานสูงสุด 20 เดือน</h3>
-                    <p>WashTower ลดเดือน 2–12 · หลายรุ่นลดเดือน 2–8 หรือ 2–3 · ทีวี/จอ/ลำโพง งวดแรกจ่าย 50% (เดือน 1–12 + โปรต่อ) ตามตารางด้านล่าง</p>
+                    <h3>ลด 50% ตามแคมเปญ</h3>
+                    <p>มีทั้งนาน 2 รอบบิลและ 7 รอบบิล รวมถึงแผนรายรุ่นใน Price List ให้ตรวจสอบตารางชำระก่อนสมัคร</p>
                 </div>
                 <div class="cond-card purple">
                     <span class="c-tag">ของแถม</span>
