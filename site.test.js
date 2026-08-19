@@ -66,7 +66,7 @@ check(/id="planner"/.test(home), 'Home มี Package Planner');
 check(/id="products"/.test(home), 'Home มี Product section');
 check(/id="faq"/.test(home), 'Home มี FAQ');
 check(/product\.html\?slug=/.test(home), 'Home เชื่อมไป PDP');
-check(/\.trust-strip[^}]*margin:\s*24px auto 0/.test(home) && !/\.trust-strip[^}]*margin:\s*-32px/.test(home), 'Home trust strip ไม่ซ้อนทับ Hero');
+check(!/class="trust-strip"/.test(home), 'Home ไม่มี trust strip ที่ซ้ำกับ Why FLEXI-SUB');
 check(/rel="preload"\s+as="image"\s+href="images\/hero-8-d\.jpg"/.test(home), 'Home preload Hero desktop');
 check(/rel="preload"\s+as="image"\s+href="images\/hero-8-m\.jpg"/.test(home), 'Home preload Hero mobile');
 
