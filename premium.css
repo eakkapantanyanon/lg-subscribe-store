@@ -74,6 +74,14 @@ body[data-page="promotions"] .campaign-card:nth-child(5) {
   box-shadow: inset 0 3px 0 var(--premium-brand), var(--premium-shadow);
 }
 body[data-page="promotions"] :where(.campaign-date, .credit-bank, .p-badge) { font-weight: 700; }
+body[data-page="home"] .promo-card.featured {
+  border: 2px solid rgba(165, 0, 52, .62);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.5), 0 2px 4px rgba(28,8,16,.08), 0 14px 32px rgba(165,0,52,.14);
+}
+body[data-page="home"] .promo-card.featured .promo-tag {
+  background: var(--premium-brand);
+  box-shadow: 0 5px 14px rgba(165,0,52,.28);
+}
 
 /* FLEXI-SUB is the recommended comparison column. */
 body[data-page="home"] .compare-table th:nth-child(2) { background: var(--premium-brand); color: #fff; }
@@ -107,6 +115,19 @@ body[data-page="home"] .cat-count {
   color: #fff;
   box-shadow: 0 8px 20px rgba(165,0,52,.2);
 }
+body[data-page="home"] .h-btn-solid {
+  background: var(--premium-brand);
+  border-color: var(--premium-brand);
+  color: #fff;
+  box-shadow: 0 8px 20px rgba(165,0,52,.24);
+}
+body[data-page="home"] .service-banner .btn-pill.light {
+  background: transparent;
+  border: 1.5px solid rgba(255,255,255,.82);
+  color: #fff;
+  box-shadow: none;
+}
+body[data-page="home"] .service-banner .btn-pill.light:hover { background: rgba(255,255,255,.12); }
 :where(.btn-outline, .hero-secondary, .h-btn-outline, .btn-pill.ghost, .final-actions .ghost) {
   background: transparent;
   border-color: currentColor;
@@ -117,8 +138,21 @@ body[data-page="home"] .cat-count {
 
 /* Payment marks: quiet by default, full contrast on intent. */
 .payments { gap: clamp(12px, 2vw, 24px); }
-.payments span { filter: grayscale(1); opacity: .56; transition: filter 250ms ease, opacity 250ms ease, transform 250ms ease; }
-.payments span:hover { filter: grayscale(0); opacity: 1; transform: translateY(-2px); }
+.payments .payment-mark {
+  width: 112px;
+  height: 38px;
+  padding: 3px 8px;
+  border: 1px solid rgba(255,255,255,.16);
+  border-radius: 8px;
+  background: rgba(255,255,255,.96);
+  filter: grayscale(1);
+  opacity: .62;
+  transition: filter 250ms ease, opacity 250ms ease, transform 250ms ease, border-color 250ms ease;
+}
+.payments .payment-mark:hover { filter: grayscale(0); opacity: 1; transform: translateY(-2px); border-color: rgba(255,255,255,.34); }
+.payments .payment-mark text { font: 800 19px Arial, sans-serif; }
+.payments .payment-mark text.payment-medium { font-size: 13px; }
+.payments .payment-mark text.payment-small { font-size: 8px; }
 footer .footer-grid { column-gap: clamp(28px, 4vw, 64px); row-gap: 36px; }
 
 @media (max-width: 640px) {
@@ -129,5 +163,5 @@ footer .footer-grid { column-gap: clamp(28px, 4vw, 64px); row-gap: 36px; }
   body .cart-item:hover, body .lifestyle-card:hover, body .benefit-card:hover { transform: none; }
 }
 @media (prefers-reduced-motion: reduce) {
-  :where(.p-card, .promo-card, .campaign-card, .credit-card, .p-card-m, .plan-card, .cart-item, .lifestyle-card, .benefit-card, .btn-primary, .contact-btn, .header-cta, .hero-primary, .h-btn, .btn-outline, .btn-pill, .payments span) { transition: none; }
+  :where(.p-card, .promo-card, .campaign-card, .credit-card, .p-card-m, .plan-card, .cart-item, .lifestyle-card, .benefit-card, .btn-primary, .contact-btn, .header-cta, .hero-primary, .h-btn, .btn-outline, .btn-pill, .payment-mark) { transition: none; }
 }

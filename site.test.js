@@ -66,6 +66,7 @@ for (const page of pages) {
 console.log('\n· Conversion flow anchors');
 const home = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8');
 const promotions = fs.readFileSync(path.join(ROOT, 'promotions.html'), 'utf8');
+const premium = fs.readFileSync(path.join(ROOT, 'premium.css'), 'utf8');
 check(/id="planner"/.test(home), 'Home มี Package Planner');
 check(/id="products"/.test(home), 'Home มี Product section');
 check(/id="faq"/.test(home), 'Home มี FAQ');
@@ -85,6 +86,10 @@ check(!/💳|🔧|🛡️|🔄|🔍|🛒/.test(pages.map(page => fs.readFileSync
 check(/สายเกมมิ่ง \(Gaming Lifestyle\)/.test(home) && !/คาเฟ่ \/ ธุรกิจเล็ก/.test(home), 'Home เปลี่ยน Lifestyle ธุรกิจเล็กเป็นสายเกมมิ่ง');
 check(/id: 'gaming'[\s\S]*27gx704a[\s\S]*oled48c6psa/.test(home), 'Gaming Lifestyle แนะนำมอนิเตอร์และทีวี OLED');
 check(/images\/promotions\/wp-kum-2-tor\.jpg/.test(home) && /images\/promotions\/ixy-2-get-1\.jpg/.test(home), 'Home Promotion ใช้ภาพลด 50% และของแถมคนละภาพ');
+check((home.match(/promo-card[^"\n]*featured/g) || []).length === 2 && /promo-card\.featured/.test(premium), 'Home โปรบิลแรกและลด 50% มี accent เด่น');
+check(/body\[data-page="home"\] \.h-btn-solid/.test(premium) && /service-banner \.btn-pill\.light/.test(premium), 'Home CTA แยกปุ่มหลักสีแบรนด์และปุ่มรองแบบ outline');
+check((home.match(/<svg class="payment-mark"/g) || []).length === 8 && (promotions.match(/<svg class="payment-mark"/g) || []).length === 8, 'Footer ใช้ SVG payment marks ครบ');
+check(/payment-mark:hover\s*\{[^}]*grayscale\(0\)/.test(premium), 'Payment marks เป็นสีจริงเมื่อ hover');
 
 const pdp = fs.readFileSync(path.join(ROOT, 'product.html'), 'utf8');
 const productSource = fs.readFileSync(path.join(ROOT, 'products.js'), 'utf8');
