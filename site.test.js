@@ -84,6 +84,7 @@ check(pages.every(page => fs.readFileSync(path.join(ROOT, page), 'utf8').include
 check(!/💳|🔧|🛡️|🔄|🔍|🛒/.test(pages.map(page => fs.readFileSync(path.join(ROOT, page), 'utf8')).join('\n')), 'แทน emoji UI ที่กำหนดด้วย line icon แล้ว');
 check(/สายเกมมิ่ง \(Gaming Lifestyle\)/.test(home) && !/คาเฟ่ \/ ธุรกิจเล็ก/.test(home), 'Home เปลี่ยน Lifestyle ธุรกิจเล็กเป็นสายเกมมิ่ง');
 check(/id: 'gaming'[\s\S]*27gx704a[\s\S]*oled48c6psa/.test(home), 'Gaming Lifestyle แนะนำมอนิเตอร์และทีวี OLED');
+check(/images\/promotions\/wp-kum-2-tor\.jpg/.test(home) && /images\/promotions\/ixy-2-get-1\.jpg/.test(home), 'Home Promotion ใช้ภาพลด 50% และของแถมคนละภาพ');
 
 const pdp = fs.readFileSync(path.join(ROOT, 'product.html'), 'utf8');
 const productSource = fs.readFileSync(path.join(ROOT, 'products.js'), 'utf8');
