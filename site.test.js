@@ -71,6 +71,7 @@ check(/rel="preload"\s+as="image"\s+href="images\/hero-8-m\.jpg"/.test(home), 'H
 const pdp = fs.readFileSync(path.join(ROOT, 'product.html'), 'utf8');
 check(/id="addBtn"/.test(pdp), 'PDP มีปุ่มใส่ตะกร้า');
 check(/subscribe-store\.html/.test(pdp), 'PDP เชื่อมไปตะกร้า');
+check(/main\.pdp-layout/.test(pdp) && !/main \.pdp-layout/.test(pdp), 'PDP ใช้ responsive selector ที่ตรงกับ main element');
 
 const cart = fs.readFileSync(path.join(ROOT, 'subscribe-store.html'), 'utf8');
 check(/id="cartItems"/.test(cart), 'Cart มีรายการสินค้า');
