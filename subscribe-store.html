@@ -5079,12 +5079,11 @@ window.LG_PRODUCTS =  [
             msg += 'ยอดชำระครั้งแรก: ฿' + fmt(firstPay) + '\n';
             msg += 'ยอดรวมตลอดสัญญา: ฿' + fmt(grand) + (saving > 0 ? ' (ประหยัด ฿' + fmt(saving) + ')' : '') + '\n';
 
-            // เปลี่ยน 0612670518 เป็น Line ID จริงของคุณ
             if (window.FLEXIAnalytics) window.FLEXIAnalytics.push('lead_submit_success', {
                 cart_item_count: ids.length,
                 customer_type: custType
             });
-            window.open('https://line.me/R/ti/p/0612670518?text=' + encodeURIComponent(msg), '_blank', 'noopener');
+            window.open('https://line.me/R/ti/p/@lgthailand?text=' + encodeURIComponent(msg), '_blank', 'noopener');
         }
 
         document.getElementById('custName').addEventListener('input', function () { clearCheckoutError('custName'); });
