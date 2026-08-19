@@ -180,7 +180,7 @@ window.LG_PRODUCTS = [
   },
   {
     id: 'wd110mn',
-    img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/water-purifier/2024/wd110mn-abgplmt/gallery/01-basic/wp-mx-wd110mn-calmingbeige-basic-large.jpg',
+    img: 'images/products/wd110mn.webp',
     model: 'WD110MN',
     name: 'เครื่องกรองน้ำ LG PuriCare รุ่น WD110MN',
     category: 'เครื่องกรองน้ำ',
@@ -254,7 +254,7 @@ window.LG_PRODUCTS = [
   },
   {
     id: 'a9t-ultra',
-    img: 'https://www.lg.com/content/dam/channel/wcms/th/images/vacuum-cleaner/a9t-ultra_dcbpeth_eath_th_c/Basic-450.jpg',
+    img: 'images/products/a9t-ultra.webp',
     gallery: [
       { src: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/vacuum-cleaner/2025/a9t-ultra-dcbpeth/gallery/01_A9T-ULTRA_PH_Front_2010.jpg/jcr%3Acontent/renditions/thum-1600x1062.jpeg?w=800', alt: 'A9T-ULTRA มุมด้านหน้า' },
       { src: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/vacuum-cleaner/2025/a9t-ultra-dcbpeth/gallery/02_A9T-ULTRA_PH_Front_All_2010.jpg/jcr%3Acontent/renditions/thum-1600x1062.jpeg?w=800', alt: 'A9T-ULTRA พร้อมอุปกรณ์เสริม' },
@@ -286,7 +286,7 @@ window.LG_PRODUCTS = [
   },
   {
     id: 'a9t-core',
-    img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/vacuum-cleaner/2025/a9t-core-dcgpeth/gallery/02_A9T-CORE_TH_Front_450.jpg',
+    img: 'images/products/a9t-core.webp',
     model: 'A9T-CORE',
     name: 'เครื่องดูดฝุ่น LG CordZero™ รุ่น A9T-CORE แบบด้ามจับ All-in-One Tower',
     category: 'เครื่องดูดฝุ่น',
@@ -336,7 +336,7 @@ window.LG_PRODUCTS = [
   },
   {
     id: 'gc-l257kqkw',
-    img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/refrigerator/2024/gc-l257kqkw-aepplmt/gallery/GC-L257KQKW_Front_450.jpg',
+    img: 'images/products/gc-l257kqkw.webp',
     model: 'GC-L257KQKW',
     name: 'ตู้เย็น Side by Side GC-L257KQKW 22.4 คิว',
     category: 'ตู้เย็น Side by Side',
@@ -376,7 +376,7 @@ window.LG_PRODUCTS = [
   },
   {
     id: 'gc-b257sqyl',
-    img: 'https://www.lg.com/content/dam/channel/wcms/th/images/refrigerator/2023/gc-b257sqyl/GC-B257SQYL-450.jpg',
+    img: 'images/products/gc-b257sqyl.webp',
     model: 'GC-B257SQYL',
     name: 'ตู้เย็น Side by Side GC-B257SQYL 22.9 คิว',
     category: 'ตู้เย็น Side by Side',
@@ -951,7 +951,7 @@ window.LG_PRODUCTS = [
   },
   {
     id: 'wt2520nheg',
-    img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/washing-machine/2026/wt2520nheg-abgpeth/gallery/wt2520nheg-450-0604.jpg',
+    img: 'images/products/wt2520nheg.webp',
     model: 'WT2520NHEG',
     name: 'เครื่องซักอบผ้า LG WashTower 25/20 กก. AI DD™ พร้อม Smart WI-FI control',
     category: 'Wash Tower',
@@ -1539,7 +1539,7 @@ window.LG_PRODUCTS = [
   },
   {
     id: 'fv1413s4m',
-    img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/washing-machine/2024/fv1413s4m-ambpeth/gallery/FV1413S4M-01-450.jpg',
+    img: 'images/products/fv1413s4m.webp',
     model: 'FV1413S4M',
     name: 'เครื่องซักผ้า 13 กก. AI DD™',
     category: 'เครื่องซักผ้า ฝาหน้า',
@@ -3246,7 +3246,7 @@ window.LG_PRODUCTS = [
   },
   {
     id: 'oled48c6psa',
-    img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/oled/oled81-42c6psa-atm/gallery/48-c6/update/OLED48C6PSA-450-01.jpg',
+    img: 'images/products/oled48c6psa.webp',
     model: 'OLED48C6PSA',
     name: 'ทีวี 48" LG OLED evo C6 4K Smart TV 2026',
     category: 'โทรทัศน์ OLED',

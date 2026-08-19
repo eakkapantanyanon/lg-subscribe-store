@@ -123,7 +123,7 @@
     function productCard(product, position) {
         const slug = slugFor(product);
         const image = product.img
-            ? '<img src="' + escapeHtml(product.img) + '" alt="' + escapeHtml(product.name || product.model) + '" width="450" height="450" loading="' + (position <= 4 ? 'eager' : 'lazy') + '" decoding="async"' + (product.fallbackImg ? ' data-fallback-src="' + escapeHtml(product.fallbackImg) + '"' : '') + '>'
+            ? '<img src="' + escapeHtml(product.img) + '" alt="' + escapeHtml(product.name || product.model) + '" width="450" height="450" loading="lazy" decoding="async"' + (product.fallbackImg ? ' data-fallback-src="' + escapeHtml(product.fallbackImg) + '"' : '') + '>'
             : '';
 
         return '<a class="p-card" href="product.html?slug=' + encodeURIComponent(slug) + '" data-source="catalog" data-category="' + escapeHtml(product.category || '') + '" data-model="' + escapeHtml(product.model || '') + '" data-product-name="' + escapeHtml(product.name || '') + '" data-position="' + position + '">' +

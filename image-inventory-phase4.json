@@ -1,0 +1,2605 @@
+{
+  "inventoryDate": "2026-08-19",
+  "criteria": {
+    "A": "Local primary image verified by exact source URL mapping, successful download, hashes, and visual review.",
+    "B": "Remote www.lg.com primary with exact model token and a URL unique to one product.",
+    "C": "Remote mapping is shared, series-level, combo, non-exact, or contains conflicting variant evidence.",
+    "D": "Primary image missing or an explicit fallback is configured. No migration in Phase 4."
+  },
+  "summary": {
+    "products": 97,
+    "primary": {
+      "local": 8,
+      "remote": 76,
+      "missing": 13
+    },
+    "gallery": {
+      "references": 349,
+      "local": 4,
+      "remote": 345
+    },
+    "explicitFallbacks": 1,
+    "groups": {
+      "A": 8,
+      "B": 34,
+      "C": 41,
+      "D": 14
+    },
+    "pilot": {
+      "products": 8,
+      "originalBytes": 106673,
+      "localBytes": 45976,
+      "savedBytes": 60697,
+      "reductionPercent": 56.9
+    }
+  },
+  "products": [
+    {
+      "slug": "wd516an",
+      "model": "WD516AN",
+      "productName": "เครื่องกรองน้ำ LG PuriCare รุ่น WD516AN",
+      "primaryImage": null,
+      "originalPrimaryImage": null,
+      "primarySourceType": "missing",
+      "primarySourceDomain": null,
+      "galleryUrls": [
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/water-purifier/2024/wd516an-acnplmt/ha-wp-wd516an-navy-blue-gp1-2024-gallery/450x450/01_1.ATOM4D+_WD516AN.ANVRLML_Front_Up.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/water-purifier/2024/wd516an-acnplmt/ha-wp-wd516an-navy-blue-gp1-2024-gallery/2010x1334/01_1.ATOM4D+_WD516AN.ANVRLML_Front_Up.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/water-purifier/2024/wd516an-acnplmt/ha-wp-wd516an-navy-blue-gp1-2024-gallery/180x180/01_1.ATOM4D+_WD516AN.ANVRLML_Front_Up.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/water-purifier/2024/wd516an-acnplmt/ha-wp-wd516an-navy-blue-gp1-2024-gallery/1044x1334/01_1.ATOM4D+_WD516AN.ANVRLML_Front_Up.jpg"
+      ],
+      "galleryDomains": [
+        "www.lg.com"
+      ],
+      "fallbackStatus": {
+        "type": "missing-primary-runtime-ui",
+        "url": null,
+        "domain": null
+      },
+      "group": "D",
+      "verification": "missing primary image",
+      "optimization": null
+    },
+    {
+      "slug": "wd518an",
+      "model": "WD518AN",
+      "productName": "เครื่องกรองน้ำ LG PuriCare รุ่น WD518AN",
+      "primaryImage": null,
+      "originalPrimaryImage": null,
+      "primarySourceType": "missing",
+      "primarySourceDomain": null,
+      "galleryUrls": [
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/water-purifier/2024/wd518an-abgplmt/ha-wp-wd518an-calming-beige-gp1-2024-gallery/450x450/01_ATOM-V_Objet_WD518AN.ABGRLML1.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/water-purifier/2024/wd518an-abgplmt/ha-wp-wd518an-calming-beige-gp1-2024-gallery/1600x1062/01_ATOM-V_Objet_WD518AN.ABGRLML1.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/water-purifier/2024/wd518an-abgplmt/ha-wp-wd518an-calming-beige-gp1-2024-gallery/1600x1062/02_ATOM-V_Objet_WD518AN.ABGRLML2.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/water-purifier/2024/wd518an-abgplmt/ha-wp-wd518an-calming-beige-gp1-2024-gallery/1600x1062/03_ATOM-V_Objet_WD518AN.ABGRLML3.jpg"
+      ],
+      "galleryDomains": [
+        "www.lg.com"
+      ],
+      "fallbackStatus": {
+        "type": "missing-primary-runtime-ui",
+        "url": null,
+        "domain": null
+      },
+      "group": "D",
+      "verification": "missing primary image",
+      "optimization": null
+    },
+    {
+      "slug": "wd110mn",
+      "model": "WD110MN",
+      "productName": "เครื่องกรองน้ำ LG PuriCare รุ่น WD110MN",
+      "primaryImage": "images/products/wd110mn.webp",
+      "originalPrimaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/water-purifier/2024/wd110mn-abgplmt/gallery/01-basic/wp-mx-wd110mn-calmingbeige-basic-large.jpg",
+      "primarySourceType": "local",
+      "primarySourceDomain": "local",
+      "galleryUrls": [
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/water-purifier/2024/wd110mn-abgplmt/gallery/01-basic/wp-mx-wd110mn-calmingbeige-basic-large.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/water-purifier/2024/wd110mn-abgplmt/new-upload/gallery/gallery/wp-wd110mn-calmingbeige-gallery-01-2010.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/water-purifier/2024/wd110mn-abgplmt/new-upload/gallery/gallery/wp-wd110mn-calmingbeige-gallery-02-2010.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/water-purifier/2024/wd110mn-abgplmt/new-upload/gallery/gallery/wp-wd110mn-calmingbeige-gallery-03-2010.jpg"
+      ],
+      "galleryDomains": [
+        "www.lg.com"
+      ],
+      "fallbackStatus": {
+        "type": "runtime-ui",
+        "url": null,
+        "domain": null
+      },
+      "group": "A",
+      "verification": "verified pilot: exact URL model mapping + HTTP download + visual review",
+      "optimization": {
+        "originalUrl": "https://www.lg.com/content/dam/channel/wcms/th/image-update/water-purifier/2024/wd110mn-abgplmt/gallery/01-basic/wp-mx-wd110mn-calmingbeige-basic-large.jpg",
+        "originalBytes": 4288,
+        "originalSha256": "6c532be5123e7d5f37df24eb253aa0d99e75a1f98e3d78fe21b9c9e96800bac0",
+        "localPath": "images/products/wd110mn.webp",
+        "localBytes": 1490,
+        "localSha256": "51b03f93585d4d2624f67e6147218d5c8d86222127a93d4514e8c0944a7af762",
+        "dimensions": "450x450",
+        "format": "webp",
+        "quality": 85
+      }
+    },
+    {
+      "slug": "a9t-ultra",
+      "model": "A9T-ULTRA",
+      "productName": "เครื่องดูดฝุ่น LG CordZero™ รุ่น A9T-ULTRA แบบด้ามจับ All-in-One Tower พร้อม Smart WI-FI control",
+      "primaryImage": "images/products/a9t-ultra.webp",
+      "originalPrimaryImage": "https://www.lg.com/content/dam/channel/wcms/th/images/vacuum-cleaner/a9t-ultra_dcbpeth_eath_th_c/Basic-450.jpg",
+      "primarySourceType": "local",
+      "primarySourceDomain": "local",
+      "galleryUrls": [
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/vacuum-cleaner/2025/a9t-ultra-dcbpeth/gallery/01_A9T-ULTRA_PH_Front_2010.jpg/jcr%3Acontent/renditions/thum-1600x1062.jpeg?w=800",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/vacuum-cleaner/2025/a9t-ultra-dcbpeth/gallery/02_A9T-ULTRA_PH_Front_All_2010.jpg/jcr%3Acontent/renditions/thum-1600x1062.jpeg?w=800",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/vacuum-cleaner/2025/a9t-ultra-dcbpeth/gallery/03_A9T-ULTRA_PH_Left_2010.jpg/jcr%3Acontent/renditions/thum-1600x1062.jpeg?w=800",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/vacuum-cleaner/2025/a9t-ultra-dcbpeth/gallery/05_A9T-ULTRA_PH_Side1_2010.jpg/jcr%3Acontent/renditions/thum-1600x1062.jpeg?w=800"
+      ],
+      "galleryDomains": [
+        "www.lg.com"
+      ],
+      "fallbackStatus": {
+        "type": "runtime-ui",
+        "url": null,
+        "domain": null
+      },
+      "group": "A",
+      "verification": "verified pilot: exact URL model mapping + HTTP download + visual review",
+      "optimization": {
+        "originalUrl": "https://www.lg.com/content/dam/channel/wcms/th/images/vacuum-cleaner/a9t-ultra_dcbpeth_eath_th_c/Basic-450.jpg",
+        "originalBytes": 8524,
+        "originalSha256": "d0be068e8ba192d77d76788baa46955a18c5bbf48f8ab7b19f108dc5ae400488",
+        "localPath": "images/products/a9t-ultra.webp",
+        "localBytes": 3780,
+        "localSha256": "d39d206a306b9452d67e7a1e8eeb39c0405c568050919c75d5fe43dc05801d53",
+        "dimensions": "450x450",
+        "format": "webp",
+        "quality": 85
+      }
+    },
+    {
+      "slug": "a9t-core",
+      "model": "A9T-CORE",
+      "productName": "เครื่องดูดฝุ่น LG CordZero™ รุ่น A9T-CORE แบบด้ามจับ All-in-One Tower",
+      "primaryImage": "images/products/a9t-core.webp",
+      "originalPrimaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/vacuum-cleaner/2025/a9t-core-dcgpeth/gallery/02_A9T-CORE_TH_Front_450.jpg",
+      "primarySourceType": "local",
+      "primarySourceDomain": "local",
+      "galleryUrls": [
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/vacuum-cleaner/2025/a9t-core-dcgpeth/gallery/02_A9T-CORE_TH_Front_450.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/vacuum-cleaner/2025/a9t-core-dcgpeth/gallery/02_A9T-CORE_TH_Front_2010.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/vacuum-cleaner/2025/a9t-core-dcgpeth/gallery/01_A9T-CORE_TH_Front_Tower_2010.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/vacuum-cleaner/2025/a9t-core-dcgpeth/gallery/03_A9T-CORE_TH_Front_Open_2010.jpg"
+      ],
+      "galleryDomains": [
+        "www.lg.com"
+      ],
+      "fallbackStatus": {
+        "type": "runtime-ui",
+        "url": null,
+        "domain": null
+      },
+      "group": "A",
+      "verification": "verified pilot: exact URL model mapping + HTTP download + visual review",
+      "optimization": {
+        "originalUrl": "https://www.lg.com/content/dam/channel/wcms/th/image-update/vacuum-cleaner/2025/a9t-core-dcgpeth/gallery/02_A9T-CORE_TH_Front_450.jpg",
+        "originalBytes": 8679,
+        "originalSha256": "9def01358824a5199f5104e757b421863ac0642963eb98c42d4451880ef72697",
+        "localPath": "images/products/a9t-core.webp",
+        "localBytes": 3344,
+        "localSha256": "de45497180fc3a6fd41d152529e3afdf8dfde1361d7fece46fd44829b651202d",
+        "dimensions": "450x450",
+        "format": "webp",
+        "quality": 85
+      }
+    },
+    {
+      "slug": "a9t-lite",
+      "model": "A9T-LITE",
+      "productName": "เครื่องดูดฝุ่น LG CordZero™ รุ่น A9T-LITE แบบด้ามจับ All-in-One Tower",
+      "primaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/vacuum-cleaner/2025/a9t-lite-dcgpeth/gallery/02_All-in-one_Tower_CalmingGreen_S9JGGTDWH_A9T-CORE_TH_Front-450.jpg",
+      "originalPrimaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/vacuum-cleaner/2025/a9t-lite-dcgpeth/gallery/02_All-in-one_Tower_CalmingGreen_S9JGGTDWH_A9T-CORE_TH_Front-450.jpg",
+      "primarySourceType": "remote",
+      "primarySourceDomain": "www.lg.com",
+      "galleryUrls": [
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/vacuum-cleaner/2025/a9t-lite-dcgpeth/gallery/02_All-in-one_Tower_CalmingGreen_S9JGGTDWH_A9T-CORE_TH_Front-450.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/vacuum-cleaner/2025/a9t-lite-dcgpeth/gallery/02_All-in-one_Tower_CalmingGreen_S9JGGTDWH_A9T-CORE_TH_Front-2010.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/vacuum-cleaner/2025/a9t-lite-dcgpeth/gallery/01_All-in-one_Tower_CalmingGreen_S9JGGTDWH_A9T-CORE_TH_Front_Tower-2010.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/vacuum-cleaner/2025/a9t-lite-dcgpeth/gallery/03_All-in-one_Tower_CalmingGreen_S9JGGTDWH_A9T-CORE_TH_Front_Open-2010.jpg"
+      ],
+      "galleryDomains": [
+        "www.lg.com"
+      ],
+      "fallbackStatus": {
+        "type": "runtime-ui",
+        "url": null,
+        "domain": null
+      },
+      "group": "C",
+      "verification": "path/filename contains conflicting or variant model evidence",
+      "optimization": null
+    },
+    {
+      "slug": "gc-l257kqkw",
+      "model": "GC-L257KQKW",
+      "productName": "ตู้เย็น Side by Side GC-L257KQKW 22.4 คิว",
+      "primaryImage": "images/products/gc-l257kqkw.webp",
+      "originalPrimaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/refrigerator/2024/gc-l257kqkw-aepplmt/gallery/GC-L257KQKW_Front_450.jpg",
+      "primarySourceType": "local",
+      "primarySourceDomain": "local",
+      "galleryUrls": [
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/refrigerator/2024/gc-l257kqkw-aepplmt/gallery/GC-L257KQKW_Front_450.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/refrigerator/2024/gc-l257kqkw-aepplmt/gallery/GC-L257KQKW_Front_2010.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/refrigerator/2024/gc-l257kqkw-aepplmt/gallery/GC-L257KQKW_FrontOpen_Food_2010.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/refrigerator/2024/gc-l257kqkw-aepplmt/gallery/GC-L257KQKW_FrontOpen_2010.jpg"
+      ],
+      "galleryDomains": [
+        "www.lg.com"
+      ],
+      "fallbackStatus": {
+        "type": "runtime-ui",
+        "url": null,
+        "domain": null
+      },
+      "group": "A",
+      "verification": "verified pilot: exact URL model mapping + HTTP download + visual review",
+      "optimization": {
+        "originalUrl": "https://www.lg.com/content/dam/channel/wcms/th/image-update/refrigerator/2024/gc-l257kqkw-aepplmt/gallery/GC-L257KQKW_Front_450.jpg",
+        "originalBytes": 9464,
+        "originalSha256": "4d12452c7e904272e8ce7d16939978a669ce2f378a032aa453488aef617b9a5e",
+        "localPath": "images/products/gc-l257kqkw.webp",
+        "localBytes": 2804,
+        "localSha256": "33c820ac14f0c59e128d9687024072c0765513ddeb65d10f18c47ddd36fa0e68",
+        "dimensions": "450x450",
+        "format": "webp",
+        "quality": 85
+      }
+    },
+    {
+      "slug": "gc-b257sqyl",
+      "model": "GC-B257SQYL",
+      "productName": "ตู้เย็น Side by Side GC-B257SQYL 22.9 คิว",
+      "primaryImage": "images/products/gc-b257sqyl.webp",
+      "originalPrimaryImage": "https://www.lg.com/content/dam/channel/wcms/th/images/refrigerator/2023/gc-b257sqyl/GC-B257SQYL-450.jpg",
+      "primarySourceType": "local",
+      "primarySourceDomain": "local",
+      "galleryUrls": [
+        "https://www.lg.com/content/dam/channel/wcms/th/images/refrigerator/2023/gc-b257sqyl/GC-B257SQYL-450.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/images/spec/6815cc9f_GC-B257SQYL-2-M.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/images/spec/c634fbaf_GC-B257SQYL-D.jpg"
+      ],
+      "galleryDomains": [
+        "www.lg.com"
+      ],
+      "fallbackStatus": {
+        "type": "runtime-ui",
+        "url": null,
+        "domain": null
+      },
+      "group": "A",
+      "verification": "verified pilot: exact URL model mapping + HTTP download + visual review",
+      "optimization": {
+        "originalUrl": "https://www.lg.com/content/dam/channel/wcms/th/images/refrigerator/2023/gc-b257sqyl/GC-B257SQYL-450.jpg",
+        "originalBytes": 7436,
+        "originalSha256": "8e2ad783506c431c6ca5f3386be56c0e20fd76111916c3c14b2f5af6b3c0afd6",
+        "localPath": "images/products/gc-b257sqyl.webp",
+        "localBytes": 2432,
+        "localSha256": "7fae853bd78c065546fa596c291bb1144a872d9a7bd26bc9baffe8f354366c7c",
+        "dimensions": "450x450",
+        "format": "webp",
+        "quality": 85
+      }
+    },
+    {
+      "slug": "gc-x257cmhw",
+      "model": "GC-X257CMHW",
+      "productName": "ตู้เย็น Side by Side ขนาด 22.4 คิว ระบบ Inverter Compressor",
+      "primaryImage": null,
+      "originalPrimaryImage": null,
+      "primarySourceType": "missing",
+      "primarySourceDomain": null,
+      "galleryUrls": [
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/refrigerator/2026/gc-x257cmhw-aeeplmt/gallery/side-by-side-vs6-2026-gc-x257cmhw-gc-x257cmhw-th-beige-beige-10-front-on-food-re-450.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/refrigerator/2026/gc-x257cmhw-aeeplmt/gallery/side-by-side-vs6-2026-gc-x257cmhw-gc-x257cmhw-th-beige-beige-10-front-on-food-re-2010.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/refrigerator/2026/gc-x257cmhw-aeeplmt/gallery/side-by-side-vs6-2026-gc-x257cmhw-gc-x257cmhw-th-beige-beige-07-front-didopen1-food-2010.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/refrigerator/2026/gc-x257cmhw-aeeplmt/gallery/side-by-side-vs6-2026-gc-x257cmhw-gc-x257cmhw-th-beige-beige-08-front-didopen2-food-2010.jpg"
+      ],
+      "galleryDomains": [
+        "www.lg.com"
+      ],
+      "fallbackStatus": {
+        "type": "missing-primary-runtime-ui",
+        "url": null,
+        "domain": null
+      },
+      "group": "D",
+      "verification": "missing primary image",
+      "optimization": null
+    },
+    {
+      "slug": "gc-l257sfzw",
+      "model": "GC-L257SFZW",
+      "productName": "ตู้เย็น Side-by-Side 22.4 คิว รองรับ Smart Wi-Fi",
+      "primaryImage": "https://www.lg.com/content/dam/channel/wcms/th/images/refrigerator/2023/gc-l257sfzw/gallery/450x450/01_VS6_L_Good++GC-L257SFZL_PY_NonPlumbing_Front.jpg",
+      "originalPrimaryImage": "https://www.lg.com/content/dam/channel/wcms/th/images/refrigerator/2023/gc-l257sfzw/gallery/450x450/01_VS6_L_Good++GC-L257SFZL_PY_NonPlumbing_Front.jpg",
+      "primarySourceType": "remote",
+      "primarySourceDomain": "www.lg.com",
+      "galleryUrls": [
+        "https://www.lg.com/content/dam/channel/wcms/th/images/refrigerator/2023/gc-l257sfzw/gallery/450x450/01_VS6_L_Good++GC-L257SFZL_PY_NonPlumbing_Front.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/images/refrigerator/2023/gc-l257sfzw/gallery/1600x1062/01_VS6_L_Good++GC-L257SFZL_PY_NonPlumbing_Front.jpg?w=800",
+        "https://www.lg.com/content/dam/channel/wcms/th/images/refrigerator/2023/gc-l257sfzw/gallery/1600x1062/10_VS6_L_Good++GC-L257SFZL_PY_NonPlumbing_Front_RightOpen_Food.jpg?w=800",
+        "https://www.lg.com/content/dam/channel/wcms/th/images/refrigerator/2023/gc-l257sfzw/gallery/1600x1062/11_VS6_L_Good++GC-L257SFZL_PY_NonPlumbing_Front_RightOpen.jpg?w=800"
+      ],
+      "galleryDomains": [
+        "www.lg.com"
+      ],
+      "fallbackStatus": {
+        "type": "runtime-ui",
+        "url": null,
+        "domain": null
+      },
+      "group": "C",
+      "verification": "path/filename contains conflicting or variant model evidence",
+      "optimization": null
+    },
+    {
+      "slug": "gc-x257cmew",
+      "model": "GC-X257CMEW",
+      "productName": "ตู้เย็น InstaView Side by Side 22.4 คิว GC-X257CMEW Smart Inverter Compressor™",
+      "primaryImage": "https://www.lg.com/content/dam/channel/wcms/th/images/refrigerator/2023/gc-x257cmew/gallery/450x450/01_VS6_X_Best_GC-X257CMEW_NonPlumbing_TE_Front_On_Food.jpg",
+      "originalPrimaryImage": "https://www.lg.com/content/dam/channel/wcms/th/images/refrigerator/2023/gc-x257cmew/gallery/450x450/01_VS6_X_Best_GC-X257CMEW_NonPlumbing_TE_Front_On_Food.jpg",
+      "primarySourceType": "remote",
+      "primarySourceDomain": "www.lg.com",
+      "galleryUrls": [
+        "https://www.lg.com/content/dam/channel/wcms/th/images/refrigerator/2023/gc-x257cmew/gallery/450x450/01_VS6_X_Best_GC-X257CMEW_NonPlumbing_TE_Front_On_Food.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/images/refrigerator/2023/gc-x257cmew/gallery/1600x1062/01_VS6_X_Best_GC-X257CMEW_NonPlumbing_TE_Front_On_Food.jpg?w=800",
+        "https://www.lg.com/content/dam/channel/wcms/th/images/refrigerator/2023/gc-x257cmew/gallery/1600x1062/02_VS6_X_Best_GC-X257CMEW_NonPlumbing_TE_Front_Off.jpg?w=800",
+        "https://www.lg.com/content/dam/channel/wcms/th/images/refrigerator/2023/gc-x257cmew/gallery/1600x1062/03_VS6_X_Best_GC-X257CMEW_NonPlumbing_TE_Front_DIDOpen1_Food.jpg?w=800"
+      ],
+      "galleryDomains": [
+        "www.lg.com"
+      ],
+      "fallbackStatus": {
+        "type": "runtime-ui",
+        "url": null,
+        "domain": null
+      },
+      "group": "B",
+      "verification": "remote LG URL contains exact model token and is unique to this product",
+      "optimization": null
+    },
+    {
+      "slug": "gc-j257sqzw",
+      "model": "GC-J257SQZW",
+      "productName": "ตู้เย็น Side by Side GC-J257SQZW 22.4 คิว",
+      "primaryImage": "https://www.lg.com/content/dam/channel/wcms/th/images/refrigerator/2023/gc-j257sqzw/GC-J257SQZW_450.jpg",
+      "originalPrimaryImage": "https://www.lg.com/content/dam/channel/wcms/th/images/refrigerator/2023/gc-j257sqzw/GC-J257SQZW_450.jpg",
+      "primarySourceType": "remote",
+      "primarySourceDomain": "www.lg.com",
+      "galleryUrls": [
+        "https://www.lg.com/content/dam/channel/wcms/th/images/refrigerator/2023/gc-j257sqzw/GC-J257SQZW_450.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/images/spec/GC-J257SQZW-spec-m.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/images/spec/GC-J257SQZW-spec-d.jpg"
+      ],
+      "galleryDomains": [
+        "www.lg.com"
+      ],
+      "fallbackStatus": {
+        "type": "runtime-ui",
+        "url": null,
+        "domain": null
+      },
+      "group": "B",
+      "verification": "remote LG URL contains exact model token and is unique to this product",
+      "optimization": null
+    },
+    {
+      "slug": "gv-b25ffgdb",
+      "model": "GV-B25FFGDB",
+      "productName": "ตู้เย็น Multi-Door GV-B25FFGDB ขนาด 21.6 คิว ระบบ Smart Inverter Compressor",
+      "primaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/refrigerator/2025/gv-b25ffgdb-abmplmt/05_T-VN6_Good_GV-B25FFGDB_BM_Front_450.jpg",
+      "originalPrimaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/refrigerator/2025/gv-b25ffgdb-abmplmt/05_T-VN6_Good_GV-B25FFGDB_BM_Front_450.jpg",
+      "primarySourceType": "remote",
+      "primarySourceDomain": "www.lg.com",
+      "galleryUrls": [
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/refrigerator/2025/gv-b25ffgdb-abmplmt/gallery/05_T-VN6_Good_GV-B25FFGDB_BM_Front_2010.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/refrigerator/2025/gv-b25ffgdb-abmplmt/gallery/06_T-VN6_Good_GV-B25FFGDB_BM_Front_LightingX_2010.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/refrigerator/2025/gv-b25ffgdb-abmplmt/gallery/07_T-VN6_Good_GV-B25FFGDB_BM_FrontOpen_2010.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/refrigerator/2025/gv-b25ffgdb-abmplmt/gallery/08_T-VN6_Good_GV-B25FFGDB_BM_FrontTopOpen_2010.jpg"
+      ],
+      "galleryDomains": [
+        "www.lg.com"
+      ],
+      "fallbackStatus": {
+        "type": "runtime-ui",
+        "url": null,
+        "domain": null
+      },
+      "group": "B",
+      "verification": "remote LG URL contains exact model token and is unique to this product",
+      "optimization": null
+    },
+    {
+      "slug": "gc-l24ffcbb",
+      "model": "GC-L24FFCBB + MS2032GAS",
+      "productName": "ตู้เย็น Multi-Door GC-L24FFCBB 22.6 คิว ระบบ Smart Inverter Compressor",
+      "primaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/refrigerator/2025/gc-l24ffcbb-aevplm1/gallery/basic/basic-450.jpg",
+      "originalPrimaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/refrigerator/2025/gc-l24ffcbb-aevplm1/gallery/basic/basic-450.jpg",
+      "primarySourceType": "remote",
+      "primarySourceDomain": "www.lg.com",
+      "galleryUrls": [
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/refrigerator/2025/gc-l24ffcbb-aevplm1/gallery/basic/basic-450.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/refrigerator/2025/gc-l24ffcbb-aevplm1/gallery/gallery/multi-door-f-next6-2025-gc-f24ffc2j-gallery-gallery-2010-01.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/refrigerator/2025/gc-l24ffcbb-aevplm1/gallery/gallery/multi-door-f-next6-2025-gc-f24ffc2j-gallery-gallery-2010-02.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/refrigerator/2025/gc-l24ffcbb-aevplm1/gallery/gallery/multi-door-f-next6-2025-gc-f24ffc2j-gallery-gallery-2010-03.jpg"
+      ],
+      "galleryDomains": [
+        "www.lg.com"
+      ],
+      "fallbackStatus": {
+        "type": "runtime-ui",
+        "url": null,
+        "domain": null
+      },
+      "group": "C",
+      "verification": "shared, series-level, combo, or non-exact model URL",
+      "optimization": null
+    },
+    {
+      "slug": "gc-g24ffqkb",
+      "model": "GC-G24FFQKB",
+      "productName": "ตู้เย็น InstaView Multi-Door 22.5 คิว GC-G24FFQKB Smart Inverter Compressor",
+      "primaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/refrigerator/2025/gc-g24ffqkb-aeeplm1/gallery-new/GC-G24FFQKB-NEW-450-09.jpg",
+      "originalPrimaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/refrigerator/2025/gc-g24ffqkb-aeeplm1/gallery-new/GC-G24FFQKB-NEW-450-09.jpg",
+      "primarySourceType": "remote",
+      "primarySourceDomain": "www.lg.com",
+      "galleryUrls": [
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/refrigerator/2025/gc-g24ffqkb-aeeplm1/gallery-new/GC-G24FFQKB-NEW-450-09.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/refrigerator/2025/gc-g24ffqkb-aeeplm1/gallery-new/GC-G24FFQKB-NEW-2010x1334-07.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/refrigerator/2025/gc-g24ffqkb-aeeplm1/gallery-new/GC-G24FFQKB-NEW-2010x1334-05.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/refrigerator/2025/gc-g24ffqkb-aeeplm1/gallery-new/GC-G24FFQKB-NEW-2010x1334-20.jpg"
+      ],
+      "galleryDomains": [
+        "www.lg.com"
+      ],
+      "fallbackStatus": {
+        "type": "runtime-ui",
+        "url": null,
+        "domain": null
+      },
+      "group": "B",
+      "verification": "remote LG URL contains exact model token and is unique to this product",
+      "optimization": null
+    },
+    {
+      "slug": "gc-v22ffqmb",
+      "model": "GC-V22FFQMB",
+      "productName": "ตู้เย็น InstaView Multi-Door 18.7 คิว GC-V22FFQMB Smart Inverter",
+      "primaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/refrigerator/2024/gc-v22ffqmb/gallery/01-basic/ref-f-next8-gc-v22ffqmb-large-01-front.png",
+      "originalPrimaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/refrigerator/2024/gc-v22ffqmb/gallery/01-basic/ref-f-next8-gc-v22ffqmb-large-01-front.png",
+      "primarySourceType": "remote",
+      "primarySourceDomain": "www.lg.com",
+      "galleryUrls": [
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/refrigerator/2024/gc-v22ffqmb/gallery/01-basic/ref-f-next8-gc-v22ffqmb-large-01-front.png",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/refrigerator/2024/gc-v22ffqmb/gallery/03-zoom/ref-f-next8-gc-v22ffqmb-zoom-01-front-2010.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/refrigerator/2024/gc-v22ffqmb/gallery/03-zoom/ref-f-next8-gc-v22ffqmb-zoom-02-frontopen-foods-2010.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/refrigerator/2024/gc-v22ffqmb/gallery/03-zoom/ref-f-next8-gc-v22ffqmb-zoom-08-fronttopopen-2010.jpg"
+      ],
+      "galleryDomains": [
+        "www.lg.com"
+      ],
+      "fallbackStatus": {
+        "type": "runtime-ui",
+        "url": null,
+        "domain": null
+      },
+      "group": "B",
+      "verification": "remote LG URL contains exact model token and is unique to this product",
+      "optimization": null
+    },
+    {
+      "slug": "gc-b48fpgam",
+      "model": "GC-B48FPGAM",
+      "productName": "ตู้เย็น Multi-Door ขนาด 17.4 คิว ระบบ Inverter Compressor",
+      "primaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/refrigerator/2026/gc-b48fpgam-adbplmt/gallery/basic/multi-door-richome-2026-gcfb48fpgam-blackglass-gallery-basic-large.jpg",
+      "originalPrimaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/refrigerator/2026/gc-b48fpgam-adbplmt/gallery/basic/multi-door-richome-2026-gcfb48fpgam-blackglass-gallery-basic-large.jpg",
+      "primarySourceType": "remote",
+      "primarySourceDomain": "www.lg.com",
+      "galleryUrls": [
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/refrigerator/2026/gc-b48fpgam-adbplmt/gallery/basic/multi-door-richome-2026-gcfb48fpgam-blackglass-gallery-basic-large.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/refrigerator/2026/gc-b48fpgam-adbplmt/gallery/gallery/multi-door-richome-2026-gcfb48fpgam-blackglass-gallery-01-front-view-2010.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/refrigerator/2026/gc-b48fpgam-adbplmt/gallery/thumbnail/multi-door-richome-2026-gcfb48fpgam-blackglass-gallery-thumbnail-01-front-view.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/refrigerator/2026/gc-b48fpgam-adbplmt/gallery/zoom/multi-door-richome-2026-gcfb48fpgam-blackglass-gallery-zoom-01-front-view-m.jpg"
+      ],
+      "galleryDomains": [
+        "www.lg.com"
+      ],
+      "fallbackStatus": {
+        "type": "runtime-ui",
+        "url": null,
+        "domain": null
+      },
+      "group": "B",
+      "verification": "remote LG URL contains exact model token and is unique to this product",
+      "optimization": null
+    },
+    {
+      "slug": "gv-v25ffgrb",
+      "model": "GV-V25FFGRB",
+      "productName": "ตู้เย็น InstaView Multi-Door 21.6 คิว GV-V25FFGRB Smart Inverter Compressor",
+      "primaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/refrigerator/2025/gv-v25ffgrb-abmplmt/gallery/01_GV-V25FFGRB_LFB61BLGAI_Front_Food_450.jpg",
+      "originalPrimaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/refrigerator/2025/gv-v25ffgrb-abmplmt/gallery/01_GV-V25FFGRB_LFB61BLGAI_Front_Food_450.jpg",
+      "primarySourceType": "remote",
+      "primarySourceDomain": "www.lg.com",
+      "galleryUrls": [
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/refrigerator/2025/gv-v25ffgrb-abmplmt/gallery/01_GV-V25FFGRB_LFB61BLGAI_Front_Food_450.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/refrigerator/2025/gv-v25ffgrb-abmplmt/gallery/01_GV-V25FFGRB_LFB61BLGAI_Front_Food_2010.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/refrigerator/2025/gv-v25ffgrb-abmplmt/gallery/03_GV-V25FFGRB_LFB61BLGAI_FrontOFF_2010.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/refrigerator/2025/gv-v25ffgrb-abmplmt/gallery/05__GV-V25FFGRB_LFB61BLGAI_FrontOpen_food_2010.jpg"
+      ],
+      "galleryDomains": [
+        "www.lg.com"
+      ],
+      "fallbackStatus": {
+        "type": "runtime-ui",
+        "url": null,
+        "domain": null
+      },
+      "group": "B",
+      "verification": "remote LG URL contains exact model token and is unique to this product",
+      "optimization": null
+    },
+    {
+      "slug": "gn-f392pqak",
+      "model": "GN-F392PQAK",
+      "productName": "ตู้เย็น 2 ประตู 13.9 คิว Smart Inverter Compressor",
+      "primaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/refrigerator/2025/gn-f392pqak-aepplm1/gallery/01_GN-F392PQAK_GT-F3953EP_EP_Front_450.jpg",
+      "originalPrimaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/refrigerator/2025/gn-f392pqak-aepplm1/gallery/01_GN-F392PQAK_GT-F3953EP_EP_Front_450.jpg",
+      "primarySourceType": "remote",
+      "primarySourceDomain": "www.lg.com",
+      "galleryUrls": [
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/refrigerator/2025/gn-f392pqak-aepplm1/gallery/01_GN-F392PQAK_GT-F3953EP_EP_Front_450.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/refrigerator/2025/gn-f392pqak-aepplm1/gallery/01_GN-F392PQAK_GT-F3953EP_EP_Front_2010.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/refrigerator/2025/gn-f392pqak-aepplm1/gallery/12_GN-F392PQAK_GT-F3953EP_EP_FrontOpen_2010.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/refrigerator/2025/gn-f392pqak-aepplm1/gallery/14_GN-F392PQAK_GT-F3953EP_EP_FrontOpen_Food2_2010.jpg"
+      ],
+      "galleryDomains": [
+        "www.lg.com"
+      ],
+      "fallbackStatus": {
+        "type": "runtime-ui",
+        "url": null,
+        "domain": null
+      },
+      "group": "B",
+      "verification": "remote LG URL contains exact model token and is unique to this product",
+      "optimization": null
+    },
+    {
+      "slug": "gn-f452pqak",
+      "model": "GN-F452PQAK",
+      "productName": "ตู้เย็น 2 ประตู ขนาด 16.2 คิว ระบบ Smart Inverter",
+      "primaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/refrigerator/2024/gn-f452pqak/450.jpg",
+      "originalPrimaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/refrigerator/2024/gn-f452pqak/450.jpg",
+      "primarySourceType": "remote",
+      "primarySourceDomain": "www.lg.com",
+      "galleryUrls": [
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/refrigerator/2024/gn-f452pqak/450.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/refrigerator/2024/gn-f452pqak/DZ-1.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/images/refrigerator/gn-f452pqak/ref-vt6-best-auto-ice-maker-ps3-04-2-in-door-ice-maker-d.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/images/refrigerator/gn-f452pqak/ref-vt6-best-water-dispenser-ps3-03-hygiene-fresh-desktop.jpg"
+      ],
+      "galleryDomains": [
+        "www.lg.com"
+      ],
+      "fallbackStatus": {
+        "type": "runtime-ui",
+        "url": null,
+        "domain": null
+      },
+      "group": "B",
+      "verification": "remote LG URL contains exact model token and is unique to this product",
+      "optimization": null
+    },
+    {
+      "slug": "gn-v389fqef",
+      "model": "GN-V389FQEF",
+      "productName": "ตู้เย็น 2 ประตู InstaView 12 คิว ระบบ Smart Inverter",
+      "primaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/refrigerator/2025/gn-v389fqef-aepplmt/gallery/450/01_GN-V389FQEF_GB-V300MBL_EP_Front_450.jpg",
+      "originalPrimaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/refrigerator/2025/gn-v389fqef-aepplmt/gallery/450/01_GN-V389FQEF_GB-V300MBL_EP_Front_450.jpg",
+      "primarySourceType": "remote",
+      "primarySourceDomain": "www.lg.com",
+      "galleryUrls": [
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/refrigerator/2025/gn-v389fqef-aepplmt/gallery/450/01_GN-V389FQEF_GB-V300MBL_EP_Front_450.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/refrigerator/2025/gn-v389fqef-aepplmt/gallery/2010/01_GN-V389FQEF_GB-V300MBL_EP_Front_2010.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/refrigerator/2025/gn-v389fqef-aepplmt/gallery/2010/18_GN-V389FQEF_GB-V300MBL_EP_FrontOpen_Food_Vegetable_2010.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/refrigerator/2025/gn-v389fqef-aepplmt/gallery/2010/15_GN-V389FQEF_GB-V300MBL_EP_FrontOpen_2010.jpg"
+      ],
+      "galleryDomains": [
+        "www.lg.com"
+      ],
+      "fallbackStatus": {
+        "type": "runtime-ui",
+        "url": null,
+        "domain": null
+      },
+      "group": "B",
+      "verification": "remote LG URL contains exact model token and is unique to this product",
+      "optimization": null
+    },
+    {
+      "slug": "wt2520nheg",
+      "model": "WT2520NHEG",
+      "productName": "เครื่องซักอบผ้า LG WashTower 25/20 กก. AI DD™ พร้อม Smart WI-FI control",
+      "primaryImage": "images/products/wt2520nheg.webp",
+      "originalPrimaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/washing-machine/2026/wt2520nheg-abgpeth/gallery/wt2520nheg-450-0604.jpg",
+      "primarySourceType": "local",
+      "primarySourceDomain": "local",
+      "galleryUrls": [
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/washing-machine/2026/wt2520nheg-abgpeth/gallery/wt2520nheg-450-0604.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/images/washing-machine/wt2116sheg_abgpeth_eath_th_c/gallery/D-001.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/washing-machine/2026/wt2520nheg-abgpeth/gallery/2010-02.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/washing-machine/2026/wt2520nheg-abgpeth/gallery/2010-01.jpg"
+      ],
+      "galleryDomains": [
+        "www.lg.com"
+      ],
+      "fallbackStatus": {
+        "type": "runtime-ui",
+        "url": null,
+        "domain": null
+      },
+      "group": "A",
+      "verification": "verified pilot: exact URL model mapping + HTTP download + visual review",
+      "optimization": {
+        "originalUrl": "https://www.lg.com/content/dam/channel/wcms/th/image-update/washing-machine/2026/wt2520nheg-abgpeth/gallery/wt2520nheg-450-0604.jpg",
+        "originalBytes": 13741,
+        "originalSha256": "cc8029dab100ee209a12041ec2b84c8577a625697f5534c060f6f4295b440036",
+        "localPath": "images/products/wt2520nheg.webp",
+        "localBytes": 7358,
+        "localSha256": "1a3b90a8bd405b5ec42d14c3b61a7213135bd48003ffbe5e5dae6e23e24aec6e",
+        "dimensions": "450x450",
+        "format": "webp",
+        "quality": 85
+      }
+    },
+    {
+      "slug": "wt2116sheg",
+      "model": "WT2116SHEG",
+      "productName": "เครื่องซักอบผ้า LG WashTower 21/16 กก. AI DD™ พร้อม Smart WI-FI control",
+      "primaryImage": "https://www.lg.com/content/dam/channel/wcms/th/images/washing-machine/wt2116sheg_abgpeth_eath_th_c/thumbnail/350-001-wt2116sheg.jpg",
+      "originalPrimaryImage": "https://www.lg.com/content/dam/channel/wcms/th/images/washing-machine/wt2116sheg_abgpeth_eath_th_c/thumbnail/350-001-wt2116sheg.jpg",
+      "primarySourceType": "remote",
+      "primarySourceDomain": "www.lg.com",
+      "galleryUrls": [
+        "https://www.lg.com/content/dam/channel/wcms/th/images/washing-machine/wt2116sheg_abgpeth_eath_th_c/gallery/D-001.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/images/washing-machine/wt2116sheg_abgpeth_eath_th_c/gallery/2010-02.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/images/washing-machine/wt2116sheg_abgpeth_eath_th_c/gallery/2010-01.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/images/washing-machine/wt2116sheg_abgpeth_eath_th_c/gallery/2010-03.jpg"
+      ],
+      "galleryDomains": [
+        "www.lg.com"
+      ],
+      "fallbackStatus": {
+        "type": "runtime-ui",
+        "url": null,
+        "domain": null
+      },
+      "group": "B",
+      "verification": "remote LG URL contains exact model token and is unique to this product",
+      "optimization": null
+    },
+    {
+      "slug": "wt1410nheg",
+      "model": "WT1410NHEG",
+      "productName": "เครื่องซักอบผ้า LG WashTower 14/10 กก. AI DD™ พร้อม Smart WI-FI control",
+      "primaryImage": "https://www.lg.com/content/dam/channel/wcms/th/images/washing-machine/wt1410nheg_abgpeth_eath_th_c/WT1410NHEG_ABGPETH_EATH_TH_C-450x450.jpg",
+      "originalPrimaryImage": "https://www.lg.com/content/dam/channel/wcms/th/images/washing-machine/wt1410nheg_abgpeth_eath_th_c/WT1410NHEG_ABGPETH_EATH_TH_C-450x450.jpg",
+      "primarySourceType": "remote",
+      "primarySourceDomain": "www.lg.com",
+      "galleryUrls": [
+        "https://www.lg.com/content/dam/channel/wcms/th/images/washing-machine/wt1410nheg_abgpeth_eath_th_c/gallery/medium01.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/images/washing-machine/wt1410nheg_abgpeth_eath_th_c/gallery/WTSBG-R5-2010x1334_01.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/images/washing-machine/wt1410nheg_abgpeth_eath_th_c/gallery/WTSBG-R5-2010x1334_02.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/images/washing-machine/wt1410nheg_abgpeth_eath_th_c/gallery/large03.jpg?w=800"
+      ],
+      "galleryDomains": [
+        "www.lg.com"
+      ],
+      "fallbackStatus": {
+        "type": "runtime-ui",
+        "url": null,
+        "domain": null
+      },
+      "group": "B",
+      "verification": "remote LG URL contains exact model token and is unique to this product",
+      "optimization": null
+    },
+    {
+      "slug": "wt2520nhen",
+      "model": "WT2520NHEN",
+      "productName": "เครื่องซักอบผ้า LG WashTower 25/20 กก. (Navy/Beige) AI DD™ พร้อม Smart WI-FI control",
+      "primaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/washing-machine/2026/wt2520nhen-abnpeth/gallery/wt2520nhen-450.jpg",
+      "originalPrimaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/washing-machine/2026/wt2520nhen-abnpeth/gallery/wt2520nhen-450.jpg",
+      "primarySourceType": "remote",
+      "primarySourceDomain": "www.lg.com",
+      "galleryUrls": [
+        "https://www.lg.com/content/dam/channel/wcms/th/images/washing-machine/wt2116sheg_abgpeth_eath_th_c/gallery/D-001.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/images/spec/b62836a5_WT2520NHEN-485x300-M.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/images/spec/a1f8c920_WT2520NHEN-800x453-D.jpg"
+      ],
+      "galleryDomains": [
+        "www.lg.com"
+      ],
+      "fallbackStatus": {
+        "type": "runtime-ui",
+        "url": null,
+        "domain": null
+      },
+      "group": "B",
+      "verification": "remote LG URL contains exact model token and is unique to this product",
+      "optimization": null
+    },
+    {
+      "slug": "wt1410nhen",
+      "model": "WT1410NHEN",
+      "productName": "เครื่องซักอบผ้า LG WashTower 14/10 กก. (Navy/Beige) AI DD™ พร้อม Smart WI-FI control",
+      "primaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/washing-machine/2025/wt1410nhen-anbppth/wt1410nhen/350-02.jpg",
+      "originalPrimaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/washing-machine/2025/wt1410nhen-anbppth/wt1410nhen/350-02.jpg",
+      "primarySourceType": "remote",
+      "primarySourceDomain": "www.lg.com",
+      "galleryUrls": [
+        "https://www.lg.com/content/dam/channel/wcms/th/images/washing-machine/wt1410nheg_abgpeth_eath_th_c/gallery/medium01.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/images/washing-machine/wt1410nheg_abgpeth_eath_th_c/gallery/medium02.jpg"
+      ],
+      "galleryDomains": [
+        "www.lg.com"
+      ],
+      "fallbackStatus": {
+        "type": "runtime-ui",
+        "url": null,
+        "domain": null
+      },
+      "group": "B",
+      "verification": "remote LG URL contains exact model token and is unique to this product",
+      "optimization": null
+    },
+    {
+      "slug": "fv1409h4w",
+      "model": "FV1409H4W",
+      "productName": "เครื่องซักผ้า FV1409H4W ซัก 9 กก. / อบ 5 กก.",
+      "primaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/washing-machine/2024/fv1409h4w-abwpeth/gallery/450.jpg",
+      "originalPrimaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/washing-machine/2024/fv1409h4w-abwpeth/gallery/450.jpg",
+      "primarySourceType": "remote",
+      "primarySourceDomain": "www.lg.com",
+      "galleryUrls": [
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/washing-machine/2024/fv1409h4w-abwpeth/gallery/450.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/images/washing-machine/fv1410h4w_abwpeth_eath_th_c/gallery/D-1.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/washing-machine/2024/fv1409h4w-abwpeth/gallery/FV1409H4W-1-2010.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/washing-machine/2024/fv1409h4w-abwpeth/gallery/FV1409H4W-2-2010.jpg"
+      ],
+      "galleryDomains": [
+        "www.lg.com"
+      ],
+      "fallbackStatus": {
+        "type": "runtime-ui",
+        "url": null,
+        "domain": null
+      },
+      "group": "B",
+      "verification": "remote LG URL contains exact model token and is unique to this product",
+      "optimization": null
+    },
+    {
+      "slug": "f2520rntb",
+      "model": "F2520RNTB",
+      "productName": "เครื่องซักผ้าฝาหน้า ซัก 20 / อบ 10 กก. F2520RNTB ระบบ AI DD™",
+      "primaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/washing-machine/2025/f2520rntb-aebpeth/gallery/basic_450_image_new.jpg",
+      "originalPrimaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/washing-machine/2025/f2520rntb-aebpeth/gallery/basic_450_image_new.jpg",
+      "primarySourceType": "remote",
+      "primarySourceDomain": "www.lg.com",
+      "galleryUrls": [
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/washing-machine/2025/f2520rntb-aebpeth/gallery/basic_450_image_new.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/washing-machine/2025/f2520rntb-aebpeth/gallery/2010-01.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/washing-machine/2025/f2520rntb-aebpeth/gallery/2010-02.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/washing-machine/2025/f2520rntb-aebpeth/gallery/2010-03.jpg"
+      ],
+      "galleryDomains": [
+        "www.lg.com"
+      ],
+      "fallbackStatus": {
+        "type": "runtime-ui",
+        "url": null,
+        "domain": null
+      },
+      "group": "B",
+      "verification": "remote LG URL contains exact model token and is unique to this product",
+      "optimization": null
+    },
+    {
+      "slug": "fv1413h4m",
+      "model": "FV1413H4M",
+      "productName": "เครื่องซักผ้า 13 กก. / อบ 8 กก. ระบบ AI DD™ พร้อม Smart WI-FI control",
+      "primaryImage": "https://www.lg.com/content/dam/channel/wcms/th/images/washing-machine/fv1413h4m_ambpeth_eath_th_c/450.jpg",
+      "originalPrimaryImage": "https://www.lg.com/content/dam/channel/wcms/th/images/washing-machine/fv1413h4m_ambpeth_eath_th_c/450.jpg",
+      "primarySourceType": "remote",
+      "primarySourceDomain": "www.lg.com",
+      "galleryUrls": [
+        "https://www.lg.com/content/dam/channel/wcms/th/images/washing-machine/fv1413h4m_ambpeth_eath_th_c/gallery/D-1.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/images/washing-machine/fv1413h4m_ambpeth_eath_th_c/gallery/DZ-1.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/images/washing-machine/fv1413h4m_ambpeth_eath_th_c/gallery/DZ-2.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/images/washing-machine/fv1413h4m_ambpeth_eath_th_c/gallery/DZ-3.jpg"
+      ],
+      "galleryDomains": [
+        "www.lg.com"
+      ],
+      "fallbackStatus": {
+        "type": "runtime-ui",
+        "url": null,
+        "domain": null
+      },
+      "group": "B",
+      "verification": "remote LG URL contains exact model token and is unique to this product",
+      "optimization": null
+    },
+    {
+      "slug": "fv1413s4m",
+      "model": "FV1413S4M",
+      "productName": "เครื่องซักผ้า 13 กก. AI DD™",
+      "primaryImage": "images/products/fv1413s4m.webp",
+      "originalPrimaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/washing-machine/2024/fv1413s4m-ambpeth/gallery/FV1413S4M-01-450.jpg",
+      "primarySourceType": "local",
+      "primarySourceDomain": "local",
+      "galleryUrls": [
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/washing-machine/2024/fv1413s4m-ambpeth/gallery/FV1413S4M-01-450.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/images/washing-machine/fv1411s4w1_abwpeth_eath_th_c/gallery/D-1.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/washing-machine/2024/fv1413s4m-ambpeth/gallery/FV1413S4M-01-2010.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/washing-machine/2024/fv1413s4m-ambpeth/gallery/FV1413S4M-02-2010.jpg"
+      ],
+      "galleryDomains": [
+        "www.lg.com"
+      ],
+      "fallbackStatus": {
+        "type": "runtime-ui",
+        "url": null,
+        "domain": null
+      },
+      "group": "A",
+      "verification": "verified pilot: exact URL model mapping + HTTP download + visual review",
+      "optimization": {
+        "originalUrl": "https://www.lg.com/content/dam/channel/wcms/th/image-update/washing-machine/2024/fv1413s4m-ambpeth/gallery/FV1413S4M-01-450.jpg",
+        "originalBytes": 15784,
+        "originalSha256": "97e41a9732bed5e0b41c287f8dcb73d8af50b761eb1cabffc75c5deffdd80c3b",
+        "localPath": "images/products/fv1413s4m.webp",
+        "localBytes": 6276,
+        "localSha256": "f412bf82be894387a0e6f82261fe39a41fcf4dedf7ec4def544de3a8ba2e8090",
+        "dimensions": "450x450",
+        "format": "webp",
+        "quality": 85
+      }
+    },
+    {
+      "slug": "tx2723st5j",
+      "model": "TX2723ST5J",
+      "productName": "เครื่องซักผ้าฝาบน 23 กก. ระบบ Inverter Direct Drive",
+      "primaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/washing-machine/2025/tx2723st5j-apbpeth/basic_450_new_image.jpg",
+      "originalPrimaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/washing-machine/2025/tx2723st5j-apbpeth/basic_450_new_image.jpg",
+      "primarySourceType": "remote",
+      "primarySourceDomain": "www.lg.com",
+      "galleryUrls": [
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/washing-machine/2025/tx2723st5j-apbpeth/basic_450_new_image.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/washing-machine/2025/tx2723st5j-apbpeth/01-2010.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/washing-machine/2025/tx2723st5j-apbpeth/02-2010.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/washing-machine/2025/tx2723st5j-apbpeth/03-2010.jpg"
+      ],
+      "galleryDomains": [
+        "www.lg.com"
+      ],
+      "fallbackStatus": {
+        "type": "runtime-ui",
+        "url": null,
+        "domain": null
+      },
+      "group": "B",
+      "verification": "remote LG URL contains exact model token and is unique to this product",
+      "optimization": null
+    },
+    {
+      "slug": "tx2315dt5g",
+      "model": "TX2315DT5G",
+      "productName": "เครื่องซักผ้าฝาบน 15 กก. ระบบ Inverter Direct Drive",
+      "primaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/washing-machine/2026/tx2315dt5g-degpeth/gallery/top-loading-washing-machine-tx-2026-t95x4ehdc4-tx2315dt5g-th-e-graphite-15kg-01-front_450.jpg",
+      "originalPrimaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/washing-machine/2026/tx2315dt5g-degpeth/gallery/top-loading-washing-machine-tx-2026-t95x4ehdc4-tx2315dt5g-th-e-graphite-15kg-01-front_450.jpg",
+      "primarySourceType": "remote",
+      "primarySourceDomain": "www.lg.com",
+      "galleryUrls": [
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/washing-machine/2026/tx2315dt5g-degpeth/gallery/top-loading-washing-machine-tx-2026-t95x4ehdc4-tx2315dt5g-th-e-graphite-15kg-01-front_450.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/washing-machine/2026/tx2315dt5g-degpeth/gallery/top-loading-washing-machine-tx-2026-t95x4ehdc4-tx2315dt5g-th-e-graphite-15kg-01-front_2010.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/washing-machine/2026/tx2315dt5g-degpeth/gallery/top-loading-washing-machine-tx-2026-t95x4ehdc4-tx2315dt5g-th-e-graphite-15kg-02-frontopen_2010.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/washing-machine/2026/tx2315dt5g-degpeth/gallery/top-loading-washing-machine-tx-2026-t95x4ehdc4-tx2315dt5g-th-e-graphite-15kg-04-front_panel_detail_2010.jpg"
+      ],
+      "galleryDomains": [
+        "www.lg.com"
+      ],
+      "fallbackStatus": {
+        "type": "runtime-ui",
+        "url": null,
+        "domain": null
+      },
+      "group": "B",
+      "verification": "remote LG URL contains exact model token and is unique to this product",
+      "optimization": null
+    },
+    {
+      "slug": "rv10vhp2b",
+      "model": "RV10VHP2B",
+      "productName": "เครื่องอบผ้า ระบบ DUAL Inverter Heat Pump™ ความจุ 10 กก. พร้อม Smart WI-FI control",
+      "primaryImage": "https://www.lg.com/content/dam/channel/wcms/th/images/washing-machine/rv10vhp2b_ablpeth_eath_th_c/450.jpg",
+      "originalPrimaryImage": "https://www.lg.com/content/dam/channel/wcms/th/images/washing-machine/rv10vhp2b_ablpeth_eath_th_c/450.jpg",
+      "primarySourceType": "remote",
+      "primarySourceDomain": "www.lg.com",
+      "galleryUrls": [
+        "https://www.lg.com/content/dam/channel/wcms/th/images/washing-machine/rv10vhp2b_ablpeth_eath_th_c/450.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/images/washing-machine/rv10vhp2b_ablpeth_eath_th_c/D-1.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/images/washing-machine/rv10vhp2b_ablpeth_eath_th_c/DZ-1.jpg?w=800",
+        "https://www.lg.com/content/dam/channel/wcms/th/images/washing-machine/rv10vhp2b_ablpeth_eath_th_c/DZ-2.jpg?w=800"
+      ],
+      "galleryDomains": [
+        "www.lg.com"
+      ],
+      "fallbackStatus": {
+        "type": "runtime-ui",
+        "url": null,
+        "domain": null
+      },
+      "group": "B",
+      "verification": "remote LG URL contains exact model token and is unique to this product",
+      "optimization": null
+    },
+    {
+      "slug": "dfc335hm",
+      "model": "DFC335HM",
+      "productName": "เครื่องล้างจาน DFC335HM สีดำ มี WI-FI control",
+      "primaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/dishwasher/dfc335hm/gallery/01_XD-G3_MatteBlack_DFC335HM_TH_Front-450.jpg",
+      "originalPrimaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/dishwasher/dfc335hm/gallery/01_XD-G3_MatteBlack_DFC335HM_TH_Front-450.jpg",
+      "primarySourceType": "remote",
+      "primarySourceDomain": "www.lg.com",
+      "galleryUrls": [
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/dishwasher/dfc335hm/gallery/01_XD-G3_MatteBlack_DFC335HM_TH_Front-450.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/dishwasher/dfc335hm/gallery/01_XD-G3_MatteBlack_DFC335HM_TH_Front-2010.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/dishwasher/dfc335hm/gallery/02_XD-G3_MatteBlack_DFC335HM_TH_FrontOpen1-2010.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/dishwasher/dfc335hm/gallery/03_XD-G3_MatteBlack_DFC335HM_TH_FrontOpen2-2010.jpg"
+      ],
+      "galleryDomains": [
+        "www.lg.com"
+      ],
+      "fallbackStatus": {
+        "type": "explicit",
+        "url": "https://arttato.github.io/LG-Subscribe/img/products/dfc335hm-abmpeth.jpg",
+        "domain": "arttato.github.io"
+      },
+      "group": "D",
+      "verification": "explicit fallback configured",
+      "optimization": null
+    },
+    {
+      "slug": "dfc533fv",
+      "model": "DFC533FV + MS2032GAS",
+      "productName": "เครื่องล้างจาน DFC533FV สีเงิน WI-FI control",
+      "primaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/dishwasher/dfc533fv/gallery/01_XD5_PS4_DFC533FV_TH_Front-450.jpg",
+      "originalPrimaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/dishwasher/dfc533fv/gallery/01_XD5_PS4_DFC533FV_TH_Front-450.jpg",
+      "primarySourceType": "remote",
+      "primarySourceDomain": "www.lg.com",
+      "galleryUrls": [
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/dishwasher/dfc533fv/gallery/01_XD5_PS4_DFC533FV_TH_Front-450.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/dishwasher/dfc533fv/gallery/01_XD5_PS4_DFC533FV_TH_Front-2010.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/dishwasher/dfc533fv/gallery/02_XD5_PS4_DFC533FV_TH_FrontOpen1-2010.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/dishwasher/dfc533fv/gallery/03_XD5_PS4_DFC533FV_TH_FrontOpen2-2010.jpg"
+      ],
+      "galleryDomains": [
+        "www.lg.com"
+      ],
+      "fallbackStatus": {
+        "type": "runtime-ui",
+        "url": null,
+        "domain": null
+      },
+      "group": "C",
+      "verification": "shared, series-level, combo, or non-exact model URL",
+      "optimization": null
+    },
+    {
+      "slug": "s3mfc",
+      "model": "S3MFC",
+      "productName": "LG Styler ตู้ถนอมผ้า",
+      "primaryImage": "https://www.lg.com/content/dam/channel/wcms/th/images/washing-machine/s3mfc_albpeth_eath_th_c/TH-450.jpg",
+      "originalPrimaryImage": "https://www.lg.com/content/dam/channel/wcms/th/images/washing-machine/s3mfc_albpeth_eath_th_c/TH-450.jpg",
+      "primarySourceType": "remote",
+      "primarySourceDomain": "www.lg.com",
+      "galleryUrls": [
+        "https://www.lg.com/content/dam/channel/wcms/th/images/washing-machine/s3mfc_albpeth_eath_th_c/gallery/M-01.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/images/washing-machine/s3mfc_albpeth_eath_th_c/gallery/L-01.jpg?w=800",
+        "https://www.lg.com/content/dam/channel/wcms/th/images/washing-machine/s3mfc_albpeth_eath_th_c/gallery/L-02.jpg?w=800",
+        "https://www.lg.com/content/dam/channel/wcms/th/images/washing-machine/s3mfc_albpeth_eath_th_c/gallery/L-03.jpg?w=800"
+      ],
+      "galleryDomains": [
+        "www.lg.com"
+      ],
+      "fallbackStatus": {
+        "type": "runtime-ui",
+        "url": null,
+        "domain": null
+      },
+      "group": "B",
+      "verification": "remote LG URL contains exact model token and is unique to this product",
+      "optimization": null
+    },
+    {
+      "slug": "ms3032jas",
+      "model": "MS3032JAS",
+      "productName": "ไมโครเวฟอุ่นอาหาร ขนาด 30 ลิตร สีดำ",
+      "primaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/microwave/2024/ms3032jas/gallery/01-basic/450x450/01-ms3032jas-front-450x450.jpg",
+      "originalPrimaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/microwave/2024/ms3032jas/gallery/01-basic/450x450/01-ms3032jas-front-450x450.jpg",
+      "primarySourceType": "remote",
+      "primarySourceDomain": "www.lg.com",
+      "galleryUrls": [
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/microwave/2024/ms3032jas/gallery/01-basic/450x450/01-ms3032jas-front-450x450.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/microwave/2024/ms3032jas/2010/01-ms3032jas-front-2010.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/microwave/2024/ms3032jas/2010/02-ms3032jas-frontopen_food-2010.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/microwave/2024/ms3032jas/2010/12-ms3032jas-frontopen-2010.jpg"
+      ],
+      "galleryDomains": [
+        "www.lg.com"
+      ],
+      "fallbackStatus": {
+        "type": "runtime-ui",
+        "url": null,
+        "domain": null
+      },
+      "group": "B",
+      "verification": "remote LG URL contains exact model token and is unique to this product",
+      "optimization": null
+    },
+    {
+      "slug": "md19gqga1",
+      "model": "MD19GQGA1",
+      "productName": "เครื่องลดความชื้น LG PuriCare Dehumidifier 19 (30 ลิตร)",
+      "primaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/dehumidifier/2025/md19gqga1/thumb-Dehu-19-450x450.jpg",
+      "originalPrimaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/dehumidifier/2025/md19gqga1/thumb-Dehu-19-450x450.jpg",
+      "primarySourceType": "remote",
+      "primarySourceDomain": "www.lg.com",
+      "galleryUrls": [
+        "https://www.lg.com/content/dam/channel/wcms/hk_en/images/puricare/md16gqsa1_ahk_echk_hk_en_c/gallery/medium01.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/images/air-purifier/md19gqga1_ath_eath_th_c/gallery/DZ-01.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/images/air-purifier/md19gqga1_ath_eath_th_c/gallery/DZ-02.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/images/air-purifier/md19gqga1_ath_eath_th_c/gallery/DZ-03.jpg"
+      ],
+      "galleryDomains": [
+        "www.lg.com"
+      ],
+      "fallbackStatus": {
+        "type": "runtime-ui",
+        "url": null,
+        "domain": null
+      },
+      "group": "B",
+      "verification": "remote LG URL contains exact model token and is unique to this product",
+      "optimization": null
+    },
+    {
+      "slug": "dd23gmwe1",
+      "model": "DD23GMWE1 + AS30GGW10",
+      "productName": "เครื่องลดความชื้น LG PuriCare Dehumidifier 23 (40 ลิตร) + AeroMini (ของแถม)",
+      "primaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/dehumidifier/2026/dd23gmwe1-ath/aircare_hk_dehumidifier_mojave_2024_gp1/gallery/01-basic/aircare-hk-dehumidifier-mojave-dd14gmwe0-gp1-basic-large.jpg",
+      "originalPrimaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/dehumidifier/2026/dd23gmwe1-ath/aircare_hk_dehumidifier_mojave_2024_gp1/gallery/01-basic/aircare-hk-dehumidifier-mojave-dd14gmwe0-gp1-basic-large.jpg",
+      "primarySourceType": "remote",
+      "primarySourceDomain": "www.lg.com",
+      "galleryUrls": [
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/dehumidifier/2026/dd23gmwe1-ath/aircare_hk_dehumidifier_mojave_2024_gp1/gallery/01-basic/aircare-hk-dehumidifier-mojave-dd14gmwe0-gp1-basic-large.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/dehumidifier/2026/dd23gmwe1-ath/aircare_hk_dehumidifier_mojave_2024_gp1/gallery/02-gallery/aircare-hk-dehumidifier-mojave-dd14gmwe0-gp1-gallery-01-2010.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/dehumidifier/2026/dd23gmwe1-ath/aircare_hk_dehumidifier_mojave_2024_gp1/gallery/02-gallery/aircare-hk-dehumidifier-mojave-dd14gmwe0-gp1-gallery-06-2010.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/dehumidifier/2026/dd23gmwe1-ath/aircare_hk_dehumidifier_mojave_2024_gp1/gallery/02-gallery/aircare-hk-dehumidifier-mojave-dd14gmwe0-gp1-gallery-07-2010.jpg"
+      ],
+      "galleryDomains": [
+        "www.lg.com"
+      ],
+      "fallbackStatus": {
+        "type": "runtime-ui",
+        "url": null,
+        "domain": null
+      },
+      "group": "C",
+      "verification": "shared, series-level, combo, or non-exact model URL",
+      "optimization": null
+    },
+    {
+      "slug": "as35ggw10",
+      "model": "AS35GGW10",
+      "productName": "เครื่องฟอกอากาศ LG PuriCare AeroHit 32 ตร.ม.",
+      "primaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-puricare/2025/as35ggx0-abae/gallery/re-gallery/AP2025_AeroHit-Web-Thumbnail_450x450.jpg",
+      "originalPrimaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-puricare/2025/as35ggx0-abae/gallery/re-gallery/AP2025_AeroHit-Web-Thumbnail_450x450.jpg",
+      "primarySourceType": "remote",
+      "primarySourceDomain": "www.lg.com",
+      "galleryUrls": [
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-puricare/2025/as35ggx0-abae/gallery/re-gallery/AP2025_AeroHit-Web-Thumbnail_450x450.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-puricare/2025/as35ggx0-abae/gallery/gallery/air-purifier-gp1-2025-as35ggw10-gallery-gallery-2010-01.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-puricare/2025/as35ggx0-abae/gallery/gallery/air-purifier-gp1-2025-as35ggw10-gallery-gallery-2010-10.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-puricare/2025/as35ggx0-abae/gallery/gallery/air-purifier-gp1-2025-as35ggw10-gallery-gallery-2010-11.jpg"
+      ],
+      "galleryDomains": [
+        "www.lg.com"
+      ],
+      "fallbackStatus": {
+        "type": "runtime-ui",
+        "url": null,
+        "domain": null
+      },
+      "group": "C",
+      "verification": "shared, series-level, combo, or non-exact model URL",
+      "optimization": null
+    },
+    {
+      "slug": "as25gcby0",
+      "model": "AS25GCBY0",
+      "productName": "เครื่องฟอกอากาศ LG PuriCare AeroCat Tower สีเบจ สำหรับน้องแมว",
+      "primaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-puricare/2025/as25gcby0-abae/gallery/basic/air-purifier-aerocattower-2025-as207cbz0-gallery-basic-large.jpg",
+      "originalPrimaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-puricare/2025/as25gcby0-abae/gallery/basic/air-purifier-aerocattower-2025-as207cbz0-gallery-basic-large.jpg",
+      "primarySourceType": "remote",
+      "primarySourceDomain": "www.lg.com",
+      "galleryUrls": [
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-puricare/2025/as25gcby0-abae/gallery/basic/air-purifier-aerocattower-2025-as207cbz0-gallery-basic-large.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-puricare/2025/as25gcby0-abae/gallery/gallery/air-purifier-aerocattower-2025-as207cbz0-gallery-gallery-2010-01.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-puricare/2025/as25gcby0-abae/gallery/gallery/air-purifier-aerocattower-2025-as207cbz0-gallery-gallery-2010-02.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-puricare/2025/as25gcby0-abae/gallery/gallery/air-purifier-aerocattower-2025-as207cbz0-gallery-gallery-2010-03.jpg"
+      ],
+      "galleryDomains": [
+        "www.lg.com"
+      ],
+      "fallbackStatus": {
+        "type": "runtime-ui",
+        "url": null,
+        "domain": null
+      },
+      "group": "C",
+      "verification": "path/filename contains conflicting or variant model evidence",
+      "optimization": null
+    },
+    {
+      "slug": "as60ghwg0",
+      "model": "AS60GHWG0",
+      "productName": "เครื่องฟอกอากาศ LG PuriCare 360 Hit 61 ตร.ม.",
+      "primaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-puricare/2025/as60ghwg0/gallery/450.jpg",
+      "originalPrimaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-puricare/2025/as60ghwg0/gallery/450.jpg",
+      "primarySourceType": "remote",
+      "primarySourceDomain": "www.lg.com",
+      "galleryUrls": [
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-puricare/2025/as60ghwg0/gallery/450.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/images/air-purifier/as60ghwg0_abae_eath_th_c/gallery/D-01.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-puricare/2025/as60ghwg0/gallery/AS60GHWG0-2010.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/images/air-purifier/as60ghwg0_abae_eath_th_c/gallery/DZ-02.jpg"
+      ],
+      "galleryDomains": [
+        "www.lg.com"
+      ],
+      "fallbackStatus": {
+        "type": "runtime-ui",
+        "url": null,
+        "domain": null
+      },
+      "group": "B",
+      "verification": "remote LG URL contains exact model token and is unique to this product",
+      "optimization": null
+    },
+    {
+      "slug": "as65gdby0",
+      "model": "AS65GDBY0",
+      "productName": "เครื่องฟอกอากาศ LG PuriCare Alpha Pet 61.2 ตร.ม.",
+      "primaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-puricare/2024/as65gdby0-abae/gallery/1.-360Alpha_AS651DBY0_Front-off-450.jpg",
+      "originalPrimaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-puricare/2024/as65gdby0-abae/gallery/1.-360Alpha_AS651DBY0_Front-off-450.jpg",
+      "primarySourceType": "remote",
+      "primarySourceDomain": "www.lg.com",
+      "galleryUrls": [
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-puricare/2024/as65gdby0-abae/gallery/1.-360Alpha_AS651DBY0_Front-off-450.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-puricare/2024/as65gdby0-abae/gallery/1.-360Alpha_AS651DBY0_Front-off-2010.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-puricare/2024/as65gdby0-abae/gallery/6.-360Alpha_AS651DBY0_Front_Red-2010.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-puricare/2024/as65gdby0-abae/gallery/1.-360Alpha_AS651DBY0_Front-off-180.jpg"
+      ],
+      "galleryDomains": [
+        "www.lg.com"
+      ],
+      "fallbackStatus": {
+        "type": "runtime-ui",
+        "url": null,
+        "domain": null
+      },
+      "group": "C",
+      "verification": "path/filename contains conflicting or variant model evidence",
+      "optimization": null
+    },
+    {
+      "slug": "as10gdby0",
+      "model": "AS10GDBY0",
+      "productName": "เครื่องฟอกอากาศ LG PuriCare Alpha Pet 104 ตร.ม.",
+      "primaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-puricare/2024/as10gdby0-abae/gallery/1.-360Alpha_AS101DBY0_Front-off-450.jpg",
+      "originalPrimaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-puricare/2024/as10gdby0-abae/gallery/1.-360Alpha_AS101DBY0_Front-off-450.jpg",
+      "primarySourceType": "remote",
+      "primarySourceDomain": "www.lg.com",
+      "galleryUrls": [
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-puricare/2024/as10gdby0-abae/gallery/1.-360Alpha_AS101DBY0_Front-off-450.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-puricare/2024/as10gdby0-abae/gallery/1.-360Alpha_AS101DBY0_Front-off-2010.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-puricare/2024/as10gdby0-abae/gallery/3.-360Alpha_AS101DBY0_Front_Green-2010.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-puricare/2024/as10gdby0-abae/gallery/1.-360Alpha_AS101DBY0_Front-off-180.jpg"
+      ],
+      "galleryDomains": [
+        "www.lg.com"
+      ],
+      "fallbackStatus": {
+        "type": "runtime-ui",
+        "url": null,
+        "domain": null
+      },
+      "group": "C",
+      "verification": "path/filename contains conflicting or variant model evidence",
+      "optimization": null
+    },
+    {
+      "slug": "ixy11a",
+      "model": "IXY11A",
+      "productName": "แอร์อินเวอร์เตอร์ 9,212 BTU LG DUALCOOL",
+      "primaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2026/ixya/gallery/IXY11A_front_450.jpg",
+      "originalPrimaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2026/ixya/gallery/IXY11A_front_450.jpg",
+      "primarySourceType": "remote",
+      "primarySourceDomain": "www.lg.com",
+      "galleryUrls": [
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2026/ixya/gallery/IXY11A_front_450.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2026/ixya/gallery/IXY11A_front_2010.jpg",
+        "images/specs/ixy-series-spec.jpg"
+      ],
+      "galleryDomains": [
+        "www.lg.com",
+        "local"
+      ],
+      "fallbackStatus": {
+        "type": "runtime-ui",
+        "url": null,
+        "domain": null
+      },
+      "group": "C",
+      "verification": "shared, series-level, combo, or non-exact model URL",
+      "optimization": null
+    },
+    {
+      "slug": "ixy13a",
+      "model": "IXY13A",
+      "productName": "แอร์อินเวอร์เตอร์ 12,283 BTU LG DUALCOOL",
+      "primaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2026/ixya/gallery/IXY11A_front_450.jpg",
+      "originalPrimaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2026/ixya/gallery/IXY11A_front_450.jpg",
+      "primarySourceType": "remote",
+      "primarySourceDomain": "www.lg.com",
+      "galleryUrls": [
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2026/ixya/gallery/IXY11A_front_450.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2026/ixya/gallery/IXY11A_front_2010.jpg",
+        "images/specs/ixy-series-spec.jpg"
+      ],
+      "galleryDomains": [
+        "www.lg.com",
+        "local"
+      ],
+      "fallbackStatus": {
+        "type": "runtime-ui",
+        "url": null,
+        "domain": null
+      },
+      "group": "C",
+      "verification": "shared, series-level, combo, or non-exact model URL",
+      "optimization": null
+    },
+    {
+      "slug": "ixy18a",
+      "model": "IXY18A",
+      "productName": "แอร์อินเวอร์เตอร์ 18,084 BTU LG DUALCOOL",
+      "primaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2026/ixya/gallery/IXY11A_front_450.jpg",
+      "originalPrimaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2026/ixya/gallery/IXY11A_front_450.jpg",
+      "primarySourceType": "remote",
+      "primarySourceDomain": "www.lg.com",
+      "galleryUrls": [
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2026/ixya/gallery/IXY11A_front_450.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2026/ixya/gallery/IXY11A_front_2010.jpg",
+        "images/specs/ixy-series-spec.jpg"
+      ],
+      "galleryDomains": [
+        "www.lg.com",
+        "local"
+      ],
+      "fallbackStatus": {
+        "type": "runtime-ui",
+        "url": null,
+        "domain": null
+      },
+      "group": "C",
+      "verification": "shared, series-level, combo, or non-exact model URL",
+      "optimization": null
+    },
+    {
+      "slug": "ixy24a",
+      "model": "IXY24A",
+      "productName": "แอร์อินเวอร์เตอร์ 21,154 BTU LG DUALCOOL",
+      "primaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2026/ixya/gallery/IXY11A_front_450.jpg",
+      "originalPrimaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2026/ixya/gallery/IXY11A_front_450.jpg",
+      "primarySourceType": "remote",
+      "primarySourceDomain": "www.lg.com",
+      "galleryUrls": [
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2026/ixya/gallery/IXY11A_front_450.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2026/ixya/gallery/IXY11A_front_2010.jpg",
+        "images/specs/ixy-series-spec.jpg"
+      ],
+      "galleryDomains": [
+        "www.lg.com",
+        "local"
+      ],
+      "fallbackStatus": {
+        "type": "runtime-ui",
+        "url": null,
+        "domain": null
+      },
+      "group": "C",
+      "verification": "shared, series-level, combo, or non-exact model URL",
+      "optimization": null
+    },
+    {
+      "slug": "siq11b",
+      "model": "SIQ11B",
+      "productName": "แอร์อินเวอร์เตอร์ 9,212 BTU LG DUALCOOL AI Air",
+      "primaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2026/siq/gallery/S1_S3NM121L1C0_Front_1_450.jpg",
+      "originalPrimaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2026/siq/gallery/S1_S3NM121L1C0_Front_1_450.jpg",
+      "primarySourceType": "remote",
+      "primarySourceDomain": "www.lg.com",
+      "galleryUrls": [
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2026/siq/gallery/S1_S3NM121L1C0_Front_1_450.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2026/siq/gallery/S1_S3NM121L1C0_Front_1_2010.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2026/siq/gallery/S1_S3NM121L1C0_Front_Open_1_2010.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2026/siq/gallery/S1_S3NM121L1C0_Front_SoftAir_1_2010.jpg"
+      ],
+      "galleryDomains": [
+        "www.lg.com"
+      ],
+      "fallbackStatus": {
+        "type": "runtime-ui",
+        "url": null,
+        "domain": null
+      },
+      "group": "C",
+      "verification": "shared, series-level, combo, or non-exact model URL",
+      "optimization": null
+    },
+    {
+      "slug": "siq13b",
+      "model": "SIQ13B",
+      "productName": "แอร์อินเวอร์เตอร์ 12,200 BTU LG DUALCOOL AI Air",
+      "primaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2026/siq/gallery/S1_S3NM121L1C0_Front_1_450.jpg",
+      "originalPrimaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2026/siq/gallery/S1_S3NM121L1C0_Front_1_450.jpg",
+      "primarySourceType": "remote",
+      "primarySourceDomain": "www.lg.com",
+      "galleryUrls": [
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2026/siq/gallery/S1_S3NM121L1C0_Front_1_450.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2026/siq/gallery/S1_S3NM121L1C0_Front_1_2010.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2026/siq/gallery/S1_S3NM121L1C0_Front_Open_1_2010.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2026/siq/gallery/S1_S3NM121L1C0_Front_SoftAir_1_2010.jpg"
+      ],
+      "galleryDomains": [
+        "www.lg.com"
+      ],
+      "fallbackStatus": {
+        "type": "runtime-ui",
+        "url": null,
+        "domain": null
+      },
+      "group": "C",
+      "verification": "shared, series-level, combo, or non-exact model URL",
+      "optimization": null
+    },
+    {
+      "slug": "siq18b",
+      "model": "SIQ18B",
+      "productName": "แอร์ LG DUALCOOL AI 18,000 BTU รุ่น SIQ18B",
+      "primaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2026/siq/gallery/S1_S3NM121L1C0_Front_1_450.jpg",
+      "originalPrimaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2026/siq/gallery/S1_S3NM121L1C0_Front_1_450.jpg",
+      "primarySourceType": "remote",
+      "primarySourceDomain": "www.lg.com",
+      "galleryUrls": [
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2026/siq/gallery/S1_S3NM121L1C0_Front_1_450.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2026/siq/gallery/S1_S3NM121L1C0_Front_1_2010.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2026/siq/gallery/S1_S3NM121L1C0_Front_Open_1_2010.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2026/siq/gallery/S1_S3NM121L1C0_Front_SoftAir_1_2010.jpg"
+      ],
+      "galleryDomains": [
+        "www.lg.com"
+      ],
+      "fallbackStatus": {
+        "type": "runtime-ui",
+        "url": null,
+        "domain": null
+      },
+      "group": "C",
+      "verification": "shared, series-level, combo, or non-exact model URL",
+      "optimization": null
+    },
+    {
+      "slug": "siq24b",
+      "model": "SIQ24B",
+      "productName": "แอร์อินเวอร์เตอร์ 22,178 BTU LG DUALCOOL AI Air",
+      "primaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2026/siq/gallery/S1_S3NM121L1C0_Front_1_450.jpg",
+      "originalPrimaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2026/siq/gallery/S1_S3NM121L1C0_Front_1_450.jpg",
+      "primarySourceType": "remote",
+      "primarySourceDomain": "www.lg.com",
+      "galleryUrls": [
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2026/siq/gallery/S1_S3NM121L1C0_Front_1_450.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2026/siq/gallery/S1_S3NM121L1C0_Front_1_2010.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2026/siq/gallery/S1_S3NM121L1C0_Front_Open_1_2010.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2026/siq/gallery/S1_S3NM121L1C0_Front_SoftAir_1_2010.jpg"
+      ],
+      "galleryDomains": [
+        "www.lg.com"
+      ],
+      "fallbackStatus": {
+        "type": "runtime-ui",
+        "url": null,
+        "domain": null
+      },
+      "group": "C",
+      "verification": "shared, series-level, combo, or non-exact model URL",
+      "optimization": null
+    },
+    {
+      "slug": "saq11a",
+      "model": "SAQ11A",
+      "productName": "แอร์อินเวอร์เตอร์ 9,200 BTU LG DUALCOOL AI Air รุ่น SAQ11A",
+      "primaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2025/image-with-icon/saq/RAC2025-Web-Thumbnail_SAQ-450X450.jpg",
+      "originalPrimaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2025/image-with-icon/saq/RAC2025-Web-Thumbnail_SAQ-450X450.jpg",
+      "primarySourceType": "remote",
+      "primarySourceDomain": "www.lg.com",
+      "galleryUrls": [
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2025/saq11a/gallery/gallery/single-split-inverter-air-conditioner-s1-2024-s3nq091l1cb-gallery-gallery-2010-01.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2025/saq11a/gallery/gallery/single-split-inverter-air-conditioner-s1-2024-s3nq091l1cb-gallery-gallery-2010-02.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2025/saq13a/gallery/single-split-inverter-air-conditioner-s0-2024-s3nm090a1h0-gallery-gallery-2010-03.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2025/saq11a/gallery/gallery/single-split-inverter-air-conditioner-s1-2024-s3nq091l1cb-gallery-gallery-2010-04.jpg"
+      ],
+      "galleryDomains": [
+        "www.lg.com"
+      ],
+      "fallbackStatus": {
+        "type": "runtime-ui",
+        "url": null,
+        "domain": null
+      },
+      "group": "C",
+      "verification": "shared, series-level, combo, or non-exact model URL",
+      "optimization": null
+    },
+    {
+      "slug": "saq13a",
+      "model": "SAQ13A",
+      "productName": "แอร์อินเวอร์เตอร์ 12,000 BTU LG DUALCOOL AI Air รุ่น SAQ13A",
+      "primaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2025/image-with-icon/saq/RAC2025-Web-Thumbnail_SAQ-450X450.jpg",
+      "originalPrimaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2025/image-with-icon/saq/RAC2025-Web-Thumbnail_SAQ-450X450.jpg",
+      "primarySourceType": "remote",
+      "primarySourceDomain": "www.lg.com",
+      "galleryUrls": [
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2025/saq11a/gallery/gallery/single-split-inverter-air-conditioner-s1-2024-s3nq091l1cb-gallery-gallery-2010-01.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2025/saq11a/gallery/gallery/single-split-inverter-air-conditioner-s1-2024-s3nq091l1cb-gallery-gallery-2010-02.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2025/saq11a/gallery/single-split-inverter-air-conditioner-s0-2024-s3nm090a1h0-gallery-gallery-2010-03.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2025/saq11a/gallery/gallery/single-split-inverter-air-conditioner-s1-2024-s3nq091l1cb-gallery-gallery-2010-04.jpg"
+      ],
+      "galleryDomains": [
+        "www.lg.com"
+      ],
+      "fallbackStatus": {
+        "type": "runtime-ui",
+        "url": null,
+        "domain": null
+      },
+      "group": "C",
+      "verification": "shared, series-level, combo, or non-exact model URL",
+      "optimization": null
+    },
+    {
+      "slug": "saq18b",
+      "model": "SAQ18B",
+      "productName": "แอร์ LG DUALCOOL AI 18,000 BTU รุ่น SAQ18B",
+      "primaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2025/image-with-icon/saq/RAC2025-Web-Thumbnail_SAQ-450X450.jpg",
+      "originalPrimaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2025/image-with-icon/saq/RAC2025-Web-Thumbnail_SAQ-450X450.jpg",
+      "primarySourceType": "remote",
+      "primarySourceDomain": "www.lg.com",
+      "galleryUrls": [
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2025/saq11a/gallery/gallery/single-split-inverter-air-conditioner-s1-2024-s3nq091l1cb-gallery-gallery-2010-01.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2025/saq11a/gallery/gallery/single-split-inverter-air-conditioner-s1-2024-s3nq091l1cb-gallery-gallery-2010-02.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2025/saq13a/gallery/single-split-inverter-air-conditioner-s0-2024-s3nm090a1h0-gallery-gallery-2010-03.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2025/saq11a/gallery/gallery/single-split-inverter-air-conditioner-s1-2024-s3nq091l1cb-gallery-gallery-2010-04.jpg"
+      ],
+      "galleryDomains": [
+        "www.lg.com"
+      ],
+      "fallbackStatus": {
+        "type": "runtime-ui",
+        "url": null,
+        "domain": null
+      },
+      "group": "C",
+      "verification": "shared, series-level, combo, or non-exact model URL",
+      "optimization": null
+    },
+    {
+      "slug": "saq24b",
+      "model": "SAQ24B",
+      "productName": "แอร์อินเวอร์เตอร์ 24,225 BTU LG DUALCOOL AI Air",
+      "primaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2025/image-with-icon/saq/RAC2025-Web-Thumbnail_SAQ-450X450.jpg",
+      "originalPrimaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2025/image-with-icon/saq/RAC2025-Web-Thumbnail_SAQ-450X450.jpg",
+      "primarySourceType": "remote",
+      "primarySourceDomain": "www.lg.com",
+      "galleryUrls": [
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2025/saq11a/gallery/gallery/single-split-inverter-air-conditioner-s1-2024-s3nq091l1cb-gallery-gallery-2010-01.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2025/saq11a/gallery/gallery/single-split-inverter-air-conditioner-s1-2024-s3nq091l1cb-gallery-gallery-2010-02.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2025/saq13a/gallery/single-split-inverter-air-conditioner-s0-2024-s3nm090a1h0-gallery-gallery-2010-03.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2025/saq11a/gallery/gallery/single-split-inverter-air-conditioner-s1-2024-s3nq091l1cb-gallery-gallery-2010-04.jpg"
+      ],
+      "galleryDomains": [
+        "www.lg.com"
+      ],
+      "fallbackStatus": {
+        "type": "runtime-ui",
+        "url": null,
+        "domain": null
+      },
+      "group": "C",
+      "verification": "shared, series-level, combo, or non-exact model URL",
+      "optimization": null
+    },
+    {
+      "slug": "art13a",
+      "model": "ART13A.SR1",
+      "productName": "แอร์อินเวอร์เตอร์ 11,942 BTU LG ARTCOOL",
+      "primaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2026/art13a-sr1/gallery/01_AirFit%20Artcool_S3-M091LRC0_S3NM091LRC0_EU_Front_450.jpg",
+      "originalPrimaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2026/art13a-sr1/gallery/01_AirFit%20Artcool_S3-M091LRC0_S3NM091LRC0_EU_Front_450.jpg",
+      "primarySourceType": "remote",
+      "primarySourceDomain": "www.lg.com",
+      "galleryUrls": [
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2026/art13a-sr1/gallery/small01.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2026/art13a-sr1/gallery/small02.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2026/art13a-sr1/gallery/small03.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2026/art13a-sr1/gallery/small04.jpg"
+      ],
+      "galleryDomains": [
+        "www.lg.com"
+      ],
+      "fallbackStatus": {
+        "type": "runtime-ui",
+        "url": null,
+        "domain": null
+      },
+      "group": "C",
+      "verification": "shared, series-level, combo, or non-exact model URL",
+      "optimization": null
+    },
+    {
+      "slug": "art18a",
+      "model": "ART18A.SR1",
+      "productName": "แอร์อินเวอร์เตอร์ 18,084 BTU LG ARTCOOL",
+      "primaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2026/art13a-sr1/gallery/01_AirFit%20Artcool_S3-M091LRC0_S3NM091LRC0_EU_Front_450.jpg",
+      "originalPrimaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2026/art13a-sr1/gallery/01_AirFit%20Artcool_S3-M091LRC0_S3NM091LRC0_EU_Front_450.jpg",
+      "primarySourceType": "remote",
+      "primarySourceDomain": "www.lg.com",
+      "galleryUrls": [
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2026/art13a-sr1/gallery/small01.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2026/art13a-sr1/gallery/small02.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2026/art13a-sr1/gallery/small03.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2026/art13a-sr1/gallery/small04.jpg"
+      ],
+      "galleryDomains": [
+        "www.lg.com"
+      ],
+      "fallbackStatus": {
+        "type": "runtime-ui",
+        "url": null,
+        "domain": null
+      },
+      "group": "C",
+      "verification": "shared, series-level, combo, or non-exact model URL",
+      "optimization": null
+    },
+    {
+      "slug": "zt4q18",
+      "model": "ZT4Q18GPLA1",
+      "productName": "เครื่องปรับอากาศ 4-Way Cassette ขนาด 18,000 BTU",
+      "primaryImage": null,
+      "originalPrimaryImage": null,
+      "primarySourceType": "missing",
+      "primarySourceDomain": null,
+      "galleryUrls": [
+        "https://arttato.github.io/LG-Subscribe/img/products/zt4q18gpla1-ewghath.jpg"
+      ],
+      "galleryDomains": [
+        "arttato.github.io"
+      ],
+      "fallbackStatus": {
+        "type": "missing-primary-runtime-ui",
+        "url": null,
+        "domain": null
+      },
+      "group": "D",
+      "verification": "missing primary image",
+      "optimization": null
+    },
+    {
+      "slug": "zt4q24",
+      "model": "ZT4Q24GPLA1",
+      "productName": "แอร์ LG 4Way Cassette 24,500 BTU",
+      "primaryImage": null,
+      "originalPrimaryImage": null,
+      "primarySourceType": "missing",
+      "primarySourceDomain": null,
+      "galleryUrls": [
+        "https://arttato.github.io/LG-Subscribe/img/products/zt4q24gpla1-ewghath.jpg"
+      ],
+      "galleryDomains": [
+        "arttato.github.io"
+      ],
+      "fallbackStatus": {
+        "type": "missing-primary-runtime-ui",
+        "url": null,
+        "domain": null
+      },
+      "group": "D",
+      "verification": "missing primary image",
+      "optimization": null
+    },
+    {
+      "slug": "zt4q36",
+      "model": "ZT4Q36GNLA1",
+      "productName": "เครื่องปรับอากาศ 4-Way Cassette ขนาด 36,200 BTU",
+      "primaryImage": null,
+      "originalPrimaryImage": null,
+      "primarySourceType": "missing",
+      "primarySourceDomain": null,
+      "galleryUrls": [
+        "https://arttato.github.io/LG-Subscribe/img/products/zt4q36gnla1-ewghath.jpg"
+      ],
+      "galleryDomains": [
+        "arttato.github.io"
+      ],
+      "fallbackStatus": {
+        "type": "missing-primary-runtime-ui",
+        "url": null,
+        "domain": null
+      },
+      "group": "D",
+      "verification": "missing primary image",
+      "optimization": null
+    },
+    {
+      "slug": "zt4q48",
+      "model": "ZT4Q48GMLA1",
+      "productName": "เครื่องปรับอากาศ 4-Way Cassette ขนาด 48,000 BTU",
+      "primaryImage": null,
+      "originalPrimaryImage": null,
+      "primarySourceType": "missing",
+      "primarySourceDomain": null,
+      "galleryUrls": [
+        "https://arttato.github.io/LG-Subscribe/img/products/zt4q48gmla1-ewghath.jpg"
+      ],
+      "galleryDomains": [
+        "arttato.github.io"
+      ],
+      "fallbackStatus": {
+        "type": "missing-primary-runtime-ui",
+        "url": null,
+        "domain": null
+      },
+      "group": "D",
+      "verification": "missing primary image",
+      "optimization": null
+    },
+    {
+      "slug": "zt1q12",
+      "model": "ZT1Q12GULA1",
+      "productName": "เครื่องปรับอากาศ 1-Way Cassette ขนาด 10,500 BTU",
+      "primaryImage": null,
+      "originalPrimaryImage": null,
+      "primarySourceType": "missing",
+      "primarySourceDomain": null,
+      "galleryUrls": [
+        "https://arttato.github.io/LG-Subscribe/img/products/zt1q12gula1-ewghath.jpg"
+      ],
+      "galleryDomains": [
+        "arttato.github.io"
+      ],
+      "fallbackStatus": {
+        "type": "missing-primary-runtime-ui",
+        "url": null,
+        "domain": null
+      },
+      "group": "D",
+      "verification": "missing primary image",
+      "optimization": null
+    },
+    {
+      "slug": "zt1q18",
+      "model": "ZT1Q18GTLA1",
+      "productName": "(PM 2.5, DUAL Vane) เครื่องปรับอากาศ 1-Way Cassette ขนาด 18,000 BTU",
+      "primaryImage": null,
+      "originalPrimaryImage": null,
+      "primarySourceType": "missing",
+      "primarySourceDomain": null,
+      "galleryUrls": [
+        "https://arttato.github.io/LG-Subscribe/img/products/zt1q18gtla1-ewghath.jpg"
+      ],
+      "galleryDomains": [
+        "arttato.github.io"
+      ],
+      "fallbackStatus": {
+        "type": "missing-primary-runtime-ui",
+        "url": null,
+        "domain": null
+      },
+      "group": "D",
+      "verification": "missing primary image",
+      "optimization": null
+    },
+    {
+      "slug": "zt1q24",
+      "model": "ZT1Q24GTLA1",
+      "productName": "เครื่องปรับอากาศ 1-Way Cassette ขนาด 23,500 BTU",
+      "primaryImage": null,
+      "originalPrimaryImage": null,
+      "primarySourceType": "missing",
+      "primarySourceDomain": null,
+      "galleryUrls": [
+        "https://arttato.github.io/LG-Subscribe/img/products/zt1q24gtla1-ewghath.jpg"
+      ],
+      "galleryDomains": [
+        "arttato.github.io"
+      ],
+      "fallbackStatus": {
+        "type": "missing-primary-runtime-ui",
+        "url": null,
+        "domain": null
+      },
+      "group": "D",
+      "verification": "missing primary image",
+      "optimization": null
+    },
+    {
+      "slug": "ztrq36",
+      "model": "ZTRQ36GYLA1",
+      "productName": "แอร์ LG Round Cassette 36,700 BTU",
+      "primaryImage": null,
+      "originalPrimaryImage": null,
+      "primarySourceType": "missing",
+      "primarySourceDomain": null,
+      "galleryUrls": [
+        "https://arttato.github.io/LG-Subscribe/img/products/ztrq36gyla1-ewghath.jpg"
+      ],
+      "galleryDomains": [
+        "arttato.github.io"
+      ],
+      "fallbackStatus": {
+        "type": "missing-primary-runtime-ui",
+        "url": null,
+        "domain": null
+      },
+      "group": "D",
+      "verification": "missing primary image",
+      "optimization": null
+    },
+    {
+      "slug": "ztrq48",
+      "model": "ZTRQ48GYLA1",
+      "productName": "แอร์ LG Round Cassette 47,100 BTU",
+      "primaryImage": null,
+      "originalPrimaryImage": null,
+      "primarySourceType": "missing",
+      "primarySourceDomain": null,
+      "galleryUrls": [
+        "https://arttato.github.io/LG-Subscribe/img/products/ztrq48gyla1-ewghath.jpg"
+      ],
+      "galleryDomains": [
+        "arttato.github.io"
+      ],
+      "fallbackStatus": {
+        "type": "missing-primary-runtime-ui",
+        "url": null,
+        "domain": null
+      },
+      "group": "D",
+      "verification": "missing primary image",
+      "optimization": null
+    },
+    {
+      "slug": "oled48c6psa",
+      "model": "OLED48C6PSA",
+      "productName": "ทีวี 48\" LG OLED evo C6 4K Smart TV 2026",
+      "primaryImage": "images/products/oled48c6psa.webp",
+      "originalPrimaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/oled/oled81-42c6psa-atm/gallery/48-c6/update/OLED48C6PSA-450-01.jpg",
+      "primarySourceType": "local",
+      "primarySourceDomain": "local",
+      "galleryUrls": [
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/oled/oled81-42c6psa-atm/gallery/48-c6/update/OLED48C6PSA-450-01.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/oled/oled81-42c6psa-atm/gallery/48-c6/update/OLED48C6PSA-2010-01.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/oled/oled81-42c6psa-atm/gallery/48-c6/update/OLED48C6PSA-2010-02.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/oled/oled81-42c6psa-atm/gallery/48-c6/update/OLED48C6PSA-2010-03.jpg"
+      ],
+      "galleryDomains": [
+        "www.lg.com"
+      ],
+      "fallbackStatus": {
+        "type": "runtime-ui",
+        "url": null,
+        "domain": null
+      },
+      "group": "A",
+      "verification": "verified pilot: exact URL model mapping + HTTP download + visual review",
+      "optimization": {
+        "originalUrl": "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/oled/oled81-42c6psa-atm/gallery/48-c6/update/OLED48C6PSA-450-01.jpg",
+        "originalBytes": 38757,
+        "originalSha256": "9a173c035adb5478f67f830f8775af03939807f64734bfabecb7191cb7294b71",
+        "localPath": "images/products/oled48c6psa.webp",
+        "localBytes": 18492,
+        "localSha256": "86463e2819e414d73832d1f70eb597e63434e4c468b97e5a7d794bd2a0466ec9",
+        "dimensions": "450x450",
+        "format": "webp",
+        "quality": 85
+      }
+    },
+    {
+      "slug": "oled55c6psa",
+      "model": "OLED55C6PSA",
+      "productName": "ทีวี 55\" LG OLED evo C6 4K Smart TV 2026",
+      "primaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/oled/oled81-42c6psa-atm/gallery/55-c6/update/OLED55C6PSA-450-01.jpg",
+      "originalPrimaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/oled/oled81-42c6psa-atm/gallery/55-c6/update/OLED55C6PSA-450-01.jpg",
+      "primarySourceType": "remote",
+      "primarySourceDomain": "www.lg.com",
+      "galleryUrls": [
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/oled/oled81-42c6psa-atm/gallery/55-c6/update/OLED55C6PSA-450-01.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/oled/oled81-42c6psa-atm/gallery/55-c6/update/OLED55C6PSA-2010-01.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/oled/oled81-42c6psa-atm/gallery/55-c6/update/OLED55C6PSA-2010-02.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/oled/oled81-42c6psa-atm/gallery/55-c6/update/OLED55C6PSA-2010-03.jpg"
+      ],
+      "galleryDomains": [
+        "www.lg.com"
+      ],
+      "fallbackStatus": {
+        "type": "runtime-ui",
+        "url": null,
+        "domain": null
+      },
+      "group": "C",
+      "verification": "shared, series-level, combo, or non-exact model URL",
+      "optimization": null
+    },
+    {
+      "slug": "oled65c6psa",
+      "model": "OLED65C6PSA",
+      "productName": "ทีวี 65\" LG OLED evo C6 4K Smart TV 2026",
+      "primaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/oled/oled81-42c6psa-atm/gallery/65-c6/update/OLED65C6PSA-450-01.jpg",
+      "originalPrimaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/oled/oled81-42c6psa-atm/gallery/65-c6/update/OLED65C6PSA-450-01.jpg",
+      "primarySourceType": "remote",
+      "primarySourceDomain": "www.lg.com",
+      "galleryUrls": [
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/oled/oled81-42c6psa-atm/gallery/65-c6/update/OLED65C6PSA-450-01.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/oled/oled81-42c6psa-atm/gallery/65-c6/update/OLED65C6PSA-2010-01.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/oled/oled81-42c6psa-atm/gallery/65-c6/update/OLED65C6PSA-2010-02.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/oled/oled81-42c6psa-atm/gallery/65-c6/update/OLED65C6PSA-2010-03.jpg"
+      ],
+      "galleryDomains": [
+        "www.lg.com"
+      ],
+      "fallbackStatus": {
+        "type": "runtime-ui",
+        "url": null,
+        "domain": null
+      },
+      "group": "C",
+      "verification": "shared, series-level, combo, or non-exact model URL",
+      "optimization": null
+    },
+    {
+      "slug": "oled77c6psa",
+      "model": "OLED77C6PSA",
+      "productName": "ทีวี 77\" LG OLED evo C6 4K Smart TV 2026",
+      "primaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/oled/oled81-42c6psa-atm/gallery/77-c6/update/OLED77C6PSA-450-01.jpg",
+      "originalPrimaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/oled/oled81-42c6psa-atm/gallery/77-c6/update/OLED77C6PSA-450-01.jpg",
+      "primarySourceType": "remote",
+      "primarySourceDomain": "www.lg.com",
+      "galleryUrls": [
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/oled/oled81-42c6psa-atm/gallery/77-c6/update/OLED77C6PSA-450-01.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/oled/oled81-42c6psa-atm/gallery/77-c6/update/OLED77C6PSA-2010-01.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/oled/oled81-42c6psa-atm/gallery/77-c6/update/OLED77C6PSA-2010-02.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/oled/oled81-42c6psa-atm/gallery/77-c6/update/OLED77C6PSA-2010-03.jpg"
+      ],
+      "galleryDomains": [
+        "www.lg.com"
+      ],
+      "fallbackStatus": {
+        "type": "runtime-ui",
+        "url": null,
+        "domain": null
+      },
+      "group": "C",
+      "verification": "shared, series-level, combo, or non-exact model URL",
+      "optimization": null
+    },
+    {
+      "slug": "oled77c6psa-s80ty",
+      "model": "OLED77C6PSA + S80TY",
+      "productName": "ทีวี 77\" LG OLED evo C6 4K Smart TV 2026 + Soundbar S80TY (ของแถม)",
+      "primaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/oled/oled81-42c6psa-atm/gallery/77-c6/update/OLED77C6PSA-450-01.jpg",
+      "originalPrimaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/oled/oled81-42c6psa-atm/gallery/77-c6/update/OLED77C6PSA-450-01.jpg",
+      "primarySourceType": "remote",
+      "primarySourceDomain": "www.lg.com",
+      "galleryUrls": [
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/oled/oled81-42c6psa-atm/gallery/77-c6/update/OLED77C6PSA-450-01.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/oled/oled81-42c6psa-atm/gallery/77-c6/update/OLED77C6PSA-2010-01.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/oled/oled81-42c6psa-atm/gallery/77-c6/update/OLED77C6PSA-2010-02.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/oled/oled81-42c6psa-atm/gallery/77-c6/update/OLED77C6PSA-2010-03.jpg"
+      ],
+      "galleryDomains": [
+        "www.lg.com"
+      ],
+      "fallbackStatus": {
+        "type": "runtime-ui",
+        "url": null,
+        "domain": null
+      },
+      "group": "C",
+      "verification": "shared, series-level, combo, or non-exact model URL",
+      "optimization": null
+    },
+    {
+      "slug": "oled65c6psa-s80ty",
+      "model": "OLED65C6PSA + S80TY",
+      "productName": "ทีวี 65\" LG OLED evo C6 4K Smart TV 2026 + Soundbar S80TY (ของแถม)",
+      "primaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/oled/oled81-42c6psa-atm/gallery/65-c6/update/OLED65C6PSA-450-01.jpg",
+      "originalPrimaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/oled/oled81-42c6psa-atm/gallery/65-c6/update/OLED65C6PSA-450-01.jpg",
+      "primarySourceType": "remote",
+      "primarySourceDomain": "www.lg.com",
+      "galleryUrls": [
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/oled/oled81-42c6psa-atm/gallery/65-c6/update/OLED65C6PSA-450-01.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/oled/oled81-42c6psa-atm/gallery/65-c6/update/OLED65C6PSA-2010-01.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/oled/oled81-42c6psa-atm/gallery/65-c6/update/OLED65C6PSA-2010-02.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/oled/oled81-42c6psa-atm/gallery/65-c6/update/OLED65C6PSA-2010-03.jpg"
+      ],
+      "galleryDomains": [
+        "www.lg.com"
+      ],
+      "fallbackStatus": {
+        "type": "runtime-ui",
+        "url": null,
+        "domain": null
+      },
+      "group": "C",
+      "verification": "shared, series-level, combo, or non-exact model URL",
+      "optimization": null
+    },
+    {
+      "slug": "oled55c6psa-s30a",
+      "model": "OLED55C6PSA + S30A",
+      "productName": "ทีวี 55\" LG OLED evo C6 4K Smart TV 2026 + Soundbar S30A (ของแถม)",
+      "primaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/oled/oled81-42c6psa-atm/gallery/55-c6/update/OLED55C6PSA-450-01.jpg",
+      "originalPrimaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/oled/oled81-42c6psa-atm/gallery/55-c6/update/OLED55C6PSA-450-01.jpg",
+      "primarySourceType": "remote",
+      "primarySourceDomain": "www.lg.com",
+      "galleryUrls": [
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/oled/oled81-42c6psa-atm/gallery/55-c6/update/OLED55C6PSA-450-01.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/oled/oled81-42c6psa-atm/gallery/55-c6/update/OLED55C6PSA-2010-01.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/oled/oled81-42c6psa-atm/gallery/55-c6/update/OLED55C6PSA-2010-02.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/oled/oled81-42c6psa-atm/gallery/55-c6/update/OLED55C6PSA-2010-03.jpg"
+      ],
+      "galleryDomains": [
+        "www.lg.com"
+      ],
+      "fallbackStatus": {
+        "type": "runtime-ui",
+        "url": null,
+        "domain": null
+      },
+      "group": "C",
+      "verification": "shared, series-level, combo, or non-exact model URL",
+      "optimization": null
+    },
+    {
+      "slug": "75qned86bsa",
+      "model": "75QNED86BSA",
+      "productName": "ทีวี 75\" LG QNED evo AI Mini LED QNED86 4K Smart TV 2026",
+      "primaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/qned/100-55qned86bsa-atm/gallery/75qned86/gallery/75QNED86-450.jpg",
+      "originalPrimaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/qned/100-55qned86bsa-atm/gallery/75qned86/gallery/75QNED86-450.jpg",
+      "primarySourceType": "remote",
+      "primarySourceDomain": "www.lg.com",
+      "galleryUrls": [
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/qned/100-55qned86bsa-atm/gallery/75qned86/gallery/75QNED86-450.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/qned/100-55qned86bsa-atm/gallery/75qned86/gallery/75QNED86-2010.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/qned/100-55qned86bsa-atm/gallery/75-qned85/gallery/lg-qned-evo-qned85-2026-75-gallery-03-ultra-big-tv-sports.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/qned/100-55qned86bsa-atm/gallery/75-qned85/gallery/lg-qned-evo-qned85-2026-75-gallery-04-dynamic-qned-color-pro.jpg"
+      ],
+      "galleryDomains": [
+        "www.lg.com"
+      ],
+      "fallbackStatus": {
+        "type": "runtime-ui",
+        "url": null,
+        "domain": null
+      },
+      "group": "C",
+      "verification": "shared, series-level, combo, or non-exact model URL",
+      "optimization": null
+    },
+    {
+      "slug": "100mrgb96bs",
+      "model": "100MRGB96BS",
+      "productName": "ทีวี 100\" LG Micro RGB evo AI MRGB96 4K Smart TV 2026",
+      "primaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/micro-rgb-evo/100mrgb96bs-atm/gallery/100-mrgb95/gallery/gp1/basic.jpg",
+      "originalPrimaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/micro-rgb-evo/100mrgb96bs-atm/gallery/100-mrgb95/gallery/gp1/basic.jpg",
+      "primarySourceType": "remote",
+      "primarySourceDomain": "www.lg.com",
+      "galleryUrls": [
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/micro-rgb-evo/100mrgb96bs-atm/gallery/100-mrgb95/gallery/gp1/basic.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/micro-rgb-evo/100mrgb96bs-atm/gallery/100-mrgb95/gallery/gp1/mrgb96-2010-01.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/micro-rgb-evo/100mrgb96bs-atm/gallery/100-mrgb95/gallery/gp1/mrgb96-2010-02.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/micro-rgb-evo/100mrgb96bs-atm/gallery/100-mrgb95/gallery/gp1/mrgb96-2010-03.jpg"
+      ],
+      "galleryDomains": [
+        "www.lg.com"
+      ],
+      "fallbackStatus": {
+        "type": "runtime-ui",
+        "url": null,
+        "domain": null
+      },
+      "group": "C",
+      "verification": "path/filename contains conflicting or variant model evidence",
+      "optimization": null
+    },
+    {
+      "slug": "100qned86bs",
+      "model": "100QNED86BS",
+      "productName": "ทีวี 100\" LG QNED evo AI Mini LED QNED86 4K Smart TV 2026",
+      "primaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/qned/100-55qned86bsa-atm/gallery/100-qned85/basic/lg-qned-evo-qned85-2026-100-gallery-basic.jpg",
+      "originalPrimaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/qned/100-55qned86bsa-atm/gallery/100-qned85/basic/lg-qned-evo-qned85-2026-100-gallery-basic.jpg",
+      "primarySourceType": "remote",
+      "primarySourceDomain": "www.lg.com",
+      "galleryUrls": [
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/qned/100-55qned86bsa-atm/gallery/100-qned85/basic/lg-qned-evo-qned85-2026-100-gallery-basic.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/qned/100-55qned86bsa-atm/gallery/100-qned85/gallery/lg-qned-evo-qned85-2026-100-gallery-01-product-front.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/qned/100-55qned86bsa-atm/gallery/100-qned85/thumbnail/lg-qned-evo-qned85-2026-100-gallery-thumbnail-01-product-front.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/qned/100-55qned86bsa-atm/gallery/100-qned85/zoom/lg-qned-evo-qned85-2026-100-gallery-zoom-01-product-front.jpg"
+      ],
+      "galleryDomains": [
+        "www.lg.com"
+      ],
+      "fallbackStatus": {
+        "type": "runtime-ui",
+        "url": null,
+        "domain": null
+      },
+      "group": "C",
+      "verification": "shared, series-level, combo, or non-exact model URL",
+      "optimization": null
+    },
+    {
+      "slug": "85qned80bsa",
+      "model": "85QNED80BSA",
+      "productName": "ทีวี 85\" LG QNED evo AI Mini LED QNED80 4K Smart TV 2026",
+      "primaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/qned/75-43qned80bsa-atm/gallery/85-qned80/basic/lg-qned-evo-qned80-2026-85-gallery-basic.jpg",
+      "originalPrimaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/qned/75-43qned80bsa-atm/gallery/85-qned80/basic/lg-qned-evo-qned80-2026-85-gallery-basic.jpg",
+      "primarySourceType": "remote",
+      "primarySourceDomain": "www.lg.com",
+      "galleryUrls": [
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/qned/75-43qned80bsa-atm/gallery/85-qned80/basic/lg-qned-evo-qned80-2026-85-gallery-basic.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/qned/75-43qned80bsa-atm/gallery/85-qned80/gallery/lg-qned-evo-qned80-2026-85-gallery-01-product-front.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/qned/75-43qned80bsa-atm/gallery/85-qned80/gallery/lg-qned-evo-qned80-2026-85-gallery-01-product-front-usp.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/qned/75-43qned80bsa-atm/gallery/85-qned80/thumbnail/lg-qned-evo-qned80-2026-85-gallery-thumbnail-01-product-front.jpg"
+      ],
+      "galleryDomains": [
+        "www.lg.com"
+      ],
+      "fallbackStatus": {
+        "type": "runtime-ui",
+        "url": null,
+        "domain": null
+      },
+      "group": "C",
+      "verification": "shared, series-level, combo, or non-exact model URL",
+      "optimization": null
+    },
+    {
+      "slug": "65qned80bsa",
+      "model": "65QNED80BSA",
+      "productName": "ทีวี 65\" LG QNED evo AI Mini LED QNED80 4K Smart TV 2026",
+      "primaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/qned/75-43qned80bsa-atm/gallery/65-qned80/basic/lg-qned-evo-qned80-2026-65-gallery-basic.jpg",
+      "originalPrimaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/qned/75-43qned80bsa-atm/gallery/65-qned80/basic/lg-qned-evo-qned80-2026-65-gallery-basic.jpg",
+      "primarySourceType": "remote",
+      "primarySourceDomain": "www.lg.com",
+      "galleryUrls": [
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/qned/75-43qned80bsa-atm/gallery/65-qned80/basic/lg-qned-evo-qned80-2026-65-gallery-basic.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/qned/75-43qned80bsa-atm/gallery/65-qned80/gallery/lg-qned-evo-qned80-2026-65-gallery-01-product-front.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/qned/75-43qned80bsa-atm/gallery/65-qned80/thumbnail/lg-qned-evo-qned80-2026-65-gallery-thumbnail-01-product-front.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/qned/75-43qned80bsa-atm/gallery/65-qned80/zoom/lg-qned-evo-qned80-2026-65-gallery-zoom-01-product-front.jpg"
+      ],
+      "galleryDomains": [
+        "www.lg.com"
+      ],
+      "fallbackStatus": {
+        "type": "runtime-ui",
+        "url": null,
+        "domain": null
+      },
+      "group": "C",
+      "verification": "shared, series-level, combo, or non-exact model URL",
+      "optimization": null
+    },
+    {
+      "slug": "55qned80bsa",
+      "model": "55QNED80BSA",
+      "productName": "ทีวี 55\" LG QNED evo AI Mini LED QNED80 4K Smart TV 2026",
+      "primaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/qned/75-43qned80bsa-atm/gallery/55-qned80/basic/lg-qned-evo-qned80-2026-55-gallery-basic.jpg",
+      "originalPrimaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/qned/75-43qned80bsa-atm/gallery/55-qned80/basic/lg-qned-evo-qned80-2026-55-gallery-basic.jpg",
+      "primarySourceType": "remote",
+      "primarySourceDomain": "www.lg.com",
+      "galleryUrls": [
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/qned/75-43qned80bsa-atm/gallery/55-qned80/basic/lg-qned-evo-qned80-2026-55-gallery-basic.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/qned/75-43qned80bsa-atm/gallery/55-qned80/gallery/lg-qned-evo-qned80-2026-55-gallery-01-product-front.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/qned/75-43qned80bsa-atm/gallery/55-qned80/thumbnail/lg-qned-evo-qned80-2026-55-gallery-thumbnail-01-product-front.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/qned/75-43qned80bsa-atm/gallery/55-qned80/zoom/lg-qned-evo-qned80-2026-55-gallery-zoom-01-product-front.jpg"
+      ],
+      "galleryDomains": [
+        "www.lg.com"
+      ],
+      "fallbackStatus": {
+        "type": "runtime-ui",
+        "url": null,
+        "domain": null
+      },
+      "group": "C",
+      "verification": "shared, series-level, combo, or non-exact model URL",
+      "optimization": null
+    },
+    {
+      "slug": "75nu855bpsa",
+      "model": "75NU855BPSA",
+      "productName": "ทีวี 75\" LG NANO 4K UHD AI NU85 4K Smart TV 2026",
+      "primaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/nano-4k-uhd/98-43nu855bpsa-atm/gallery/75-nu85/basic/lg-nano-4k-uhd-nu85-2026-75-gallery-basic.jpg",
+      "originalPrimaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/nano-4k-uhd/98-43nu855bpsa-atm/gallery/75-nu85/basic/lg-nano-4k-uhd-nu85-2026-75-gallery-basic.jpg",
+      "primarySourceType": "remote",
+      "primarySourceDomain": "www.lg.com",
+      "galleryUrls": [
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/nano-4k-uhd/98-43nu855bpsa-atm/gallery/75-nu85/basic/lg-nano-4k-uhd-nu85-2026-75-gallery-basic.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/nano-4k-uhd/98-43nu855bpsa-atm/gallery/75-nu85/gallery/lg-nano-4k-uhd-nu85-2026-75-gallery-01-product-front.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/nano-4k-uhd/98-43nu855bpsa-atm/gallery/75-nu85/thumbnail/lg-nano-4k-uhd-nu85-2026-75-gallery-thumbnail-01-product-front.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/nano-4k-uhd/98-43nu855bpsa-atm/gallery/75-nu85/zoom/lg-nano-4k-uhd-nu85-2026-75-gallery-zoom-01-product-front.jpg"
+      ],
+      "galleryDomains": [
+        "www.lg.com"
+      ],
+      "fallbackStatus": {
+        "type": "runtime-ui",
+        "url": null,
+        "domain": null
+      },
+      "group": "C",
+      "verification": "shared, series-level, combo, or non-exact model URL",
+      "optimization": null
+    },
+    {
+      "slug": "65nu855bpsa",
+      "model": "65NU855BPSA",
+      "productName": "ทีวี 65\" LG NANO 4K UHD AI NU85 4K Smart TV 2026",
+      "primaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/nano-4k-uhd/98-43nu855bpsa-atm/gallery/65-nu85/basic/lg-nano-4k-uhd-nu85-2026-65-gallery-basic.jpg",
+      "originalPrimaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/nano-4k-uhd/98-43nu855bpsa-atm/gallery/65-nu85/basic/lg-nano-4k-uhd-nu85-2026-65-gallery-basic.jpg",
+      "primarySourceType": "remote",
+      "primarySourceDomain": "www.lg.com",
+      "galleryUrls": [
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/nano-4k-uhd/98-43nu855bpsa-atm/gallery/65-nu85/basic/lg-nano-4k-uhd-nu85-2026-65-gallery-basic.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/nano-4k-uhd/98-43nu855bpsa-atm/gallery/65-nu85/gallery/lg-nano-4k-uhd-nu85-2026-65-gallery-01-product-front.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/nano-4k-uhd/98-43nu855bpsa-atm/gallery/65-nu85/thumbnail/lg-nano-4k-uhd-nu85-2026-65-gallery-thumbnail-01-product-front.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/nano-4k-uhd/98-43nu855bpsa-atm/gallery/65-nu85/zoom/lg-nano-4k-uhd-nu85-2026-65-gallery-zoom-01-product-front.jpg"
+      ],
+      "galleryDomains": [
+        "www.lg.com"
+      ],
+      "fallbackStatus": {
+        "type": "runtime-ui",
+        "url": null,
+        "domain": null
+      },
+      "group": "C",
+      "verification": "shared, series-level, combo, or non-exact model URL",
+      "optimization": null
+    },
+    {
+      "slug": "27lx6tdga",
+      "model": "27LX6TDGA",
+      "productName": "LG StanbyME2",
+      "primaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2025/lifestyle-screen/27lx6tdga-atm/gallery/gallery/new-image/SBM2-450x450.jpg",
+      "originalPrimaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2025/lifestyle-screen/27lx6tdga-atm/gallery/gallery/new-image/SBM2-450x450.jpg",
+      "primarySourceType": "remote",
+      "primarySourceDomain": "www.lg.com",
+      "galleryUrls": [
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2025/lifestyle-screen/27lx6tdga-atm/gallery/gallery/new-image/SBM2-450x450.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2025/lifestyle-screen/27lx6tdga-atm/gallery/gallery/new-image/SBM2-2010x1334.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2025/lifestyle-screen/27lx6tdga-atm/gallery/gallery/stanbyme2-27lx6t-2025-gallery-09.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2025/lifestyle-screen/27lx6tdga-atm/gallery/gallery/stanbyme2-27lx6t-2025-gallery-10.jpg"
+      ],
+      "galleryDomains": [
+        "www.lg.com"
+      ],
+      "fallbackStatus": {
+        "type": "runtime-ui",
+        "url": null,
+        "domain": null
+      },
+      "group": "B",
+      "verification": "remote LG URL contains exact model token and is unique to this product",
+      "optimization": null
+    },
+    {
+      "slug": "32lx6bdga",
+      "model": "32LX6BDGA",
+      "productName": "LG StanbyME 2 Max LX6 จอไลฟ์สไตล์ไร้สาย 4K ขนาด 32 นิ้ว",
+      "primaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/lifestyle-screens/32lx6bdga-atm/gallery/basic/lg-movable-screen-lx6-2026-32-gallery-basic.jpg",
+      "originalPrimaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/lifestyle-screens/32lx6bdga-atm/gallery/basic/lg-movable-screen-lx6-2026-32-gallery-basic.jpg",
+      "primarySourceType": "remote",
+      "primarySourceDomain": "www.lg.com",
+      "galleryUrls": [
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/lifestyle-screens/32lx6bdga-atm/gallery/basic/lg-movable-screen-lx6-2026-32-gallery-basic.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/lifestyle-screens/32lx6bdga-atm/gallery/gallery/lg-movable-screen-lx6-2026-32-gallery-01-product-front-main.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/lifestyle-screens/32lx6bdga-atm/gallery/thumbnail/lg-movable-screen-lx6-2026-32-thumbnail-01-product-front-main.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/lifestyle-screens/32lx6bdga-atm/gallery/zoom/lg-movable-screen-lx6-2026-32-zoom-01-product-front-main.jpg"
+      ],
+      "galleryDomains": [
+        "www.lg.com"
+      ],
+      "fallbackStatus": {
+        "type": "runtime-ui",
+        "url": null,
+        "domain": null
+      },
+      "group": "B",
+      "verification": "remote LG URL contains exact model token and is unique to this product",
+      "optimization": null
+    },
+    {
+      "slug": "27lx6tdga-grab",
+      "model": "27LX6TDGA + xboom GRAB",
+      "productName": "LG StanbyME2 + xboom Grab (ของแถม)",
+      "primaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/pto/2026/27lx6tdga-grab/27LX6TDGA.GRAB-450.jpg",
+      "originalPrimaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/pto/2026/27lx6tdga-grab/27LX6TDGA.GRAB-450.jpg",
+      "primarySourceType": "remote",
+      "primarySourceDomain": "www.lg.com",
+      "galleryUrls": [
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2025/lifestyle-screen/27lx6tdga-atm/gallery/gallery/new-image/SBM2-450x450.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2025/lifestyle-screen/27lx6tdga-atm/gallery/gallery/new-image/SBM2-2010x1334.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2025/lifestyle-screen/27lx6tdga-atm/gallery/gallery/stanbyme2-27lx6t-2025-gallery-09.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2025/lifestyle-screen/27lx6tdga-atm/gallery/gallery/stanbyme2-27lx6t-2025-gallery-10.jpg"
+      ],
+      "galleryDomains": [
+        "www.lg.com"
+      ],
+      "fallbackStatus": {
+        "type": "runtime-ui",
+        "url": null,
+        "domain": null
+      },
+      "group": "C",
+      "verification": "shared, series-level, combo, or non-exact model URL",
+      "optimization": null
+    },
+    {
+      "slug": "27gx704a",
+      "model": "27GX704A-B",
+      "productName": "LG UltraGear™ GX7 27 นิ้ว 240Hz OLED QHD Gaming Monitor 27GX704A DisplayHDR™ True Black 400",
+      "primaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/monitor/2026/27gx704a-atm/gallery/basic/ultragear-gaming-27gx704a-2025-gallery-basic-large.jpg",
+      "originalPrimaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/monitor/2026/27gx704a-atm/gallery/basic/ultragear-gaming-27gx704a-2025-gallery-basic-large.jpg",
+      "primarySourceType": "remote",
+      "primarySourceDomain": "www.lg.com",
+      "galleryUrls": [
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/monitor/2026/27gx704a-atm/gallery/basic/ultragear-gaming-27gx704a-2025-gallery-basic-large.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/monitor/2026/27gx704a-atm/gallery/gallery/2010x1334/ultragear-gaming-27gx704a-2025-gallery-gallery-00-with-logo.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/monitor/2026/27gx704a-atm/gallery/gallery/2010x1334/ultragear-gaming-27gx704a-2025-gallery-gallery-01-with-logo.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/monitor/2026/27gx704a-atm/gallery/gallery/2010x1334/ultragear-gaming-27gx704a-2025-gallery-gallery-02-with-logo.jpg"
+      ],
+      "galleryDomains": [
+        "www.lg.com"
+      ],
+      "fallbackStatus": {
+        "type": "runtime-ui",
+        "url": null,
+        "domain": null
+      },
+      "group": "C",
+      "verification": "shared, series-level, combo, or non-exact model URL",
+      "optimization": null
+    },
+    {
+      "slug": "45gx950a",
+      "model": "45GX950A-B",
+      "productName": "LG UltraGear™ 45\" OLED Dual-Mode 5K2K 0.03ms DisplayHDR True Black",
+      "primaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/monitor/2025/45gx950a-b-atm/gallery/basic/ultragear-gaming-45gx950a-2025-gallery-basic-large.jpg",
+      "originalPrimaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/monitor/2025/45gx950a-b-atm/gallery/basic/ultragear-gaming-45gx950a-2025-gallery-basic-large.jpg",
+      "primarySourceType": "remote",
+      "primarySourceDomain": "www.lg.com",
+      "galleryUrls": [
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/monitor/2025/45gx950a-b-atm/gallery/basic/ultragear-gaming-45gx950a-2025-gallery-basic-large.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/monitor/2025/45gx950a-b-atm/gallery/gallery/ultragear-gaming-45gx950a-2025-gallery-gallery-01-2010.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/monitor/2025/45gx950a-b-atm/gallery/gallery/ultragear-gaming-45gx950a-2025-gallery-gallery-02-2010.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/monitor/2025/45gx950a-b-atm/gallery/gallery/ultragear-gaming-45gx950a-2025-gallery-gallery-03-2010.jpg"
+      ],
+      "galleryDomains": [
+        "www.lg.com"
+      ],
+      "fallbackStatus": {
+        "type": "runtime-ui",
+        "url": null,
+        "domain": null
+      },
+      "group": "B",
+      "verification": "remote LG URL contains exact model token and is unique to this product",
+      "optimization": null
+    },
+    {
+      "slug": "52g930b",
+      "model": "52G930B-B",
+      "productName": "LG UltraGear evo G9 52 นิ้ว",
+      "primaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/monitor/2026/52g930b-b-atm/gallery/basic/ultragear-gaming-52g930b-2026-gallery-basic-01.jpg",
+      "originalPrimaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/monitor/2026/52g930b-b-atm/gallery/basic/ultragear-gaming-52g930b-2026-gallery-basic-01.jpg",
+      "primarySourceType": "remote",
+      "primarySourceDomain": "www.lg.com",
+      "galleryUrls": [
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/monitor/2026/52g930b-b-atm/gallery/basic/ultragear-gaming-52g930b-2026-gallery-basic-01.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/monitor/2026/52g930b-b-atm/gallery/gallery/ultragear-gaming-52g930b-2026-gallery-gallery-01.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/monitor/2026/52g930b-b-atm/gallery/gallery/ultragear-gaming-52g930b-2026-gallery-gallery-02.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/monitor/2026/52g930b-b-atm/gallery/gallery/ultragear-gaming-52g930b-2026-gallery-gallery-03.jpg"
+      ],
+      "galleryDomains": [
+        "www.lg.com"
+      ],
+      "fallbackStatus": {
+        "type": "runtime-ui",
+        "url": null,
+        "domain": null
+      },
+      "group": "B",
+      "verification": "remote LG URL contains exact model token and is unique to this product",
+      "optimization": null
+    },
+    {
+      "slug": "40u990a",
+      "model": "40U990A-W",
+      "productName": "LG UltraFine™ 40 นิ้ว",
+      "primaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/monitor/2026/40u990a-w-atm/gallery/basic/ultrafine-uhd-4k-5k-40u990a-2025-gallery-basic-1.jpg",
+      "originalPrimaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/monitor/2026/40u990a-w-atm/gallery/basic/ultrafine-uhd-4k-5k-40u990a-2025-gallery-basic-1.jpg",
+      "primarySourceType": "remote",
+      "primarySourceDomain": "www.lg.com",
+      "galleryUrls": [
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/monitor/2026/40u990a-w-atm/gallery/basic/ultrafine-uhd-4k-5k-40u990a-2025-gallery-basic-1.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/monitor/2026/40u990a-w-atm/gallery/basic/ultrafine-uhd-4k-5k-40u990a-2025-gallery-thumbnail-01-1.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/monitor/2026/40u990a-w-atm/gallery/gallery/ultrafine-uhd-4k-5k-40u990a-2025-gallery-gallery-01.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/monitor/2026/40u990a-w-atm/gallery/gallery/ultrafine-uhd-4k-5k-40u990a-2025-gallery-gallery-02.jpg"
+      ],
+      "galleryDomains": [
+        "www.lg.com"
+      ],
+      "fallbackStatus": {
+        "type": "runtime-ui",
+        "url": null,
+        "domain": null
+      },
+      "group": "B",
+      "verification": "remote LG URL contains exact model token and is unique to this product",
+      "optimization": null
+    },
+    {
+      "slug": "34u650a",
+      "model": "34U650A-B",
+      "productName": "34\" 21:9 UltraWide™ WQHD (3440x1440) IPS Monitor",
+      "primaryImage": null,
+      "originalPrimaryImage": null,
+      "primarySourceType": "missing",
+      "primarySourceDomain": null,
+      "galleryUrls": [
+        "https://arttato.github.io/LG-Subscribe/img/products/34u650a-b-atm.jpg"
+      ],
+      "galleryDomains": [
+        "arttato.github.io"
+      ],
+      "fallbackStatus": {
+        "type": "missing-primary-runtime-ui",
+        "url": null,
+        "domain": null
+      },
+      "group": "D",
+      "verification": "missing primary image",
+      "optimization": null
+    },
+    {
+      "slug": "32u889sa",
+      "model": "32U889SA-W",
+      "productName": "จอมอนิเตอร์ 31.5\" 4K IPS Smart Monitor Swing จอสัมผัส ขาตั้งหมุนได้",
+      "primaryImage": "https://www.lg.com/content/dam/channel/wcms/th/images/monitor/2025/32u889sa/gallery/smart-monitor-32u889sa-2025-gallery-swing-gallery-basic-large.jpg",
+      "originalPrimaryImage": "https://www.lg.com/content/dam/channel/wcms/th/images/monitor/2025/32u889sa/gallery/smart-monitor-32u889sa-2025-gallery-swing-gallery-basic-large.jpg",
+      "primarySourceType": "remote",
+      "primarySourceDomain": "www.lg.com",
+      "galleryUrls": [
+        "https://www.lg.com/content/dam/channel/wcms/th/images/monitor/2025/32u889sa/gallery/smart-monitor-32u889sa-2025-gallery-swing-gallery-basic-large.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/images/monitor/2025/32u889sa/gallery/smart-monitor-32u889sa-2025-gallery-swing-gallery-01-2010.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/images/monitor/2025/32u889sa/gallery/smart-monitor-32u889sa-2025-gallery-swing-gallery-02-2010.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/images/monitor/2025/32u889sa/gallery/smart-monitor-32u889sa-2025-gallery-swing-gallery-03-2010.jpg"
+      ],
+      "galleryDomains": [
+        "www.lg.com"
+      ],
+      "fallbackStatus": {
+        "type": "runtime-ui",
+        "url": null,
+        "domain": null
+      },
+      "group": "C",
+      "verification": "shared, series-level, combo, or non-exact model URL",
+      "optimization": null
+    },
+    {
+      "slug": "32u889sa-grab",
+      "model": "32U889SA + xboom GRAB",
+      "productName": "จอมอนิเตอร์ 31.5\" 4K IPS Smart Monitor Swing + xboom Grab (ของแถม)",
+      "primaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/pto/2026/32u889sa-grab/32U889SA.GRAB-450.jpg",
+      "originalPrimaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/pto/2026/32u889sa-grab/32U889SA.GRAB-450.jpg",
+      "primarySourceType": "remote",
+      "primarySourceDomain": "www.lg.com",
+      "galleryUrls": [
+        "https://www.lg.com/content/dam/channel/wcms/th/images/monitor/2025/32u889sa/gallery/smart-monitor-32u889sa-2025-gallery-swing-gallery-basic-large.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/images/monitor/2025/32u889sa/gallery/smart-monitor-32u889sa-2025-gallery-swing-gallery-01-2010.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/images/monitor/2025/32u889sa/gallery/smart-monitor-32u889sa-2025-gallery-swing-gallery-02-2010.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/images/monitor/2025/32u889sa/gallery/smart-monitor-32u889sa-2025-gallery-swing-gallery-03-2010.jpg"
+      ],
+      "galleryDomains": [
+        "www.lg.com"
+      ],
+      "fallbackStatus": {
+        "type": "runtime-ui",
+        "url": null,
+        "domain": null
+      },
+      "group": "C",
+      "verification": "shared, series-level, combo, or non-exact model URL",
+      "optimization": null
+    },
+    {
+      "slug": "s95tr",
+      "model": "S95TR",
+      "productName": "ซาวด์บาร์ LG Dolby Atmos 9.1.5 ช่อง (820W)",
+      "primaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/audio/2025/s95tr-dthallk/gallery/av-soundbar-s95tr-thumbnailanimation-01.jpg",
+      "originalPrimaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/audio/2025/s95tr-dthallk/gallery/av-soundbar-s95tr-thumbnailanimation-01.jpg",
+      "primarySourceType": "remote",
+      "primarySourceDomain": "www.lg.com",
+      "galleryUrls": [
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/audio/2025/s95tr-dthallk/gallery/av-soundbar-s95tr-thumbnailanimation-01.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/audio/2025/s95tr-dthallk/gallery/av-soundbar-s95tr-gallery-01-new.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/audio/2025/s95tr-dthallk/gallery/av-soundbar-s95tr-gallery-02.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/audio/2025/s95tr-dthallk/gallery/av-soundbar-s95tr-gallery-03.jpg"
+      ],
+      "galleryDomains": [
+        "www.lg.com"
+      ],
+      "fallbackStatus": {
+        "type": "runtime-ui",
+        "url": null,
+        "domain": null
+      },
+      "group": "B",
+      "verification": "remote LG URL contains exact model token and is unique to this product",
+      "optimization": null
+    },
+    {
+      "slug": "s70ty",
+      "model": "S70TY",
+      "productName": "ซาวด์บาร์ LG Dolby Atmos 3.1.1 ช่อง (400W)",
+      "primaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/audio/2024/s70ty-dthallk/gallery/s70ty_basic_450.jpg",
+      "originalPrimaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/audio/2024/s70ty-dthallk/gallery/s70ty_basic_450.jpg",
+      "primarySourceType": "remote",
+      "primarySourceDomain": "www.lg.com",
+      "galleryUrls": [
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/audio/2024/s70ty-dthallk/gallery/s70ty_basic_450.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/audio/2024/s70ty-dthallk/gallery/av-soundbar-s70ty-gallery-01.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/audio/2024/s70ty-dthallk/gallery/av-soundbar-s70ty-gallery-02.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/audio/2024/s70ty-dthallk/gallery/av-soundbar-s70ty-gallery-03.jpg"
+      ],
+      "galleryDomains": [
+        "www.lg.com"
+      ],
+      "fallbackStatus": {
+        "type": "runtime-ui",
+        "url": null,
+        "domain": null
+      },
+      "group": "B",
+      "verification": "remote LG URL contains exact model token and is unique to this product",
+      "optimization": null
+    },
+    {
+      "slug": "xboom-grab",
+      "model": "xboom GRAB",
+      "productName": "ลำโพงพกพา LG xboom Grab tuned by will.i.am",
+      "primaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/audio/2025/grab-athalbk/gallery/gallery-1/xboom-grab-2025-gallery-basic.jpg",
+      "originalPrimaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/audio/2025/grab-athalbk/gallery/gallery-1/xboom-grab-2025-gallery-basic.jpg",
+      "primarySourceType": "remote",
+      "primarySourceDomain": "www.lg.com",
+      "galleryUrls": [
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/audio/2025/grab-athalbk/gallery/gallery-1/xboom-grab-2025-gallery-basic.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/audio/2025/grab-athalbk/gallery/gallery-1/xboom-grab-2025-gallery-05.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/audio/2025/grab-athalbk/gallery/gallery-1/xboom-grab-2025-gallery-06.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/audio/2025/grab-athalbk/gallery/gallery-1/xboom-grab-2025-gallery-07.jpg"
+      ],
+      "galleryDomains": [
+        "www.lg.com"
+      ],
+      "fallbackStatus": {
+        "type": "runtime-ui",
+        "url": null,
+        "domain": null
+      },
+      "group": "B",
+      "verification": "remote LG URL contains exact model token and is unique to this product",
+      "optimization": null
+    },
+    {
+      "slug": "xboom-bounce",
+      "model": "xboom BOUNCE",
+      "productName": "ลำโพงพกพา LG xboom Bounce by will.i.am",
+      "primaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/audio/2025/bounce-athalbk/gallery/01-basic/xboom-bounce-2025-gallery-basic.jpg",
+      "originalPrimaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/audio/2025/bounce-athalbk/gallery/01-basic/xboom-bounce-2025-gallery-basic.jpg",
+      "primarySourceType": "remote",
+      "primarySourceDomain": "www.lg.com",
+      "galleryUrls": [
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/audio/2025/bounce-athalbk/gallery/01-basic/xboom-bounce-2025-gallery-basic.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/audio/2025/bounce-athalbk/gallery/02-gallery/xboom-bounce-2025-gallery-05.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/audio/2025/bounce-athalbk/gallery/02-gallery/xboom-bounce-2025-gallery-06.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/audio/2025/bounce-athalbk/gallery/02-gallery/xboom-bounce-2025-gallery-07.jpg"
+      ],
+      "galleryDomains": [
+        "www.lg.com"
+      ],
+      "fallbackStatus": {
+        "type": "runtime-ui",
+        "url": null,
+        "domain": null
+      },
+      "group": "B",
+      "verification": "remote LG URL contains exact model token and is unique to this product",
+      "optimization": null
+    },
+    {
+      "slug": "xboom-stage301",
+      "model": "xboom STAGE301",
+      "productName": "LG xboom STAGE301 tuned by will.i.am",
+      "primaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/audio/2025/stage301-athalbk/gallery/01-basic/xboom-stage301-2025-gallery-basic.jpg",
+      "originalPrimaryImage": "https://www.lg.com/content/dam/channel/wcms/th/image-update/audio/2025/stage301-athalbk/gallery/01-basic/xboom-stage301-2025-gallery-basic.jpg",
+      "primarySourceType": "remote",
+      "primarySourceDomain": "www.lg.com",
+      "galleryUrls": [
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/audio/2025/stage301-athalbk/gallery/01-basic/xboom-stage301-2025-gallery-basic.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/audio/2025/stage301-athalbk/gallery/02-gallery/xboom-stage301-2025-gallery-05.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/audio/2025/stage301-athalbk/gallery/02-gallery/xboom-stage301-2025-gallery-07.jpg",
+        "https://www.lg.com/content/dam/channel/wcms/th/image-update/audio/2025/stage301-athalbk/gallery/02-gallery/xboom-stage301-2025-gallery-06.jpg"
+      ],
+      "galleryDomains": [
+        "www.lg.com"
+      ],
+      "fallbackStatus": {
+        "type": "runtime-ui",
+        "url": null,
+        "domain": null
+      },
+      "group": "B",
+      "verification": "remote LG URL contains exact model token and is unique to this product",
+      "optimization": null
+    }
+  ]
+}

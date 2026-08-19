@@ -17,6 +17,16 @@ const requiredAssets = [
   'catalog.css',
   'catalog.js',
   'sitemap.xml',
+  'image-inventory-phase4.json',
+  'scripts/audit-product-images.js',
+  'images/products/wd110mn.webp',
+  'images/products/a9t-ultra.webp',
+  'images/products/a9t-core.webp',
+  'images/products/gc-l257kqkw.webp',
+  'images/products/gc-b257sqyl.webp',
+  'images/products/wt2520nheg.webp',
+  'images/products/fv1413s4m.webp',
+  'images/products/oled48c6psa.webp',
   'images/hero-8-d.jpg',
   'images/hero-8-m.jpg',
   'images/hero-birthday-38-d.jpg',
@@ -74,6 +84,10 @@ const catalogHtml = fs.readFileSync(path.join(ROOT, 'products.html'), 'utf8');
 const catalogSource = fs.readFileSync(path.join(ROOT, 'catalog.js'), 'utf8');
 const analyticsSource = fs.readFileSync(path.join(ROOT, 'analytics.js'), 'utf8');
 const sitemap = fs.readFileSync(path.join(ROOT, 'sitemap.xml'), 'utf8');
+const imageInventory = JSON.parse(fs.readFileSync(path.join(ROOT, 'image-inventory-phase4.json'), 'utf8'));
+const pdp = fs.readFileSync(path.join(ROOT, 'product.html'), 'utf8');
+const productSource = fs.readFileSync(path.join(ROOT, 'products.js'), 'utf8');
+const gallerySource = fs.readFileSync(path.join(ROOT, 'product-galleries.js'), 'utf8');
 check(!/id="planner"|BUILD YOUR PACKAGE|พร้อมจัดบ้านให้สบาย/.test(home), 'Home นำ Package Planner และ Final CTA ที่ซ้ำซ้อนออกแล้ว');
 check(/id="products"/.test(home), 'Home มี Product section');
 check(/WHY LG SUBSCRIBE/.test(home) && !/WHY FLEXI-SUB/.test(home), 'Home ใช้หัวข้อ WHY LG SUBSCRIBE');
@@ -89,6 +103,11 @@ check(/loading="/.test(catalogSource) && /addEventListener\('error'/.test(catalo
 check(/catalog_search/.test(catalogSource) && /catalog_filter/.test(catalogSource), 'Catalog ส่ง event สำหรับ search และ filter');
 check(/calculator_entry_click/.test(analyticsSource) && /slug:/.test(analyticsSource) && /position/.test(analyticsSource) && /source/.test(analyticsSource), 'Analytics ครบ Hero entry และ Product Card context');
 check(/products\.html/.test(sitemap) && !/<loc>[^<]*\/product\.html<\/loc>/.test(sitemap), 'Sitemap ใช้ Catalog URL แทน PDP ที่ไม่มี slug');
+check(imageInventory.summary.products === 97 && imageInventory.summary.primary.local === 8, 'Phase 4 inventory มีสินค้า 97 รุ่นและ local primary pilot 8 รุ่น');
+check(imageInventory.summary.groups.A === 8 && imageInventory.summary.pilot.reductionPercent > 50, 'Phase 4 pilot ผ่าน verification และลดขนาดรวมมากกว่า 50%');
+check((productSource.match(/img: 'images\/products\/[a-z0-9-]+\.webp'/g) || []).length === 8, 'Product data ใช้ local WebP เฉพาะ pilot 8 รุ่น');
+check(/localPrimary/.test(pdp) && /fetchpriority="high"/.test(pdp), 'PDP ใช้ local primary ก่อน gallery และให้ priority กับภาพหลัก');
+check(/loading="lazy"/.test(catalogSource) && !/position <= 4 \? 'eager'/.test(catalogSource), 'Catalog lazy-load รูปสินค้าซึ่งอยู่ใต้ส่วนค้นหา');
 check(!/class="trust-strip"/.test(home), 'Home ไม่มี trust strip ที่ซ้ำกับ Why FLEXI-SUB');
 check(/rel="preload"\s+as="image"\s+href="images\/hero-8-d\.jpg"/.test(home), 'Home preload Hero desktop');
 check(/rel="preload"\s+as="image"\s+href="images\/hero-8-m\.jpg"/.test(home), 'Home preload Hero mobile');
@@ -110,16 +129,13 @@ check(/body\[data-page="home"\] \.h-btn-solid/.test(premium) && /service-banner 
 check((home.match(/<svg class="payment-mark"/g) || []).length === 8 && (promotions.match(/<svg class="payment-mark"/g) || []).length === 8, 'Footer ใช้ SVG payment marks ครบ');
 check(/payment-mark:hover\s*\{[^}]*grayscale\(0\)/.test(premium), 'Payment marks เป็นสีจริงเมื่อ hover');
 
-const pdp = fs.readFileSync(path.join(ROOT, 'product.html'), 'utf8');
-const productSource = fs.readFileSync(path.join(ROOT, 'products.js'), 'utf8');
-const gallerySource = fs.readFileSync(path.join(ROOT, 'product-galleries.js'), 'utf8');
 check(/id="addBtn"/.test(pdp), 'PDP มีปุ่มใส่ตะกร้า');
 check(/subscribe-store\.html/.test(pdp), 'PDP เชื่อมไปตะกร้า');
 check(/main\.pdp-layout/.test(pdp) && !/main \.pdp-layout/.test(pdp), 'PDP ใช้ responsive selector ที่ตรงกับ main element');
 check(/Array\.isArray\(p\.gallery\)/.test(pdp) && /gallerySource\.slice\(0, 4\)/.test(pdp), 'PDP รองรับแกลลอรี่สินค้าไม่เกิน 4 ภาพ');
 check((productSource.match(/A9T-ULTRA_PH_/g) || []).length === 4, 'A9T-ULTRA มีภาพสินค้า 4 มุม');
 check(/LG_PRODUCT_GALLERIES/.test(pdp) && /product-galleries\.js/.test(pdp), 'PDP โหลดแกลลอรี่รวมของทุกสินค้า');
-check(/showGalleryPlaceholder/.test(pdp) && /th\.hidden = true/.test(pdp), 'PDP ซ่อนภาพเสียและมี fallback สำหรับภาพหลัก');
+check(/showGalleryPlaceholder/.test(pdp) && /thumbImg\.hidden = true/.test(pdp) && /revealWhenLoaded/.test(pdp), 'PDP ป้องกัน broken-image icon และคง fallback สำหรับภาพหลักกับ thumbnail');
 check(/dfc335hm-abmpeth\.jpg/.test(productSource), 'DFC335HM มีภาพสำรองเมื่อ LG ป้องกัน hotlink');
 check(!/https:\/\/(?!www\.lg\.com|arttato\.github\.io)/.test(gallerySource), 'แกลลอรี่ใช้เฉพาะโฮสต์ภาพที่อนุญาต');
 check((gallerySource.match(/https:\/\/arttato\.github\.io\/LG-Subscribe\/img\/products\//g) || []).length === 10, 'สินค้า 10 รุ่นที่ไม่มีภาพ LG Thailand ใช้ภาพอ้างอิงที่กำหนด');
