@@ -537,6 +537,17 @@
         #cartTotal { color: var(--accent); font-size: 30px; letter-spacing: -.04em; }
         .contact-btn { min-height: 54px; background: var(--accent); border-radius: 999px; font-weight: 700; }
         .contact-btn:hover { background: #85002a; opacity: 1; }
+        .officer-contact { display: grid; grid-template-columns: 180px 1fr; gap: 22px; align-items: center; margin-top: 22px; padding: 22px; background: #fff8fa; border: 1px solid #ead9df; border-radius: 18px; }
+        .officer-qr { width: 180px; padding: 10px; background: #fff; border: 1px solid #e8e2e4; border-radius: 14px; }
+        .officer-qr img { display: block; width: 100%; height: auto; }
+        .officer-contact h3 { margin: 0 0 6px; font-size: 20px; }
+        .officer-contact p { margin: 0 0 14px; color: #71686b; font-size: 13px; }
+        .official-assurance { margin: 0 0 14px; padding: 11px 13px; color: #176b47; background: #eef8f3; border: 1px solid #cce8da; border-radius: 12px; font-size: 12px; font-weight: 700; line-height: 1.55; }
+        .contact-detail { display: grid; grid-template-columns: 72px 1fr; gap: 8px; align-items: center; padding: 9px 0; border-top: 1px solid #eadfe3; }
+        .contact-detail span { color: #817579; font-size: 12px; }
+        .contact-detail a { color: #3c1422; font-size: 17px; font-weight: 750; text-decoration: none; }
+        .contact-detail a:hover { color: var(--accent); text-decoration: underline; }
+        .copy-help { margin: 10px 0 8px; color: #71686b; font-size: 12px; text-align: center; }
         .checkout-assurance { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; border-top: 1px solid #eee8ea; margin-top: 20px; padding-top: 18px; }
         .checkout-assurance span { color: #71686b; text-align: center; font-size: 11px; line-height: 1.45; }
         .checkout-assurance b { display: block; color: var(--accent); font-size: 16px; margin-bottom: 3px; }
@@ -556,6 +567,9 @@
             .sidebar-title a { float: none !important; display: block; margin-top: 6px; }
             .customer-grid { grid-template-columns: 1fr; }
             .checkout-assurance { grid-template-columns: 1fr; gap: 13px; }
+            .officer-contact { grid-template-columns: 1fr; text-align: center; padding: 18px; }
+            .officer-qr { width: min(210px, 75vw); margin: auto; }
+            .contact-detail { grid-template-columns: 70px 1fr; text-align: left; }
         }
     </style>
 </head>
@@ -657,9 +671,22 @@
                 </div>
             </div>
             <p class="first-bill-note">* ยอดชำระครั้งแรก: งวดที่ 1 (฿149) สำหรับแผน Visit/Self · ทีวี/จอ/ลำโพง = ชำระล่วงหน้า 12 เดือน 50% · ซื้อขาด = จ่ายครั้งเดียว (รวมเครื่อง + บริการ 2 ปี)</p>
-            <button class="contact-btn" id="sendToOfficerBtn" onclick="sendToOfficer()">💬 ส่งรายการให้เจ้าหน้าที่ทำรายการ</button>
+            <section class="officer-contact" aria-labelledby="officerContactTitle">
+                <div class="officer-qr">
+                    <img src="images/line-lgthailand-qr.png" width="800" height="800" alt="QR Code สำหรับเพิ่ม LINE ไอดี @lgthailand">
+                </div>
+                <div>
+                    <h3 id="officerContactTitle">ติดต่อฝ่ายขาย LG โดยตรง</h3>
+                    <div class="official-assurance">✓ มั่นใจได้ ฝ่ายขาย LG โดยตรง ไม่ผ่านตัวแทน<br>ทำรายการผ่าน LINE Official ของ LG เท่านั้น</div>
+                    <p>สแกน QR Code หรือแตะข้อมูลด้านล่างเพื่อเริ่มพูดคุยกับฝ่ายขาย</p>
+                    <div class="contact-detail"><span>LINE ID</span><a href="https://line.me/R/ti/p/@lgthailand" target="_blank" rel="noopener">@lgthailand</a></div>
+                    <div class="contact-detail"><span>โทรศัพท์</span><a href="tel:0612670518">061-267-0518</a></div>
+                </div>
+            </section>
+            <p class="copy-help">กรอกชื่อและเบอร์โทร แล้วคัดลอกรายการไปวางในแชตกับเจ้าหน้าที่</p>
+            <button class="contact-btn" id="sendToOfficerBtn" onclick="copyOrderForOfficer()">📋 คัดลอกรายการสำหรับส่งให้เจ้าหน้าที่</button>
             <p class="checkout-status" id="checkoutStatus" role="status" aria-live="polite"></p>
-            <p class="contact-note">*ระบบจะจัดทำสรุปรายการพร้อมรุ่นสินค้าและราคา เพื่อนำไปคุยต่อในไลน์หรือแชททันที</p>
+            <p class="contact-note">*หลังคัดลอกสำเร็จ ให้เปิด LINE @lgthailand แล้ววางข้อความในช่องแชต</p>
             <div class="checkout-assurance"><span><b>✓</b>ตรวจสอบราคาก่อนส่ง</span><span><b>◇</b>ยังไม่มีการชำระเงินบนเว็บ</span><span><b>↗</b>เจ้าหน้าที่ช่วยยืนยันสิทธิ์</span></div>
         </aside>
     </main>
@@ -5020,24 +5047,24 @@ window.LG_PRODUCTS =  [
             document.getElementById('checkoutStatus').textContent = '';
         }
 
-        function sendToOfficer() {
+        function buildOfficerMessage() {
             const ids = Object.keys(selected);
             if (ids.length === 0) {
                 setCheckoutError(null, 'กรุณาเลือกสินค้าอย่างน้อย 1 รายการก่อนส่งให้เจ้าหน้าที่');
-                return;
+                return null;
             }
 
             const name = document.getElementById('custName').value.trim();
             const phone = document.getElementById('custPhone').value.trim();
             if (!name) {
                 setCheckoutError('custName', 'กรุณากรอกชื่อ-นามสกุลของคุณ');
-                return;
+                return null;
             }
             clearCheckoutError('custName');
             const phoneDigits = phone.replace(/[-\s]/g, '');
             if (!/^0\d{8,9}$/.test(phoneDigits)) {
                 setCheckoutError('custPhone', 'กรุณากรอกเบอร์โทรศัพท์ให้ถูกต้อง เช่น 0812345678');
-                return;
+                return null;
             }
             clearCheckoutError('custPhone');
 
@@ -5079,12 +5106,35 @@ window.LG_PRODUCTS =  [
             msg += 'ยอดชำระครั้งแรก: ฿' + fmt(firstPay) + '\n';
             msg += 'ยอดรวมตลอดสัญญา: ฿' + fmt(grand) + (saving > 0 ? ' (ประหยัด ฿' + fmt(saving) + ')' : '') + '\n';
 
-            if (window.FLEXIAnalytics) window.FLEXIAnalytics.push('lead_submit_success', {
-                cart_item_count: ids.length,
-                customer_type: custType
-            });
-            // เปิดห้องแชต LINE OA พร้อมเติมข้อความไว้ให้ลูกค้าตรวจสอบและกดส่งเอง
-            window.open('https://line.me/R/oaMessage/%40lgthailand/?' + encodeURIComponent(msg), '_blank', 'noopener');
+            return msg;
+        }
+
+        async function copyOrderForOfficer() {
+            const msg = buildOfficerMessage();
+            if (!msg) return;
+
+            try {
+                if (navigator.clipboard && window.isSecureContext) {
+                    await navigator.clipboard.writeText(msg);
+                } else {
+                    const textarea = document.createElement('textarea');
+                    textarea.value = msg;
+                    textarea.setAttribute('readonly', '');
+                    textarea.style.position = 'fixed';
+                    textarea.style.opacity = '0';
+                    document.body.appendChild(textarea);
+                    textarea.select();
+                    if (!document.execCommand('copy')) throw new Error('copy failed');
+                    textarea.remove();
+                }
+                document.getElementById('checkoutStatus').textContent = '✓ คัดลอกรายการแล้ว เปิด LINE @lgthailand แล้ววางข้อความเพื่อส่งให้เจ้าหน้าที่';
+                if (window.FLEXIAnalytics) window.FLEXIAnalytics.push('lead_order_copied', {
+                    cart_item_count: Object.keys(selected).length,
+                    customer_type: custType
+                });
+            } catch (error) {
+                document.getElementById('checkoutStatus').textContent = 'ไม่สามารถคัดลอกอัตโนมัติได้ กรุณาลองใหม่หรือถ่ายภาพหน้าจอส่งให้เจ้าหน้าที่';
+            }
         }
 
         document.getElementById('custName').addEventListener('input', function () { clearCheckoutError('custName'); });

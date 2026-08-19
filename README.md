@@ -108,6 +108,6 @@ git push -u origin main
 
 ## ⚠️ ก่อนเผยแพร่
 
-- เปลี่ยน `@yourlineid` เป็น Line ID จริง (ใน `index.html` และ `subscribe-store.html` ฟังก์ชัน `sendToOfficer`)
+- ช่องทางติดต่อท้ายตะกร้าใช้ LINE ID `@lgthailand`, โทร `061-267-0518` และปุ่มคัดลอกรายการ (`copyOrderForOfficer`)
 - ตรวจทานชื่อสินค้าไทย/ราคากับเอกสารจริงอีกครั้ง
 - ไฟล์ PDF ราคา**ไม่**รวมอยู่ใน repo นี้ (เป็นเอกสารภายใน)
