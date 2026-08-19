@@ -13,6 +13,7 @@ const requiredAssets = [
   'product-select.js',
   'cart.js',
   'analytics.js',
+  'premium.css',
   'images/hero-8-d.jpg',
   'images/hero-8-m.jpg',
   'images/hero-birthday-38-d.jpg',
@@ -79,6 +80,8 @@ check(/fit:\s*'contain'/.test(home) && /data-fit="contain"/.test(home), 'Home He
 check(/OFFICIAL LG CAMPAIGNS/.test(promotions) && /ลด 15% ตลอดสัญญา/.test(promotions), 'Promotions มีแคมเปญล่าสุดจาก LG Thailand');
 check(/images\/promotions\/ktc-credit\.jpg/.test(promotions) && /images\/promotions\/uob-credit\.jpg/.test(promotions), 'Promotions มีรูปจริงโปรบัตรเครดิต KTC และ UOB');
 check(!/id="conditions"/.test(promotions) && !/สิทธิพิเศษหลักในเดือนนี้/.test(promotions), 'Promotions ไม่มีส่วนสิทธิพิเศษที่ซ้ำกับแคมเปญด้านบน');
+check(pages.every(page => fs.readFileSync(path.join(ROOT, page), 'utf8').includes('premium.css')), 'ทุกหน้าหลักใช้ Premium CSS กลาง');
+check(!/💳|🔧|🛡️|🔄|🔍|🛒/.test(pages.map(page => fs.readFileSync(path.join(ROOT, page), 'utf8')).join('\n')), 'แทน emoji UI ที่กำหนดด้วย line icon แล้ว');
 check(/สายเกมมิ่ง \(Gaming Lifestyle\)/.test(home) && !/คาเฟ่ \/ ธุรกิจเล็ก/.test(home), 'Home เปลี่ยน Lifestyle ธุรกิจเล็กเป็นสายเกมมิ่ง');
 check(/id: 'gaming'[\s\S]*27gx704a[\s\S]*oled48c6psa/.test(home), 'Gaming Lifestyle แนะนำมอนิเตอร์และทีวี OLED');
 

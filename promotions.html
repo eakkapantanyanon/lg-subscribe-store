@@ -248,6 +248,7 @@
         #official-campaigns, #promos, footer { content-visibility: auto; contain-intrinsic-size: 800px; }
         @media (max-width: 760px) { .page-hero { padding: 60px 0 74px; } .promo-stats { margin: 0; border-radius: 0; grid-template-columns: 1fr; box-shadow: none; } .promo-stat + .promo-stat { border-left: 0; border-top: 1px solid var(--line); } .campaign-head { display: block; } .campaign-source { display: inline-flex; margin-top: 10px; } .campaign-grid { grid-template-columns: 1fr; } .campaign-card img { aspect-ratio: 3/2; } .credit-promos { margin-top: 46px; padding: 24px 16px; border-radius: 22px; } .credit-grid { grid-template-columns: 1fr; } .promo-list-head { display: block; } .promo-list-head p { margin-top: 8px; } .filters { width: 100%; border-radius: 18px; } .p-card-m { border-radius: 18px; } }
     </style>
+    <link rel="stylesheet" href="premium.css?v=1">
 </head>
 <body data-page="promotions">
 
@@ -270,8 +271,8 @@
                 <a href="index.html#contact">สนับสนุน</a>
             </nav>
             <div class="header-actions">
-                <button class="icon-btn" title="ค้นหา" onclick="location.href='index.html#products'">🔍</button>
-                <button class="icon-btn" title="ตะกร้า" onclick="location.href='subscribe-store.html'">🛒</button>
+                <button class="icon-btn" title="ค้นหา" aria-label="ค้นหาสินค้า" onclick="location.href='index.html#products'"><span class="line-icon icon-search" aria-hidden="true"></span></button>
+                <button class="icon-btn" title="ตะกร้า" aria-label="เปิดตะกร้า" onclick="location.href='subscribe-store.html'"><span class="line-icon icon-cart" aria-hidden="true"></span></button>
                 <button class="icon-btn hamburger" id="hamburgerBtn" title="เมนู" onclick="toggleMenu()">☰</button>
             </div>
         </div>

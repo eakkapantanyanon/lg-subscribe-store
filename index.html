@@ -605,6 +605,7 @@
             .benefit-card:hover, .lifestyle-card:hover, .p-card:hover, .p-card:hover .p-img img { transform: none; }
         }
     </style>
+    <link rel="stylesheet" href="premium.css?v=1">
 </head>
 <body data-page="home">
 
@@ -627,8 +628,8 @@
                 <a href="#contact">สนับสนุน</a>
             </nav>
             <div class="header-actions">
-                <button class="icon-btn" title="ค้นหา" onclick="document.getElementById('products').scrollIntoView()">🔍</button>
-                <button class="icon-btn" title="ตะกร้า" onclick="location.href='subscribe-store.html'">🛒</button>
+                <button class="icon-btn" title="ค้นหา" aria-label="ค้นหาสินค้า" onclick="document.getElementById('products').scrollIntoView()"><span class="line-icon icon-search" aria-hidden="true"></span></button>
+                <button class="icon-btn" title="ตะกร้า" aria-label="เปิดตะกร้า" onclick="location.href='subscribe-store.html'"><span class="line-icon icon-cart" aria-hidden="true"></span></button>
                 <a class="header-cta" href="#products">เลือกแพ็กเกจ</a>
                 <button class="icon-btn hamburger" id="hamburgerBtn" title="เมนู" onclick="toggleMenu()">☰</button>
             </div>
@@ -780,7 +781,7 @@
                     <span class="promo-tag">คอมโบ</span>
                     <div class="promo-body"><h3>สมัคร 2 เครื่องขึ้นไป ลดเพิ่ม 10%</h3><p>ลูกค้าใหม่ 2 เครื่องขึ้นไป / ลูกค้าเดิม 1 เครื่องขึ้นไป</p><span class="promo-link">ดูเงื่อนไข →</span></div>
                 </div>
-                <div class="promo-card" role="link" tabindex="0" aria-label="ดูรายละเอียดรอบบิลแรก" onclick="location.href='promotions.html#conditions'" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();location.href='promotions.html#conditions'}"
+                <div class="promo-card" role="link" tabindex="0" aria-label="ดูรายละเอียดรอบบิลแรก" onclick="location.href='promotions.html#official-campaigns'" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();location.href='promotions.html#official-campaigns'}"
                      style="background-image:url('https://www.lg.com/content/dam/channel/wcms/th/housewarming/image/asia-k-house-2026-lg-com-lgeth-housewarming-image-OG-img.jpg')">
                     <span class="promo-tag">บิลแรก</span>
                     <div class="promo-body"><h3>บิลแรกเพียง ฿149</h3><p>ชำระล่วงหน้าแค่ 1 เดือน ก็เริ่มใช้ได้เลย</p><span class="promo-link">ดูรายละเอียด →</span></div>
@@ -807,10 +808,10 @@
                     <h2>สบายใจทุกเดือนกับบริการ LG ครบวงจร</h2>
                     <p class="sub">สมัครสมาชิกครั้งเดียว — ดูแลครบทั้งติดตั้ง บริการตามรอบ และการซ่อม ตลอดอายุสัญญา</p>
                     <div class="service-feats">
-                        <div class="s-feat"><span class="f-emoji">💳</span><div><b>ไม่ต้องจ่ายเงินก้อน</b><span>จ่ายรายเดือนคงที่ คุมงบได้ชัวร์</span></div></div>
-                        <div class="s-feat"><span class="f-emoji">🔧</span><div><b>ทีมช่างดูแลตามรอบ</b><span>บริการถึงบ้านตามรอบนัดหมาย</span></div></div>
-                        <div class="s-feat"><span class="f-emoji">🛡️</span><div><b>เสียซ่อมฟรีตลอดสัญญา</b><span>อะไหล่ + ค่าแรง ฟรี ไม่มีค่าใช้จ่ายแอบแฝง</span></div></div>
-                        <div class="s-feat"><span class="f-emoji">🔄</span><div><b>ยืดหยุ่นทุกแพ็กเกจ</b><span>ปรับแผนให้เข้ากับไลฟ์สไตล์ที่เปลี่ยนไป</span></div></div>
+                        <div class="s-feat"><span class="f-emoji"><i class="line-icon icon-card" aria-hidden="true"></i></span><div><b>ไม่ต้องจ่ายเงินก้อน</b><span>จ่ายรายเดือนคงที่ คุมงบได้ชัวร์</span></div></div>
+                        <div class="s-feat"><span class="f-emoji"><i class="line-icon icon-wrench" aria-hidden="true"></i></span><div><b>ทีมช่างดูแลตามรอบ</b><span>บริการถึงบ้านตามรอบนัดหมาย</span></div></div>
+                        <div class="s-feat"><span class="f-emoji"><i class="line-icon icon-shield" aria-hidden="true"></i></span><div><b>เสียซ่อมฟรีตลอดสัญญา</b><span>อะไหล่ + ค่าแรง ฟรี ไม่มีค่าใช้จ่ายแอบแฝง</span></div></div>
+                        <div class="s-feat"><span class="f-emoji"><i class="line-icon icon-refresh" aria-hidden="true"></i></span><div><b>ยืดหยุ่นทุกแพ็กเกจ</b><span>ปรับแผนให้เข้ากับไลฟ์สไตล์ที่เปลี่ยนไป</span></div></div>
                     </div>
                     <a class="btn-pill light" href="https://line.me/R/ti/p/@lgthailand">💬 ปรึกษาเจ้าหน้าที่</a>
                 </div>
@@ -962,7 +963,7 @@
             el.innerHTML = '';
             const home = document.createElement('div');
             home.className = 'cat-item' + (activeGroup === null ? ' active' : '');
-            home.innerHTML = '<div class="circle">🛒</div><span>ทั้งหมด</span>';
+            home.innerHTML = '<div class="circle"><i class="line-icon icon-cart" aria-hidden="true"></i></div><span>ทั้งหมด</span>';
             home.onclick = () => { activeGroup = null; activeCat = null; renderCats(); renderSubCats(); renderProducts(); };
             el.appendChild(home);
             CAT_GROUPS.forEach(g => {
