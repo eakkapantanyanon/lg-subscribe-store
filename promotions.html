@@ -108,6 +108,19 @@
         .campaign-card h3 { margin: 0 0 7px; font-size: 20px; }
         .campaign-card p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.65; }
         .campaign-card a { display: inline-flex; margin-top: 16px; color: var(--lg-red); font-size: 13px; font-weight: 800; }
+        .credit-promos { margin-top: 64px; padding: 34px; border-radius: 28px; background: linear-gradient(145deg, #f5efe7, #fbf8f4); border: 1px solid #e7ddd2; }
+        .credit-head { margin-bottom: 24px; }
+        .credit-head .kicker { color: var(--lg-red); font-size: 11px; font-weight: 800; letter-spacing: .14em; }
+        .credit-head h2 { font-size: clamp(26px,3.6vw,38px); letter-spacing: -.04em; }
+        .credit-head p { margin-top: 6px; color: var(--muted); font-size: 14px; }
+        .credit-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 20px; }
+        .credit-card { overflow: hidden; border-radius: 24px; background: #fff; box-shadow: 0 16px 42px rgba(53,30,16,.09); }
+        .credit-card img { display: block; width: 100%; aspect-ratio: 1/1; object-fit: cover; object-position: top center; background: #eee6dc; }
+        .credit-copy { padding: 22px 24px 24px; }
+        .credit-bank { display: inline-flex; padding: 5px 10px; border-radius: 999px; background: var(--lg-red-soft); color: var(--lg-red); font-size: 11px; font-weight: 800; }
+        .credit-card h3 { margin: 11px 0 7px; font-size: 20px; }
+        .credit-card p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.65; }
+        .credit-note { margin: 18px 0 0; color: #7e7066; font-size: 11px; line-height: 1.6; }
 
         /* ================= Filter tabs ================= */
         #promos { padding: 48px 0 72px; }
@@ -258,7 +271,7 @@
         .row-cta:hover { background: var(--lg-red-soft); text-decoration: none; }
         .cta-zone { border-radius: 24px; padding: 48px 22px; background: linear-gradient(135deg,#f8edef,#fff); border: 1px solid var(--line); }
         #official-campaigns, #conditions, #promos, footer { content-visibility: auto; contain-intrinsic-size: 800px; }
-        @media (max-width: 760px) { .page-hero { padding: 60px 0 74px; } .promo-stats { margin: 0; border-radius: 0; grid-template-columns: 1fr; box-shadow: none; } .promo-stat + .promo-stat { border-left: 0; border-top: 1px solid var(--line); } .campaign-head { display: block; } .campaign-source { display: inline-flex; margin-top: 10px; } .campaign-grid { grid-template-columns: 1fr; } .campaign-card img { aspect-ratio: 3/2; } .promo-list-head { display: block; } .promo-list-head p { margin-top: 8px; } .filters { width: 100%; border-radius: 18px; } .p-card-m { border-radius: 18px; } }
+        @media (max-width: 760px) { .page-hero { padding: 60px 0 74px; } .promo-stats { margin: 0; border-radius: 0; grid-template-columns: 1fr; box-shadow: none; } .promo-stat + .promo-stat { border-left: 0; border-top: 1px solid var(--line); } .campaign-head { display: block; } .campaign-source { display: inline-flex; margin-top: 10px; } .campaign-grid { grid-template-columns: 1fr; } .campaign-card img { aspect-ratio: 3/2; } .credit-promos { margin-top: 46px; padding: 24px 16px; border-radius: 22px; } .credit-grid { grid-template-columns: 1fr; } .promo-list-head { display: block; } .promo-list-head p { margin-top: 8px; } .filters { width: 100%; border-radius: 18px; } .p-card-m { border-radius: 18px; } }
     </style>
 </head>
 <body data-page="promotions">
@@ -322,6 +335,14 @@
                 <article class="campaign-card"><img src="https://www.lg.com/content/dam/channel/wcms/th/image-update/subscription/promotion/2026/08-birthday/OLED-S80TY_1920x720.jpg" alt="ซับ 1 แถม 1 ทีวี OLED 65 นิ้ว" loading="lazy"><div class="campaign-copy"><span class="campaign-date">1–31 ส.ค. 2569</span><h3>ซับ 1 แถม 1</h3><p>Subscribe TV OLED 65 นิ้ว รับฟรี Soundbar มูลค่า 15,151 บาท</p><a href="#promos">ดูสินค้าโทรทัศน์ OLED →</a></div></article>
                 <article class="campaign-card"><img src="https://www.lg.com/content/dam/channel/wcms/th/image-update/subscription/promotion/2026/08-birthday/AP_1920x720.jpg" alt="โปรคุ้ม 2 ต่อ เครื่องฟอกอากาศ" loading="lazy"><div class="campaign-copy"><span class="campaign-date">1–31 ส.ค. 2569</span><h3>โปรคุ้ม 2 ต่อ</h3><p>เดือนแรก 149 บาท และลด 50% นาน 2 รอบบิล สำหรับรุ่นที่ร่วมรายการ</p><a href="#promos">ดูสินค้าเครื่องฟอกอากาศ →</a></div></article>
                 <article class="campaign-card"><img src="https://www.lg.com/content/dam/channel/wcms/th/image-update/subscription/promotion/2026/07-sub/Sub07-TV_1920x720.jpg" alt="โปรแรงทั้งลด ทั้งแถม ทีวี OLED 48 นิ้ว" loading="lazy"><div class="campaign-copy"><span class="campaign-date">1–31 ส.ค. 2569</span><h3>โปรแรงทั้งลด ทั้งแถม</h3><p>Subscribe TV OLED 48 นิ้ว รับฟรี xboom Bounce ตามเงื่อนไขแคมเปญ</p><a href="#promos">ดูสินค้าโทรทัศน์ OLED →</a></div></article>
+            </div>
+            <div class="credit-promos" id="credit-promos">
+                <div class="credit-head"><span class="kicker">CREDIT CARD OFFERS</span><h2>โปรบัตรเครดิต Subscribe</h2><p>สิทธิพิเศษสำหรับการชำระค่าบริการ LG Subscribe ด้วยบัตรเครดิตที่ร่วมรายการ</p></div>
+                <div class="credit-grid">
+                    <article class="credit-card"><img src="https://www.lg.com/content/dam/channel/wcms/th/image-update/subscription/promotion/2026/08-bank/KTC-detail-Second-Banner.jpg" alt="โปรโมชั่นบัตรเครดิต KTC สำหรับ LG Subscribe" loading="lazy"><div class="credit-copy"><span class="credit-bank">KTC · 1 ก.ค.–31 ธ.ค. 2569</span><h3>รับเครดิตเงินคืนสูงสุด 900 บาท</h3><p>รับเครดิตเงินคืนสูงสุด 150 บาทต่อเดือน ต่อเนื่องสูงสุด 6 เดือน เมื่อสมัคร LG Subscribe และทำตามเงื่อนไขของรายการ</p></div></article>
+                    <article class="credit-card"><img src="https://www.lg.com/content/dam/channel/wcms/th/image-update/subscription/promotion/2026/08-bank/UOB-detail-Second-Banner-2.jpg" alt="โปรโมชั่นบัตรเครดิต UOB สำหรับ LG Subscribe" loading="lazy"><div class="credit-copy"><span class="credit-bank">UOB · 15 ส.ค.–31 ธ.ค. 2569</span><h3>รับเครดิตเงินคืน 30%</h3><p>สำหรับการสมัคร LG Subscribe สินค้าที่ร่วมรายการและชำระด้วยบัตรเครดิต UOB ตามข้อกำหนดของธนาคาร</p></div></article>
+                </div>
+                <p class="credit-note">* สิทธิประโยชน์ รุ่นสินค้า ยอดใช้จ่าย วิธีลงทะเบียน และจำนวนสิทธิ์เป็นไปตามเงื่อนไขของ LG และธนาคาร โปรดตรวจสอบกับเจ้าหน้าที่ก่อนสมัคร</p>
             </div>
         </div>
     </section>
@@ -408,7 +429,7 @@
             </div>
             <div class="f-col">
                 <h4>โปรโมชัน</h4>
-                <a href="#conditions">คอมโบลด 10%</a><a href="#conditions">บิลแรก ฿149</a><a href="#promos">ส่วนลด 50%</a><a href="#promos">ของแถม</a>
+                <a href="#conditions">คอมโบลด 10%</a><a href="#conditions">บิลแรก ฿149</a><a href="#promos">ส่วนลด 50%</a><a href="#promos">ของแถม</a><a href="#credit-promos">โปรบัตรเครดิต</a>
             </div>
             <div class="f-col">
                 <h4>บริการ</h4>
