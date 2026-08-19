@@ -42,11 +42,25 @@
     var id = String(product.id || '').toLowerCase();
     var category = String(product.category || '');
     var desc = '';
+    var details = null;
 
     if (category === 'เครื่องกรองน้ำ') {
       desc = serviceType === 'Visit'
         ? 'ผู้เชี่ยวชาญ LG เปลี่ยน Pre-Carbon Filter ทุก 6 เดือน และ UF Membrane Filter ทุก 12 เดือน พร้อมฆ่าเชื้อทางเดินน้ำ ตรวจรั่ว และทำความสะอาด'
         : 'LG จัดส่ง Pre-Carbon Filter ทุก 6 เดือน และ UF Membrane Filter ทุก 12 เดือน สำหรับเปลี่ยนด้วยตัวเอง';
+      details = serviceType === 'Visit'
+        ? [
+            { text: 'เปลี่ยน Pre-Carbon Block Filter', cycle: 'ทุก 6 เดือน' },
+            { text: 'เปลี่ยน UF Membrane Filter', cycle: 'ทุก 12 เดือน' },
+            { text: 'ฆ่าเชื้อทางเดินน้ำด้วยไฟฟ้า', cycle: 'ทุก 6 เดือน' },
+            { text: 'ตรวจสอบการรั่วไหลของผลิตภัณฑ์', cycle: 'ทุก 6 เดือน' },
+            { text: 'ทำความสะอาดในจุดที่เข้าถึงยาก', cycle: 'ทุก 6 เดือน' },
+            { text: 'ทำความสะอาดทั้งภายในและภายนอก', cycle: 'ทุก 6 เดือน' }
+          ]
+        : [
+            { text: 'จัดส่ง Pre-Carbon Block Filter', cycle: 'ทุก 6 เดือน' },
+            { text: 'จัดส่ง UF Membrane Filter', cycle: 'ทุก 12 เดือน' }
+          ];
     } else if (id === 'gc-l24ffcbb') {
       desc = 'ผู้เชี่ยวชาญ LG ตรวจและทำความสะอาดทุก 6 เดือน พร้อมเปลี่ยน Pre-Carbon Filter ทุก 6 เดือน และ UF/Post Carbon Filter ทุก 12 เดือน';
     } else if (category.indexOf('ตู้เย็น') === 0) {
@@ -91,7 +105,7 @@
       desc = 'ผู้เชี่ยวชาญ LG ตรวจเช็กและทำความสะอาดทุก 6 เดือน พร้อมล้างใหญ่ตามรอบทุก 12 เดือน';
     }
 
-    return desc ? { label: fallback.label, short: fallback.short, desc: desc } : fallback;
+    return desc ? { label: fallback.label, short: fallback.short, desc: desc, details: details } : fallback;
   }
 
   /* ---------- ตัวเลือกที่สินค้ารองรับ ---------- */
