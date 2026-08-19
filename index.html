@@ -137,6 +137,7 @@
             object-fit: cover; object-position: right center;
             display: block; transition: opacity 0.4s;
         }
+        .hero-slide[data-fit="contain"] .hero-campaign { object-fit: contain; object-position: center; }
         /* สไลด์ OLED WEEK: ซูมค่อยๆ (Ken Burns) + แสงวิ่งแบบหน้าจอทีวี */
         .hero-campaign.kenburns { animation: heroKenburns 16s ease-in-out infinite alternate; will-change: transform; }
         @keyframes heroKenburns { from { transform: scale(1); } to { transform: scale(1.09); } }
@@ -1101,11 +1102,11 @@
                 imgM: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/subscription/promotion/2026/08-birthday/-Birthday_720x960.jpg',
                 local: 'images/hero-birthday-38-d.jpg',
                 localM: 'images/hero-birthday-38-m.jpg',
+                fit: 'contain',
                 label: 'LG Subscribe',
                 title: 'โปรปังฉลองวันครบรอบ 38 ปี LG',
                 dates: '15 ส.ค. 69 – 23 ส.ค. 69',
                 detail: 'ลด 15% ตลอดสัญญา สำหรับสินค้าและแพ็กเกจที่ร่วมรายการ',
-                badge: 'ลด 15%',
                 btn1: { text: 'ดูโปรโมชันอื่นๆ', href: 'promotions.html' },
                 btn2: { text: 'Subscribe เลย!', href: 'subscribe-store.html' }
             },
@@ -1219,6 +1220,7 @@
                 const slide = document.createElement('div');
                 slide.className = 'hero-slide' + (i === 0 ? ' active' : '');
                 slide.dataset.theme = s.theme;
+                if (s.fit) slide.dataset.fit = s.fit;
                 const extD = (s.img || '').split('.').pop().split('?')[0] || 'jpg';
                 const extM = (s.imgM || '').split('.').pop().split('?')[0] || extD;
                 const localIndex = s.localIndex || (i + 1);

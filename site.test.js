@@ -75,6 +75,7 @@ check(/rel="preload"\s+as="image"\s+href="images\/hero-8-m\.jpg"/.test(home), 'H
 check((home.match(/all-Banner_1920x720\.jpg/g) || []).length === 1, 'Home Hero ไม่มีภาพแคมเปญซ้ำ');
 check(/-Birthday_1920x720\.jpg/.test(home) && /15 ส\.ค\. 69 – 23 ส\.ค\. 69/.test(home), 'Home Hero มีโปรครบรอบ 38 ปีตามช่วงเวลา');
 check(/images\/hero-birthday-38-d\.jpg/.test(home) && /images\/hero-birthday-38-m\.jpg/.test(home), 'Home Hero โปร 15% ใช้ชื่อไฟล์ใหม่ไม่ติด cache โปรเดิม');
+check(/fit:\s*'contain'/.test(home) && /data-fit="contain"/.test(home), 'Home Hero โปร 15% แสดงภาพครบโดยไม่ crop');
 check(/OFFICIAL LG CAMPAIGNS/.test(promotions) && /ลด 15% ตลอดสัญญา/.test(promotions), 'Promotions มีแคมเปญล่าสุดจาก LG Thailand');
 
 const pdp = fs.readFileSync(path.join(ROOT, 'product.html'), 'utf8');
