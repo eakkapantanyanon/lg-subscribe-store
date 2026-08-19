@@ -76,6 +76,7 @@ const cart = fs.readFileSync(path.join(ROOT, 'subscribe-store.html'), 'utf8');
 check(/id="cartItems"/.test(cart), 'Cart มีรายการสินค้า');
 check(/sendToOfficer\(\)/.test(cart), 'Cart มี flow ส่งเจ้าหน้าที่');
 check(/lead_validation_error/.test(cart) && /lead_submit_success/.test(cart), 'Cart แยก validation และ successful lead event');
+check(/line\.me\/R\/oaMessage\/%40lgthailand\/\?/.test(cart), 'Cart ใช้ LINE OA message scheme สำหรับข้อความสรุป');
 check(/analytics\.js/.test(home) && /analytics\.js/.test(pdp) && /analytics\.js/.test(cart), 'Conversion analytics ครบทุก flow หลัก');
 
 console.log('\n═══ Site smoke test: ' + (failures ? failures + ' ไม่ผ่าน' : 'ผ่านทั้งหมด') + ' ═══');

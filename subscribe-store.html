@@ -5083,7 +5083,8 @@ window.LG_PRODUCTS =  [
                 cart_item_count: ids.length,
                 customer_type: custType
             });
-            window.open('https://line.me/R/ti/p/@lgthailand?text=' + encodeURIComponent(msg), '_blank', 'noopener');
+            // เปิดห้องแชต LINE OA พร้อมเติมข้อความไว้ให้ลูกค้าตรวจสอบและกดส่งเอง
+            window.open('https://line.me/R/oaMessage/%40lgthailand/?' + encodeURIComponent(msg), '_blank', 'noopener');
         }
 
         document.getElementById('custName').addEventListener('input', function () { clearCheckoutError('custName'); });
