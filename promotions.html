@@ -77,23 +77,6 @@
         .page-hero h1 { font-size: clamp(28px, 4vw, 40px); font-weight: 700; margin-bottom: 10px; }
         .page-hero p { color: rgba(255,255,255,0.85); font-size: 15px; max-width: 640px; }
 
-        /* ================= Global condition cards ================= */
-        #conditions { padding: 56px 0 0; }
-        .cond-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
-        @media (max-width: 1024px) { .cond-grid { grid-template-columns: repeat(2, 1fr); } }
-        @media (max-width: 560px) { .cond-grid { grid-template-columns: 1fr; } }
-        .cond-card {
-            border: 1px solid var(--line); border-radius: var(--radius);
-            padding: 20px; background: #fff;
-        }
-        .cond-card .c-emoji { font-size: 26px; margin-bottom: 8px; }
-        .cond-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
-        .cond-card p { font-size: 13px; color: var(--muted); }
-        .cond-card .c-tag { display: inline-block; font-size: 11px; font-weight: 700; color: #fff; background: var(--lg-red); padding: 3px 10px; border-radius: 999px; margin-bottom: 8px; }
-        .cond-card.orange .c-tag { background: var(--accent-orange); }
-        .cond-card.green .c-tag { background: #1f9d55; }
-        .cond-card.purple .c-tag { background: #7c3aed; }
-
         /* ================= Official campaign cards ================= */
         #official-campaigns { padding: 76px 0 0; }
         .campaign-head { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: 24px; }
@@ -248,14 +231,6 @@
         .promo-stat + .promo-stat { border-left: 1px solid var(--line); }
         .promo-stat strong { display: block; color: var(--lg-red); font-size: 25px; letter-spacing: -.03em; }
         .promo-stat span { color: var(--muted); font-size: 12px; }
-        #conditions { padding-top: 76px; }
-        .conditions-head { margin-bottom: 24px; }
-        .conditions-head .kicker { color: var(--lg-red); font-size: 11px; letter-spacing: .14em; font-weight: 800; }
-        .conditions-head h2 { font-size: clamp(27px,4vw,38px); letter-spacing: -.04em; }
-        .cond-card { min-height: 250px; border: 0; border-radius: 22px; padding: 25px; box-shadow: inset 0 0 0 1px var(--line); transition: .25s ease; }
-        .cond-card:hover { transform: translateY(-4px); box-shadow: 0 16px 38px rgba(38,10,20,.08); }
-        .cond-card .c-emoji { width: 48px; height: 48px; border-radius: 50%; background: var(--lg-red-soft); display: grid; place-items: center; font-size: 23px; margin: 18px 0; }
-        .cond-card h3 { font-size: 18px; line-height: 1.4; }
         #promos { padding-top: 76px; }
         .promo-list-head { display: flex; align-items: end; justify-content: space-between; gap: 20px; margin-bottom: 26px; }
         .promo-list-head h2 { font-size: clamp(27px,4vw,38px); letter-spacing: -.04em; }
@@ -270,13 +245,13 @@
         .row-cta { display: inline-flex; padding: 8px 13px; border: 1px solid var(--lg-red); border-radius: 999px; }
         .row-cta:hover { background: var(--lg-red-soft); text-decoration: none; }
         .cta-zone { border-radius: 24px; padding: 48px 22px; background: linear-gradient(135deg,#f8edef,#fff); border: 1px solid var(--line); }
-        #official-campaigns, #conditions, #promos, footer { content-visibility: auto; contain-intrinsic-size: 800px; }
+        #official-campaigns, #promos, footer { content-visibility: auto; contain-intrinsic-size: 800px; }
         @media (max-width: 760px) { .page-hero { padding: 60px 0 74px; } .promo-stats { margin: 0; border-radius: 0; grid-template-columns: 1fr; box-shadow: none; } .promo-stat + .promo-stat { border-left: 0; border-top: 1px solid var(--line); } .campaign-head { display: block; } .campaign-source { display: inline-flex; margin-top: 10px; } .campaign-grid { grid-template-columns: 1fr; } .campaign-card img { aspect-ratio: 3/2; } .credit-promos { margin-top: 46px; padding: 24px 16px; border-radius: 22px; } .credit-grid { grid-template-columns: 1fr; } .promo-list-head { display: block; } .promo-list-head p { margin-top: 8px; } .filters { width: 100%; border-radius: 18px; } .p-card-m { border-radius: 18px; } }
     </style>
 </head>
 <body data-page="promotions">
 
-    <a class="skip-link" href="#conditions">ข้ามไปยังเนื้อหาโปรโมชั่น</a>
+    <a class="skip-link" href="#official-campaigns">ข้ามไปยังเนื้อหาโปรโมชั่น</a>
 
     <div class="announcement">LG Subscribe · รวมโปรโมชั่นและรุ่นที่ร่วมรายการ อัปเดตสำหรับสิงหาคม 2569</div>
 
@@ -347,39 +322,6 @@
         </div>
     </section>
 
-    <!-- ================= Global conditions ================= -->
-    <section id="conditions">
-        <div class="container">
-            <div class="conditions-head"><span class="kicker">KEY BENEFITS</span><h2>สิทธิพิเศษหลักในเดือนนี้</h2></div>
-            <div class="cond-grid">
-                <div class="cond-card">
-                    <span class="c-tag">ครบรอบ 38 ปี</span>
-                    <div class="c-emoji">🎂</div>
-                    <h3>ลด 15% ตลอดสัญญา</h3>
-                    <p>เฉพาะวันที่ 15–23 ส.ค. 2569 และสินค้า/แพ็กเกจที่ร่วมรายการ โปรดตรวจสอบสิทธิ์ก่อนสมัคร</p>
-                </div>
-                <div class="cond-card orange">
-                    <span class="c-tag">บิลแรก</span>
-                    <div class="c-emoji">🎉</div>
-                    <h3>บิลแรกเพียง ฿149</h3>
-                    <p>สิทธิ์แตกต่างกันตามสินค้าและแผนบริการ โปรดดูตารางชำระของรุ่นที่เลือกก่อนยืนยัน</p>
-                </div>
-                <div class="cond-card green">
-                    <span class="c-tag">ลด 50%</span>
-                    <div class="c-emoji">⚡</div>
-                    <h3>ลด 50% ตามแคมเปญ</h3>
-                    <p>มีทั้งนาน 2 รอบบิลและ 7 รอบบิล รวมถึงแผนรายรุ่นใน Price List ให้ตรวจสอบตารางชำระก่อนสมัคร</p>
-                </div>
-                <div class="cond-card purple">
-                    <span class="c-tag">ของแถม</span>
-                    <div class="c-emoji">🎁</div>
-                    <h3>ของแถมตามแพ็กเกจ</h3>
-                    <p>เครื่องกรองน้ำ · AeroMini · ลำโพง xboom — ดูรุ่นที่มีของแถมจากแท็บกรองด้านล่าง</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- ================= Promo table ================= -->
     <section id="promos">
         <div class="container">
@@ -429,7 +371,7 @@
             </div>
             <div class="f-col">
                 <h4>โปรโมชัน</h4>
-                <a href="#conditions">คอมโบลด 10%</a><a href="#conditions">บิลแรก ฿149</a><a href="#promos">ส่วนลด 50%</a><a href="#promos">ของแถม</a><a href="#credit-promos">โปรบัตรเครดิต</a>
+                <a href="#official-campaigns">แคมเปญล่าสุด</a><a href="#official-campaigns">บิลแรก ฿149</a><a href="#official-campaigns">ส่วนลด 50%</a><a href="#official-campaigns">ของแถม</a><a href="#credit-promos">โปรบัตรเครดิต</a>
             </div>
             <div class="f-col">
                 <h4>บริการ</h4>
@@ -437,11 +379,11 @@
             </div>
             <div class="f-col">
                 <h4>แคมเปญ</h4>
-                <a href="#promos">โปรโมชันสิงหาคม</a><a href="#conditions">โปรสมาชิกใหม่</a><a href="#promos">คอมโบเพิ่มเครื่อง</a>
+                <a href="#official-campaigns">โปรโมชันสิงหาคม</a><a href="#official-campaigns">โปรครบรอบ 38 ปี</a><a href="#promos">โปรตามรุ่นสินค้า</a>
             </div>
             <div class="f-col">
                 <h4>สนับสนุน</h4>
-                <a href="https://line.me/R/ti/p/@lgthailand">ติดต่อเจ้าหน้าที่</a><a href="subscribe-store.html">วิธีสั่งซื้อ</a><a href="index.html#faq">คำถามที่พบบ่อย</a><a href="#conditions">เงื่อนไขบริการ</a>
+                <a href="https://line.me/R/ti/p/@lgthailand">ติดต่อเจ้าหน้าที่</a><a href="subscribe-store.html">วิธีสั่งซื้อ</a><a href="index.html#faq">คำถามที่พบบ่อย</a><a href="https://www.lg.com/th/subscribe/promotion_subscription/">เงื่อนไขโปรโมชั่น</a>
             </div>
         </div>
         <div class="payments">
