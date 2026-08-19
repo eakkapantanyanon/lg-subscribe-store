@@ -69,6 +69,7 @@ const promotions = fs.readFileSync(path.join(ROOT, 'promotions.html'), 'utf8');
 const premium = fs.readFileSync(path.join(ROOT, 'premium.css'), 'utf8');
 check(!/id="planner"|BUILD YOUR PACKAGE|พร้อมจัดบ้านให้สบาย/.test(home), 'Home นำ Package Planner และ Final CTA ที่ซ้ำซ้อนออกแล้ว');
 check(/id="products"/.test(home), 'Home มี Product section');
+check(/WHY LG SUBSCRIBE/.test(home) && !/WHY FLEXI-SUB/.test(home), 'Home ใช้หัวข้อ WHY LG SUBSCRIBE');
 check(/class="p-price"><small>เริ่มต้น<\/small> ฿/.test(home), 'Home ราคาการ์ดสินค้ามีคำว่าเริ่มต้นนำหน้า');
 check(/ค่าใช้จ่าย[\s\S]*การรับประกัน[\s\S]*การบำรุงรักษา/.test(home) && /รับประกัน 5–7 ปี/.test(home) && /รับประกัน 1–2 ปี/.test(home), 'Home ตาราง Subscribe vs ซื้อขาดตรงตามข้อมูลที่กำหนด');
 check(/id="faq"/.test(home), 'Home มี FAQ');
