@@ -67,7 +67,7 @@
         align-items: start;
     }
     @media (max-width: 1080px) {
-        main .pdp-layout { grid-template-columns: 1fr; }
+        main.pdp-layout { grid-template-columns: 1fr; }
         aside.pdp-summary { position: fixed; left: 0; right: 0; bottom: 0; top: auto; z-index: 50;
             border-radius: 14px 14px 0 0; box-shadow: 0 -6px 24px rgba(0,0,0,.12); max-height: 62vh; overflow-y: auto; }
     }
@@ -286,7 +286,7 @@
     .plan-section, details.specs { content-visibility: auto; contain-intrinsic-size: 420px; }
     @media (max-width: 1180px) and (min-width: 1081px) { .pdp-layout { grid-template-columns: .9fr 1.1fr 320px; gap: 18px; } }
     @media (max-width: 1080px) {
-        main .pdp-layout { grid-template-columns: minmax(0,1fr) minmax(0,1fr); padding-bottom: 220px; }
+        main.pdp-layout { grid-template-columns: minmax(0,1fr) minmax(0,1fr); padding-bottom: 220px; }
         aside.pdp-summary { max-height: none; overflow: visible; padding: 14px 20px; border-radius: 20px 20px 0 0; }
         aside .summary-eyebrow, aside .strike, aside .promo-note, aside .breakdown-link, aside .term-row, aside .summary-totals, aside .combo-hint, aside .summary-trust { display: none; }
         aside .price-block { border: 0; padding: 0; }
@@ -296,7 +296,7 @@
     @media (max-width: 720px) {
         .journey-inner { justify-content: flex-start; overflow-x: auto; }
         .journey-step { flex: 0 0 auto; }
-        main .pdp-layout { grid-template-columns: 1fr; padding: 20px 16px 210px; }
+        main.pdp-layout { grid-template-columns: 1fr; padding: 20px 16px 210px; }
         .gallery-main { height: 340px; }
         .pdp-info h1 { font-size: 28px; }
         .plan-section { padding: 20px 16px; margin-left: -2px; margin-right: -2px; }
