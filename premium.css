@@ -109,7 +109,7 @@ body[data-page="home"] .cat-count {
 }
 
 /* Primary/secondary CTA hierarchy. */
-:where(.btn-primary, .contact-btn, .header-cta, .hero-primary, .h-btn-solid, .final-actions .primary) {
+:where(.btn-primary, .contact-btn, .header-cta, .hero-primary, .h-btn-solid) {
   background: var(--premium-brand);
   border-color: var(--premium-brand);
   color: #fff;
@@ -128,7 +128,7 @@ body[data-page="home"] .service-banner .btn-pill.light {
   box-shadow: none;
 }
 body[data-page="home"] .service-banner .btn-pill.light:hover { background: rgba(255,255,255,.12); }
-:where(.btn-outline, .hero-secondary, .h-btn-outline, .btn-pill.ghost, .final-actions .ghost) {
+:where(.btn-outline, .hero-secondary, .h-btn-outline, .btn-pill.ghost) {
   background: transparent;
   border-color: currentColor;
   box-shadow: none;

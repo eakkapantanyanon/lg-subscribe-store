@@ -47,12 +47,6 @@
       if (target.id === 'addBtn') {
         push('add_to_cart_click', { enabled: !target.disabled });
       }
-      if (target.id === 'plannerCta') {
-        push('planner_cta_click', {
-          product_slug: productSlugFromHref(target.href),
-          enabled: target.getAttribute('aria-disabled') !== 'true',
-        });
-      }
       if (target.classList.contains('row-cta')) {
         push('promotion_product_click', { product_slug: productSlugFromHref(target.href) });
       }
@@ -66,12 +60,6 @@
 
     document.addEventListener('change', function (event) {
       const target = event.target;
-      if (target.id === 'plannerLife' || target.id === 'plannerCategory' || target.id === 'plannerProduct') {
-        push('planner_change', {
-          field_name: target.id,
-          selected_value: target.value,
-        });
-      }
       if (target.matches('#categoryFilters input, .filters select')) {
         push('promotion_filter_change', { selected_value: target.value });
       }

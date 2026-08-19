@@ -67,7 +67,7 @@ console.log('\n· Conversion flow anchors');
 const home = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8');
 const promotions = fs.readFileSync(path.join(ROOT, 'promotions.html'), 'utf8');
 const premium = fs.readFileSync(path.join(ROOT, 'premium.css'), 'utf8');
-check(/id="planner"/.test(home), 'Home มี Package Planner');
+check(!/id="planner"|BUILD YOUR PACKAGE|พร้อมจัดบ้านให้สบาย/.test(home), 'Home นำ Package Planner และ Final CTA ที่ซ้ำซ้อนออกแล้ว');
 check(/id="products"/.test(home), 'Home มี Product section');
 check(/id="faq"/.test(home), 'Home มี FAQ');
 check(/product\.html\?slug=/.test(home), 'Home เชื่อมไป PDP');
