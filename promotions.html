@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="รวมโปรโมชั่น LG Subscribe ประจำเดือน เงื่อนไขส่วนลดคอมโบ รอบบิลแรก และรุ่นสินค้าที่ร่วมรายการจาก FLEXI-SUB">
+    <meta name="theme-color" content="#A50034">
+    <link rel="preconnect" href="https://www.lg.com" crossorigin>
     <title>โปรโมชัน ส.ค. 2569 | LG Subscribe — FLEXI-SUB™</title>
     <style>
         :root {
@@ -24,6 +27,9 @@
         body { background: var(--bg); color: var(--ink); line-height: 1.6; }
         .container { max-width: 1200px; margin: 0 auto; padding: 0 22px; }
         a { text-decoration: none; color: inherit; }
+        :focus-visible { outline: 3px solid rgba(165,0,52,.35); outline-offset: 3px; }
+        .skip-link { position: fixed; left: 12px; top: -60px; z-index: 2000; background: #fff; color: var(--lg-red); padding: 10px 16px; border-radius: 8px; font-weight: 700; }
+        .skip-link:focus { top: 12px; }
 
         /* ================= Header ================= */
         header {
@@ -193,15 +199,65 @@
             background: rgba(255,255,255,0.05);
         }
         .copyright { text-align: center; font-size: 12px; color: #8a7280; padding: 18px 22px 26px; }
+
+        /* ================= Premium campaign refresh ================= */
+        body { background: #f8f6f5; letter-spacing: -.01em; }
+        .announcement { background: #220711; color: #f3e4e9; text-align: center; padding: 8px 18px; font-size: 12px; }
+        .brand-copy { display: flex; flex-direction: column; line-height: 1.05; }
+        .brand-copy b { font-size: 18px; }
+        .brand-copy span { color: var(--muted); font-size: 9px; letter-spacing: .12em; margin-top: 4px; }
+        .page-hero { position: relative; overflow: hidden; padding: 88px 0 100px; background: radial-gradient(circle at 82% 20%,rgba(255,255,255,.17),transparent 23%), linear-gradient(120deg,#210710 0%,#6f0023 50%,#a50034 100%); }
+        .page-hero::after { content: '08'; position: absolute; right: max(20px,calc((100vw - 1200px)/2)); top: -42px; font-size: 230px; line-height: 1; font-weight: 800; color: rgba(255,255,255,.045); letter-spacing: -.08em; }
+        .page-hero .container { position: relative; z-index: 1; }
+        .page-hero h1 { max-width: 760px; font-size: clamp(40px,6vw,68px); line-height: 1.08; letter-spacing: -.05em; }
+        .page-hero p { font-size: 16px; line-height: 1.75; }
+        .hero-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
+        .hero-actions a { min-height: 48px; padding: 0 22px; border-radius: 999px; display: inline-flex; align-items: center; font-size: 13px; font-weight: 700; }
+        .hero-primary { background: #fff; color: var(--lg-red); }
+        .hero-secondary { color: #fff; border: 1px solid rgba(255,255,255,.6); }
+        .promo-stats { max-width: 1120px; margin: -38px auto 0; position: relative; z-index: 2; display: grid; grid-template-columns: repeat(3,1fr); background: #fff; border-radius: 22px; box-shadow: 0 18px 50px rgba(38,10,20,.12); }
+        .promo-stat { padding: 24px 28px; }
+        .promo-stat + .promo-stat { border-left: 1px solid var(--line); }
+        .promo-stat strong { display: block; color: var(--lg-red); font-size: 25px; letter-spacing: -.03em; }
+        .promo-stat span { color: var(--muted); font-size: 12px; }
+        #conditions { padding-top: 76px; }
+        .conditions-head { margin-bottom: 24px; }
+        .conditions-head .kicker { color: var(--lg-red); font-size: 11px; letter-spacing: .14em; font-weight: 800; }
+        .conditions-head h2 { font-size: clamp(27px,4vw,38px); letter-spacing: -.04em; }
+        .cond-card { min-height: 250px; border: 0; border-radius: 22px; padding: 25px; box-shadow: inset 0 0 0 1px var(--line); transition: .25s ease; }
+        .cond-card:hover { transform: translateY(-4px); box-shadow: 0 16px 38px rgba(38,10,20,.08); }
+        .cond-card .c-emoji { width: 48px; height: 48px; border-radius: 50%; background: var(--lg-red-soft); display: grid; place-items: center; font-size: 23px; margin: 18px 0; }
+        .cond-card h3 { font-size: 18px; line-height: 1.4; }
+        #promos { padding-top: 76px; }
+        .promo-list-head { display: flex; align-items: end; justify-content: space-between; gap: 20px; margin-bottom: 26px; }
+        .promo-list-head h2 { font-size: clamp(27px,4vw,38px); letter-spacing: -.04em; }
+        .promo-list-head p { color: var(--muted); font-size: 13px; max-width: 480px; }
+        .filters { padding: 7px; background: #ece7e9; border-radius: 999px; width: fit-content; }
+        .filters button { border: 0; background: transparent; }
+        .promo-table-wrap { border: 0; border-radius: 22px; box-shadow: 0 12px 38px rgba(38,10,20,.06); }
+        .promo-table thead { position: sticky; top: 70px; z-index: 3; }
+        .promo-table thead th { padding: 15px 16px; }
+        .promo-table tbody td { padding-top: 17px; padding-bottom: 17px; }
+        .p-thumb { width: 64px; height: 64px; border-radius: 13px; }
+        .row-cta { display: inline-flex; padding: 8px 13px; border: 1px solid var(--lg-red); border-radius: 999px; }
+        .row-cta:hover { background: var(--lg-red-soft); text-decoration: none; }
+        .cta-zone { border-radius: 24px; padding: 48px 22px; background: linear-gradient(135deg,#f8edef,#fff); border: 1px solid var(--line); }
+        #conditions, #promos, footer { content-visibility: auto; contain-intrinsic-size: 800px; }
+        @media (max-width: 760px) { .page-hero { padding: 60px 0 74px; } .promo-stats { margin: 0; border-radius: 0; grid-template-columns: 1fr; box-shadow: none; } .promo-stat + .promo-stat { border-left: 0; border-top: 1px solid var(--line); } .promo-list-head { display: block; } .promo-list-head p { margin-top: 8px; } .filters { width: 100%; border-radius: 18px; } .p-card-m { border-radius: 18px; } }
     </style>
 </head>
-<body>
+<body data-page="promotions">
+
+    <a class="skip-link" href="#conditions">ข้ามไปยังเนื้อหาโปรโมชั่น</a>
+
+    <div class="announcement">LG Subscribe · รวมโปรโมชั่นและรุ่นที่ร่วมรายการ อัปเดตสำหรับสิงหาคม 2569</div>
 
     <!-- ================= Header ================= -->
     <header>
         <div class="header-inner">
             <div class="brand">
-                <a href="index.html"><div class="lg-mark">LG<small>FLEXI-SUB™</small></div></a>
+                <a href="index.html"><div class="lg-mark">LG</div></a>
+                <div class="brand-copy"><b>FLEXI-SUB™</b><span>PREMIUM SUBSCRIPTION</span></div>
             </div>
             <nav class="nav-links">
                 <a href="index.html">ซื้อสินค้า</a>
@@ -231,12 +287,20 @@
             <span class="kicker">โปรโมชันประจำเดือน สิงหาคม 2569</span>
             <h1>โปรฯ เดือนนี้ อัปเดตให้แล้ว</h1>
             <p>รวมเงื่อนไขและรายการโปรโมชันทั้งหมดจาก Price List ส.ค. 2569 — กรองดูรุ่นที่ร่วมรายการ คำนวณยอด แล้วส่งให้เจ้าหน้าที่เปิดบิลได้ทันที หมดเขต 31 ส.ค. 2569</p>
+            <div class="hero-actions"><a class="hero-primary" href="#promos">ดูรุ่นที่ร่วมรายการ</a><a class="hero-secondary" href="index.html#planner">สร้างแพ็กเกจของคุณ</a></div>
         </div>
     </section>
+
+    <div class="promo-stats" aria-label="สรุปโปรโมชั่น">
+        <div class="promo-stat"><strong>฿149</strong><span>ค่าใช้จ่ายรอบบิลแรก สำหรับแผนที่ร่วมรายการ</span></div>
+        <div class="promo-stat"><strong>สูงสุด 15%</strong><span>ส่วนลดคอมโบตามช่วงเวลาและเงื่อนไขลูกค้า</span></div>
+        <div class="promo-stat"><strong>97 รุ่น</strong><span>ผลิตภัณฑ์ในแคตตาล็อกที่เลือกดูแผนได้</span></div>
+    </div>
 
     <!-- ================= Global conditions ================= -->
     <section id="conditions">
         <div class="container">
+            <div class="conditions-head"><span class="kicker">KEY BENEFITS</span><h2>สิทธิพิเศษหลักในเดือนนี้</h2></div>
             <div class="cond-grid">
                 <div class="cond-card">
                     <span class="c-tag">คอมโบ</span>
@@ -269,6 +333,7 @@
     <!-- ================= Promo table ================= -->
     <section id="promos">
         <div class="container">
+            <div class="promo-list-head"><div><span class="kicker" style="color:var(--lg-red);font-size:11px;font-weight:800;letter-spacing:.14em;">PRODUCT OFFERS</span><h2>ค้นหาโปรโมชันตามรุ่น</h2></div><p>เลือกหมวดเพื่อกรองรายการ แล้วเปิดหน้าสินค้าเพื่อดูระยะสัญญา ตารางชำระ และยอดจริงก่อนใส่ตะกร้า</p></div>
             <div class="filters" id="filters"></div>
             <p class="results-info" id="resultsInfo"></p>
 
@@ -305,11 +370,7 @@
                 <div class="lg-mark">LG <span>·</span> FLEXI-SUB™</div>
                 <p>ตัวแทนจำหน่ายบริการ LG Subscribe — เช่าเครื่องใช้ไฟฟ้า LG รายเดือน ครบทุกไลฟ์สไตล์</p>
                 <div class="socials">
-                    <a href="#" title="Facebook">f</a>
-                    <a href="#" title="Instagram">◎</a>
-                    <a href="#" title="YouTube">▶</a>
-                    <a href="#" title="LINE">💬</a>
-                    <a href="#" title="TikTok">♪</a>
+                    <a href="https://line.me/R/ti/p/0612670518" title="ติดต่อผ่าน LINE" aria-label="ติดต่อ FLEXI-SUB ผ่าน LINE">💬</a>
                 </div>
             </div>
             <div class="f-col">
@@ -330,7 +391,7 @@
             </div>
             <div class="f-col">
                 <h4>สนับสนุน</h4>
-                <a href="https://line.me/R/ti/p/0612670518">ติดต่อเจ้าหน้าที่</a><a href="subscribe-store.html">วิธีสั่งซื้อ</a><a href="#">คำถามที่พบบ่อย</a><a href="#">เงื่อนไขบริการ</a>
+                <a href="https://line.me/R/ti/p/0612670518">ติดต่อเจ้าหน้าที่</a><a href="subscribe-store.html">วิธีสั่งซื้อ</a><a href="index.html#faq">คำถามที่พบบ่อย</a><a href="#conditions">เงื่อนไขบริการ</a>
             </div>
         </div>
         <div class="payments">
@@ -340,6 +401,7 @@
     </footer>
 
     <!-- ข้อมูลสินค้าถูก inline มาจาก products.js (ดู __LG_PRODUCTS__ ด้านล่าง) -->
+    <script src="analytics.js"></script>
     <script>
     window.LG_PRODUCTS =  [
   {
@@ -4420,7 +4482,7 @@
                     .map(b => '<span class="p-badge ' + b.color + '">' + b.label + '</span>').join('');
                 const promos = promoStrings(p).map(t => '<span class="p-badge b-dark">' + t + '</span>').join('') || '<span class="p-badge b-gray">มาตรฐาน</span>';
                 const thumb = p.img
-                    ? '<img src="' + p.img + '" alt="" loading="lazy" onerror="this.remove()">'
+                    ? '<img src="' + p.img + '" alt="" width="450" height="450" loading="lazy" decoding="async" onerror="this.hidden=true;this.nextElementSibling.hidden=false"><span class="p-emoji" hidden>' + (p.emoji || CAT_EMOJI[p.category] || '📦') + '</span>'
                     : '<span class="p-emoji">' + (p.emoji || CAT_EMOJI[p.category] || '📦') + '</span>';
 
                 /* ลิงก์เปิดหน้า PDP ของสินค้านี้โดยตรง */

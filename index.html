@@ -3,6 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="เลือกเครื่องใช้ไฟฟ้า LG Subscribe แบบรายเดือน พร้อมบริการดูแลตามแพ็กเกจ เปรียบเทียบสินค้า ราคา และสร้างแพ็กเกจ FLEXI-SUB ได้ในที่เดียว">
+    <meta name="theme-color" content="#A50034">
+    <link rel="preconnect" href="https://www.lg.com" crossorigin>
+    <link rel="preload" as="image" href="images/hero-8-d.jpg" media="(min-width: 861px)" fetchpriority="high">
+    <link rel="preload" as="image" href="images/hero-8-m.jpg" media="(max-width: 860px)" fetchpriority="high">
     <title>FLEXI-SUB™ | LG Subscribe เช่าเครื่องใช้ไฟฟ้ารายเดือน</title>
     <!-- TODO: ติดตั้ง GA4 / Google Tag Manager ตรงนี้ (วาง snippet ก่อน </head>)
          เมื่อติดตั้งแล้ว dataLayer event จาก hero (hero_cta_click) จะถูกส่งถึง GA4 อัตโนมัติ -->
@@ -23,10 +28,13 @@
         }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', 'IBM Plex Sans Thai', Tahoma, Geneva, Verdana, sans-serif; }
         html { scroll-behavior: smooth; }
-        body { background: var(--bg); color: var(--ink); line-height: 1.6; }
+        body { background: var(--bg); color: var(--ink); line-height: 1.6; overflow-x: hidden; }
 
         .container { max-width: 1200px; margin: 0 auto; padding: 0 22px; }
         a { text-decoration: none; color: inherit; }
+        :focus-visible { outline: 3px solid rgba(165,0,52,.35); outline-offset: 3px; }
+        .skip-link { position: fixed; left: 12px; top: -60px; z-index: 2000; background: #fff; color: var(--lg-red); padding: 10px 16px; border-radius: 8px; font-weight: 700; }
+        .skip-link:focus { top: 12px; }
 
         /* ================= Header ================= */
         header {
@@ -406,15 +414,126 @@
             .p-price { font-size: 19px; }
             .cond-grid, .promo-grid { gap: 12px; }
         }
+
+        /* ================= Premium homepage refresh ================= */
+        body { letter-spacing: -0.01em; }
+        .announcement { background: #220711; color: #f8e9ee; text-align: center; padding: 8px 20px; font-size: 12px; letter-spacing: .02em; }
+        .announcement strong { color: #fff; }
+        .brand-copy { display: flex; flex-direction: column; line-height: 1.05; }
+        .brand-copy b { font-size: 18px; letter-spacing: -.02em; }
+        .brand-copy span { color: var(--muted); font-size: 10px; letter-spacing: .12em; margin-top: 5px; }
+        .header-cta { display: inline-flex; align-items: center; justify-content: center; min-height: 42px; padding: 0 20px; border-radius: 999px; background: var(--lg-red); color: #fff; font-size: 13px; font-weight: 700; }
+        .header-cta:hover { background: var(--lg-red-dark); }
+        .hero { padding: 0; }
+        .hero-track { min-height: min(76vh, 690px); }
+        .hero-slide[data-theme="cream"] { --hero-bg: #f4efe9; }
+        .hero-left { padding-left: max(28px, calc((100vw - 1200px) / 2)); }
+        .hero-left h1 { font-size: clamp(38px, 4.2vw, 62px); letter-spacing: -.045em; max-width: 620px; }
+        .h-detail { font-size: 17px; line-height: 1.75; }
+        .h-dates { margin: 0 0 14px; color: var(--hero-fg); font-size: 15px; font-weight: 800; }
+        .h-logo { border: 0; padding: 0; background: transparent; color: var(--hero-fg); opacity: .7; }
+        .trust-strip { position: relative; z-index: 8; max-width: 1120px; margin: -32px auto 0; background: #fff; border: 1px solid var(--line); border-radius: 20px; box-shadow: 0 18px 50px rgba(44, 10, 23, .12); padding: 22px 26px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+        .trust-item { display: flex; align-items: center; gap: 13px; padding: 2px 12px; }
+        .trust-item + .trust-item { border-left: 1px solid var(--line); }
+        .trust-icon, .benefit-icon { flex: 0 0 auto; width: 42px; height: 42px; display: grid; place-items: center; border-radius: 50%; background: var(--lg-red-soft); color: var(--lg-red); font-weight: 800; font-size: 17px; }
+        .trust-item b { display: block; font-size: 14px; }
+        .trust-item span { color: var(--muted); font-size: 12px; }
+        #why { padding-top: 96px; }
+        .benefit-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+        .benefit-card { min-height: 230px; border: 1px solid var(--line); border-radius: 22px; padding: 28px 24px; background: #fff; transition: .25s ease; }
+        .benefit-card:hover { transform: translateY(-4px); box-shadow: 0 18px 44px rgba(34,7,17,.08); }
+        .benefit-card h3 { margin: 22px 0 8px; font-size: 19px; }
+        .benefit-card p { color: var(--muted); font-size: 14px; }
+        #products { background: #f8f6f5; }
+        .mode-toggle { background: #ebe7e8; }
+        .lifestyle-card { min-height: 210px; padding: 26px; border: 0; border-radius: 22px; box-shadow: inset 0 0 0 1px var(--line); }
+        .lifestyle-card:nth-child(1) { background: linear-gradient(145deg,#fff 20%,#f9ecef); }
+        .lifestyle-card:nth-child(2) { background: linear-gradient(145deg,#fff 20%,#edf2f4); }
+        .lifestyle-card:nth-child(3) { background: linear-gradient(145deg,#fff 20%,#f6f0e7); }
+        .lifestyle-card:nth-child(4) { background: linear-gradient(145deg,#fff 20%,#eee9f3); }
+        .lifestyle-card.active { box-shadow: inset 0 0 0 2px var(--lg-red), 0 14px 34px rgba(165,0,52,.1); }
+        .lifestyle-card .l-emoji { width: 48px; height: 48px; display: grid; place-items: center; background: #fff; border-radius: 50%; font-size: 23px; }
+        .lifestyle-card h4 { font-size: 20px; margin-top: 18px; }
+        .p-card { border: 1px solid var(--line); border-radius: 22px; padding: 14px 14px 20px; background: #fff; cursor: pointer; box-shadow: 0 8px 24px rgba(34,7,17,.035); }
+        .p-card:hover { box-shadow: 0 18px 42px rgba(34,7,17,.1); }
+        .p-img { height: 210px; background: #f8f7f7; border-radius: 16px; }
+        .p-cat { color: var(--lg-red); text-transform: uppercase; letter-spacing: .05em; }
+        .p-name { min-height: 48px; }
+        .p-price { margin-top: auto; font-size: 26px; letter-spacing: -.03em; }
+        .p-badge { background: var(--lg-red-soft); color: var(--lg-red); }
+        .p-cta { border-top: 1px solid var(--line); padding-top: 14px; display: flex; justify-content: space-between; }
+        .p-cta::after { content: '\2192'; }
+        .section-head h2 { letter-spacing: -.035em; }
+        #why, #products, #planner, #promotions, #compare, #how, #services, #faq, footer { content-visibility: auto; contain-intrinsic-size: 800px; }
+        @media (max-width: 900px) { .benefit-grid { grid-template-columns: repeat(2, 1fr); } .trust-strip { margin: 0; border-radius: 0; border-width: 0 0 1px; box-shadow: none; } .header-cta { display: none; } }
+        @media (max-width: 640px) { .announcement { font-size: 11px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; } .header-inner { padding-left: 16px; padding-right: 12px; gap: 8px; } .brand-copy span { display: none; } .header-actions { gap: 6px; } .header-actions .icon-btn:first-child { display: none; } .hero-left { padding: 34px 22px 78px; overflow: hidden; } .hero-left h1 { font-size: 34px; overflow-wrap: anywhere; } .h-detail { font-size: 14px; } .h-btns { gap: 8px; } .h-btn { padding: 11px 16px; } .hero-right { min-height: 285px; } .hero-badge { right: 14px; max-width: calc(100% - 28px); } .hero-controls { max-width: 100vw; } .trust-strip { grid-template-columns: 1fr; padding: 18px 22px; } .trust-item + .trust-item { border-left: 0; border-top: 1px solid var(--line); padding-top: 14px; } #why { padding-top: 54px; } .benefit-grid { grid-template-columns: 1fr; } .benefit-card { min-height: 0; } .lifestyle-grid { grid-template-columns: 1fr; } .lifestyle-card { min-height: 180px; } .p-img { height: 190px; } }
+
+        /* ================= Package planner + decision content ================= */
+        #planner { background: #210710; color: #fff; }
+        .planner-shell { display: grid; grid-template-columns: 1.08fr .92fr; border-radius: 30px; overflow: hidden; background: #310b19; box-shadow: 0 28px 70px rgba(34,7,17,.18); }
+        .planner-form { padding: clamp(30px,5vw,58px); }
+        .planner-form .kicker { color: #ff9bb8; }
+        .planner-form h2 { font-size: clamp(30px,4vw,46px); line-height: 1.15; letter-spacing: -.04em; margin-bottom: 12px; }
+        .planner-form > p { color: #d5bcc5; margin-bottom: 30px; max-width: 570px; }
+        .planner-fields { display: grid; gap: 16px; }
+        .planner-field label { display: block; color: #eadce1; font-size: 12px; font-weight: 700; margin: 0 0 7px 4px; }
+        .planner-field select { width: 100%; min-height: 52px; border: 1px solid rgba(255,255,255,.18); border-radius: 14px; background: #fff; color: var(--ink); padding: 0 42px 0 16px; font-size: 14px; }
+        .planner-summary { background: #f7f2ee; color: var(--ink); padding: clamp(30px,5vw,56px); display: flex; flex-direction: column; justify-content: center; }
+        .summary-label { color: var(--muted); font-size: 12px; font-weight: 700; letter-spacing: .12em; }
+        .summary-product { font-size: 23px; line-height: 1.35; margin: 14px 0 6px; }
+        .summary-model { color: var(--muted); font-size: 13px; }
+        .summary-price { color: var(--lg-red); font-size: clamp(38px,5vw,56px); font-weight: 800; letter-spacing: -.05em; margin: 24px 0 4px; }
+        .summary-price small { font-size: 14px; letter-spacing: 0; }
+        .summary-note { color: var(--muted); font-size: 12px; line-height: 1.6; margin-bottom: 24px; }
+        .summary-includes { display: grid; gap: 9px; margin-bottom: 28px; font-size: 13px; }
+        .summary-includes span::before { content: '✓'; color: var(--lg-red); font-weight: 800; margin-right: 9px; }
+        .summary-cta { display: inline-flex; align-items: center; justify-content: center; min-height: 50px; border-radius: 999px; background: var(--lg-red); color: #fff; font-weight: 700; font-size: 14px; }
+        .summary-cta[aria-disabled="true"] { opacity: .45; pointer-events: none; }
+        #compare { background: #fff; }
+        .compare-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 24px; }
+        .compare-table { width: 100%; min-width: 680px; border-collapse: collapse; }
+        .compare-table th, .compare-table td { padding: 20px 24px; text-align: left; border-bottom: 1px solid var(--line); }
+        .compare-table tr:last-child td { border-bottom: 0; }
+        .compare-table th { background: #f7f4f4; font-size: 13px; color: var(--muted); }
+        .compare-table th:nth-child(2) { background: var(--lg-red); color: #fff; }
+        .compare-table td:first-child { font-weight: 700; }
+        .compare-table td:nth-child(2) { background: var(--lg-red-soft); color: #5f001e; font-weight: 700; }
+        #how { background: #f8f6f5; }
+        .steps { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; counter-reset: steps; }
+        .step { counter-increment: steps; padding: 30px; background: #fff; border-radius: 22px; border: 1px solid var(--line); }
+        .step::before { content: '0' counter(steps); display: block; color: var(--lg-red); font-size: 13px; font-weight: 800; letter-spacing: .12em; margin-bottom: 32px; }
+        .step h3 { font-size: 21px; margin-bottom: 8px; }
+        .step p { color: var(--muted); font-size: 14px; }
+        .faq-list { max-width: 860px; margin: 0 auto; border-top: 1px solid var(--line); }
+        .faq-list details { border-bottom: 1px solid var(--line); padding: 0 4px; }
+        .faq-list summary { cursor: pointer; list-style: none; padding: 22px 40px 22px 0; font-weight: 700; position: relative; }
+        .faq-list summary::-webkit-details-marker { display: none; }
+        .faq-list summary::after { content: '+'; position: absolute; right: 4px; top: 18px; color: var(--lg-red); font-size: 24px; }
+        .faq-list details[open] summary::after { content: '−'; }
+        .faq-list details p { color: var(--muted); font-size: 14px; padding: 0 44px 22px 0; }
+        .final-cta { margin: 40px auto 80px; max-width: 1156px; border-radius: 28px; padding: 52px; color: #fff; background: linear-gradient(120deg,#a50034,#700023); display: flex; align-items: center; justify-content: space-between; gap: 28px; }
+        .final-cta h2 { font-size: clamp(27px,4vw,40px); letter-spacing: -.04em; }
+        .final-cta p { color: rgba(255,255,255,.82); margin-top: 6px; }
+        .final-actions { display: flex; gap: 10px; flex: 0 0 auto; }
+        .final-actions a { min-height: 48px; padding: 0 22px; border-radius: 999px; display: inline-flex; align-items: center; font-weight: 700; font-size: 13px; }
+        .final-primary { background: #fff; color: var(--lg-red); }
+        .final-secondary { border: 1px solid rgba(255,255,255,.55); color: #fff; }
+        @media (max-width: 820px) { .planner-shell { grid-template-columns: 1fr; } .steps { grid-template-columns: 1fr; } .final-cta { margin: 30px 22px 60px; padding: 36px 26px; flex-direction: column; align-items: flex-start; } }
+        @media (max-width: 520px) { .planner-shell { border-radius: 0; } #planner .container { padding: 0; } .final-actions { width: 100%; flex-direction: column; } .final-actions a { justify-content: center; } }
     </style>
 </head>
-<body>
+<body data-page="home">
+
+    <a class="skip-link" href="#why">ข้ามไปยังเนื้อหาหลัก</a>
+
+    <div class="announcement"><strong>LG Subscribe</strong> · สมัครวันนี้ เริ่มต้นเพียง ฿149 ในรอบบิลแรก ตามเงื่อนไขที่กำหนด</div>
 
     <!-- ================= Header ================= -->
     <header>
         <div class="header-inner">
             <div class="brand">
-                <div class="lg-mark">LG<small>FLEXI-SUB™</small></div>
+                <div class="lg-mark">LG</div>
+                <div class="brand-copy"><b>FLEXI-SUB™</b><span>PREMIUM SUBSCRIPTION</span></div>
             </div>
             <nav class="nav-links">
                 <a href="#products">ซื้อสินค้า</a>
@@ -426,6 +545,7 @@
             <div class="header-actions">
                 <button class="icon-btn" title="ค้นหา" onclick="document.getElementById('products').scrollIntoView()">🔍</button>
                 <button class="icon-btn" title="ตะกร้า" onclick="location.href='subscribe-store.html'">🛒</button>
+                <a class="header-cta" href="#products">เลือกแพ็กเกจ</a>
                 <button class="icon-btn hamburger" id="hamburgerBtn" title="เมนู" onclick="toggleMenu()">☰</button>
             </div>
         </div>
@@ -454,28 +574,112 @@
         </div>
     </section>
 
-    <!-- ================= Products ================= -->
-    <section id="products">
+    <section id="planner">
+        <div class="container">
+            <div class="planner-shell">
+                <div class="planner-form">
+                    <span class="kicker">BUILD YOUR PACKAGE</span>
+                    <h2>สร้างแพ็กเกจที่พอดีกับคุณ</h2>
+                    <p>เลือกจากไลฟ์สไตล์และประเภทสินค้า แล้วดูค่าบริการเริ่มต้นก่อนเข้าไปเลือกระยะสัญญาและรูปแบบการดูแล</p>
+                    <div class="planner-fields">
+                        <div class="planner-field"><label for="plannerLife">1 · ไลฟ์สไตล์ของคุณ</label><select id="plannerLife"><option value="">ทุกไลฟ์สไตล์</option></select></div>
+                        <div class="planner-field"><label for="plannerCategory">2 · ประเภทสินค้าที่สนใจ</label><select id="plannerCategory"><option value="">ทุกประเภทสินค้า</option></select></div>
+                        <div class="planner-field"><label for="plannerProduct">3 · เลือกผลิตภัณฑ์</label><select id="plannerProduct"></select></div>
+                    </div>
+                </div>
+                <aside class="planner-summary" aria-live="polite">
+                    <span class="summary-label">แพ็กเกจแนะนำ</span>
+                    <strong class="summary-product" id="plannerName">เลือกผลิตภัณฑ์เพื่อดูแพ็กเกจ</strong>
+                    <span class="summary-model" id="plannerModel">—</span>
+                    <div class="summary-price" id="plannerPrice">—</div>
+                    <p class="summary-note">ราคาที่แสดงเป็นราคาเริ่มต้น แผนและยอดชำระจริงขึ้นอยู่กับระยะสัญญา รูปแบบบริการ และโปรโมชันที่เลือก</p>
+                    <div class="summary-includes"><span>ติดตั้งตามเงื่อนไขผลิตภัณฑ์</span><span>เลือกแผนดูแลและระยะสัญญาได้</span><span>ดูตารางชำระก่อนใส่ตะกร้า</span></div>
+                    <a class="summary-cta" id="plannerCta" href="product.html" aria-disabled="true">ดูแผนและรายละเอียด</a>
+                </aside>
+            </div>
+        </div>
+    </section>
+
+    <section id="compare">
+        <div class="container">
+            <div class="section-head"><span class="kicker">CHOOSE WITH CONFIDENCE</span><h2>Subscribe ต่างจากซื้อขาดอย่างไร</h2><p>มองมากกว่าราคาหน้าป้าย แล้วเลือกวิธีที่เหมาะกับเงินก้อนและความต้องการดูแลของคุณ</p></div>
+            <div class="compare-wrap"><table class="compare-table"><thead><tr><th>สิ่งที่เปรียบเทียบ</th><th>FLEXI-SUB</th><th>ซื้อขาดทั่วไป</th></tr></thead><tbody>
+                <tr><td>ค่าใช้จ่ายเริ่มต้น</td><td>แบ่งเป็นรายเดือนตามแพ็กเกจ</td><td>ชำระราคาสินค้าเป็นก้อน</td></tr>
+                <tr><td>ระยะเวลาการดูแล</td><td>เลือกแผนบริการตามระยะสัญญา</td><td>ขึ้นอยู่กับประกันและบริการที่ซื้อเพิ่ม</td></tr>
+                <tr><td>การวางแผนงบ</td><td>เห็นตารางชำระก่อนสมัคร</td><td>จ่ายหลักในวันที่ซื้อ</td></tr>
+                <tr><td>เหมาะกับใคร</td><td>คนที่ต้องการควบคุมเงินก้อนและมีคนดูแล</td><td>คนที่ต้องการเป็นเจ้าของและพร้อมจ่ายเต็ม</td></tr>
+            </tbody></table></div>
+        </div>
+    </section>
+
+    <section id="how">
+        <div class="container">
+            <div class="section-head"><span class="kicker">HOW IT WORKS</span><h2>เริ่มใช้งานง่ายใน 3 ขั้นตอน</h2><p>เลือก เปรียบเทียบ และยืนยันแพ็กเกจโดยเห็นรายละเอียดก่อนตัดสินใจ</p></div>
+            <div class="steps"><article class="step"><h3>เลือกสินค้าที่ใช่</h3><p>ค้นหาตามไลฟ์สไตล์ หมวดสินค้า หรือเลือกจากรุ่นยอดนิยม</p></article><article class="step"><h3>จัดแพ็กเกจของคุณ</h3><p>เลือกระยะสัญญา รูปแบบบริการ และดูตารางค่าใช้จ่ายแบบละเอียด</p></article><article class="step"><h3>ส่งให้เจ้าหน้าที่ดูแล</h3><p>ยืนยันรายการผ่าน LINE เพื่อรับคำแนะนำ ตรวจสอบสิทธิ์ และนัดหมายขั้นต่อไป</p></article></div>
+        </div>
+    </section>
+
+    <section id="faq">
+        <div class="container">
+            <div class="section-head"><span class="kicker">FAQ</span><h2>คำถามที่พบบ่อย</h2></div>
+            <div class="faq-list">
+                <details><summary>ราคาที่เห็นรวมอะไรบ้าง?</summary><p>ราคาในการ์ดเป็นราคาเริ่มต้นต่อเดือน รายละเอียดการติดตั้ง บริการตามรอบ โปรโมชั่น และยอดชำระแต่ละงวดจะแสดงอีกครั้งเมื่อเลือกแพ็กเกจในหน้าสินค้า</p></details>
+                <details><summary>เลือกสัญญาได้นานเท่าไร?</summary><p>ระยะสัญญาแตกต่างกันตามประเภทผลิตภัณฑ์และแผนบริการ โดยหน้าเลือกแพ็กเกจจะแสดงเฉพาะตัวเลือกที่ใช้ได้กับรุ่นนั้น</p></details>
+                <details><summary>ถ้ามีสินค้า LG อยู่แล้ว สมัครเพิ่มได้หรือไม่?</summary><p>เลือกประเภทลูกค้าเดิมในหน้าสินค้าหรือตะกร้าได้ ระบบจะแสดงเงื่อนไขคอมโบที่ตรงกับช่วงโปรโมชันปัจจุบัน</p></details>
+                <details><summary>ต้องชำระเงินบนเว็บไซต์ทันทีหรือไม่?</summary><p>ไม่ต้อง เว็บไซต์ช่วยจัดรายการและคำนวณแพ็กเกจ จากนั้นส่งรายละเอียดให้เจ้าหน้าที่ทาง LINE เพื่อยืนยันข้อมูลและขั้นตอนสมัคร</p></details>
+            </div>
+        </div>
+    </section>
+
+    <div class="trust-strip" aria-label="จุดเด่นของบริการ">
+        <div class="trust-item"><span class="trust-icon">฿</span><div><b>ไม่ต้องจ่ายเงินก้อน</b><span>เริ่มใช้ได้ด้วยค่าใช้จ่ายรายเดือน</span></div></div>
+        <div class="trust-item"><span class="trust-icon">5–7</span><div><b>ดูแลยาวตลอดสัญญา</b><span>อุ่นใจด้วยแผนบริการ 5–7 ปี</span></div></div>
+        <div class="trust-item"><span class="trust-icon">✓</span><div><b>ผู้เชี่ยวชาญดูแลถึงบ้าน</b><span>ติดตั้ง ตรวจเช็ก และซ่อมตามเงื่อนไข</span></div></div>
+    </div>
+
+    <section id="why" tabindex="-1">
         <div class="container">
             <div class="section-head">
-                <span class="kicker">เลือกได้ตามใจ</span>
-                <h2>เลือกเครื่องใช้ไฟฟ้าที่ใช่สำหรับคุณ</h2>
-                <p>กวาดดูหมวดหมู่ หรือเลือกตามไลฟ์สไตล์ของคุณ — ทุกรุ่นมีแผนรายเดือนพร้อมโปรโมชันประจำเดือนสิงหาคม 2569</p>
+                <span class="kicker">WHY FLEXI-SUB</span>
+                <h2>ใช้ชีวิตสบายกว่า เมื่อทุกอย่างถูกดูแล</h2>
+                <p>เปลี่ยนเครื่องใช้ไฟฟ้าชิ้นใหญ่ให้เป็นค่าใช้จ่ายรายเดือนที่วางแผนได้ พร้อมบริการจากทีมผู้เชี่ยวชาญ</p>
+            </div>
+            <div class="benefit-grid">
+                <article class="benefit-card"><span class="benefit-icon">฿</span><h3>ไม่ต้องจ่ายเป็นก้อน</h3><p>เลือกแพ็กเกจรายเดือนที่เหมาะกับงบ และเริ่มใช้งานได้เร็วขึ้น</p></article>
+                <article class="benefit-card"><span class="benefit-icon">◇</span><h3>ดูแลยาว 5–7 ปี</h3><p>วางใจได้ตลอดระยะสัญญา พร้อมเงื่อนไขบริการที่เห็นชัดก่อนสมัคร</p></article>
+                <article class="benefit-card"><span class="benefit-icon">✓</span><h3>บริการโดยผู้เชี่ยวชาญ</h3><p>ติดตั้ง ตรวจเช็ก และดูแลตามรอบ โดยทีมช่างที่เข้าใจผลิตภัณฑ์ LG</p></article>
+                <article class="benefit-card"><span class="benefit-icon">↗</span><h3>เลือกให้พอดีกับชีวิต</h3><p>เปรียบเทียบสินค้า ระยะเวลา และรูปแบบการดูแลก่อนตัดสินใจ</p></article>
+            </div>
+        </div>
+    </section>
+
+    <div class="final-cta">
+        <div><h2>พร้อมจัดบ้านให้สบายขึ้นหรือยัง?</h2><p>เริ่มเลือกสินค้า หรือคุยกับเจ้าหน้าที่เพื่อหาแพ็กเกจที่พอดีกับคุณ</p></div>
+        <div class="final-actions"><a class="final-primary" href="#planner">สร้างแพ็กเกจ</a><a class="final-secondary" href="https://line.me/R/ti/p/0612670518">ปรึกษาเจ้าหน้าที่</a></div>
+    </div>
+
+    <!-- ================= Products ================= -->
+    <section id="products" tabindex="-1">
+        <div class="container">
+            <div class="section-head">
+                <span class="kicker">SHOP BY LIFESTYLE</span>
+                <h2>เริ่มจากชีวิตของคุณ แล้วค่อยเลือกเครื่อง</h2>
+                <p>บอกเราว่าคุณอยู่แบบไหน เราจะคัดผลิตภัณฑ์และแพ็กเกจที่เข้ากับพื้นที่ งบประมาณ และกิจวัตรของคุณ</p>
             </div>
 
             <div class="mode-toggle">
-                <button id="modeCat" class="active" onclick="setMode('cat')">ประเภทสินค้า</button>
-                <button id="modeLife" onclick="setMode('life')">ไลฟ์สไตล์</button>
+                <button id="modeLife" class="active" onclick="setMode('life')">เลือกตามไลฟ์สไตล์</button>
+                <button id="modeCat" onclick="setMode('cat')">ดูตามประเภทสินค้า</button>
             </div>
 
             <!-- หมวดหมู่ทรงกลม (กลุ่มใหญ่) -->
-            <div class="cat-icons" id="catIcons"></div>
+            <div class="cat-icons" id="catIcons" style="display:none;"></div>
 
             <!-- หมวดหมู่ย่อย — แสดงเมื่อเลือกกลุ่มแล้ว -->
             <div class="sub-cats" id="subCats" style="display:none;"></div>
 
             <!-- การ์ดไลฟ์สไตล์ -->
-            <div class="lifestyle-grid" id="lifestyleGrid" style="display:none;"></div>
+            <div class="lifestyle-grid" id="lifestyleGrid"></div>
 
             <!-- Grid สินค้า -->
             <div class="product-grid" id="productGrid"></div>
@@ -493,22 +697,22 @@
                 <p>สิทธิพิเศษมีจำนวนจำกัด — หมดเขต 31 สิงหาคม 2569</p>
             </div>
             <div class="promo-grid">
-                <div class="promo-card dark" onclick="location.href='subscribe-store.html'"
+                <div class="promo-card dark" role="link" tabindex="0" aria-label="ดูเงื่อนไขคอมโบ" onclick="location.href='subscribe-store.html'" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();location.href='subscribe-store.html'}"
                      style="background-image:url('https://www.lg.com/content/dam/channel/wcms/th/images/washing-machine/wt2116sheg_abgpeth_eath_th_c/feature/wd-it-objet-washtower-gb-heatpump-06-3-center-panel-desktop.jpg')">
                     <span class="promo-tag">คอมโบ</span>
                     <div class="promo-body"><h3>สมัคร 2 เครื่องขึ้นไป ลดเพิ่ม 10%</h3><p>ลูกค้าใหม่ 2 เครื่องขึ้นไป / ลูกค้าเดิม 1 เครื่องขึ้นไป</p><span class="promo-link">ดูเงื่อนไข →</span></div>
                 </div>
-                <div class="promo-card" onclick="location.href='promotions.html#conditions'"
+                <div class="promo-card" role="link" tabindex="0" aria-label="ดูรายละเอียดรอบบิลแรก" onclick="location.href='promotions.html#conditions'" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();location.href='promotions.html#conditions'}"
                      style="background-image:url('https://www.lg.com/content/dam/channel/wcms/th/housewarming/image/asia-k-house-2026-lg-com-lgeth-housewarming-image-OG-img.jpg')">
                     <span class="promo-tag">บิลแรก</span>
                     <div class="promo-body"><h3>บิลแรกเพียง ฿149</h3><p>ชำระล่วงหน้าแค่ 1 เดือน ก็เริ่มใช้ได้เลย</p><span class="promo-link">ดูรายละเอียด →</span></div>
                 </div>
-                <div class="promo-card dark" onclick="location.href='promotions.html#promos'"
+                <div class="promo-card dark" role="link" tabindex="0" aria-label="ดูรุ่นที่ได้รับส่วนลด" onclick="location.href='promotions.html#promos'" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();location.href='promotions.html#promos'}"
                      style="background-image:url('https://www.lg.com/content/dam/channel/wcms/th/monthly-lg-25/25-july/feature/article-image/monthly-lg-25-jul-th-00-4-3.jpg')">
                     <span class="promo-tag">ลด 50%</span>
                     <div class="promo-body"><h3>ส่วนลด 50% นานสูงสุด 12 เดือน</h3><p>บางรุ่นลดเดือน 2–12 กันเลยทีเดียว</p><span class="promo-link">ดูรุ่นที่ร่วมรายการ →</span></div>
                 </div>
-                <div class="promo-card" onclick="location.href='promotions.html#promos'"
+                <div class="promo-card" role="link" tabindex="0" aria-label="ดูรุ่นที่มีของแถม" onclick="location.href='promotions.html#promos'" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();location.href='promotions.html#promos'}"
                      style="background-image:url('https://www.lg.com/content/dam/channel/wcms/th/monthly-lg-25/25-july/feature/article-image/monthly-lg-25-jul-th-00-1-1.jpg')">
                     <span class="promo-tag">ของแถม</span>
                     <div class="promo-body"><h3>ของแถมเพียบ ตลอดสิงหาคม</h3><p>เครื่องกรองน้ำ · AeroMini · ลำโพง — ตามแพ็กเกจที่เลือก</p><span class="promo-link">ดูของแถม →</span></div>
@@ -545,11 +749,7 @@
                 <div class="lg-mark">LG <span>·</span> FLEXI-SUB™</div>
                 <p>ตัวแทนจำหน่ายบริการ LG Subscribe — เช่าเครื่องใช้ไฟฟ้า LG รายเดือน ครบทุกไลฟ์สไตล์</p>
                 <div class="socials">
-                    <a href="#" title="Facebook">f</a>
-                    <a href="#" title="Instagram">◎</a>
-                    <a href="#" title="YouTube">▶</a>
-                    <a href="#" title="LINE">💬</a>
-                    <a href="#" title="TikTok">♪</a>
+                    <a href="https://line.me/R/ti/p/0612670518" title="ติดต่อผ่าน LINE" aria-label="ติดต่อ FLEXI-SUB ผ่าน LINE">💬</a>
                 </div>
             </div>
             <div class="f-col">
@@ -570,7 +770,7 @@
             </div>
             <div class="f-col">
                 <h4>สนับสนุน</h4>
-                <a href="https://line.me/R/ti/p/0612670518">ติดต่อเจ้าหน้าที่</a><a href="subscribe-store.html">วิธีสั่งซื้อ</a><a href="#">คำถามที่พบบ่อย</a><a href="#">เงื่อนไขบริการ</a>
+                <a href="https://line.me/R/ti/p/0612670518">ติดต่อเจ้าหน้าที่</a><a href="subscribe-store.html">วิธีสั่งซื้อ</a><a href="#faq">คำถามที่พบบ่อย</a><a href="promotions.html#conditions">เงื่อนไขบริการ</a>
             </div>
         </div>
         <div class="payments">
@@ -579,6 +779,7 @@
         <p class="copyright">© 2026 FLEXI-SUB™ — ตัวแทนจำหน่าย LG Subscribe · ข้อมูลราคาอ้างอิงจาก Price List ส.ค. 2569 (V3) · หมดเขตโปรโมชัน 31 ส.ค. 2569</p>
     </footer>
 
+    <script src="analytics.js"></script>
     <script src="products.js"></script>
     <script>
         /* ---------- dataLayer / GA4: พร้อมใช้ทันทีที่ติดตั้ง GTM/GA4 ----------
@@ -620,7 +821,7 @@
             { id: 'cafe', emoji: '☕', name: 'คาเฟ่ / ธุรกิจเล็ก', desc: 'อุปกรณ์มาตรฐานร้านค้า', ids: ['zt4q18','zt4q24','dfc335hm','dfc533fv','gc-b257sqyl','s95tr','a9t-ultra'] }
         ];
 
-        let mode = 'cat';
+        let mode = 'life';
         let activeLife = null;
 
         const fmt = n => n.toLocaleString('en-US');
@@ -764,9 +965,12 @@
                 const price = Math.min(...(p.plans ? p.plans.map(x => x.price) : [p.price]));
                 const card = document.createElement('div');
                 card.className = 'p-card';
+                card.tabIndex = 0;
+                card.setAttribute('role', 'link');
+                card.setAttribute('aria-label', 'ดูแพ็กเกจ ' + (p.name || p.model || 'สินค้า'));
                 card.innerHTML =
                     '<div class="p-img">' +
-                        (p.img ? '<img src="' + p.img + '" alt="' + p.name + '" loading="lazy" onerror="this.remove()">' : '<span class="p-emoji">' + (p.emoji || CAT_EMOJI[p.category] || '📦') + '</span>') +
+                        (p.img ? '<img src="' + p.img + '" alt="' + p.name + '" width="450" height="450" loading="lazy" decoding="async" onerror="this.hidden=true;this.nextElementSibling.hidden=false"><span class="p-emoji" hidden>' + (p.emoji || CAT_EMOJI[p.category] || '📦') + '</span>' : '<span class="p-emoji">' + (p.emoji || CAT_EMOJI[p.category] || '📦') + '</span>') +
                     '</div>' +
                     '<div class="p-cat">' + (p.category || '') + '</div>' +
                     '<div class="p-name">' + (p.name || '') + '</div>' +
@@ -774,10 +978,12 @@
                     '<div class="p-price">฿' + fmt(price) + ' <small>/เดือน</small></div>' +
                     '<span class="p-badge">' + badgeFor(p) + '</span>' +
                     '<div class="p-cta">ดูแผนการชำระ →</div>';
-                card.onclick = () => {
+                const openProduct = () => {
                     // ไปยังหน้ารายละเอียดสินค้า (PDP) — route แยกตาม slug
                     location.href = 'product.html?slug=' + encodeURIComponent(String(p.id || p.model || '').toLowerCase());
                 };
+                card.onclick = openProduct;
+                card.onkeydown = e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openProduct(); } };
                 grid.appendChild(card);
             });
         }
@@ -793,6 +999,88 @@
             renderProducts();
         }
 
+        /* ---------- Lightweight package planner ----------
+           ใช้ข้อมูลสินค้าเดียวกับ PDP แต่แสดงเพียงราคาเริ่มต้น ก่อนส่งไปเลือกแผนจริง */
+        function plannerProducts() {
+            const lifeId = document.getElementById('plannerLife').value;
+            const category = document.getElementById('plannerCategory').value;
+            const life = LIFESTYLES.find(l => l.id === lifeId);
+            return PRODUCTS.filter(p => {
+                const slug = String(p.id || p.model || '').toLowerCase();
+                const lifeMatch = !life || life.ids.includes(slug);
+                return lifeMatch && (!category || p.category === category);
+            });
+        }
+
+        function refreshPlannerCategories() {
+            const categoryEl = document.getElementById('plannerCategory');
+            const previous = categoryEl.value;
+            const lifeId = document.getElementById('plannerLife').value;
+            const life = LIFESTYLES.find(l => l.id === lifeId);
+            const source = life
+                ? PRODUCTS.filter(p => life.ids.includes(String(p.id || p.model || '').toLowerCase()))
+                : PRODUCTS;
+            const categories = [...new Set(source.map(p => p.category).filter(Boolean))].sort((a, b) => a.localeCompare(b, 'th'));
+            categoryEl.innerHTML = '<option value="">ทุกประเภทสินค้า</option>';
+            categories.forEach(category => categoryEl.add(new Option(category, category)));
+            categoryEl.value = categories.includes(previous) ? previous : '';
+            refreshPlannerProducts();
+        }
+
+        function refreshPlannerProducts() {
+            const productEl = document.getElementById('plannerProduct');
+            const previous = productEl.value;
+            const list = plannerProducts();
+            productEl.innerHTML = '';
+            if (!list.length) {
+                productEl.add(new Option('ไม่พบสินค้าในตัวเลือกนี้', ''));
+            } else {
+                list.forEach(p => {
+                    const slug = String(p.id || p.model || '').toLowerCase();
+                    productEl.add(new Option((p.name || p.model) + ' · ' + p.model, slug));
+                });
+                productEl.value = list.some(p => String(p.id || p.model || '').toLowerCase() === previous) ? previous : String(list[0].id || list[0].model || '').toLowerCase();
+            }
+            updatePlannerSummary();
+        }
+
+        function updatePlannerSummary() {
+            const slug = document.getElementById('plannerProduct').value;
+            const product = PRODUCTS.find(p => String(p.id || p.model || '').toLowerCase() === slug);
+            const cta = document.getElementById('plannerCta');
+            if (!product) {
+                document.getElementById('plannerName').textContent = 'เลือกผลิตภัณฑ์เพื่อดูแพ็กเกจ';
+                document.getElementById('plannerModel').textContent = '—';
+                document.getElementById('plannerPrice').textContent = '—';
+                cta.href = 'product.html'; cta.setAttribute('aria-disabled', 'true');
+                return;
+            }
+            const prices = (product.plans || []).map(plan => Number(plan.price)).filter(Number.isFinite);
+            const price = prices.length ? Math.min(...prices) : Number(product.price || 0);
+            document.getElementById('plannerName').textContent = product.name || product.model;
+            document.getElementById('plannerModel').textContent = (product.category || '') + ' · ' + (product.model || '');
+            document.getElementById('plannerPrice').innerHTML = '฿' + fmt(price) + ' <small>/ เดือน</small>';
+            cta.href = 'product.html?slug=' + encodeURIComponent(slug);
+            cta.removeAttribute('aria-disabled');
+        }
+
+        function initPlanner() {
+            const lifeEl = document.getElementById('plannerLife');
+            LIFESTYLES.forEach(l => lifeEl.add(new Option(l.name, l.id)));
+            lifeEl.addEventListener('change', refreshPlannerCategories);
+            document.getElementById('plannerCategory').addEventListener('change', refreshPlannerProducts);
+            document.getElementById('plannerProduct').addEventListener('change', updatePlannerSummary);
+            refreshPlannerCategories();
+        }
+
+        function arrangeHomepageSections() {
+            const footer = document.getElementById('contact');
+            ['.trust-strip', '#why', '#products', '#planner', '#promotions', '#compare', '#how', '#services', '#faq', '.final-cta']
+                .map(selector => document.querySelector(selector))
+                .filter(Boolean)
+                .forEach(section => document.body.insertBefore(section, footer));
+        }
+
         /* ---------- Hero carousel สไตล์ LG Subscribe ----------
            สไลด์ 8 ใบ ใช้ภาพแคมเปญจริงจากเว็บ LG Subscribe (สิงหาคม 2569):
            ธีมแดง = โปร/ลด/ของแถม · ธีมครีม = คุณค่า/บริการ
@@ -800,16 +1088,17 @@
            (แก้ไขเนื้อหาสไลด์ได้ที่อาร์เรย์ HERO_SLIDES ด้านล่าง) */
         const HERO_SLIDES = [
             {
-                theme: 'red', 
-                img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/subscription/promotion/2026/08-birthday/-Birthday_1920x720.jpg',
-                imgM: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/subscription/promotion/2026/08-birthday/-Birthday_720x960.jpg',
-                label: 'LG Subscribe',
-                title: 'โปรปังฉลองครบรอบ 38 ปี LG',
-                dates: '7 ส.ค. 69 – 11 ก.ย. 69',
-                detail: 'ลดเลย 15% ตลอดสัญญา — ฉลอง 38 ปี กับโปรสุดปังเฉพาะเดือนสิงหาคมนี้',
-                badge: 'ลด 15%',
-                btn1: { text: 'ดูโปรโมชันอื่นๆ', href: 'promotions.html' },
-                btn2: { text: 'Subscribe เลย!', href: 'subscribe-store.html' }
+                theme: 'cream',
+                localIndex: 8,
+                img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/subscription/promotion/2026/07-sub/all-Banner_1920x720.jpg',
+                imgM: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/subscription/promotion/2026/07-sub/all-Banner_720x960.jpg',
+                label: 'LG PREMIUM SUBSCRIPTION',
+                title: 'เครื่องใช้ไฟฟ้าที่คุณอยากได้ ไม่จำเป็นต้องจ่ายเป็นก้อน',
+                dates: 'เริ่มต้นเพียง ฿399 / เดือน',
+                detail: 'เลือก LG Subscribe พร้อมบริการติดตั้ง การดูแลตามรอบ และความอุ่นใจตลอดอายุสัญญา',
+                badge: 'ดูแลครบวงจร',
+                btn1: { text: 'เลือกสินค้าของคุณ', href: '#products' },
+                btn2: { text: 'ดูแพ็กเกจและราคา', href: 'product.html' }
             },
             {
                 theme: 'red', 
@@ -948,8 +1237,9 @@
                 slide.dataset.theme = s.theme;
                 const extD = (s.img || '').split('.').pop().split('?')[0] || 'jpg';
                 const extM = (s.imgM || '').split('.').pop().split('?')[0] || extD;
-                s.local = 'images/hero-' + (i + 1) + '-d.' + extD;
-                s.localM = 'images/hero-' + (i + 1) + '-m.' + extM;
+                const localIndex = s.localIndex || (i + 1);
+                s.local = 'images/hero-' + localIndex + '-d.' + extD;
+                s.localM = 'images/hero-' + localIndex + '-m.' + extM;
                 slide.innerHTML =
                     '<div class="hero-left">' +
                         '<span class="h-label">' + s.label + '</span>' +
@@ -1061,10 +1351,12 @@
         }
         applyUrlParamsToCalc();
 
+        arrangeHomepageSections();
         renderCats();
         renderSubCats();
         renderLifestyle();
         renderProducts();
+        initPlanner();
         buildHero();
         pushDataLayer('hero_ready', { hero_slides: HERO_SLIDES.length, page_title: document.title });
         preloadHero(1);

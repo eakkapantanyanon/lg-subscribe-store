@@ -1,5 +1,8 @@
 # FLEXI-SUB™ — LG Subscribe Calculator สิงหาคม 2569
 
+> โฟลเดอร์ `lg-subscribe-site` นี้คือ source of truth สำหรับแก้ไขและ deploy เว็บไซต์
+> ไฟล์ชื่อเดียวกันที่อยู่นอกโฟลเดอร์เป็น working copy/เครื่องมือประกอบ และไม่ควรนำไป deploy แทนชุดนี้
+
 เว็บไซต์คำนวณค่าบริการ LG Subscribe (เช่ารายเดือน) — ข้อมูลราคาอ้างอิงจาก
 `Price list_Aug_V3.pdf` และ `Sale Price8 - Subscription_V3.pdf`
 
@@ -14,6 +17,7 @@
 | `calculator-core.js` | เอนจินคำนวณราคาบริสุทธิ์ (คัดลอก logic จากเว็บต้นแบบ v84: snapBaht, itemComboSchedule, grandTotal, firstPayment, shock 8.8, combo ตามช่วงเวลา) |
 | `product.html` | **หน้ารายละเอียดสินค้า (PDP)** — route แยกตาม slug (`product.html?slug=รุ่น`) จากหน้าหลัก |
 | `cart.js` | ตะกร้าร่วม (localStorage `flexiCart`) — ใช้ร่วมกันระหว่าง PDP และหน้าตะกร้า |
+| `analytics.js` | Event layer สำหรับ GA4/GTM — วัด Home → Planner → PDP → Cart → LINE โดยไม่ส่งชื่อหรือเบอร์โทร |
 | `product-select.js` | ตัวกลางแปลงตัวเลือก (ลูกค้า/แผน/การดูแล/สัญญา) → แผนเดียว + สรุปราคา (ใช้ LGCalc ชุดเดียวกับตะกร้า) |
 | `calculator.test.js` | เทสต์ 10 เคส A–J เทียบตัวเลขอ้างอิงจากเว็บต้นแบบ (รัน: `node calculator.test.js`) |
 | `pdp.test.js` | เทสต์ flow เลือกซื้อ: ทุกแผน reachable ผ่าน selection, เปลี่ยนตัวเลือก → ราคาเปลี่ยนถูกต้อง, ใส่ตะกร้าได้เมื่อเลือกครบ (รัน: `node pdp.test.js`) |
@@ -31,6 +35,15 @@
 3. **ตะกร้า** (`subscribe-store.html`) — โหลดจาก shared cart (localStorage) คำนวณคอมโบหลายชิ้นด้วย `calculator-core.js` **ชุดเดียวกับ PDP**
 
 > ราคาทุกจุด (PDP + ตะกร้า) ผ่านฟังก์ชันเดียวกันใน `calculator-core.js` — เปลี่ยนตัวเลือกแล้วราคาสรุปอัปเดตถูกต้อง ตรวจยืนยันด้วย `node pdp.test.js`
+
+## Conversion events
+
+`analytics.js` ส่ง event เข้า `window.dataLayer` และพร้อมเชื่อมกับ GTM/GA4 ได้แก่
+`flexi_page_ready`, `lifestyle_select`, `product_card_click`, `planner_change`,
+`planner_cta_click`, `pdp_option_select`, `add_to_cart_click`,
+`promotion_product_click`, `lead_validation_error`, `lead_submit_success` และ `line_contact_click`
+
+Event เหล่านี้ไม่ส่งชื่อ เบอร์โทร หรือข้อความที่ลูกค้ากรอก
 
 ## ฟีเจอร์ของหน้าตะกร้า (subscribe-store.html)
 
@@ -67,10 +80,18 @@ node reinline.js   # นำ products.js ไป re-inline เข้า subscribe-
 
 ## Deploy ขึ้น GitHub Pages
 
+ตรวจสอบก่อน deploy:
+
+```bash
+node calculator.test.js
+node pdp.test.js
+node site.test.js
+```
+
 ```bash
 cd lg-subscribe-site
 git init
-git add index.html promotions.html subscribe-store.html products.js images/ README.md
+git add .
 git commit -m "FLEXI-SUB LG Subscribe calculator"
 git branch -M main
 git remote add origin https://github.com/<your-user>/lg-subscribe-store.git
@@ -79,6 +100,8 @@ git push -u origin main
 
 จากนั้นเปิด GitHub → Repo → Settings → Pages → เลือก branch `main` → เว็บจะอยู่ที่
 `https://<your-user>.github.io/lg-subscribe-store/`
+
+ไฟล์ `.nojekyll`, `404.html`, `robots.txt` และ `sitemap.xml` รวมอยู่ในชุด deploy แล้ว
 
 ## ⚠️ ก่อนเผยแพร่
 
