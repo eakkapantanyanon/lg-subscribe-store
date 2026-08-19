@@ -455,7 +455,12 @@
         const items = [];
         const sharedGallery = (window.LG_PRODUCT_GALLERIES || {})[p.id];
         const gallerySource = Array.isArray(p.gallery) && p.gallery.length ? p.gallery : sharedGallery;
+        const specCard = (window.LG_PRODUCT_SPEC_CARDS || {})[p.id];
         const gallery = Array.isArray(gallerySource) ? gallerySource.slice(0, 4) : [];
+        if (specCard) {
+            if (gallery.length >= 4) gallery.pop();
+            gallery.push({ src: specCard, alt: 'ภาพคุณลักษณะและสเปก ' + p.name + ' รุ่น ' + p.model });
+        }
         gallery.forEach((entry, i) => {
             const item = typeof entry === 'string' ? { src: entry } : entry;
             if (item && item.src) items.push({ type: 'img', src: item.src, title: item.alt || (p.name + ' ภาพที่ ' + (i + 1)) });
@@ -534,7 +539,9 @@
     }
     function renderInfo(p) {
         const box = document.getElementById('infoBox');
-        const feats = (p.features && p.features.length ? p.features : derivedFeatures(p));
+        const mappedFeatures = (window.LG_PRODUCT_FEATURES || {})[p.id];
+        const feats = (p.features && p.features.length ? p.features :
+            (mappedFeatures && mappedFeatures.length ? mappedFeatures : derivedFeatures(p)));
         const rating = Number(p.rating) || 0;
         const reviews = Number(p.reviewCount) || 0;
         const ratingHtml = rating > 0

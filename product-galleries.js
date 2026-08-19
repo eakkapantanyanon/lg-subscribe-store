@@ -262,26 +262,22 @@ window.LG_PRODUCT_GALLERIES = {
   "ixy11a": [
     "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2026/ixya/gallery/IXY11A_front_450.jpg",
     "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2026/ixya/gallery/IXY11A_front_2010.jpg",
-    "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2026/ixya/gallery/IXY11A_front_180.jpg",
-    "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2026/ixya/gallery/IXY11A_front_1044.jpg"
+    { "src": "images/specs/ixy-series-spec.jpg", "alt": "ตารางคุณสมบัติและสเปกเครื่องปรับอากาศ LG DUALCOOL IXY Series" }
   ],
   "ixy13a": [
     "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2026/ixya/gallery/IXY11A_front_450.jpg",
     "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2026/ixya/gallery/IXY11A_front_2010.jpg",
-    "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2026/ixya/gallery/IXY11A_front_180.jpg",
-    "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2026/ixya/gallery/IXY11A_front_1044.jpg"
+    { "src": "images/specs/ixy-series-spec.jpg", "alt": "ตารางคุณสมบัติและสเปกเครื่องปรับอากาศ LG DUALCOOL IXY Series" }
   ],
   "ixy18a": [
     "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2026/ixya/gallery/IXY11A_front_450.jpg",
     "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2026/ixya/gallery/IXY11A_front_2010.jpg",
-    "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2026/ixya/gallery/IXY11A_front_180.jpg",
-    "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2026/ixya/gallery/IXY11A_front_1044.jpg"
+    { "src": "images/specs/ixy-series-spec.jpg", "alt": "ตารางคุณสมบัติและสเปกเครื่องปรับอากาศ LG DUALCOOL IXY Series" }
   ],
   "ixy24a": [
     "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2026/ixya/gallery/IXY11A_front_450.jpg",
     "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2026/ixya/gallery/IXY11A_front_2010.jpg",
-    "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2026/ixya/gallery/IXY11A_front_180.jpg",
-    "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2026/ixya/gallery/IXY11A_front_1044.jpg"
+    { "src": "images/specs/ixy-series-spec.jpg", "alt": "ตารางคุณสมบัติและสเปกเครื่องปรับอากาศ LG DUALCOOL IXY Series" }
   ],
   "siq11b": [
     "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2026/siq/gallery/S1_S3NM121L1C0_Front_1_450.jpg",
@@ -548,3 +544,79 @@ window.LG_PRODUCT_GALLERIES = {
     "https://www.lg.com/content/dam/channel/wcms/th/image-update/audio/2025/stage301-athalbk/gallery/02-gallery/xboom-stage301-2025-gallery-06.jpg"
   ]
 };
+
+// ภาพสเปกจากชุดข้อมูลภายใน เก็บเป็นไฟล์ local เพื่อไม่พึ่งพา hotlink ภายนอก
+window.LG_PRODUCT_SPEC_CARDS = {
+  "wd110mn": "images/specs/wd110mn-spec.jpg",
+  "wd516an": "images/specs/wd516an-spec.jpg",
+  "wd518an": "images/specs/wd518an-spec.jpg",
+  "a9t-ultra": "images/specs/a9t-ultra-spec.jpg",
+  "a9t-core": "images/specs/a9t-core-spec.jpg",
+  "a9t-lite": "images/specs/a9t-lite-spec.jpg",
+  "dfc335hm": "images/specs/dfc335hm-spec.jpg",
+  "dfc533fv": "images/specs/dfc533fv-spec.jpg",
+  "dd23gmwe1": "images/specs/dd23gmwe1-spec.jpg",
+  "md19gqga1": "images/specs/md19gqga1-spec.jpg",
+  "as35ggw10": "images/specs/as35ggw10-spec.jpg",
+  "as10gdby0": "images/specs/as10-as65-spec.jpg",
+  "as65gdby0": "images/specs/as10-as65-spec.jpg",
+  "as60ghwg0": "images/specs/as60ghwg0-spec.jpg",
+  "art13a": "images/specs/art-series-spec.jpg",
+  "art18a": "images/specs/art-series-spec.jpg",
+  "saq11a": "images/specs/saq-series-spec.jpg",
+  "saq13a": "images/specs/saq-series-spec.jpg",
+  "saq18b": "images/specs/saq-series-spec.jpg",
+  "saq24b": "images/specs/saq-series-spec.jpg",
+  "siq11b": "images/specs/siq-series-spec.jpg",
+  "siq13b": "images/specs/siq-series-spec.jpg",
+  "siq18b": "images/specs/siq-series-spec.jpg",
+  "siq24b": "images/specs/siq-series-spec.jpg",
+  "wt2520nhen": "images/specs/wt2520nhen-spec.jpg",
+  "wt2520nheg": "images/specs/wt2520nheg-spec.jpg",
+  "wt1410nheg": "images/specs/wt1410nheg-spec.jpg",
+  "wt2116sheg": "images/specs/wt2116sheg-spec.jpg",
+  "s3mfc": "images/specs/s3mfc-spec.jpg",
+  "f2520rntb": "images/specs/f2520rntb-spec.jpg",
+  "tx2723st5j": "images/specs/tx2723st5j-spec.jpg",
+  "fv1413s4m": "images/specs/fv1413s4m-spec.jpg",
+  "gc-g24ffqkb": "images/specs/gc-g24ffqkb-spec.jpg",
+  "gc-l24ffcbb": "images/specs/gc-l24ffcbb-spec.jpg",
+  "gn-v389fqef": "images/specs/gn-v389fqef-spec.jpg",
+  "gv-v25ffgrb": "images/specs/gv-v25ffgrb-spec.jpg",
+  "gc-x257cmew": "images/specs/gc-x257cmew-spec.jpg",
+  "gc-j257sqzw": "images/specs/gc-j257sqzw-spec.jpg",
+  "gc-l257kqkw": "images/specs/gc-l257kqkw-spec.jpg",
+  "gc-b257sqyl": "images/specs/gc-b257sqyl-spec.jpg",
+  "gn-f452pqak": "images/specs/gn-f452pqak-spec.jpg",
+  "gn-f392pqak": "images/specs/gn-f392pqak-spec.jpg",
+  "gc-b48fpgam": "images/specs/gc-b48fpgam-spec.jpg",
+  "27lx6tdga": "images/specs/27lx6tdga-spec.jpg",
+  "27lx6tdga-grab": "images/specs/27lx6tdga-spec.jpg",
+  "32lx6bdga": "images/specs/32lx6bdga-spec.jpg",
+  "s95tr": "images/specs/s95tr-spec.jpg",
+  "s70ty": "images/specs/s70ty-spec.jpg",
+  "xboom-bounce": "images/specs/xboom-bounce-spec.jpg",
+  "xboom-grab": "images/specs/xboom-grab-spec.jpg"
+};
+
+(function () {
+  const assign = (ids, features) => ids.forEach(id => { window.LG_PRODUCT_FEATURES[id] = features; });
+  window.LG_PRODUCT_FEATURES = {};
+
+  assign(["wd110mn"], ["ดีไซน์บางเพียง 132 มม. ประหยัดพื้นที่", "ระบบกรองน้ำ 4 ขั้นตอนมาตรฐาน WQA", "UV Sterilization ฆ่าเชื้อบริเวณหัวจ่ายอัตโนมัติ", "จ่ายน้ำแบบเรียลไทม์ ไม่ต้องมีถังเก็บน้ำ", "ควบคุมและตรวจสอบสถานะผ่าน LG ThinQ"]);
+  assign(["wd516an", "wd518an"], ["จ่ายน้ำร้อน น้ำเย็น และน้ำอุณหภูมิห้อง", "ระบบกรองน้ำ 4 ขั้นตอนมาตรฐาน WQA", "UV Sterilization ฆ่าเชื้อบริเวณหัวจ่ายอัตโนมัติ", "ไม่มีถังเก็บน้ำ ลดปัญหาน้ำค้างคืน", "Smart Inverter Compressor ทำงานเงียบและประหยัดพลังงาน"]);
+  assign(["a9t-ultra", "a9t-core", "a9t-lite"], ["All-in-One Tower เก็บฝุ่นและจัดเก็บอุปกรณ์ในตัว", "Smart Inverter Motor ให้พลังดูดแรง", "ระบบกรองฝุ่น 5 ขั้นตอน พร้อมแผ่นกรองถอดล้างได้", "Kompressor อัดฝุ่นให้แน่น ลดความถี่ในการเทฝุ่น", "ตรวจสอบสถานะเครื่องผ่าน LG ThinQ"]);
+  assign(["dfc335hm", "dfc533fv"], ["QuadWash ล้างสะอาดทั่วถึงทุกซอกมุม", "TrueSteam ช่วยลดคราบฝังแน่นและฆ่าเชื้อ", "Auto Open Dry เปิดประตูอัตโนมัติหลังจบโปรแกรม", "Inverter Direct Drive ทำงานเงียบและประหยัดพลังงาน", "ควบคุมและตรวจสอบการทำงานผ่าน LG ThinQ"]);
+  assign(["md19gqga1", "dd23gmwe1"], ["ลดความชื้นได้อย่างมีประสิทธิภาพ", "Dual Inverter Compressor ทำงานเงียบและประหยัดพลังงาน", "ถังเก็บน้ำขนาดใหญ่และต่อท่อน้ำทิ้งได้", "เคลื่อนย้ายสะดวก พร้อมอุปกรณ์ช่วยเป่าแห้งเฉพาะจุด", "ควบคุมและตรวจสอบความชื้นผ่าน LG ThinQ"]);
+  assign(["as35ggw10", "as10gdby0", "as65gdby0", "as60ghwg0"], ["ระบบกรองอากาศประสิทธิภาพสูงพร้อมแผ่นกรอง HEPA", "ดูดและกระจายอากาศบริสุทธิ์รอบทิศทาง", "ตรวจจับฝุ่นละเอียด PM1.0", "แสดงสถานะคุณภาพอากาศแบบเรียลไทม์", "ควบคุมและตรวจสอบผ่าน LG ThinQ"]);
+  assign(["art13a", "art18a", "saq11a", "saq13a", "saq18b", "saq24b", "siq11b", "siq13b", "siq18b", "siq24b"], ["AI Air ปรับการทำงานให้เหมาะกับสภาพแวดล้อม", "Dual Inverter Compressor ทำงานเงียบ เย็นเร็ว และประหยัดพลังงาน", "Soft Air กระจายลมเย็นอย่างนุ่มนวล", "Comfort Humidity Control ช่วยควบคุมความชื้น", "ตรวจสอบและควบคุมการทำงานผ่าน LG ThinQ"]);
+  assign(["wt2520nhen", "wt2520nheg", "wt1410nheg", "wt2116sheg"], ["All-in-One Design รวมเครื่องซักและอบในเครื่องเดียว", "Center Control แผงควบคุมกลาง ใช้งานสะดวก", "AI DD และ Smart Pairing เลือกรูปแบบการซักและอบอัตโนมัติ", "TurboWash 360 ซักสะอาดรวดเร็ว", "ควบคุมและตรวจสอบผ่าน LG ThinQ"]);
+  assign(["s3mfc"], ["TrueSteam ดูแลเสื้อผ้าด้วยพลังไอน้ำ", "Moving Hanger ช่วยเขย่าฝุ่นและลดรอยยับ", "Pants Crease Care รักษารอยจีบกางเกง", "ช่วยลดสารก่อภูมิแพ้ 99.9%", "ดีไซน์บาง ประหยัดพื้นที่ และควบคุมผ่าน LG ThinQ"]);
+  assign(["f2520rntb", "fv1413s4m"], ["AI DD วิเคราะห์ชนิดผ้าเพื่อเลือกรูปแบบการซัก", "TurboWash ซักสะอาดรวดเร็ว", "Steam ช่วยลดสารก่อภูมิแพ้และรอยยับ", "Inverter Direct Drive ทำงานเงียบและทนทาน", "สั่งงานและตรวจสอบสถานะผ่าน LG ThinQ"]);
+  assign(["tx2723st5j"], ["AI DD ตรวจสอบเนื้อผ้าและปรับรูปแบบการซัก", "EasyUnload ช่วยให้หยิบผ้าจากถังได้สะดวก", "TurboWash 3D ซักเสร็จรวดเร็ว", "โปรแกรม Allergy Care ด้วยไอน้ำ", "ควบคุมและตรวจสอบผ่าน LG ThinQ"]);
+  assign(["gc-g24ffqkb", "gc-l24ffcbb", "gn-v389fqef", "gv-v25ffgrb", "gc-x257cmew", "gc-j257sqzw", "gc-l257kqkw", "gc-b257sqyl", "gn-f452pqak", "gn-f392pqak", "gc-b48fpgam"], ["Multi Air Flow กระจายลมเย็นทั่วถึง", "Linear Cooling ช่วยรักษาอุณหภูมิให้สม่ำเสมอ", "Fresh Zone ช่วยคงความสดใหม่ของผักและผลไม้", "ชั้นวางกระจกนิรภัยรองรับน้ำหนักได้ดี", "Smart Inverter Compressor ทำงานเงียบและประหยัดพลังงาน"]);
+  assign(["27lx6tdga", "27lx6tdga-grab"], ["หน้าจอสัมผัส QHD ขนาด 27 นิ้ว", "ถอดจอ เคลื่อนย้าย และปรับหมุนได้", "แบตเตอรี่ในตัว ใช้งานแบบไร้สาย", "รองรับ Dolby Vision และ Dolby Atmos", "webOS พร้อมความบันเทิงและฟีเจอร์ Mood Maker"]);
+  assign(["32lx6bdga"], ["หน้าจอสัมผัส 4K ขนาด 32 นิ้ว", "ถอดจอและเคลื่อนย้ายสะดวก พร้อมแบตเตอรี่ในตัว", "ปรับหมุนและปรับความเอียงได้", "รองรับ Dolby Vision และ Dolby Atmos", "webOS พร้อมการควบคุมด้วยเสียงและ Mood Maker"]);
+  assign(["s95tr", "s70ty"], ["รองรับ Dolby Atmos ให้เสียงรอบทิศทาง", "WOW Orchestra ผสานเสียงกับลำโพงทีวี LG", "AI Sound Pro ปรับเสียงให้เหมาะกับคอนเทนต์", "รองรับ HDMI eARC และการส่งผ่านภาพ 4K", "เชื่อมต่อ Bluetooth และอุปกรณ์ภายนอกได้หลากหลาย"]);
+  assign(["xboom-bounce", "xboom-grab"], ["เสียงปรับแต่งโดย will.i.am", "AI Sound และ AI Calibration ปรับเสียงอัตโนมัติ", "มาตรฐานความทนทาน MIL-STD-810H และ IP67", "แบตเตอรี่ใช้งานได้ยาวนาน", "รองรับ Auracast Party Link เชื่อมต่อลำโพงหลายเครื่อง"]);
+})();
