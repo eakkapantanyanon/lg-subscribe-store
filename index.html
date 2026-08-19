@@ -1099,6 +1099,8 @@
                 theme: 'red', 
                 img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/subscription/promotion/2026/08-birthday/-Birthday_1920x720.jpg',
                 imgM: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/subscription/promotion/2026/08-birthday/-Birthday_720x960.jpg',
+                local: 'images/hero-birthday-38-d.jpg',
+                localM: 'images/hero-birthday-38-m.jpg',
                 label: 'LG Subscribe',
                 title: 'โปรปังฉลองวันครบรอบ 38 ปี LG',
                 dates: '15 ส.ค. 69 – 23 ส.ค. 69',
@@ -1220,8 +1222,8 @@
                 const extD = (s.img || '').split('.').pop().split('?')[0] || 'jpg';
                 const extM = (s.imgM || '').split('.').pop().split('?')[0] || extD;
                 const localIndex = s.localIndex || (i + 1);
-                s.local = 'images/hero-' + localIndex + '-d.' + extD;
-                s.localM = 'images/hero-' + localIndex + '-m.' + extM;
+                s.local = s.local || ('images/hero-' + localIndex + '-d.' + extD);
+                s.localM = s.localM || ('images/hero-' + localIndex + '-m.' + extM);
                 slide.innerHTML =
                     '<div class="hero-left">' +
                         '<span class="h-label">' + s.label + '</span>' +
