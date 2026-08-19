@@ -34,6 +34,66 @@
     }
   };
 
+  /* ---------- รายละเอียดบริการตามประเภทสินค้า ---------- */
+  function careInfo(product, serviceType) {
+    var fallback = CARE_INFO[serviceType] || { label: serviceType, short: serviceType, desc: '' };
+    if (!product || serviceType === 'No Service') return fallback;
+
+    var id = String(product.id || '').toLowerCase();
+    var category = String(product.category || '');
+    var desc = '';
+
+    if (category === 'เครื่องกรองน้ำ') {
+      desc = serviceType === 'Visit'
+        ? 'ผู้เชี่ยวชาญ LG เปลี่ยน Pre-Carbon Filter ทุก 6 เดือน และ UF Membrane Filter ทุก 12 เดือน พร้อมฆ่าเชื้อทางเดินน้ำ ตรวจรั่ว และทำความสะอาด'
+        : 'LG จัดส่ง Pre-Carbon Filter ทุก 6 เดือน และ UF Membrane Filter ทุก 12 เดือน สำหรับเปลี่ยนด้วยตัวเอง';
+    } else if (id === 'gc-l24ffcbb') {
+      desc = 'ผู้เชี่ยวชาญ LG ตรวจและทำความสะอาดทุก 6 เดือน พร้อมเปลี่ยน Pre-Carbon Filter ทุก 6 เดือน และ UF/Post Carbon Filter ทุก 12 เดือน';
+    } else if (category.indexOf('ตู้เย็น') === 0) {
+      desc = 'ผู้เชี่ยวชาญ LG ตรวจสอบและทำความสะอาดตัวเครื่อง ขอบยาง คอมเพรสเซอร์ และส่วนรองรับ ทุก 2 ปี';
+    } else if (category === 'Wash Tower') {
+      desc = serviceType === 'Visit'
+        ? 'ผู้เชี่ยวชาญ LG ตรวจ ทำความสะอาด และดูแลเครื่องทุก 12 เดือน พร้อมบริการถอดล้างใหญ่ตามรอบที่กำหนด'
+        : 'LG จัดส่งน้ำยาล้างถัง แผ่นอบผ้า และไส้กรองตามรอบ สำหรับดูแลด้วยตัวเอง';
+    } else if (category === 'เครื่องซักผ้า ฝาหน้า') {
+      desc = serviceType === 'Visit'
+        ? 'ผู้เชี่ยวชาญ LG ตรวจและทำความสะอาดเครื่องทุก 12 เดือน พร้อมถอดล้างถังตามรอบที่กำหนด'
+        : 'LG จัดส่งน้ำยาล้างถังและอุปกรณ์ดูแลตามรอบ สำหรับทำความสะอาดด้วยตัวเอง';
+    } else if (category === 'เครื่องซักผ้า ฝาบน') {
+      desc = serviceType === 'Visit'
+        ? 'ผู้เชี่ยวชาญ LG ตรวจและทำความสะอาดเครื่องทุก 12 เดือน พร้อมถอดล้างถังตามรอบที่กำหนด'
+        : 'LG จัดส่งน้ำยาล้างถังและอุปกรณ์ดูแลตามรอบ สำหรับทำความสะอาดด้วยตัวเอง';
+    } else if (category === 'เครื่องอบผ้า') {
+      desc = serviceType === 'Visit'
+        ? 'ผู้เชี่ยวชาญ LG ตรวจ ทำความสะอาดไส้กรองและชุดแลกเปลี่ยนความร้อน พร้อมดูแลเครื่องตามรอบทุก 12 เดือน'
+        : 'LG จัดส่งไส้กรองและแผ่นปรับผ้านุ่มตามรอบ สำหรับเปลี่ยนและดูแลด้วยตัวเอง';
+    } else if (category === 'เครื่องดูดฝุ่น' && serviceType === 'Self') {
+      desc = 'LG จัดส่งถุงเก็บฝุ่นและไส้กรองทุก 12 เดือน พร้อมแบตเตอรี่เมื่อครบ 36 เดือน และอุปกรณ์ตามเงื่อนไขของรุ่น';
+    } else if (category === 'เครื่องฟอกอากาศ') {
+      if (id === 'as25gcby0' && serviceType === 'Visit') {
+        desc = 'ผู้เชี่ยวชาญ LG ตรวจและทำความสะอาดเครื่อง พร้อมเปลี่ยนไส้กรองตามรอบบริการที่กำหนดสำหรับ AeroCatTower';
+      } else if (id !== 'as25gcby0') {
+        desc = serviceType === 'Visit'
+          ? 'ผู้เชี่ยวชาญ LG ทำความสะอาด Pre-filter ทุก 6 เดือน และเปลี่ยน H13 HEPA/Carbon Filter ทุก 12 เดือน'
+          : 'LG จัดส่ง Pre-filter ทุก 6 เดือน และ H13 HEPA/Carbon Filter ทุก 12 เดือน สำหรับเปลี่ยนด้วยตัวเอง';
+      }
+    } else if (category === 'เครื่องลดความชื้น') {
+      desc = serviceType === 'Visit'
+        ? 'ผู้เชี่ยวชาญ LG ตรวจและทำความสะอาดเครื่อง พร้อมเปลี่ยน Air Purification Kit ทุก 12 เดือน และดูแลถังน้ำตามรอบ'
+        : 'LG จัดส่ง Air Purification Kit ทุก 12 เดือน และอุปกรณ์ดูแลตามรอบ สำหรับเปลี่ยนด้วยตัวเอง';
+    } else if (category === 'เครื่องล้างจาน') {
+      desc = serviceType === 'Visit'
+        ? 'ผู้เชี่ยวชาญ LG ตรวจคุณภาพน้ำ เติมเกลือ และทำความสะอาดไส้กรองกับภายในเครื่องทุก 12 เดือน'
+        : 'LG จัดส่งเกลือและอุปกรณ์ดูแลทุก 12 เดือน สำหรับทำความสะอาดและบำรุงรักษาด้วยตัวเอง';
+    } else if (category.indexOf('เครื่องปรับอากาศ SAC') === 0) {
+      desc = 'ผู้เชี่ยวชาญ LG ตรวจเช็กทุก 4 เดือน พร้อมล้างเครื่อง 3 ครั้งต่อปี แบ่งเป็นล้างย่อย 2 ครั้ง และล้างใหญ่ 1 ครั้ง';
+    } else if (category.indexOf('เครื่องปรับอากาศ ') === 0) {
+      desc = 'ผู้เชี่ยวชาญ LG ตรวจเช็กและทำความสะอาดทุก 6 เดือน พร้อมล้างใหญ่ตามรอบทุก 12 เดือน';
+    }
+
+    return desc ? { label: fallback.label, short: fallback.short, desc: desc } : fallback;
+  }
+
   /* ---------- ตัวเลือกที่สินค้ารองรับ ---------- */
   function planTypes(product) {
     var hasOut = (product.plans || []).some(function (p) { return p.outright; });
@@ -231,7 +291,7 @@
   }
 
   return {
-    PROMOS: PROMOS, CARE_INFO: CARE_INFO,
+    PROMOS: PROMOS, CARE_INFO: CARE_INFO, careInfo: careInfo,
     planTypes: planTypes, careTypes: careTypes, terms: terms,
     filterPlans: filterPlans, variantOptions: variantOptions,
     resolvePlanIndex: resolvePlanIndex, resolvedPlan: resolvedPlan,

@@ -599,6 +599,26 @@ window.LG_PRODUCT_SPEC_CARDS = {
   "xboom-grab": "images/specs/xboom-grab-spec.jpg"
 };
 
+// ภาพอธิบายบริการจาก Care Service 2026 จับคู่เฉพาะรุ่น/หมวดที่ยืนยันตรงกับเอกสาร
+window.LG_PRODUCT_CARE_CARDS = {};
+(function () {
+  const assignCare = (ids, image) => ids.forEach(id => { window.LG_PRODUCT_CARE_CARDS[id] = image; });
+  assignCare(["wd110mn", "wd516an", "wd518an"], "images/care-service/water-purifier-care.jpg");
+  assignCare(["gc-l257kqkw", "gc-b257sqyl", "gc-x257cmhw", "gc-l257sfzw", "gc-x257cmew", "gc-j257sqzw", "gv-b25ffgdb", "gc-g24ffqkb", "gc-v22ffqmb", "gc-b48fpgam", "gv-v25ffgrb", "gn-f392pqak", "gn-f452pqak", "gn-v389fqef"], "images/care-service/refrigerator-care.jpg");
+  assignCare(["gc-l24ffcbb"], "images/care-service/refrigerator-plumbed-care.jpg");
+  assignCare(["wt2520nheg", "wt2116sheg", "wt1410nheg", "wt2520nhen", "wt1410nhen"], "images/care-service/washtower-care.jpg");
+  assignCare(["fv1409h4w", "f2520rntb", "fv1413h4m", "fv1413s4m"], "images/care-service/front-loader-care.jpg");
+  assignCare(["tx2723st5j", "tx2315dt5g"], "images/care-service/top-loader-care.jpg");
+  assignCare(["rv10vhp2b"], "images/care-service/dryer-care.jpg");
+  assignCare(["a9t-ultra", "a9t-core", "a9t-lite"], "images/care-service/vacuum-care.jpg");
+  assignCare(["as60ghwg0", "as65gdby0", "as10gdby0"], "images/care-service/air-purifier-care.jpg");
+  assignCare(["as35ggw10"], "images/care-service/air-purifier-as35-care.jpg");
+  assignCare(["md19gqga1", "dd23gmwe1"], "images/care-service/dehumidifier-care.jpg");
+  assignCare(["dfc335hm", "dfc533fv"], "images/care-service/dishwasher-care.jpg");
+  assignCare(["ixy11a", "ixy13a", "ixy18a", "ixy24a", "siq11b", "siq13b", "siq18b", "siq24b", "saq11a", "saq13a", "saq18b", "saq24b", "art13a", "art18a"], "images/care-service/residential-air-care.jpg");
+  assignCare(["zt4q18", "zt4q24", "zt4q36", "zt4q48", "zt1q12", "zt1q18", "zt1q24", "ztrq36", "ztrq48"], "images/care-service/commercial-air-care.jpg");
+})();
+
 (function () {
   const assign = (ids, features) => ids.forEach(id => { window.LG_PRODUCT_FEATURES[id] = features; });
   window.LG_PRODUCT_FEATURES = {};

@@ -81,6 +81,16 @@ t('แผนที่ (planType,care,term) เหลือหลายแผน 
   assert.notStrictEqual(p.plans[v12].price, p.plans[v6].price, 'รอบบริการต่าง → ราคาต่าง');
 });
 
+t('ข้อความประเภทการดูแลเปลี่ยนตามรุ่นและประเภทบริการ', () => {
+  const water = data.find(x => x.id === 'wd516an');
+  const commercialAir = data.find(x => x.id === 'zt4q18');
+  const noService = data.find(x => x.id === 'oled48c6psa');
+  assert.match(SEL.careInfo(water, 'Visit').desc, /Pre-Carbon Filter ทุก 6 เดือน/);
+  assert.match(SEL.careInfo(water, 'Self').desc, /จัดส่ง.*UF Membrane Filter/);
+  assert.match(SEL.careInfo(commercialAir, 'Visit').desc, /ตรวจเช็กทุก 4 เดือน/);
+  assert.strictEqual(SEL.careInfo(noService, 'No Service').desc, SEL.CARE_INFO['No Service'].desc);
+});
+
 /* ================================================================
    2. เปลี่ยนตัวเลือก → ราคาสรุปเปลี่ยนถูกต้อง (หัวใจของ requirement)
    ================================================================ */
