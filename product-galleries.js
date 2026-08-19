@@ -343,15 +343,33 @@ window.LG_PRODUCT_GALLERIES = {
     "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2026/art13a-sr1/gallery/small03.jpg",
     "https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2026/art13a-sr1/gallery/small04.jpg"
   ],
-  "zt4q18": [],
-  "zt4q24": [],
-  "zt4q36": [],
-  "zt4q48": [],
-  "zt1q12": [],
-  "zt1q18": [],
-  "zt1q24": [],
-  "ztrq36": [],
-  "ztrq48": [],
+  "zt4q18": [
+    "https://arttato.github.io/LG-Subscribe/img/products/zt4q18gpla1-ewghath.jpg"
+  ],
+  "zt4q24": [
+    "https://arttato.github.io/LG-Subscribe/img/products/zt4q24gpla1-ewghath.jpg"
+  ],
+  "zt4q36": [
+    "https://arttato.github.io/LG-Subscribe/img/products/zt4q36gnla1-ewghath.jpg"
+  ],
+  "zt4q48": [
+    "https://arttato.github.io/LG-Subscribe/img/products/zt4q48gmla1-ewghath.jpg"
+  ],
+  "zt1q12": [
+    "https://arttato.github.io/LG-Subscribe/img/products/zt1q12gula1-ewghath.jpg"
+  ],
+  "zt1q18": [
+    "https://arttato.github.io/LG-Subscribe/img/products/zt1q18gtla1-ewghath.jpg"
+  ],
+  "zt1q24": [
+    "https://arttato.github.io/LG-Subscribe/img/products/zt1q24gtla1-ewghath.jpg"
+  ],
+  "ztrq36": [
+    "https://arttato.github.io/LG-Subscribe/img/products/ztrq36gyla1-ewghath.jpg"
+  ],
+  "ztrq48": [
+    "https://arttato.github.io/LG-Subscribe/img/products/ztrq48gyla1-ewghath.jpg"
+  ],
   "oled48c6psa": [
     "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/oled/oled81-42c6psa-atm/gallery/48-c6/update/OLED48C6PSA-450-01.jpg",
     "https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/oled/oled81-42c6psa-atm/gallery/48-c6/update/OLED48C6PSA-2010-01.jpg",
@@ -484,7 +502,9 @@ window.LG_PRODUCT_GALLERIES = {
     "https://www.lg.com/content/dam/channel/wcms/th/image-update/monitor/2026/40u990a-w-atm/gallery/gallery/ultrafine-uhd-4k-5k-40u990a-2025-gallery-gallery-01.jpg",
     "https://www.lg.com/content/dam/channel/wcms/th/image-update/monitor/2026/40u990a-w-atm/gallery/gallery/ultrafine-uhd-4k-5k-40u990a-2025-gallery-gallery-02.jpg"
   ],
-  "34u650a": [],
+  "34u650a": [
+    "https://arttato.github.io/LG-Subscribe/img/products/34u650a-b-atm.jpg"
+  ],
   "32u889sa": [
     "https://www.lg.com/content/dam/channel/wcms/th/images/monitor/2025/32u889sa/gallery/smart-monitor-32u889sa-2025-gallery-swing-gallery-basic-large.jpg",
     "https://www.lg.com/content/dam/channel/wcms/th/images/monitor/2025/32u889sa/gallery/smart-monitor-32u889sa-2025-gallery-swing-gallery-01-2010.jpg",

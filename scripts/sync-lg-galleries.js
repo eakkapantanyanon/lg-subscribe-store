@@ -4,13 +4,35 @@
 const fs = require('fs');
 const path = require('path');
 const vm = require('vm');
+const { execFileSync } = require('child_process');
 
 const ROOT = path.resolve(__dirname, '..');
 const context = { window: {} };
 vm.runInNewContext(fs.readFileSync(path.join(ROOT, 'products.js'), 'utf8'), context);
 const products = context.window.LG_PRODUCTS || [];
+const previousContext = { window: {} };
+try {
+  const committed = execFileSync('git', ['show', 'HEAD:product-galleries.js'], { cwd: ROOT, encoding: 'utf8' });
+  vm.runInNewContext(committed, previousContext);
+} catch (error) {
+  try { vm.runInNewContext(fs.readFileSync(path.join(ROOT, 'product-galleries.js'), 'utf8'), previousContext); }
+  catch (ignored) { /* first generation */ }
+}
+const previousGalleries = previousContext.window.LG_PRODUCT_GALLERIES || {};
 const DIRECT_PAGES = {
   'gc-x257cmhw': 'https://www.lg.com/th/refrigerators/side-by-side-refrigerator/gc-x257cmhw/'
+};
+const EXTERNAL_FALLBACKS = {
+  'zt4q18': 'https://arttato.github.io/LG-Subscribe/img/products/zt4q18gpla1-ewghath.jpg',
+  'zt4q24': 'https://arttato.github.io/LG-Subscribe/img/products/zt4q24gpla1-ewghath.jpg',
+  'zt4q36': 'https://arttato.github.io/LG-Subscribe/img/products/zt4q36gnla1-ewghath.jpg',
+  'zt4q48': 'https://arttato.github.io/LG-Subscribe/img/products/zt4q48gmla1-ewghath.jpg',
+  'zt1q12': 'https://arttato.github.io/LG-Subscribe/img/products/zt1q12gula1-ewghath.jpg',
+  'zt1q18': 'https://arttato.github.io/LG-Subscribe/img/products/zt1q18gtla1-ewghath.jpg',
+  'zt1q24': 'https://arttato.github.io/LG-Subscribe/img/products/zt1q24gtla1-ewghath.jpg',
+  'ztrq36': 'https://arttato.github.io/LG-Subscribe/img/products/ztrq36gyla1-ewghath.jpg',
+  'ztrq48': 'https://arttato.github.io/LG-Subscribe/img/products/ztrq48gyla1-ewghath.jpg',
+  '34u650a': 'https://arttato.github.io/LG-Subscribe/img/products/34u650a-b-atm.jpg'
 };
 
 async function getText(url) {
@@ -91,6 +113,8 @@ async function main() {
         catch (error) { process.stderr.write('WARN ' + product.model + ': ' + error.message + '\n'); }
       }
       if (images.length < 2 && product.img && product.img.startsWith('https://www.lg.com/')) images.unshift(product.img);
+      if ((previousGalleries[product.id] || []).length > images.length) images = previousGalleries[product.id].slice(0, 4);
+      if (!images.length && EXTERNAL_FALLBACKS[product.id]) images.push(EXTERNAL_FALLBACKS[product.id]);
       result[product.id] = Array.from(new Set(images)).slice(0, 4);
       process.stdout.write(product.model + ': ' + result[product.id].length + ' images' + (page ? ' · ' + page : ' (page not found)') + '\n');
     }
