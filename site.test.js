@@ -69,9 +69,12 @@ check(/rel="preload"\s+as="image"\s+href="images\/hero-8-d\.jpg"/.test(home), 'H
 check(/rel="preload"\s+as="image"\s+href="images\/hero-8-m\.jpg"/.test(home), 'Home preload Hero mobile');
 
 const pdp = fs.readFileSync(path.join(ROOT, 'product.html'), 'utf8');
+const productSource = fs.readFileSync(path.join(ROOT, 'products.js'), 'utf8');
 check(/id="addBtn"/.test(pdp), 'PDP มีปุ่มใส่ตะกร้า');
 check(/subscribe-store\.html/.test(pdp), 'PDP เชื่อมไปตะกร้า');
 check(/main\.pdp-layout/.test(pdp) && !/main \.pdp-layout/.test(pdp), 'PDP ใช้ responsive selector ที่ตรงกับ main element');
+check(/Array\.isArray\(p\.gallery\)/.test(pdp) && /gallery\.slice\(0, 4\)/.test(pdp), 'PDP รองรับแกลลอรี่สินค้าไม่เกิน 4 ภาพ');
+check((productSource.match(/A9T-ULTRA_PH_/g) || []).length === 4, 'A9T-ULTRA มีภาพสินค้า 4 มุม');
 check(/เทคโนโลยีเครื่องดูดฝุ่นไร้สาย LG CordZero/.test(pdp) && !/f\.push\('แผน '/.test(pdp), 'PDP bullet ใช้คุณสมบัติสินค้าและไม่สร้างจากข้อมูลแผน');
 check(pdp.indexOf("group('ประเภทแผน'") < pdp.indexOf("group('ประเภทการดูแล'"), 'PDP แสดงประเภทแผนก่อนประเภทการดูแล');
 check(/const pts = SEL\.planTypes\(product\);\s*wrap\.appendChild\(group\('ประเภทแผน'/.test(pdp), 'PDP แสดงกลุ่มประเภทแผนเสมอ');

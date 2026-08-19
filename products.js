@@ -255,6 +255,12 @@ window.LG_PRODUCTS = [
   {
     id: 'a9t-ultra',
     img: 'https://www.lg.com/content/dam/channel/wcms/th/images/vacuum-cleaner/a9t-ultra_dcbpeth_eath_th_c/Basic-450.jpg',
+    gallery: [
+      { src: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/vacuum-cleaner/2025/a9t-ultra-dcbpeth/gallery/01_A9T-ULTRA_PH_Front_2010.jpg/jcr%3Acontent/renditions/thum-1600x1062.jpeg?w=800', alt: 'A9T-ULTRA มุมด้านหน้า' },
+      { src: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/vacuum-cleaner/2025/a9t-ultra-dcbpeth/gallery/02_A9T-ULTRA_PH_Front_All_2010.jpg/jcr%3Acontent/renditions/thum-1600x1062.jpeg?w=800', alt: 'A9T-ULTRA พร้อมอุปกรณ์เสริม' },
+      { src: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/vacuum-cleaner/2025/a9t-ultra-dcbpeth/gallery/03_A9T-ULTRA_PH_Left_2010.jpg/jcr%3Acontent/renditions/thum-1600x1062.jpeg?w=800', alt: 'A9T-ULTRA มุมเฉียงด้านซ้าย' },
+      { src: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/vacuum-cleaner/2025/a9t-ultra-dcbpeth/gallery/05_A9T-ULTRA_PH_Side1_2010.jpg/jcr%3Acontent/renditions/thum-1600x1062.jpeg?w=800', alt: 'A9T-ULTRA มุมด้านข้าง' }
+    ],
     model: 'A9T-ULTRA',
     name: 'เครื่องดูดฝุ่น LG CordZero™ รุ่น A9T-ULTRA แบบด้ามจับ All-in-One Tower พร้อม Smart WI-FI control',
     category: 'เครื่องดูดฝุ่น',

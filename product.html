@@ -449,11 +449,18 @@
     function renderGallery(p) {
         const box = document.getElementById('galleryBox');
         const items = [];
-        if (p.img) items.push({ type: 'img', src: p.img, title: p.name });
-        items.push({ type: 'emoji', emoji: p.emoji || CAT_EMOJI[p.category] || '📦',
-            title: p.category, sub: 'หมวด ' + p.category });
-        const minPrice = Math.min.apply(null, p.plans.map(x => x.outright ? (x.advancePayment || x.price) : x.price));
-        items.push({ type: 'emoji', emoji: '🏷️', title: 'เริ่ม ' + fmt(minPrice) + (p.plans.some(x => x.outright) ? ' บาท' : ' บาท/เดือน'), sub: 'โปรสิงหาคม 2569' });
+        const gallery = Array.isArray(p.gallery) ? p.gallery.slice(0, 4) : [];
+        gallery.forEach((entry, i) => {
+            const item = typeof entry === 'string' ? { src: entry } : entry;
+            if (item && item.src) items.push({ type: 'img', src: item.src, title: item.alt || (p.name + ' ภาพที่ ' + (i + 1)) });
+        });
+        if (!items.length && p.img) items.push({ type: 'img', src: p.img, title: p.name });
+        if (items.length < 2) {
+            items.push({ type: 'emoji', emoji: p.emoji || CAT_EMOJI[p.category] || '📦',
+                title: p.category, sub: 'หมวด ' + p.category });
+            const minPrice = Math.min.apply(null, p.plans.map(x => x.outright ? (x.advancePayment || x.price) : x.price));
+            items.push({ type: 'emoji', emoji: '🏷️', title: 'เริ่ม ' + fmt(minPrice) + (p.plans.some(x => x.outright) ? ' บาท' : ' บาท/เดือน'), sub: 'โปรสิงหาคม 2569' });
+        }
 
         let active = 0;
         const main = document.createElement('div');
