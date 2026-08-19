@@ -5,7 +5,7 @@ const fs = require('fs');
 const path = require('path');
 
 const ROOT = __dirname;
-const pages = ['index.html', 'product.html', 'promotions.html', 'subscribe-store.html'];
+const pages = ['index.html', 'products.html', 'product.html', 'promotions.html', 'subscribe-store.html'];
 const requiredAssets = [
   'products.js',
   'product-galleries.js',
@@ -14,6 +14,9 @@ const requiredAssets = [
   'cart.js',
   'analytics.js',
   'premium.css',
+  'catalog.css',
+  'catalog.js',
+  'sitemap.xml',
   'images/hero-8-d.jpg',
   'images/hero-8-m.jpg',
   'images/hero-birthday-38-d.jpg',
@@ -67,6 +70,10 @@ console.log('\n· Conversion flow anchors');
 const home = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8');
 const promotions = fs.readFileSync(path.join(ROOT, 'promotions.html'), 'utf8');
 const premium = fs.readFileSync(path.join(ROOT, 'premium.css'), 'utf8');
+const catalogHtml = fs.readFileSync(path.join(ROOT, 'products.html'), 'utf8');
+const catalogSource = fs.readFileSync(path.join(ROOT, 'catalog.js'), 'utf8');
+const analyticsSource = fs.readFileSync(path.join(ROOT, 'analytics.js'), 'utf8');
+const sitemap = fs.readFileSync(path.join(ROOT, 'sitemap.xml'), 'utf8');
 check(!/id="planner"|BUILD YOUR PACKAGE|พร้อมจัดบ้านให้สบาย/.test(home), 'Home นำ Package Planner และ Final CTA ที่ซ้ำซ้อนออกแล้ว');
 check(/id="products"/.test(home), 'Home มี Product section');
 check(/WHY LG SUBSCRIBE/.test(home) && !/WHY FLEXI-SUB/.test(home), 'Home ใช้หัวข้อ WHY LG SUBSCRIBE');
@@ -75,6 +82,13 @@ check(/ค่าใช้จ่าย[\s\S]*การรับประกัน
 check(/id="faq"/.test(home), 'Home มี FAQ');
 check((home.match(/<details>/g) || []).length >= 7 && /LG Subscribe คืออะไร\?/.test(home) && /กรรมสิทธิ์ของสินค้าเป็นอย่างไร\?/.test(home) && /สามารถชำระค่าบริการด้วยวิธีใดได้บ้าง\?/.test(home), 'Home FAQ ใช้ข้อมูลชุดเดียวกับ LG Thailand ครบ 7 ข้อ');
 check(/product\.html\?slug=/.test(home), 'Home เชื่อมไป PDP');
+check(/href="products\.html"[^>]*id="allProductsLink"/.test(home) && /PRODUCTS\.length/.test(home), 'Home เชื่อม Catalog และแสดงจำนวนสินค้าจากข้อมูลจริง');
+check(/id="catalogSearch"/.test(catalogHtml) && /id="catalogFilters"/.test(catalogHtml) && /id="catalogGrid"/.test(catalogHtml), 'Catalog มี search, category filter และ product grid');
+check(/window\.LG_PRODUCTS/.test(catalogSource) && /state\.category/.test(catalogSource) && /state\.query/.test(catalogSource), 'Catalog ใช้ Product data เดิมและรองรับ search ร่วมกับ filter');
+check(/loading="/.test(catalogSource) && /addEventListener\('error'/.test(catalogSource) && /fallbackSrc/.test(catalogSource), 'Catalog ใช้ lazy loading และ image fallback จุดเดียว');
+check(/catalog_search/.test(catalogSource) && /catalog_filter/.test(catalogSource), 'Catalog ส่ง event สำหรับ search และ filter');
+check(/calculator_entry_click/.test(analyticsSource) && /slug:/.test(analyticsSource) && /position/.test(analyticsSource) && /source/.test(analyticsSource), 'Analytics ครบ Hero entry และ Product Card context');
+check(/products\.html/.test(sitemap) && !/<loc>[^<]*\/product\.html<\/loc>/.test(sitemap), 'Sitemap ใช้ Catalog URL แทน PDP ที่ไม่มี slug');
 check(!/class="trust-strip"/.test(home), 'Home ไม่มี trust strip ที่ซ้ำกับ Why FLEXI-SUB');
 check(/rel="preload"\s+as="image"\s+href="images\/hero-8-d\.jpg"/.test(home), 'Home preload Hero desktop');
 check(/rel="preload"\s+as="image"\s+href="images\/hero-8-m\.jpg"/.test(home), 'Home preload Hero mobile');
@@ -124,6 +138,7 @@ check(/061-267-0518/.test(cart) && /tel:0612670518/.test(cart), 'Cart แสด�
 check(/line-lgthailand-qr\.png/.test(cart), 'Cart แสดง QR Code สำหรับ LINE');
 check(/ฝ่ายขาย LG โดยตรง/.test(cart) && /ไม่ผ่านตัวแทน/.test(cart) && /LINE Official ของ LG/.test(cart), 'Cart ยืนยันช่องทางฝ่ายขาย LG โดยตรง');
 check(/analytics\.js/.test(home) && /analytics\.js/.test(pdp) && /analytics\.js/.test(cart), 'Conversion analytics ครบทุก flow หลัก');
+check(/package_view/.test(pdp) && /track\('add_to_cart'/.test(pdp), 'PDP ส่ง package view และ successful add-to-cart events');
 
 console.log('\n═══ Site smoke test: ' + (failures ? failures + ' ไม่ผ่าน' : 'ผ่านทั้งหมด') + ' ═══');
 if (failures) process.exit(1);

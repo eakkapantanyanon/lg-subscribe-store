@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="เลือกเครื่องใช้ไฟฟ้า LG Subscribe แบบรายเดือน พร้อมบริการดูแลตามแพ็กเกจ ค้นหาและเปรียบเทียบสินค้าทุกรุ่นได้ในที่เดียว">
+    <meta name="theme-color" content="#A50034">
+    <link rel="canonical" href="https://eakkapantanyanon.github.io/lg-subscribe-store/products.html">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%23A50034'/%3E%3Ctext x='16' y='21' text-anchor='middle' font-family='Arial' font-size='14' font-weight='700' fill='white'%3ELG%3C/text%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://www.lg.com" crossorigin>
+    <title>เครื่องใช้ไฟฟ้า LG Subscribe | FLEXI-SUB</title>
+    <link rel="stylesheet" href="premium.css?v=6">
+    <link rel="stylesheet" href="catalog.css?v=1">
+</head>
+<body data-page="catalog">
+    <a class="skip-link" href="#catalogMain">ข้ามไปยังรายการสินค้า</a>
+
+    <header class="catalog-header">
+        <div class="catalog-header-inner">
+            <a class="catalog-brand" href="index.html" aria-label="FLEXI-SUB หน้าหลัก">
+                <span class="catalog-lg-mark" aria-hidden="true">LG</span>
+                <span><strong>FLEXI-SUB™</strong><small>LG SUBSCRIBE</small></span>
+            </a>
+            <nav class="catalog-nav" aria-label="เมนูหลัก">
+                <a href="index.html">หน้าหลัก</a>
+                <a href="index.html#why">ทำไมต้อง LG Subscribe</a>
+                <a href="promotions.html">โปรโมชัน</a>
+                <a href="subscribe-store.html">ตะกร้าของฉัน</a>
+            </nav>
+            <a class="catalog-home-link" href="index.html#products">เลือกตามไลฟ์สไตล์</a>
+        </div>
+    </header>
+
+    <main id="catalogMain">
+        <section class="catalog-hero" aria-labelledby="catalogTitle">
+            <div class="catalog-shell">
+                <span class="catalog-kicker">LG SUBSCRIBE CATALOG</span>
+                <h1 id="catalogTitle">เครื่องใช้ไฟฟ้า LG Subscribe</h1>
+                <p>ค้นหาเครื่องใช้ไฟฟ้าที่เหมาะกับบ้านและงบประมาณของคุณ แล้วเลือกแพ็กเกจเพื่อดูค่าใช้จ่ายรายเดือน</p>
+                <div class="catalog-total" aria-live="polite">
+                    <span>สินค้าทั้งหมด</span>
+                    <strong id="catalogTotal">กำลังโหลด…</strong>
+                </div>
+            </div>
+        </section>
+
+        <section class="catalog-controls" aria-labelledby="catalogControlsTitle">
+            <div class="catalog-shell">
+                <h2 class="sr-only" id="catalogControlsTitle">ค้นหาและกรองสินค้า</h2>
+                <form class="catalog-search" id="catalogSearchForm" role="search">
+                    <label for="catalogSearch">ค้นหาจากชื่อสินค้า รุ่น หรือหมวดสินค้า</label>
+                    <div class="catalog-search-field">
+                        <svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="m16.5 16.5 4 4"></path></svg>
+                        <input id="catalogSearch" name="q" type="search" autocomplete="off" spellcheck="false" placeholder="เช่น OLED, เครื่องซักผ้า, A9T-ULTRA">
+                        <button id="clearCatalogSearch" type="button" hidden>ล้างคำค้นหา</button>
+                    </div>
+                </form>
+
+                <div class="catalog-filter-head">
+                    <h2>เลือกหมวดสินค้า</h2>
+                    <p>เลือกได้ครั้งละหนึ่งหมวด และใช้ร่วมกับคำค้นหาได้</p>
+                </div>
+                <div class="catalog-filters" id="catalogFilters" role="group" aria-label="กรองตามหมวดสินค้า"></div>
+            </div>
+        </section>
+
+        <section class="catalog-results" aria-labelledby="catalogResultsTitle">
+            <div class="catalog-shell">
+                <div class="catalog-results-head">
+                    <div>
+                        <span class="catalog-kicker">PRODUCTS</span>
+                        <h2 id="catalogResultsTitle">สินค้าที่พบ</h2>
+                    </div>
+                    <p id="catalogResultCount" role="status" aria-live="polite">กำลังโหลดสินค้า</p>
+                </div>
+                <div class="product-grid catalog-grid" id="catalogGrid"></div>
+                <div class="catalog-empty" id="catalogEmpty" role="status" aria-live="polite" hidden>
+                    <strong>ไม่พบสินค้าที่ตรงกับตัวเลือก</strong>
+                    <p>ลองเปลี่ยนคำค้นหาหรือหมวดสินค้า</p>
+                    <button type="button" id="resetCatalog">แสดงสินค้าทั้งหมด</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="catalog-footer">
+        <div class="catalog-shell">
+            <strong>FLEXI-SUB™ · LG Subscribe</strong>
+            <p>เลือกสินค้าและแพ็กเกจที่เหมาะกับคุณ ก่อนส่งข้อมูลให้เจ้าหน้าที่ตรวจสอบ</p>
+            <a href="index.html">กลับหน้าหลัก</a>
+        </div>
+    </footer>
+
+    <script src="analytics.js"></script>
+    <script src="products.js"></script>
+    <script src="catalog.js?v=1"></script>
+</body>
+</html>

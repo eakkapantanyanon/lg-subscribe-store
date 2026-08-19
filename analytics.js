@@ -5,11 +5,16 @@
   window.dataLayer = window.dataLayer || [];
 
   function push(event, params) {
-    window.dataLayer.push(Object.assign({
-      event: event,
-      page_path: location.pathname,
-      page_title: document.title,
-    }, params || {}));
+    try {
+      if (!Array.isArray(window.dataLayer)) window.dataLayer = [];
+      window.dataLayer.push(Object.assign({
+        event: event,
+        page_path: location.pathname,
+        page_title: document.title,
+      }, params || {}));
+    } catch (_) {
+      // Analytics must never block the shopping flow.
+    }
   }
 
   function text(el) {
@@ -32,10 +37,20 @@
         push('lifestyle_select', { lifestyle_name: text(target.querySelector('h4')) });
       }
       if (target.classList.contains('p-card')) {
+        const productGrid = target.closest('.product-grid, .catalog-grid');
+        const cards = productGrid ? Array.from(productGrid.querySelectorAll('.p-card')) : [];
+        const position = Number(target.dataset.position) || cards.indexOf(target) + 1;
         push('product_card_click', {
-          product_name: text(target.querySelector('.p-name')),
-          product_model: text(target.querySelector('.p-model')),
+          slug: productSlugFromHref(target.href),
+          product_name: target.dataset.productName || text(target.querySelector('.p-name')),
+          product_model: target.dataset.model || text(target.querySelector('.p-model')),
+          category: target.dataset.category || text(target.querySelector('.p-cat')),
+          position: position,
+          source: target.dataset.source || (document.body.dataset.page === 'catalog' ? 'catalog' : 'homepage'),
         });
+      }
+      if (target.matches('a[href="#calculator-start"]')) {
+        push('calculator_entry_click', { source: 'hero' });
       }
       if (target.classList.contains('opt-card')) {
         const group = target.closest('.opt-group');

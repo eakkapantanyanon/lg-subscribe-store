@@ -514,6 +514,16 @@
     const sel = { customerType: null, planType: 'monthly', careType: null, term: null, variant: null };
     let currentPlanIndex = -1;
 
+    function track(eventName, params) {
+        try {
+            if (window.FLEXIAnalytics && typeof window.FLEXIAnalytics.push === 'function') {
+                window.FLEXIAnalytics.push(eventName, params || {});
+            }
+        } catch (error) {
+            // Analytics must never block the PDP or cart flow.
+        }
+    }
+
     /* ---------- โหลดข้อมูล (เหมือน subscribe-store: รองรับโหมดผู้ดูแล) ---------- */
     function loadData() {
         const DEFAULT = (window.LG_PRODUCTS || []).map(p => ({ ...p, plans: (p.plans || []).map(LG.normalizePlan) }));
@@ -995,6 +1005,14 @@
         const cart = CART.load();
         const next = CART.addItem(cart, product.id, currentPlanIndex, 1, sel.customerType);
         CART.save(next);
+        const plan = product.plans[currentPlanIndex] || {};
+        track('add_to_cart', {
+            slug: SEL.slugFor(product),
+            plan_label: plan.label || '',
+            plan_index: currentPlanIndex,
+            service_type: plan.serviceType || '',
+            term_months: Number(plan.totalContractMonths || plan.months) || 0
+        });
         const toast = document.getElementById('toast');
         toast.textContent = '✓ เพิ่ม "' + product.model + '" ลงตะกร้าแล้ว — กำลังไปหน้าตะกร้า...';
         toast.hidden = false;
@@ -1014,6 +1032,7 @@
         }
         document.title = (product.name || product.model) + ' — FLEXI-SUB™ LG Subscribe';
         setRoute(SEL.slugFor(product));
+        track('package_view', { slug: SEL.slugFor(product) });
         renderGallery(product);
         renderInfo(product);
         updateSummary();

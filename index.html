@@ -729,7 +729,7 @@
             <!-- Grid สินค้า -->
             <div class="product-grid" id="productGrid"></div>
 
-            <p class="grid-note">ยังไม่เจอของถูกใจ? ดูสินค้าครบ <a href="product.html">ทุกรุ่น 97 รายการ →</a></p>
+            <p class="grid-note">ยังไม่เจอของถูกใจ? <a href="products.html" id="allProductsLink">ทุกรุ่น 97 รายการ →</a></p>
         </div>
     </section>
 
@@ -854,6 +854,8 @@
             { model: 'AS25GCBY0', name: 'เครื่องฟอกอากาศ AeroCat Tower', category: 'เครื่องฟอกอากาศ', emoji: '🌫️', price: 599, img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/air-puricare/2025/as25gcby0-abae/gallery/basic/air-purifier-aerocattower-2025-as207cbz0-gallery-basic-large.jpg' }
         ];
         let PRODUCTS = (window.LG_PRODUCTS && window.LG_PRODUCTS.length) ? window.LG_PRODUCTS : FEATURED_FALLBACK;
+        const allProductsLink = document.getElementById('allProductsLink');
+        if (allProductsLink) allProductsLink.textContent = 'ทุกรุ่น ' + PRODUCTS.length + ' รายการ →';
         const CAT_EMOJI = {
             'Wash Tower': '🌀', 'เครื่องซักผ้า ฝาหน้า': '🌀', 'เครื่องซักผ้า ฝาบน': '🌀', 'เครื่องอบผ้า': '🌬️',
             'ตู้เย็น Side by Side': '🧊', 'ตู้เย็น Multi-Door': '🧊', 'ตู้เย็น 2 ประตู': '🧊',
@@ -1021,12 +1023,17 @@
             const list = visibleProducts();
             grid.innerHTML = '';
             if (!list.length) { grid.innerHTML = '<div class="grid-empty">ยังไม่มีสินค้าในหมวดนี้ — ดูหมวดอื่น หรือเปิด PDP ของสินค้าโดยตรง</div>'; return; }
-            list.forEach(p => {
+            list.forEach((p, index) => {
                 const price = Math.min(...(p.plans ? p.plans.map(x => x.price) : [p.price]));
                 const productHref = 'product.html?slug=' + encodeURIComponent(String(p.id || p.model || '').toLowerCase());
                 const card = document.createElement('a');
                 card.className = 'p-card';
                 card.href = productHref;
+                card.dataset.source = 'homepage';
+                card.dataset.category = p.category || '';
+                card.dataset.model = p.model || '';
+                card.dataset.productName = p.name || '';
+                card.dataset.position = String(index + 1);
                 card.setAttribute('aria-label', 'ดูแพ็กเกจ ' + (p.name || p.model || 'สินค้า'));
                 card.innerHTML =
                     '<div class="p-img">' +
