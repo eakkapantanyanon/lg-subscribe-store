@@ -118,6 +118,8 @@
     .specs-body th, .specs-body td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--line); }
     .specs-body tr:last-child td { border-bottom: none; }
     .specs-body .price { font-weight: 700; white-space: nowrap; }
+    .specs-body .billing-line { display: block; line-height: 1.45; }
+    .specs-body .billing-line + .billing-line { margin-top: 2px; }
 
     /* ---------- Plan selection ---------- */
     .plan-section { margin-top: 26px; background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 18px; }
@@ -542,7 +544,8 @@
 
         const planRows = p.plans.map(pl => {
             const segs = LG.itemComboSegments(pl, 0).segments;
-            const desc = segs.map(s => 'งวด ' + s.start + (s.end !== s.start ? '–' + s.end : '') + ' = ฿' + fmt(s.price)).join(' · ');
+            const desc = segs.map(s => '<span class="billing-line">งวด ' + s.start +
+                (s.end !== s.start ? '–' + s.end : '') + ' = ฿' + fmt(s.price) + '</span>').join('');
             return '<tr><td>' + pl.label + '</td><td class="price">' +
                 (pl.outright ? '฿' + fmt(pl.advancePayment || pl.price) : '฿' + fmt(pl.price) + '/เดือน') +
                 '</td><td>' + desc + '</td></tr>';
