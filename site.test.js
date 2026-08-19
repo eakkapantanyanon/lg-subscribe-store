@@ -72,6 +72,9 @@ const pdp = fs.readFileSync(path.join(ROOT, 'product.html'), 'utf8');
 check(/id="addBtn"/.test(pdp), 'PDP มีปุ่มใส่ตะกร้า');
 check(/subscribe-store\.html/.test(pdp), 'PDP เชื่อมไปตะกร้า');
 check(/main\.pdp-layout/.test(pdp) && !/main \.pdp-layout/.test(pdp), 'PDP ใช้ responsive selector ที่ตรงกับ main element');
+check(/เทคโนโลยีเครื่องดูดฝุ่นไร้สาย LG CordZero/.test(pdp) && !/f\.push\('แผน '/.test(pdp), 'PDP bullet ใช้คุณสมบัติสินค้าและไม่สร้างจากข้อมูลแผน');
+check(pdp.indexOf("group('ประเภทแผน'") < pdp.indexOf("group('ประเภทการดูแล'"), 'PDP แสดงประเภทแผนก่อนประเภทการดูแล');
+check(/const pts = SEL\.planTypes\(product\);\s*wrap\.appendChild\(group\('ประเภทแผน'/.test(pdp), 'PDP แสดงกลุ่มประเภทแผนเสมอ');
 
 const cart = fs.readFileSync(path.join(ROOT, 'subscribe-store.html'), 'utf8');
 check(/id="cartItems"/.test(cart), 'Cart มีรายการสินค้า');

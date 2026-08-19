@@ -489,16 +489,26 @@
     /* ---------- ข้อมูลสินค้า ---------- */
     function derivedFeatures(p) {
         const f = [];
-        const sts = Array.from(new Set(p.plans.map(x => x.serviceType)));
-        const stLabel = sts.map(s => (SEL.CARE_INFO[s] || {}).label || s).join(' / ');
-        f.push('แผน ' + stLabel);
-        const terms = Array.from(new Set(p.plans.filter(x => !x.outright).map(x => x.totalContractMonths))).sort((a, b) => a - b);
-        if (terms.length) f.push('สัญญาเช่า ' + terms.map(t => t / 12 + ' ปี (' + t + ' เดือน)').join(' / '));
-        if (p.plans.some(x => x.outright)) f.push('มีแบบซื้อขาด (จ่ายครั้งเดียว 2 ปี)');
-        const promos = Array.from(new Set(p.plans.map(x => (x.promo || '').replace(/^บิลแรก /, 'บิลแรก ').trim()).filter(Boolean)));
-        if (promos.length) f.push('โปร ' + promos[0]);
-        if (p.plans.some(x => x.advancePayment > 0)) f.push('ทีวี/จอ/ลำโพง: จ่ายล่วงหน้า 12 เดือน 50%');
-        return f.slice(0, 6);
+        const name = p.name || '';
+        const add = (condition, text) => { if (condition && !f.includes(text)) f.push(text); };
+
+        // ใช้เฉพาะข้อมูลคุณสมบัติที่ระบุอยู่ในชื่อสินค้า ห้ามดึงข้อมูลแผน/ราคา/สัญญา
+        add(/CordZero/i.test(name), 'เทคโนโลยีเครื่องดูดฝุ่นไร้สาย LG CordZero™');
+        add(/แบบด้ามจับ/.test(name), 'ดีไซน์แบบด้ามจับ ใช้งานคล่องตัว');
+        add(/All-in-One Tower/i.test(name), 'มาพร้อม All-in-One Tower');
+        add(/Smart\s*WI-?FI\s*control/i.test(name), 'รองรับ Smart Wi-Fi Control');
+        add(/WashTower/i.test(name), 'ดีไซน์ LG WashTower™ รวมเครื่องซักและอบผ้าในแนวตั้ง');
+        add(/InstaView/i.test(name), 'เทคโนโลยี LG InstaView™');
+        add(/Side by Side/i.test(name), 'ตู้เย็นดีไซน์ Side-by-Side');
+        add(/Multi-?Door/i.test(name), 'ตู้เย็นดีไซน์ Multi-Door');
+        add(/OLED/i.test(name), 'เทคโนโลยีจอภาพ LG OLED');
+        add(/QNED/i.test(name), 'เทคโนโลยีจอภาพ LG QNED');
+        add(/NanoCell/i.test(name), 'เทคโนโลยีจอภาพ LG NanoCell');
+        add(/StanbyME/i.test(name), 'จอภาพ LG StanbyME เคลื่อนย้ายได้');
+        add(/PuriCare/i.test(name), 'ผลิตภัณฑ์ในกลุ่ม LG PuriCare™');
+
+        if (!f.length) f.push((p.category || 'ผลิตภัณฑ์ LG') + ' รุ่น ' + (p.model || ''));
+        return f.slice(0, 5);
     }
     function renderInfo(p) {
         const box = document.getElementById('infoBox');
@@ -568,26 +578,24 @@
             return g;
         }));
 
-        // 2) ประเภทแผน
+        // 2) ประเภทแผน — แสดงเสมอเป็นขั้นแรกก่อนประเภทการดูแล
         const pts = SEL.planTypes(product);
-        if (pts.length > 1) {
-            wrap.appendChild(group('ประเภทแผน', true, '', function () {
-                const g = document.createElement('div'); g.className = 'opt-cards';
-                [['monthly', 'เช่ารายเดือน', 'จ่ายทุกเดือนตลอดสัญญา'],
-                 ['outright', 'ซื้อขาด', 'จ่ายครั้งเดียว รวมเครื่อง + บริการ 2 ปี']].forEach(function (c) {
-                    if (!pts.includes(c[0])) return;
-                    const b = optCard('<span class="t">' + c[1] + '</span><span class="d">' + c[2] + '</span>',
-                        sel.planType === c[0] ? 'selected' : '');
-                    b.onclick = () => {
-                        sel.planType = c[0];
-                        sel.careType = null; sel.term = null; sel.variant = null;
-                        renderOptions(); updateSummary();
-                    };
-                    g.appendChild(b);
-                });
-                return g;
-            }));
-        }
+        wrap.appendChild(group('ประเภทแผน', true, '', function () {
+            const g = document.createElement('div'); g.className = 'opt-cards';
+            [['monthly', 'เช่ารายเดือน', 'จ่ายทุกเดือนตลอดสัญญา'],
+             ['outright', 'ซื้อขาด', 'จ่ายครั้งเดียว รวมเครื่อง + บริการ 2 ปี']].forEach(function (c) {
+                if (!pts.includes(c[0])) return;
+                const b = optCard('<span class="t">' + c[1] + '</span><span class="d">' + c[2] + '</span>',
+                    sel.planType === c[0] ? 'selected' : '');
+                b.onclick = () => {
+                    sel.planType = c[0];
+                    sel.careType = null; sel.term = null; sel.variant = null;
+                    renderOptions(); updateSummary();
+                };
+                g.appendChild(b);
+            });
+            return g;
+        }));
 
         // 3) ประเภทการดูแล
         const cares = SEL.careTypes(product, sel.planType);
