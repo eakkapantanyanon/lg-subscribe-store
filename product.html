@@ -181,6 +181,11 @@
     }
     .opt-card.selected .d { color: var(--accent-text); }
     .opt-card:disabled { opacity: .45; cursor: not-allowed; }
+    .care-cards { grid-template-columns: 1fr; }
+    .care-cards .opt-card { padding-right: 42px; }
+    .care-cards .opt-card .t,
+    .care-cards .opt-card .d,
+    .care-cards .opt-card .p { line-height: 1.55; }
     .info-btn {
         width: 20px; height: 20px; border-radius: 50%; border: 1px solid var(--accent-border);
         background: var(--accent-soft); color: var(--accent-text); font-size: 12px; font-weight: 700;
@@ -746,7 +751,7 @@
         // 3) ประเภทการดูแล
         const cares = SEL.careTypes(product, sel.planType);
         wrap.appendChild(group('ประเภทการดูแล', true, '', function () {
-            const g = document.createElement('div'); g.className = 'opt-cards';
+            const g = document.createElement('div'); g.className = 'opt-cards care-cards';
             cares.forEach(function (st) {
                 const info = SEL.careInfo ? SEL.careInfo(product, st) : (SEL.CARE_INFO[st] || { label: st, short: st, desc: '' });
                 const b = optCard(
