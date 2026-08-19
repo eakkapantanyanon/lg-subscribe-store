@@ -77,7 +77,7 @@ check(/-Birthday_1920x720\.jpg/.test(home) && /15 ส\.ค\. 69 – 23 ส\.ค\
 check(/images\/hero-birthday-38-d\.jpg/.test(home) && /images\/hero-birthday-38-m\.jpg/.test(home), 'Home Hero โปร 15% ใช้ชื่อไฟล์ใหม่ไม่ติด cache โปรเดิม');
 check(/fit:\s*'contain'/.test(home) && /data-fit="contain"/.test(home), 'Home Hero โปร 15% แสดงภาพครบโดยไม่ crop');
 check(/OFFICIAL LG CAMPAIGNS/.test(promotions) && /ลด 15% ตลอดสัญญา/.test(promotions), 'Promotions มีแคมเปญล่าสุดจาก LG Thailand');
-check(/KTC-detail-Second-Banner\.jpg/.test(promotions) && /UOB-detail-Second-Banner-2\.jpg/.test(promotions), 'Promotions มีโปรบัตรเครดิต KTC และ UOB');
+check(/images\/promotions\/ktc-credit\.jpg/.test(promotions) && /images\/promotions\/uob-credit\.jpg/.test(promotions), 'Promotions มีรูปจริงโปรบัตรเครดิต KTC และ UOB');
 check(/สายเกมมิ่ง \(Gaming Lifestyle\)/.test(home) && !/คาเฟ่ \/ ธุรกิจเล็ก/.test(home), 'Home เปลี่ยน Lifestyle ธุรกิจเล็กเป็นสายเกมมิ่ง');
 check(/id: 'gaming'[\s\S]*27gx704a[\s\S]*oled48c6psa/.test(home), 'Gaming Lifestyle แนะนำมอนิเตอร์และทีวี OLED');
 
