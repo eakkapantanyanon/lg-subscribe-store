@@ -521,9 +521,11 @@
         .main-layout { display: block; max-width: 940px; margin-top: 22px; padding-bottom: 80px; }
         .sidebar-cart { position: static; border: 0; border-radius: 26px; padding: clamp(22px,4vw,38px); box-shadow: 0 18px 55px rgba(38,10,20,.08); }
         .sidebar-title { font-size: 22px; font-weight: 750; padding-bottom: 18px; margin-bottom: 20px; }
-        .customer-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 16px; margin-bottom: 22px; }
+        .customer-grid { margin-bottom: 22px; }
         .customer-type-zone { margin: 0; background: #f8f5f5; border-radius: 16px; padding: 18px; }
         .customer-info-zone { margin: 0; display: grid; gap: 9px; }
+        .remembered-customer { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 12px; padding: 11px 14px; color: #4f4448; background: #f8f5f5; border-radius: 12px; font-size: 12px; }
+        .remembered-customer strong { color: var(--accent); font-size: 13px; }
         .cust-input { min-height: 48px; border-color: #ddd5d8; border-radius: 13px; margin: 0; padding: 11px 14px; }
         .cart-item-list { max-height: none; margin: 4px 0 24px; }
         .cart-item-list li { padding: 18px 0; border-color: #eee8ea; }
@@ -614,24 +616,10 @@
                 <a href="index.html#products" style="float:right;font-size:12px;font-weight:600;color:var(--accent-text);text-decoration:none;">➕ เพิ่มสินค้า →</a>
             </div>
 
-            <!-- ส่วนเลือกสถานะลูกค้า เพื่อคำนวณส่วนลดคอมโบ -->
+            <!-- สถานะลูกค้าถูกจำมาจากหน้าเลือกสินค้าและแพ็กเกจ -->
             <div class="customer-grid">
-            <div class="customer-type-zone">
-                <label>คุณเป็นกลุ่มลูกค้าใด?</label>
-                <div class="radio-group">
-                    <span class="radio-option">
-                        <input type="radio" id="newCust" name="custType" value="new" checked onchange="updateSummary()">
-                        <label for="newCust">ลูกค้าใหม่</label>
-                    </span>
-                    <span class="radio-option">
-                        <input type="radio" id="oldCust" name="custType" value="old" onchange="updateSummary()">
-                        <label for="oldCust">ลูกค้าเดิม LG Subscribe</label>
-                    </span>
-                </div>
-            </div>
-
-            <!-- ช่องกรอกข้อมูลลูกค้า -->
             <div class="customer-info-zone">
+                <div class="remembered-customer"><span>ประเภทลูกค้าที่เลือกไว้</span><strong id="rememberedCustomerType">ลูกค้าใหม่</strong></div>
                 <input type="text" id="custName" class="cust-input" aria-label="ชื่อและนามสกุลสำหรับติดต่อ" aria-describedby="custNameError" autocomplete="name" maxlength="120" placeholder="ชื่อ-นามสกุล (สำหรับติดต่อ)">
                 <span class="field-error" id="custNameError">กรุณากรอกชื่อ-นามสกุล</span>
                 <input type="tel" id="custPhone" class="cust-input" aria-label="เบอร์โทรศัพท์" aria-describedby="custPhoneError" autocomplete="tel" inputmode="tel" maxlength="20" placeholder="เบอร์โทรศัพท์ เช่น 081-234-5678">
@@ -4755,8 +4743,8 @@ window.LG_PRODUCTS =  [
                 if (p && p.plans[it.planIndex]) selected[it.productId] = { product: p, planIndex: it.planIndex, qty: it.qty };
             });
             custType = cart.customerType === 'old' ? 'old' : 'new';
-            const radio = document.querySelector('input[name="custType"][value="' + custType + '"]');
-            if (radio) radio.checked = true;
+            const remembered = document.getElementById('rememberedCustomerType');
+            if (remembered) remembered.textContent = custType === 'old' ? 'ลูกค้าเดิม LG Subscribe' : 'ลูกค้าใหม่';
         })();
 
         /* ---------- คอมโบ (rate ตามช่วงเวลา + ประเภทลูกค้า) — logic กลางจาก product-select.js ---------- */
@@ -5012,12 +5000,6 @@ window.LG_PRODUCTS =  [
                     : 'สมัคร ' + (custType === 'new' ? '2' : '1') + ' เครื่องขึ้นไป ลดเพิ่ม ' + adminSettings.comboPct + '%') +
                     ' — ลูกค้าใหม่ (2 เครื่องขึ้นไป) / ลูกค้าเดิม LG Subscribe (1 เครื่องขึ้นไป)';
             }
-        }
-
-        function updateSummary() {
-            custType = document.querySelector('input[name="custType"]:checked').value;
-            saveCartState();
-            updateCart();
         }
 
         function changeCartPlan(id, index) {

@@ -74,6 +74,8 @@ check(/subscribe-store\.html/.test(pdp), 'PDP เชื่อมไปตะก�
 
 const cart = fs.readFileSync(path.join(ROOT, 'subscribe-store.html'), 'utf8');
 check(/id="cartItems"/.test(cart), 'Cart มีรายการสินค้า');
+check(/id="rememberedCustomerType"/.test(cart) && !/name="custType"/.test(cart), 'Cart แสดงประเภทลูกค้าที่จำไว้และไม่มีตัวเลือกซ้ำ');
+check(/cart\.customerType = c\[0\]/.test(pdp), 'PDP บันทึกประเภทลูกค้าทันทีที่เลือก');
 check(/copyOrderForOfficer\(\)/.test(cart), 'Cart มี flow คัดลอกรายการส่งเจ้าหน้าที่');
 check(/lead_validation_error/.test(cart) && /lead_order_copied/.test(cart), 'Cart แยก validation และ successful copy event');
 check(/line\.me\/R\/ti\/p\/@lgthailand/.test(cart), 'Cart มีลิงก์ติดต่อ LINE @lgthailand');

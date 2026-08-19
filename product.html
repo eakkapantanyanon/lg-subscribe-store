@@ -543,7 +543,13 @@
              ['new', 'ลูกค้าใหม่', 'ยังไม่เคยใช้บริการ — คอมโบเริ่มที่ 2 เครื่อง']].forEach(function (c) {
                 const b = optCard('<span class="t">' + c[1] + '</span><span class="d">' + c[2] + '</span>',
                     sel.customerType === c[0] ? 'selected' : '');
-                b.onclick = () => { sel.customerType = c[0]; renderOptions(); updateSummary(); };
+                b.onclick = () => {
+                    sel.customerType = c[0];
+                    const cart = CART.load();
+                    cart.customerType = c[0];
+                    CART.save(cart);
+                    renderOptions(); updateSummary();
+                };
                 g.appendChild(b);
             });
             return g;
