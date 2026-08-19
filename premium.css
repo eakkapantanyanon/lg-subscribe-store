@@ -80,6 +80,26 @@ body[data-page="home"] .compare-table th:nth-child(2) { background: var(--premiu
 body[data-page="home"] .compare-table td:nth-child(2) { background: var(--premium-brand-soft); color: #650020; }
 body[data-page="home"] .compare-table tbody tr:hover td:nth-child(2) { background: rgba(165,0,52,.085); }
 
+/* Product category counts: keep double-digit totals legible over the icon row. */
+body[data-page="home"] .cat-count {
+  top: 48px;
+  right: -8px;
+  min-width: 38px;
+  height: 23px;
+  padding: 0 7px;
+  border: 2px solid #fff;
+  border-radius: 999px;
+  background: var(--premium-brand);
+  color: #fff;
+  box-shadow: 0 3px 9px rgba(165, 0, 52, .24);
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0;
+  white-space: nowrap;
+  z-index: 1;
+}
+
 /* Primary/secondary CTA hierarchy. */
 :where(.btn-primary, .contact-btn, .header-cta, .hero-primary, .h-btn-solid, .final-actions .primary) {
   background: var(--premium-brand);

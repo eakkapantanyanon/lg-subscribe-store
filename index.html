@@ -605,7 +605,7 @@
             .benefit-card:hover, .lifestyle-card:hover, .p-card:hover, .p-card:hover .p-img img { transform: none; }
         }
     </style>
-    <link rel="stylesheet" href="premium.css?v=2">
+    <link rel="stylesheet" href="premium.css?v=3">
 </head>
 <body data-page="home">
 
@@ -970,7 +970,8 @@
                 const count = PRODUCTS.filter(p => g.cats.includes(p.category)).length;
                 const d = document.createElement('div');
                 d.className = 'cat-item' + (activeGroup === g.id ? ' active' : '');
-                d.innerHTML = '<div class="circle">' + g.emoji + '</div><span>' + g.name + '</span>' + (count ? '<span class="cat-count">' + count + '</span>' : '');
+                d.innerHTML = '<div class="circle">' + g.emoji + '</div><span>' + g.name + '</span>' +
+                    (count ? '<span class="cat-count" aria-label="' + count + ' รุ่น">' + count + ' รุ่น</span>' : '');
                 d.onclick = () => { activeGroup = g.id; activeCat = null; renderCats(); renderSubCats(); renderProducts(); };
                 el.appendChild(d);
             });
