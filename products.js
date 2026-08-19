@@ -1831,6 +1831,7 @@ window.LG_PRODUCTS = [
   },
   {
     id: 'dfc335hm',
+    fallbackImg: 'https://arttato.github.io/LG-Subscribe/img/products/dfc335hm-abmpeth.jpg',
     img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/dishwasher/dfc335hm/gallery/01_XD-G3_MatteBlack_DFC335HM_TH_Front-450.jpg',
     model: 'DFC335HM',
     name: 'เครื่องล้างจาน DFC335HM สีดำ มี WI-FI control',

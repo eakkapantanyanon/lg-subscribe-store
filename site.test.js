@@ -66,6 +66,7 @@ check(/id="planner"/.test(home), 'Home มี Package Planner');
 check(/id="products"/.test(home), 'Home มี Product section');
 check(/id="faq"/.test(home), 'Home มี FAQ');
 check(/product\.html\?slug=/.test(home), 'Home เชื่อมไป PDP');
+check(/\.trust-strip[^}]*margin:\s*24px auto 0/.test(home) && !/\.trust-strip[^}]*margin:\s*-32px/.test(home), 'Home trust strip ไม่ซ้อนทับ Hero');
 check(/rel="preload"\s+as="image"\s+href="images\/hero-8-d\.jpg"/.test(home), 'Home preload Hero desktop');
 check(/rel="preload"\s+as="image"\s+href="images\/hero-8-m\.jpg"/.test(home), 'Home preload Hero mobile');
 
@@ -78,6 +79,8 @@ check(/main\.pdp-layout/.test(pdp) && !/main \.pdp-layout/.test(pdp), 'PDP ใ�
 check(/Array\.isArray\(p\.gallery\)/.test(pdp) && /gallerySource\.slice\(0, 4\)/.test(pdp), 'PDP รองรับแกลลอรี่สินค้าไม่เกิน 4 ภาพ');
 check((productSource.match(/A9T-ULTRA_PH_/g) || []).length === 4, 'A9T-ULTRA มีภาพสินค้า 4 มุม');
 check(/LG_PRODUCT_GALLERIES/.test(pdp) && /product-galleries\.js/.test(pdp), 'PDP โหลดแกลลอรี่รวมของทุกสินค้า');
+check(/showGalleryPlaceholder/.test(pdp) && /th\.hidden = true/.test(pdp), 'PDP ซ่อนภาพเสียและมี fallback สำหรับภาพหลัก');
+check(/dfc335hm-abmpeth\.jpg/.test(productSource), 'DFC335HM มีภาพสำรองเมื่อ LG ป้องกัน hotlink');
 check(!/https:\/\/(?!www\.lg\.com|arttato\.github\.io)/.test(gallerySource), 'แกลลอรี่ใช้เฉพาะโฮสต์ภาพที่อนุญาต');
 check((gallerySource.match(/https:\/\/arttato\.github\.io\/LG-Subscribe\/img\/products\//g) || []).length === 10, 'สินค้า 10 รุ่นที่ไม่มีภาพ LG Thailand ใช้ภาพอ้างอิงที่กำหนด');
 check(/เทคโนโลยีเครื่องดูดฝุ่นไร้สาย LG CordZero/.test(pdp) && !/f\.push\('แผน '/.test(pdp), 'PDP bullet ใช้คุณสมบัติสินค้าและไม่สร้างจากข้อมูลแผน');

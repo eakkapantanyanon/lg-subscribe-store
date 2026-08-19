@@ -382,7 +382,7 @@
 <div class="toast" id="toast" hidden></div>
 
 <script src="analytics.js"></script>
-<script src="products.js?v=galleries-all"></script>
+<script src="products.js?v=gallery-fallback-fix"></script>
 <script src="product-galleries.js?v=reference-fallbacks"></script>
 <script src="calculator-core.js"></script>
 <script src="cart.js"></script>
@@ -477,17 +477,26 @@
             if (it.type === 'img') {
                 main.innerHTML = '<img src="' + it.src + '" alt="' + it.title + '" width="450" height="450" decoding="async">';
                 main.querySelector('img').addEventListener('error', function () {
-                    const fallback = items.find(x => x.type === 'emoji');
-                    main.innerHTML = '<div class="g-tile"><div class="g-emoji">' + fallback.emoji + '</div><div class="g-title">' + fallback.title + '</div><div class="g-sub">รูปสินค้าไม่พร้อมใช้งาน</div></div>';
+                    const fallbackSrc = p.fallbackImg && p.fallbackImg !== it.src ? p.fallbackImg : null;
+                    if (fallbackSrc) {
+                        main.innerHTML = '<img src="' + fallbackSrc + '" alt="' + p.name + '" width="450" height="450" decoding="async">';
+                        main.querySelector('img').addEventListener('error', showGalleryPlaceholder, { once: true });
+                    } else showGalleryPlaceholder();
                 }, { once: true });
             }
             else main.innerHTML = '<div class="g-tile"><div class="g-emoji">' + it.emoji + '</div><div class="g-title">' + it.title + '</div><div class="g-sub">' + (it.sub || '') + '</div></div>';
             thumbs.querySelectorAll('.g-thumb').forEach((th, k) => th.classList.toggle('active', k === i));
         }
+        function showGalleryPlaceholder() {
+            const emoji = p.emoji || CAT_EMOJI[p.category] || '📦';
+            main.innerHTML = '<div class="g-tile"><div class="g-emoji">' + emoji + '</div><div class="g-title">' + p.model + '</div><div class="g-sub">รูปสินค้าไม่พร้อมใช้งาน</div></div>';
+        }
         items.forEach((it, i) => {
             const th = document.createElement('button');
             th.className = 'g-thumb' + (i === 0 ? ' active' : '');
-            th.innerHTML = it.type === 'img' ? '<img src="' + it.src + '" alt="" width="90" height="90" loading="lazy" decoding="async" onerror="this.hidden=true;this.nextElementSibling.hidden=false"><span class="t-emoji" hidden>📦</span>' : '<span class="t-emoji">' + it.emoji + '</span>';
+            th.innerHTML = it.type === 'img' ? '<img src="' + it.src + '" alt="" width="90" height="90" loading="lazy" decoding="async">' : '<span class="t-emoji">' + it.emoji + '</span>';
+            const thumbImg = th.querySelector('img');
+            if (thumbImg) thumbImg.addEventListener('error', () => { th.hidden = true; }, { once: true });
             th.onclick = () => paint(i);
             thumbs.appendChild(th);
         });
