@@ -74,6 +74,12 @@
                     <p id="catalogResultCount" role="status" aria-live="polite">กำลังโหลดสินค้า</p>
                 </div>
                 <div class="product-grid catalog-grid" id="catalogGrid"></div>
+                <div class="catalog-load-more" id="catalogLoadMoreWrap" hidden>
+                    <button type="button" id="catalogLoadMore" aria-controls="catalogGrid" aria-describedby="catalogLoadMoreStatus">
+                        <span>ดูเพิ่มเติม</span>
+                        <small id="catalogLoadMoreStatus" aria-live="polite"></small>
+                    </button>
+                </div>
                 <div class="catalog-empty" id="catalogEmpty" role="status" aria-live="polite" hidden>
                     <strong>ไม่พบสินค้าที่ตรงกับตัวเลือก</strong>
                     <p>ลองเปลี่ยนคำค้นหาหรือหมวดสินค้า</p>

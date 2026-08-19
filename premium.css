@@ -352,7 +352,7 @@ body[data-page="home"] #why .benefit-card { display: flex; flex-direction: colum
 }
 
 @media (max-width: 860px) {
-  body[data-page="home"] .hero-track { min-height: 0; }
+  body[data-page="home"] .hero-track { min-height: 710px; }
   body[data-page="home"] .hero-slide { grid-template-columns: 1fr; }
   body[data-page="home"] .hero-left { padding: 46px 28px 50px; }
   body[data-page="home"] .hero-left h1 { max-width: 680px; font-size: clamp(38px, 7vw, 50px); }
@@ -367,6 +367,7 @@ body[data-page="home"] #why .benefit-card { display: flex; flex-direction: colum
 }
 
 @media (max-width: 640px) {
+  body[data-page="home"] .hero-track { min-height: 610px; }
   body[data-page="home"] .hero-left { padding: 38px 20px 42px; }
   body[data-page="home"] .hero-left h1 { margin-bottom: 15px; font-size: clamp(32px, 9vw, 39px); line-height: 1.14; }
   body[data-page="home"] .h-label { margin-bottom: 14px; }

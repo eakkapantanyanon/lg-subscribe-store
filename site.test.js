@@ -27,10 +27,20 @@ const requiredAssets = [
   'images/products/wt2520nheg.webp',
   'images/products/fv1413s4m.webp',
   'images/products/oled48c6psa.webp',
-  'images/hero-8-d.jpg',
-  'images/hero-8-m.jpg',
-  'images/hero-birthday-38-d.jpg',
-  'images/hero-birthday-38-m.jpg',
+  'images/hero-8-d.webp',
+  'images/hero-8-m.webp',
+  'images/hero-birthday-38-d.webp',
+  'images/hero-birthday-38-m.webp',
+  'images/hero-3-d.webp',
+  'images/hero-3-m.webp',
+  'images/hero-4-d.webp',
+  'images/hero-4-m.webp',
+  'images/hero-5-d.webp',
+  'images/hero-5-m.webp',
+  'images/hero-6-d.webp',
+  'images/hero-6-m.webp',
+  'images/hero-7-d.webp',
+  'images/hero-7-m.webp',
 ];
 let failures = 0;
 
@@ -99,6 +109,9 @@ check(/product\.html\?slug=/.test(home), 'Home เชื่อมไป PDP');
 check(/href="products\.html"[^>]*id="allProductsLink"/.test(home) && /PRODUCTS\.length/.test(home), 'Home เชื่อม Catalog และแสดงจำนวนสินค้าจากข้อมูลจริง');
 check(/id="catalogSearch"/.test(catalogHtml) && /id="catalogFilters"/.test(catalogHtml) && /id="catalogGrid"/.test(catalogHtml), 'Catalog มี search, category filter และ product grid');
 check(/window\.LG_PRODUCTS/.test(catalogSource) && /state\.category/.test(catalogSource) && /state\.query/.test(catalogSource), 'Catalog ใช้ Product data เดิมและรองรับ search ร่วมกับ filter');
+check(/id="catalogLoadMore"/.test(catalogHtml) && /INITIAL_BATCH_SIZE = 16/.test(catalogSource) && /LOAD_MORE_BATCH_SIZE = 16/.test(catalogSource), 'Catalog progressive rendering เริ่ม 16 รายการและมีปุ่มดูเพิ่มเติม');
+check(/filteredProducts\(\)/.test(catalogSource) && /matchedProducts\.slice\(0, state\.visibleLimit\)/.test(catalogSource), 'Catalog Search และ Filter คำนวณจาก dataset ทั้งหมดก่อนจำกัดจำนวนที่ render');
+check(/insertAdjacentHTML\('beforeend'/.test(catalogSource) && /catalog_load_more/.test(catalogSource), 'Catalog ดูเพิ่มเติม append batch ใหม่และส่ง analytics');
 check(/loading="/.test(catalogSource) && /addEventListener\('error'/.test(catalogSource) && /fallbackSrc/.test(catalogSource), 'Catalog ใช้ lazy loading และ image fallback จุดเดียว');
 check(/catalog_search/.test(catalogSource) && /catalog_filter/.test(catalogSource), 'Catalog ส่ง event สำหรับ search และ filter');
 check(/calculator_entry_click/.test(analyticsSource) && /slug:/.test(analyticsSource) && /position/.test(analyticsSource) && /source/.test(analyticsSource), 'Analytics ครบ Hero entry และ Product Card context');
@@ -109,11 +122,14 @@ check((productSource.match(/img: 'images\/products\/[a-z0-9-]+\.webp'/g) || []).
 check(/localPrimary/.test(pdp) && /fetchpriority="high"/.test(pdp), 'PDP ใช้ local primary ก่อน gallery และให้ priority กับภาพหลัก');
 check(/loading="lazy"/.test(catalogSource) && !/position <= 4 \? 'eager'/.test(catalogSource), 'Catalog lazy-load รูปสินค้าซึ่งอยู่ใต้ส่วนค้นหา');
 check(!/class="trust-strip"/.test(home), 'Home ไม่มี trust strip ที่ซ้ำกับ Why FLEXI-SUB');
-check(/rel="preload"\s+as="image"\s+href="images\/hero-8-d\.jpg"/.test(home), 'Home preload Hero desktop');
-check(/rel="preload"\s+as="image"\s+href="images\/hero-8-m\.jpg"/.test(home), 'Home preload Hero mobile');
+check(/rel="preload"\s+as="image"\s+href="images\/hero-8-d\.webp"/.test(home), 'Home preload WebP Hero desktop');
+check(/rel="preload"\s+as="image"\s+href="images\/hero-8-m\.webp"/.test(home), 'Home preload WebP Hero mobile');
+check(!/function preloadHero\(/.test(home) && !/const probe = new Image\(\)/.test(home), 'Home ไม่ preload หรือ probe Hero carousel ที่ยังไม่เห็น');
+check(/data-src=/.test(home) && /function loadHeroImg\(/.test(home), 'Home โหลด Hero สไลด์ถัดไปเมื่อถูกแสดง');
+check(/hero-track \{ min-height: 710px; \}/.test(premium) && /hero-track \{ min-height: 610px; \}/.test(premium), 'Home จองพื้นที่ Hero บน tablet และ mobile เพื่อลด CLS');
 check((home.match(/all-Banner_1920x720\.jpg/g) || []).length === 1, 'Home Hero ไม่มีภาพแคมเปญซ้ำ');
 check(/-Birthday_1920x720\.jpg/.test(home) && /15 ส\.ค\. 69 – 23 ส\.ค\. 69/.test(home), 'Home Hero มีโปรครบรอบ 38 ปีตามช่วงเวลา');
-check(/images\/hero-birthday-38-d\.jpg/.test(home) && /images\/hero-birthday-38-m\.jpg/.test(home), 'Home Hero โปร 15% ใช้ชื่อไฟล์ใหม่ไม่ติด cache โปรเดิม');
+check(/images\/hero-birthday-38-d\.webp/.test(home) && /images\/hero-birthday-38-m\.webp/.test(home), 'Home Hero โปร 15% ใช้ WebP ที่ optimize แล้ว');
 check(/fit:\s*'contain'/.test(home) && /data-fit="contain"/.test(home), 'Home Hero โปร 15% แสดงภาพครบโดยไม่ crop');
 check(/OFFICIAL LG CAMPAIGNS/.test(promotions) && /ลด 15% ตลอดสัญญา/.test(promotions), 'Promotions มีแคมเปญล่าสุดจาก LG Thailand');
 check(/images\/promotions\/ktc-credit\.jpg/.test(promotions) && /images\/promotions\/uob-credit\.jpg/.test(promotions), 'Promotions มีรูปจริงโปรบัตรเครดิต KTC และ UOB');

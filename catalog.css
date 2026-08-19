@@ -461,6 +461,42 @@ body[data-page="catalog"] :focus-visible {
   background: var(--catalog-brand-dark);
   box-shadow: 0 10px 24px rgba(120, 0, 38, .22);
 }
+.catalog-load-more {
+  display: flex;
+  justify-content: center;
+  margin-top: 38px;
+}
+.catalog-load-more[hidden] { display: none; }
+.catalog-load-more button {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 50px;
+  padding: 11px 20px;
+  border: 1px solid var(--catalog-brand);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--catalog-brand);
+  cursor: pointer;
+  font-weight: 780;
+  transition: background-color 180ms ease, color 180ms ease, box-shadow 180ms ease;
+}
+.catalog-load-more button:hover {
+  background: var(--catalog-brand);
+  color: #fff;
+  box-shadow: 0 10px 24px rgba(120, 0, 38, .16);
+}
+.catalog-load-more button:focus-visible {
+  outline: 3px solid rgba(165, 0, 52, .3);
+  outline-offset: 4px;
+}
+.catalog-load-more small {
+  padding-left: 12px;
+  border-left: 1px solid currentColor;
+  opacity: .72;
+  font-size: 11px;
+  font-weight: 650;
+}
 .catalog-empty {
   max-width: 640px;
   margin: 20px auto 0;

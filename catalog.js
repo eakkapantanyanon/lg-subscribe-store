@@ -2,7 +2,9 @@
     'use strict';
 
     const PRODUCTS = Array.isArray(window.LG_PRODUCTS) ? window.LG_PRODUCTS : [];
-    const state = { query: '', category: '' };
+    const INITIAL_BATCH_SIZE = 16;
+    const LOAD_MORE_BATCH_SIZE = 16;
+    const state = { query: '', category: '', visibleLimit: INITIAL_BATCH_SIZE };
 
     const grid = document.getElementById('catalogGrid');
     const filters = document.getElementById('catalogFilters');
@@ -13,6 +15,9 @@
     const emptyState = document.getElementById('catalogEmpty');
     const resultCount = document.getElementById('catalogResultCount');
     const total = document.getElementById('catalogTotal');
+    const loadMoreWrap = document.getElementById('catalogLoadMoreWrap');
+    const loadMoreButton = document.getElementById('catalogLoadMore');
+    const loadMoreStatus = document.getElementById('catalogLoadMoreStatus');
 
     let searchTrackTimer = 0;
 
@@ -104,6 +109,12 @@
         }).join('');
     }
 
+    function syncFilterSelection() {
+        filters.querySelectorAll('button[data-category]').forEach(function (button) {
+            button.setAttribute('aria-pressed', String((button.dataset.category || '') === state.category));
+        });
+    }
+
     function filteredProducts() {
         const query = state.query.trim().toLocaleLowerCase('th');
 
@@ -139,18 +150,61 @@
         '</a>';
     }
 
-    function renderProducts() {
-        const visibleProducts = filteredProducts();
+    function updateResultsState(matchedProducts, renderedCount) {
+        const remaining = Math.max(0, matchedProducts.length - renderedCount);
 
-        grid.innerHTML = visibleProducts.map(function (product, index) {
+        resultCount.textContent = 'พบ ' + matchedProducts.length + ' จาก ' + PRODUCTS.length + ' รายการ' +
+            (matchedProducts.length ? ' · แสดง ' + renderedCount + ' รายการ' : '');
+        emptyState.hidden = matchedProducts.length !== 0;
+        grid.hidden = matchedProducts.length === 0;
+        loadMoreWrap.hidden = remaining === 0;
+
+        if (remaining > 0) {
+            const nextBatch = Math.min(LOAD_MORE_BATCH_SIZE, remaining);
+            loadMoreStatus.textContent = 'แสดง ' + renderedCount + ' จาก ' + matchedProducts.length;
+            loadMoreButton.setAttribute('aria-label', 'ดูสินค้าเพิ่มเติมอีก ' + nextBatch + ' รายการ');
+        }
+    }
+
+    function renderProducts() {
+        const matchedProducts = filteredProducts();
+        const renderedProducts = matchedProducts.slice(0, state.visibleLimit);
+
+        grid.innerHTML = renderedProducts.map(function (product, index) {
             return productCard(product, index + 1);
         }).join('');
 
-        resultCount.textContent = 'พบ ' + visibleProducts.length + ' จาก ' + PRODUCTS.length + ' รายการ';
-        emptyState.hidden = visibleProducts.length !== 0;
-        grid.hidden = visibleProducts.length === 0;
+        updateResultsState(matchedProducts, renderedProducts.length);
 
-        return visibleProducts.length;
+        return matchedProducts.length;
+    }
+
+    function resetVisibleLimit() {
+        state.visibleLimit = INITIAL_BATCH_SIZE;
+    }
+
+    function appendNextBatch() {
+        const matchedProducts = filteredProducts();
+        const start = Math.min(state.visibleLimit, matchedProducts.length);
+        const end = Math.min(start + LOAD_MORE_BATCH_SIZE, matchedProducts.length);
+
+        if (end <= start) return;
+
+        grid.insertAdjacentHTML('beforeend', matchedProducts.slice(start, end).map(function (product, index) {
+            return productCard(product, start + index + 1);
+        }).join(''));
+
+        state.visibleLimit = end;
+        updateResultsState(matchedProducts, end);
+        track('catalog_load_more', {
+            result_count: matchedProducts.length,
+            visible_count: end
+        });
+
+        if (end === matchedProducts.length) {
+            const firstNewCard = grid.querySelector('[data-position="' + (start + 1) + '"]');
+            if (firstNewCard) firstNewCard.focus({ preventScroll: true });
+        }
     }
 
     function updateClearButton() {
@@ -160,9 +214,10 @@
     function resetCatalog() {
         state.query = '';
         state.category = '';
+        resetVisibleLimit();
         searchInput.value = '';
         updateClearButton();
-        renderFilters();
+        syncFilterSelection();
         renderProducts();
         searchInput.focus();
     }
@@ -172,7 +227,8 @@
         if (!button) return;
 
         state.category = button.dataset.category || '';
-        renderFilters();
+        resetVisibleLimit();
+        syncFilterSelection();
         const count = renderProducts();
         track('catalog_filter', {
             category: state.category || 'all',
@@ -182,6 +238,7 @@
 
     searchInput.addEventListener('input', function () {
         state.query = searchInput.value;
+        resetVisibleLimit();
         updateClearButton();
         const count = renderProducts();
 
@@ -201,6 +258,7 @@
 
     clearSearch.addEventListener('click', function () {
         state.query = '';
+        resetVisibleLimit();
         searchInput.value = '';
         updateClearButton();
         renderProducts();
@@ -208,6 +266,7 @@
     });
 
     resetButton.addEventListener('click', resetCatalog);
+    loadMoreButton.addEventListener('click', appendNextBatch);
 
     grid.addEventListener('error', function (event) {
         const image = event.target;
