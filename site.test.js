@@ -69,6 +69,7 @@ const promotions = fs.readFileSync(path.join(ROOT, 'promotions.html'), 'utf8');
 const premium = fs.readFileSync(path.join(ROOT, 'premium.css'), 'utf8');
 check(!/id="planner"|BUILD YOUR PACKAGE|พร้อมจัดบ้านให้สบาย/.test(home), 'Home นำ Package Planner และ Final CTA ที่ซ้ำซ้อนออกแล้ว');
 check(/id="products"/.test(home), 'Home มี Product section');
+check(/ค่าใช้จ่าย[\s\S]*การรับประกัน[\s\S]*การบำรุงรักษา/.test(home) && /รับประกัน 5–7 ปี/.test(home) && /รับประกัน 1–2 ปี/.test(home), 'Home ตาราง Subscribe vs ซื้อขาดตรงตามข้อมูลที่กำหนด');
 check(/id="faq"/.test(home), 'Home มี FAQ');
 check(/product\.html\?slug=/.test(home), 'Home เชื่อมไป PDP');
 check(!/class="trust-strip"/.test(home), 'Home ไม่มี trust strip ที่ซ้ำกับ Why FLEXI-SUB');
