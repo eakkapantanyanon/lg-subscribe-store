@@ -154,9 +154,10 @@ check(!/function preloadHero\(/.test(home) && !/const probe = new Image\(\)/.tes
 check(/data-src=/.test(home) && /function loadHeroImg\(/.test(home), 'Home โหลด Hero สไลด์ถัดไปเมื่อถูกแสดง');
 check(/hero-track \{ min-height: 710px; \}/.test(premium) && /hero-track \{ min-height: 610px; \}/.test(premium), 'Home จองพื้นที่ Hero บน tablet และ mobile เพื่อลด CLS');
 check((home.match(/all-Banner_1920x720\.jpg/g) || []).length === 1, 'Home Hero ไม่มีภาพแคมเปญซ้ำ');
-check(/-Birthday_1920x720\.jpg/.test(home) && /15 ส\.ค\. 69 – 23 ส\.ค\. 69/.test(home), 'Home Hero มีโปรครบรอบ 38 ปีตามช่วงเวลา');
-check(/images\/hero-birthday-38-d\.webp/.test(home) && /images\/hero-birthday-38-m\.webp/.test(home), 'Home Hero โปร 15% ใช้ WebP ที่ optimize แล้ว');
-check(/fit:\s*'contain'/.test(home) && /data-fit="contain"/.test(home), 'Home Hero โปร 15% แสดงภาพครบโดยไม่ crop');
+check((home.match(/HERO_SLIDES\s*=\s*\[/g) || []).length === 1, 'Home Hero HERO_SLIDES array ปรากฏหนึ่งครั้ง');
+check(/-Birthday_1920x720\.jpg/.test(home) === false, 'Home Hero ไม่มีสไลด์โปรครบรอบ (ย้ายไป promotions.html)');
+check(/ซับ 2 แถม 1/.test(home) && /ซับ 1 แถม 1/.test(home), 'Home Hero มีสไลด์โปร IXY และ OLED');
+check(!/โปรปัง/.test(home) && !/โปรคุ้ม 2 ต่อ/.test(home) && !/ชวนเพื่อน/.test(home) && !/AWO/.test(home), 'Home Hero ไม่มีสไลด์ที่ลบแล้ว');
 check(/OFFICIAL LG CAMPAIGNS/.test(promotions) && /ลด 15% ตลอดสัญญา/.test(promotions), 'Promotions มีแคมเปญล่าสุดจาก LG Thailand');
 check(/images\/promotions\/ktc-credit\.jpg/.test(promotions) && /images\/promotions\/uob-credit\.jpg/.test(promotions), 'Promotions มีรูปจริงโปรบัตรเครดิต KTC และ UOB');
 check(!/id="conditions"/.test(promotions) && !/สิทธิพิเศษหลักในเดือนนี้/.test(promotions), 'Promotions ไม่มีส่วนสิทธิพิเศษที่ซ้ำกับแคมเปญด้านบน');
