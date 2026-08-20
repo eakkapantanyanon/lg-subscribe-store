@@ -11,9 +11,9 @@
 | ไฟล์ | หน้าที่ |
 |---|---|
 | `index.html` | หน้าเว็บหลัก (landing) — hero carousel, เลือกสินค้าตามหมวด/ไลฟ์สไตล์, ลิงก์ไป PDP/ตะกร้า |
-| `promotions.html` | หน้าโปรโมชัน — เงื่อนไขรวม + ตารางโปรโมชันรายรุ่น (ข้อมูล inline ในไฟล์), ปุ่ม "ดูแผนและราคา" → PDP |
-| `subscribe-store.html` | หน้าตะกร้า/checkout (ข้อมูลสินค้า inline ในไฟล์) — โหลดสินค้าจาก shared cart |
-| `products.js` | ข้อมูลสินค้าแยก (เผื่ออัปเดต/ส่งออกจากโหมดผู้ดูแล) — โครงสร้างแผนแบบ structured (`billSchedule`/`advancePayment`/`outright`) |
+| `promotions.html` | หน้าโปรโมชัน — โหลดข้อมูลจาก `products.js`, เงื่อนไขรวม + ตารางโปรโมชันรายรุ่น, ปุ่ม "ดูแผนและราคา" → PDP |
+| `subscribe-store.html` | หน้าตะกร้า/checkout — โหลด canonical product data จาก `products.js` และสินค้าจาก shared cart |
+| `products.js` | canonical single source of truth สำหรับข้อมูลสินค้า/แผน — โครงสร้างแผนแบบ structured (`billSchedule`/`advancePayment`/`outright`) |
 | `calculator-core.js` | เอนจินคำนวณราคาบริสุทธิ์ (คัดลอก logic จากเว็บต้นแบบ v84: snapBaht, itemComboSchedule, grandTotal, firstPayment, shock 8.8, combo ตามช่วงเวลา) |
 | `product.html` | **หน้ารายละเอียดสินค้า (PDP)** — route แยกตาม slug (`product.html?slug=รุ่น`) จากหน้าหลัก |
 | `cart.js` | ตะกร้าร่วม (localStorage `flexiCart`) — ใช้ร่วมกันระหว่าง PDP และหน้าตะกร้า |
@@ -64,16 +64,10 @@ Event เหล่านี้ไม่ส่งชื่อ เบอร์โ�
 ## วิธีอัปเดตข้อมูล
 
 1. เปิดหน้าเว็บ → โหมดผู้ดูแล (กดโลโก้ 5 ครั้ง) → แก้ไข → "ส่งออก JSON"
-2. นำ JSON ไปอัปเดต `products.js`
-3. re-inline ข้อมูลเข้า `subscribe-store.html` (รัน `node reinline.js` — ดูด้านล่าง)
+2. ตรวจสอบ JSON แล้วอัปเดต `products.js` ซึ่งเป็น canonical source เพียงชุดเดียว
+3. รัน regression tests ก่อนเผยแพร่; หน้า HTML โหลด `products.js` โดยตรง ไม่ต้อง re-inline dataset
 
-### Re-inline ข้อมูลสินค้าเข้า subscribe-store.html
-
-```bash
-node reinline.js   # นำ products.js ไป re-inline เข้า subscribe-store.html
-```
-
-ถ้าแก้ `products.js` ด้วยมือ ต้องแปลงแผนให้เป็นโครงสร้างใหม่ก่อน (รัน `node migrate-plans.js`) แล้ว re-inline ตามเดิม
+`migrate-plans.js` ยังคงเป็นเครื่องมือแปลงข้อมูลแผนเก่าแบบ manual สำหรับ maintenance เท่านั้น ไม่ได้ถูกโหลดโดย runtime
 
 ## Hero images (หน้าแรก)
 
