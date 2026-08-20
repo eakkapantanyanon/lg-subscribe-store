@@ -178,8 +178,36 @@ for (const model of protectedModels) {
   const current = productByModel(canonicalProducts, model);
   const baseline = productByModel(headProducts, model);
   const stripVariants = p => { const c = { ...p }; delete c.variants; return c; };
-  check(JSON.stringify(stripVariants(current)) === JSON.stringify(stripVariants(baseline)), model + ' ไม่เปลี่ยนจาก HEAD (stripping variants)');
+  // 75QNED86BSA: strip authorized Aug 2026 price fields before comparison
+  // so the check catches unintended changes to every other field
+  const stripAuthorizedQned = p => {
+    const c = stripVariants(p);
+    if (c.plans && c.plans[0]) {
+      const pl = { ...c.plans[0] };
+      delete pl.regular; delete pl.effectiveMonthly; delete pl.postPromoPrice;
+      delete pl.advancePayment; delete pl.price;
+      if (pl.billSchedule) pl.billSchedule = pl.billSchedule.map(b => { const bc = { ...b }; delete bc.price; return bc; });
+      c.plans = [pl];
+    }
+    return c;
+  };
+  const strip = model === '75QNED86BSA' ? stripAuthorizedQned : stripVariants;
+  check(JSON.stringify(strip(current)) === JSON.stringify(strip(baseline)), model + ' ไม่เปลี่ยนจาก HEAD (authorized fields stripped)');
 }
+// 75QNED86BSA: explicit August 2026 reconciliation assertions
+const qned86 = productByModel(canonicalProducts, '75QNED86BSA');
+const q86p = qned86.plans[0];
+check(q86p.regular === 899, '75QNED86BSA regular = 899');
+check(q86p.effectiveMonthly === 449.5, '75QNED86BSA effectiveMonthly = 449.5');
+check(q86p.postPromoPrice === 899, '75QNED86BSA postPromoPrice = 899');
+check(q86p.advancePayment === 5394, '75QNED86BSA advancePayment = 5394');
+check(q86p.price === 899, '75QNED86BSA price = 899');
+check(q86p.billSchedule[0].price === 449.5, '75QNED86BSA billSchedule 1-12 = 449.5');
+check(q86p.billSchedule[1].price === 899, '75QNED86BSA billSchedule 13-60 = 899');
+check(q86p.totalContractMonths === 60, '75QNED86BSA totalContractMonths = 60');
+check(q86p.totalSaving === 0, '75QNED86BSA totalSaving = 0');
+check(q86p.serviceType === 'No Service', '75QNED86BSA serviceType = No Service');
+check(q86p.serviceCycle === 'ไม่มีบริการ', '75QNED86BSA serviceCycle = ไม่มีบริการ');
 const wd516 = productByModel(canonicalProducts, 'WD516AN');
 const wd518 = productByModel(canonicalProducts, 'WD518AN');
 check(wd516.plans.some(plan => plan.serviceType === 'Visit' && plan.outright) && wd518.plans.some(plan => plan.serviceType === 'Visit' && plan.outright), 'WD516AN และ WD518AN มี Visit outright');

@@ -3488,15 +3488,15 @@ window.LG_PRODUCTS = [
           term: '5Y',
           serviceType: 'No Service',
           serviceCycle: 'ไม่มีบริการ',
-          regular: 849, effectiveMonthly: 424.5,
-          promoMonths: 0, postPromoPrice: 849,
-          advancePayment: 5094, outright: false,
+          regular: 899, effectiveMonthly: 449.5,
+          promoMonths: 0, postPromoPrice: 899,
+          advancePayment: 5394, outright: false,
           billSchedule: [
-            { range: 'บิล 1-12', price: 424.5, note: 'ครึ่งราคา (จ่ายล่วงหน้าแล้ว)' },
-            { range: 'บิล 13-60', price: 849, note: 'ราคาปกติ' }
+            { range: 'บิล 1-12', price: 449.5, note: 'ครึ่งราคา (จ่ายล่วงหน้าแล้ว)' },
+            { range: 'บิล 13-60', price: 899, note: 'ราคาปกติ' }
           ],
           totalContractMonths: 60, totalSaving: 0,
-          label: 'ไม่รับบริการ 5 ปี (60 เดือน)', months: 60, price: 849,
+          label: 'ไม่รับบริการ 5 ปี (60 เดือน)', months: 60, price: 899,
           promo: '50% เดือน 1-12'
         }
     ]
