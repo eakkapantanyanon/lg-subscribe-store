@@ -24,8 +24,20 @@ window.LG_PRODUCTS = [
           advancePayment: 34110, outright: true,
           billSchedule: null,
           totalContractMonths: 24, totalSaving: 3790,
-          label: 'Outright ผ่อน 9 งวด', months: 24, price: 34110,
+          label: 'Outright 2Y Visit · ผ่อน 9 งวด', months: 24, price: 34110,
           promo: 'ราคาเต็ม ฿37,900 ลด 10% = ฿34,110'
+        },
+        {
+          term: '2Y',
+          serviceType: 'Self',
+          serviceCycle: 'ไม่มีบริการ',
+          regular: 34900, effectiveMonthly: 0,
+          promoMonths: 0, postPromoPrice: 0,
+          advancePayment: 31410, outright: true,
+          billSchedule: null,
+          totalContractMonths: 24, totalSaving: 3490,
+          label: 'Outright 2Y Self · ผ่อน 9 งวด', months: 24, price: 31410,
+          promo: 'ราคาเต็ม ฿34,900 ลด 10% = ฿31,410'
         },
         {
           term: '5Y',
@@ -104,12 +116,24 @@ window.LG_PRODUCTS = [
           term: '2Y',
           serviceType: 'Visit',
           serviceCycle: 'ทุก 6 เดือน',
+          regular: 37900, effectiveMonthly: 0,
+          promoMonths: 0, postPromoPrice: 0,
+          advancePayment: 34110, outright: true,
+          billSchedule: null,
+          totalContractMonths: 24, totalSaving: 3790,
+          label: 'Outright 2Y Visit · ผ่อน 9 งวด', months: 24, price: 34110,
+          promo: 'ราคาเต็ม ฿37,900 ลด 10% = ฿34,110'
+        },
+        {
+          term: '2Y',
+          serviceType: 'Self',
+          serviceCycle: 'ไม่มีบริการ',
           regular: 34900, effectiveMonthly: 0,
           promoMonths: 0, postPromoPrice: 0,
           advancePayment: 31410, outright: true,
           billSchedule: null,
           totalContractMonths: 24, totalSaving: 3490,
-          label: 'Outright ผ่อน 9 งวด', months: 24, price: 31410,
+          label: 'Outright 2Y Self · ผ่อน 9 งวด', months: 24, price: 31410,
           promo: 'ราคาเต็ม ฿34,900 ลด 10% = ฿31,410'
         },
         {
@@ -3282,7 +3306,7 @@ window.LG_PRODUCTS = [
           ],
           totalContractMonths: 60, totalSaving: 1125,
           label: 'ไม่รับบริการ 5 ปี (60 เดือน) · โปร 3 เดือน', months: 60, price: 749,
-          promo: '50% เดือน 1-15'
+          promo: '50% เดือน 1-15 · ของแถม xboom BOUNCE'
         }
     ]
   },

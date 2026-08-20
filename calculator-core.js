@@ -90,8 +90,10 @@
       const payMatch = promo.match(/=\s*฿([\d,]+)/);
       const regular = fullMatch ? parseInt(fullMatch[1].replace(/,/g, ''), 10) : Math.round(price * 10 / 9);
       const advancePayment = payMatch ? parseInt(payMatch[1].replace(/,/g, ''), 10) : Math.round(price);
+      const outrightServiceType = pl.serviceType || 'Visit';
+      const outrightServiceCycle = pl.serviceCycle || (outrightServiceType === 'Self' ? 'ไม่มีบริการ' : 'ทุก 6 เดือน');
       return {
-        term: '2Y', serviceType: 'Visit', serviceCycle: 'ทุก 6 เดือน',
+        term: '2Y', serviceType: outrightServiceType, serviceCycle: outrightServiceCycle,
         regular: regular, effectiveMonthly: 0, promoMonths: 0, postPromoPrice: 0,
         advancePayment: advancePayment, outright: true, billSchedule: null,
         totalContractMonths: 24, totalSaving: regular - advancePayment,

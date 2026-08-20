@@ -46,8 +46,8 @@ const fridge6Y = find('GC-B257SQYL', pl => pl.totalContractMonths === 72 && pl.s
 const tv48 = find('OLED48C6PSA', pl => pl.advancePayment > 0 && pl.promoMonths === 8).plan;   // "50% เดือน 1-20"
 const washerVisit5 = find('FV1413H4M', pl => pl.totalContractMonths === 60 && pl.serviceType === 'Visit').plan;
 const washerSelf5 = find('FV1413H4M', pl => pl.totalContractMonths === 60 && pl.serviceType === 'Self').plan;
-const outrightVisit = find('WD516AN', pl => pl.outright).plan;   // 34,110
-const outrightSelf = find('WD518AN', pl => pl.outright).plan;   // 31,410
+const outrightVisit = find('WD516AN', pl => pl.outright && pl.serviceType === 'Visit').plan;   // 34,110
+const outrightSelf = find('WD518AN', pl => pl.outright && pl.serviceType === 'Self').plan;     // 31,410
 
 const item = p => planToItem(find(p.split('|')[0], eval(p.split('|')[1])));
 
@@ -157,6 +157,22 @@ console.log('\n· เคส G–H (ซื้อขาด WD516AN/WD518AN)');
 t('G: outright เดี่ยว — จ่ายครั้งเดียว 34,110 · ยอดรวม 34,110 (ไม่โดน combo)', () => {
   eq(outrightVisit.advancePayment, 34110, 'advance = 34,110');
   eq(outrightSelf.advancePayment, 31410, 'advance = 31,410');
+  assert.strictEqual(outrightVisit.serviceType, 'Visit');
+  assert.strictEqual(outrightVisit.serviceCycle, 'ทุก 6 เดือน');
+  assert.strictEqual(outrightSelf.serviceType, 'Self');
+  assert.strictEqual(outrightSelf.serviceCycle, 'ไม่มีบริการ');
+  const outrightWd518Visit = find('WD518AN', pl => pl.outright && pl.serviceType === 'Visit').plan;
+  const outrightWd518Self = find('WD518AN', pl => pl.outright && pl.serviceType === 'Self').plan;
+  eq(outrightWd518Visit.advancePayment, 34110, 'WD518AN Visit advance = 34,110');
+  eq(outrightWd518Self.advancePayment, 31410, 'WD518AN Self advance = 31,410');
+  assert.strictEqual(outrightWd518Visit.serviceCycle, 'ทุก 6 เดือน');
+  assert.strictEqual(outrightWd518Self.serviceCycle, 'ไม่มีบริการ');
+  const legacyOutright = LG.normalizePlan({
+    label: 'Outright ผ่อน 9 งวด', months: 24, price: 34110,
+    promo: 'ราคาเต็ม ฿37,900 ลด 10% = ฿34,110'
+  });
+  assert.strictEqual(legacyOutright.serviceType, 'Visit');
+  assert.strictEqual(legacyOutright.serviceCycle, 'ทุก 6 เดือน');
   const items = [planToItem(null, outrightVisit)];
   eq(LG.totalMonthly(items), 0, 'totalMonthly = 0 (outright ไม่นับ)');
   eq(LG.firstPaymentTotal(items, 0.15), 34110, 'firstPay');
