@@ -869,10 +869,18 @@
         }
         (function loadCartState() {
             const cart = CART.load();
+            var migrated = false;
             cart.items.forEach(it => {
                 const p = PRODUCTS.find(x => x.id === it.productId);
-                if (p && p.plans[it.planIndex]) selected[it.productId] = { product: p, planIndex: it.planIndex, qty: it.qty };
+                if (p && p.plans[it.planIndex]) {
+                    selected[it.productId] = { product: p, planIndex: it.planIndex, qty: it.qty };
+                } else if (it.productId === '27gx704a' && p && p.plans.length > 0) {
+                    it.planIndex = 0;
+                    migrated = true;
+                    selected[it.productId] = { product: p, planIndex: 0, qty: it.qty };
+                }
             });
+            if (migrated) CART.save(cart);
             custType = cart.customerType === 'old' ? 'old' : 'new';
             const remembered = document.getElementById('rememberedCustomerType');
             if (remembered) remembered.textContent = custType === 'old' ? 'ลูกค้าเดิม LG Subscribe' : 'ลูกค้าใหม่';

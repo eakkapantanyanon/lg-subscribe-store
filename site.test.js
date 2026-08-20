@@ -160,7 +160,7 @@ check(/fit:\s*'contain'/.test(home) && /data-fit="contain"/.test(home), 'Home He
 check(/OFFICIAL LG CAMPAIGNS/.test(promotions) && /ลด 15% ตลอดสัญญา/.test(promotions), 'Promotions มีแคมเปญล่าสุดจาก LG Thailand');
 check(/images\/promotions\/ktc-credit\.jpg/.test(promotions) && /images\/promotions\/uob-credit\.jpg/.test(promotions), 'Promotions มีรูปจริงโปรบัตรเครดิต KTC และ UOB');
 check(!/id="conditions"/.test(promotions) && !/สิทธิพิเศษหลักในเดือนนี้/.test(promotions), 'Promotions ไม่มีส่วนสิทธิพิเศษที่ซ้ำกับแคมเปญด้านบน');
-check(canonicalProducts.length === 97 && canonicalProducts.reduce((total, product) => total + product.plans.length, 0) === 197, 'Canonical products.js มีสินค้า 97 รุ่นและ 197 แผน');
+check(canonicalProducts.length === 98 && canonicalProducts.reduce((total, product) => total + product.plans.length, 0) === 197, 'Canonical products.js มีสินค้า 98 รุ่นและ 197 แผน');
 const fallbackPrices = { WT2520NHEG: 1999, 'GC-L257KQKW': 649, FV1409H4W: 299, SAQ11A: 799, OLED48C6PSA: 749, 'A9T-ULTRA': 749, DFC335HM: 749, AS25GCBY0: 549 };
 for (const [model, price] of Object.entries(fallbackPrices)) {
   check(new RegExp("model: ['\\\"]" + model + "['\\\"][^\\n]*price: " + price + '\\b').test(home), model + ' Home fallback price ตรง canonical');
@@ -191,7 +191,21 @@ for (const model of protectedModels) {
     }
     return c;
   };
-  const strip = model === '75QNED86BSA' ? stripAuthorizedQned : stripVariants;
+  // 27GX704A-B: authorized billing correction changed plan count (2→1)
+  // and billing period structure. Compare base product fields + plan structural fields only.
+  const stripAuthorizedGx = p => {
+    const c = stripVariants(p);
+    if (c.plans && c.plans[0]) {
+      const pl = { ...c.plans[0] };
+      delete pl.regular; delete pl.effectiveMonthly; delete pl.postPromoPrice;
+      delete pl.advancePayment; delete pl.price; delete pl.promoMonths;
+      delete pl.totalSaving; delete pl.label; delete pl.promo;
+      delete pl.billSchedule; // billing periods restructured in authorized correction
+      c.plans = [pl];
+    } else { c.plans = []; }
+    return c;
+  };
+  const strip = model === '75QNED86BSA' ? stripAuthorizedQned : model === '27GX704A-B' ? stripAuthorizedGx : stripVariants;
   check(JSON.stringify(strip(current)) === JSON.stringify(strip(baseline)), model + ' ไม่เปลี่ยนจาก HEAD (authorized fields stripped)');
 }
 // 75QNED86BSA: explicit August 2026 reconciliation assertions
@@ -208,6 +222,21 @@ check(q86p.totalContractMonths === 60, '75QNED86BSA totalContractMonths = 60');
 check(q86p.totalSaving === 0, '75QNED86BSA totalSaving = 0');
 check(q86p.serviceType === 'No Service', '75QNED86BSA serviceType = No Service');
 check(q86p.serviceCycle === 'ไม่มีบริการ', '75QNED86BSA serviceCycle = ไม่มีบริการ');
+// 27GX704A-B: explicit billing correction assertions
+const gx704 = productByModel(canonicalProducts, '27GX704A-B');
+check(gx704.plans.length === 1, '27GX704A-B มี 1 plan เท่านั้น');
+const gx704p = gx704.plans[0];
+check(gx704p.regular === 399, '27GX704A-B regular = 399');
+check(gx704p.price === 399, '27GX704A-B price = 399');
+check(gx704p.effectiveMonthly === 199.5, '27GX704A-B effectiveMonthly = 199.5');
+check(gx704p.advancePayment === 2394, '27GX704A-B advancePayment = 2394');
+check(gx704p.totalContractMonths === 60, '27GX704A-B totalContractMonths = 60');
+check(gx704p.totalSaving === 600, '27GX704A-B totalSaving = 600');
+check(gx704p.serviceType === 'No Service', '27GX704A-B serviceType = No Service');
+check(gx704p.billSchedule[0].price === 199.5, '27GX704A-B billSchedule 1-12 = 199.5');
+check(gx704p.billSchedule[1].price === 199, '27GX704A-B billSchedule 13-15 = 199');
+check(gx704p.billSchedule[2].price === 399, '27GX704A-B billSchedule 16-60 = 399');
+check(!gx704.plans.some(p => p.regular === 349), '27GX704A-B retired 349 plan ไม่มีแล้ว');
 const wd516 = productByModel(canonicalProducts, 'WD516AN');
 const wd518 = productByModel(canonicalProducts, 'WD518AN');
 check(wd516.plans.some(plan => plan.serviceType === 'Visit' && plan.outright) && wd518.plans.some(plan => plan.serviceType === 'Visit' && plan.outright), 'WD516AN และ WD518AN มี Visit outright');

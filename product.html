@@ -452,6 +452,7 @@
             <div class="big-label" id="sumBigLabel"></div>
         </div>
         <p class="promo-note" id="sumPromo"></p>
+        <p class="promo-note" id="sumGift" style="display:none;background:#fef3c7;color:#92400e;border-radius:6px;padding:4px 8px;margin-top:6px;"></p>
         <a class="breakdown-link" id="sumBreakdown">คลิกเพื่อดูค่าบริการและรายละเอียดทั้งหมด</a>
         <div class="term-row"><span>ระยะเวลาสัญญา</span><strong id="sumTerm">—</strong></div>
         <div class="summary-totals">
@@ -1051,6 +1052,11 @@
         if (s.plan.promo) promoBits.push('<span class="tag">' + s.plan.promo.replace(/·/g, '·') + '</span>');
         promoBits.push('ราคาโปรนี้ใช้ได้เฉพาะช่วงโปรโมชันปัจจุบัน');
         el('sumPromo').innerHTML = promoBits.join(' ');
+
+        // ของแถม
+        const giftEl = el('sumGift');
+        if (product.gift) { giftEl.textContent = '🎁 ' + product.gift; giftEl.style.display = ''; }
+        else { giftEl.style.display = 'none'; }
 
         // ระยะเวลาสัญญา
         const t = s.termMonths;

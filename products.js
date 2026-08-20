@@ -3767,32 +3767,16 @@ window.LG_PRODUCTS = [
           term: '5Y',
           serviceType: 'No Service',
           serviceCycle: 'ไม่มีบริการ',
-          regular: 349, effectiveMonthly: 174.5,
-          promoMonths: 8, postPromoPrice: 349,
-          advancePayment: 2094, outright: false,
-          billSchedule: [
-            { range: 'บิล 1-12', price: 174.5, note: 'ครึ่งราคา (จ่ายล่วงหน้าแล้ว)' },
-            { range: 'บิล 13-20', price: 174, note: 'โปรลด 50%' },
-            { range: 'บิล 21-60', price: 349, note: 'ราคาปกติ' }
-          ],
-          totalContractMonths: 60, totalSaving: 1400,
-          label: 'ไม่รับบริการ 5 ปี (60 เดือน) · โปร 8 เดือน', months: 60, price: 349,
-          promo: '50% เดือน 1-20'
-        },
-        {
-          term: '5Y',
-          serviceType: 'No Service',
-          serviceCycle: 'ไม่มีบริการ',
           regular: 399, effectiveMonthly: 199.5,
           promoMonths: 3, postPromoPrice: 399,
           advancePayment: 2394, outright: false,
           billSchedule: [
             { range: 'บิล 1-12', price: 199.5, note: 'ครึ่งราคา (จ่ายล่วงหน้าแล้ว)' },
-            { range: 'บิล 13-15', price: 199, note: 'โปรลด 50%' },
+            { range: 'บิล 13-15', price: 199, note: 'โปร' },
             { range: 'บิล 16-60', price: 399, note: 'ราคาปกติ' }
           ],
           totalContractMonths: 60, totalSaving: 600,
-          label: 'ไม่รับบริการ 5 ปี (60 เดือน) · โปร 3 เดือน', months: 60, price: 399,
+          label: 'ไม่รับบริการ 5 ปี (60 เดือน)', months: 60, price: 399,
           promo: '50% เดือน 1-15'
         }
     ]
@@ -4070,6 +4054,33 @@ window.LG_PRODUCTS = [
           totalContractMonths: 60, totalSaving: 0,
           label: 'ไม่รับบริการ 5 ปี (60 เดือน)', months: 60, price: 299,
           promo: '50% เดือน 1-12'
+        }
+    ]
+  },
+  {
+    id: 'xboom-stage501',
+    img: '',
+    model: 'xboom STAGE501',
+    name: 'LG xboom STAGE501 tuned by will.i.am',
+    category: 'Bluetooth Speaker',
+    emoji: '🔊',
+    gift: 'แถมฟรี Sherman MIC-150 Plus สำหรับ 100 ท่านแรกเท่านั้น เป็นไปตามเงื่อนไขที่บริษัทฯ กำหนด',
+    plans: [
+        {
+          term: '5Y',
+          serviceType: 'No Service',
+          serviceCycle: 'ไม่มีบริการ',
+          regular: 449, effectiveMonthly: 224.5,
+          promoMonths: 8, postPromoPrice: 449,
+          advancePayment: 2694, outright: false,
+          billSchedule: [
+            { range: 'บิล 1-12', price: 224.5, note: 'ครึ่งราคา (จ่ายล่วงหน้าแล้ว)' },
+            { range: 'บิล 13-20', price: 224, note: 'โปรลด 50%' },
+            { range: 'บิล 21-60', price: 449, note: 'ราคาปกติ' }
+          ],
+          totalContractMonths: 60, totalSaving: 1800,
+          label: 'ไม่รับบริการ 5 ปี (60 เดือน)', months: 60, price: 449,
+          promo: 'โปร 50% เพิ่ม 8 เดือน (บิล 13-20)'
         }
     ]
   }
