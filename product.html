@@ -494,7 +494,7 @@
 
 <script src="analytics.js"></script>
 <script src="products.js?v=gallery-fallback-fix"></script>
-<script src="product-galleries.js?v=20260819-care2"></script>
+<script src="product-galleries.js?v=20260820-sku-galleries"></script>
 <script src="calculator-core.js"></script>
 <script src="cart.js"></script>
 <script src="product-select.js?v=20260819-care2"></script>
@@ -614,8 +614,9 @@
     function renderGallery(p) {
         const box = document.getElementById('galleryBox');
         const items = [];
+        const skuGallery = selectedVariant && (window.LG_PRODUCT_SKU_GALLERIES || {})[selectedVariant.sku];
         const sharedGallery = (window.LG_PRODUCT_GALLERIES || {})[p.id];
-        const gallerySource = Array.isArray(p.gallery) && p.gallery.length ? p.gallery : sharedGallery;
+        const gallerySource = (Array.isArray(skuGallery) && skuGallery.length) ? skuGallery : (Array.isArray(p.gallery) && p.gallery.length ? p.gallery : sharedGallery);
         const specCard = (window.LG_PRODUCT_SPEC_CARDS || {})[p.id];
         const careCard = (window.LG_PRODUCT_CARE_CARDS || {})[p.id];
         const gallery = Array.isArray(gallerySource) ? gallerySource.slice(0, 4) : [];

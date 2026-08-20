@@ -640,3 +640,27 @@ window.LG_PRODUCT_CARE_CARDS = {};
   assign(["s95tr", "s70ty"], ["รองรับ Dolby Atmos ให้เสียงรอบทิศทาง", "WOW Orchestra ผสานเสียงกับลำโพงทีวี LG", "AI Sound Pro ปรับเสียงให้เหมาะกับคอนเทนต์", "รองรับ HDMI eARC และการส่งผ่านภาพ 4K", "เชื่อมต่อ Bluetooth และอุปกรณ์ภายนอกได้หลากหลาย"]);
   assign(["xboom-bounce", "xboom-grab"], ["เสียงปรับแต่งโดย will.i.am", "AI Sound และ AI Calibration ปรับเสียงอัตโนมัติ", "มาตรฐานความทนทาน MIL-STD-810H และ IP67", "แบตเตอรี่ใช้งานได้ยาวนาน", "รองรับ Auracast Party Link เชื่อมต่อลำโพงหลายเครื่อง"]);
 })();
+
+/* === SKU-specific galleries for WD516/WD518 color variants === */
+window.LG_PRODUCT_SKU_GALLERIES = {
+  "WD516AN.ACNPLMT": [
+    "https://www.lg.com/content/dam/channel/wcms/th/image-update/water-purifier/2024/wd516an-acnplmt/ha-wp-wd516an-navy-blue-gp1-2024-gallery/2010x1334/01_1.ATOM4D+_WD516AN.ANVRLML_Front_Up.jpg"
+  ],
+  "WD516AN.AEWPLMT": [
+    "https://www.lg.com/content/dam/channel/wcms/th/image-update/water-purifier/2024/wd516an-aewplmt/gallery/1_WD516AN.AWHRLML-2010.jpg"
+  ],
+  "WD516AN.ASLPLMT": [
+    "https://www.lg.com/content/dam/channel/wcms/th/image-update/water-purifier/2024/wd516an-aslplmt/gallery/1_WD516AN.ASLRLML-450.jpg"
+  ],
+  "WD518AN.ABGPLMT": [
+    "https://www.lg.com/content/dam/channel/wcms/th/image-update/water-purifier/2024/wd518an-abgplmt/ha-wp-wd518an-calming-beige-gp1-2024-gallery/1600x1062/01_ATOM-V_Objet_WD518AN.ABGRLML1.jpg",
+    "https://www.lg.com/content/dam/channel/wcms/th/image-update/water-purifier/2024/wd518an-abgplmt/ha-wp-wd518an-calming-beige-gp1-2024-gallery/1600x1062/02_ATOM-V_Objet_WD518AN.ABGRLML2.jpg",
+    "https://www.lg.com/content/dam/channel/wcms/th/image-update/water-purifier/2024/wd518an-abgplmt/ha-wp-wd518an-calming-beige-gp1-2024-gallery/1600x1062/03_ATOM-V_Objet_WD518AN.ABGRLML3.jpg"
+  ],
+  "WD518AN.AWHPLMT": [
+    "https://www.lg.com/content/dam/channel/wcms/th/image-update/water-purifier/2024/wd518an-awhplmt/gallery/WD518AN_AWHPLMT_1-2010.jpg"
+  ],
+  "WD518AN.ACGPLMT": [
+    "https://www.lg.com/content/dam/channel/wcms/th/image-update/water-purifier/2024/wd518an-acgplmt/gallery/WD518AN_ACGPLMT_1-2010.jpg"
+  ]
+};

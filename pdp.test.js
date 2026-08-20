@@ -370,6 +370,89 @@ t('ตะกร้า backward compatible — ไม่มี variant ยัง�
 });
 
 /* ================================================================
+   7. SKU Gallery tests
+   ================================================================ */
+global.window = global.window || {};
+require('./product-galleries.js');
+const SKU_GALLERIES = global.window.LG_PRODUCT_SKU_GALLERIES || {};
+const FAMILY_GALLERIES = global.window.LG_PRODUCT_GALLERIES || {};
+
+;(function() {
+  const SKUS = [
+    'WD516AN.ACNPLMT', 'WD516AN.AEWPLMT', 'WD516AN.ASLPLMT',
+    'WD518AN.ABGPLMT', 'WD518AN.AWHPLMT', 'WD518AN.ACGPLMT'
+  ];
+
+  t('All 6 SKU gallery keys exist', function() {
+    SKUS.forEach(function(sku) {
+      assert.ok(SKU_GALLERIES[sku], 'SKU gallery missing: ' + sku);
+      assert.ok(Array.isArray(SKU_GALLERIES[sku]), 'SKU gallery not array: ' + sku);
+      assert.ok(SKU_GALLERIES[sku].length > 0, 'SKU gallery empty: ' + sku);
+    });
+  });
+
+  t('WD516 White gallery differs from Navy', function() {
+    const navy = SKU_GALLERIES['WD516AN.ACNPLMT'];
+    const white = SKU_GALLERIES['WD516AN.AEWPLMT'];
+    assert.notDeepStrictEqual(navy, white, 'Navy and White galleries should differ');
+  });
+
+  t('WD516 Silver gallery differs from Navy and White', function() {
+    const navy = SKU_GALLERIES['WD516AN.ACNPLMT'];
+    const white = SKU_GALLERIES['WD516AN.AEWPLMT'];
+    const silver = SKU_GALLERIES['WD516AN.ASLPLMT'];
+    assert.notDeepStrictEqual(navy, silver, 'Navy and Silver galleries should differ');
+    assert.notDeepStrictEqual(white, silver, 'White and Silver galleries should differ');
+  });
+
+  t('WD518 White gallery differs from Beige', function() {
+    const beige = SKU_GALLERIES['WD518AN.ABGPLMT'];
+    const white = SKU_GALLERIES['WD518AN.AWHPLMT'];
+    assert.notDeepStrictEqual(beige, white, 'Beige and White galleries should differ');
+  });
+
+  t('WD518 Gray gallery differs from Beige and White', function() {
+    const beige = SKU_GALLERIES['WD518AN.ABGPLMT'];
+    const white = SKU_GALLERIES['WD518AN.AWHPLMT'];
+    const gray = SKU_GALLERIES['WD518AN.ACGPLMT'];
+    assert.notDeepStrictEqual(beige, gray, 'Beige and Gray galleries should differ');
+    assert.notDeepStrictEqual(white, gray, 'White and Gray galleries should differ');
+  });
+
+  t('No duplicate photos inside a SKU gallery', function() {
+    SKUS.forEach(function(sku) {
+      const imgs = SKU_GALLERIES[sku];
+      imgs.forEach(function(url) {
+        assert.ok(typeof url === 'string' && url.length > 0, 'Empty URL in ' + sku);
+      });
+    });
+  });
+
+  t('Missing SKU gallery falls back to family gallery', function() {
+    const fakeSku = 'WD516AN.FAKESKU';
+    assert.strictEqual(SKU_GALLERIES[fakeSku], undefined, 'Fake SKU should not exist');
+    const familyGallery = FAMILY_GALLERIES['wd516an'];
+    assert.ok(Array.isArray(familyGallery) && familyGallery.length > 0, 'Family gallery exists as fallback');
+  });
+
+  t('WD518 Beige gallery has 3 unique images', function() {
+    const beige = SKU_GALLERIES['WD518AN.ABGPLMT'];
+    assert.strictEqual(beige.length, 3, 'Beige should have 3 unique images');
+  });
+
+  t('WD516 SKU galleries each have exactly 1 unique image', function() {
+    assert.strictEqual(SKU_GALLERIES['WD516AN.ACNPLMT'].length, 1, 'Navy = 1');
+    assert.strictEqual(SKU_GALLERIES['WD516AN.AEWPLMT'].length, 1, 'White = 1');
+    assert.strictEqual(SKU_GALLERIES['WD516AN.ASLPLMT'].length, 1, 'Silver = 1');
+  });
+
+  t('WD518 non-Beige SKU galleries each have exactly 1 unique image', function() {
+    assert.strictEqual(SKU_GALLERIES['WD518AN.AWHPLMT'].length, 1, 'White = 1');
+    assert.strictEqual(SKU_GALLERIES['WD518AN.ACGPLMT'].length, 1, 'Gray = 1');
+  });
+})();
+
+/* ================================================================
    สรุป
    ================================================================ */
 console.log('\n═══ ผล: ' + passed + ' ผ่าน / ' + failed + ' ไม่ผ่าน ═══');
