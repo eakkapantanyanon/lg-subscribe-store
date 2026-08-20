@@ -59,11 +59,21 @@ for (const file of [...pages, ...requiredAssets]) {
 }
 
 console.log('\n· โครงสร้างและ metadata');
+const publicCanonical = {
+  'index.html': 'https://eakkapantanyanon.github.io/lg-subscribe-store/',
+  'products.html': 'https://eakkapantanyanon.github.io/lg-subscribe-store/products.html',
+  'promotions.html': 'https://eakkapantanyanon.github.io/lg-subscribe-store/promotions.html',
+  'subscribe-store.html': 'https://eakkapantanyanon.github.io/lg-subscribe-store/subscribe-store.html',
+  'product.html': 'https://eakkapantanyanon.github.io/lg-subscribe-store/product.html'
+};
 for (const page of pages) {
   const html = fs.readFileSync(path.join(ROOT, page), 'utf8');
   check(/<html\s+lang="th"/i.test(html), page + ': lang=th');
   check(/<meta\s+name="description"/i.test(html), page + ': meta description');
   check(/<meta\s+name="theme-color"/i.test(html), page + ': theme color');
+  check(html.includes('<link rel="canonical" href="' + publicCanonical[page] + '">'), page + ': canonical');
+  check((html.match(/<meta property="og:(?:title|description|type|url)"/g) || []).length === 4, page + ': Open Graph basic tags');
+  check(/<link rel="icon"/.test(html), page + ': favicon');
   check(/class="skip-link"/i.test(html), page + ': keyboard skip link');
   check(/rel="preconnect"\s+href="https:\/\/www\.lg\.com"/i.test(html), page + ': image CDN preconnect');
   check(!/href="#"/i.test(html), page + ': ไม่มี dead link href="#"');
@@ -126,6 +136,11 @@ check(/insertAdjacentHTML\('beforeend'/.test(catalogSource) && /catalog_load_mor
 check(/loading="/.test(catalogSource) && /addEventListener\('error'/.test(catalogSource) && /fallbackSrc/.test(catalogSource), 'Catalog ใช้ lazy loading และ image fallback จุดเดียว');
 check(/catalog_search/.test(catalogSource) && /catalog_filter/.test(catalogSource), 'Catalog ส่ง event สำหรับ search และ filter');
 check(/calculator_entry_click/.test(analyticsSource) && /slug:/.test(analyticsSource) && /position/.test(analyticsSource) && /source/.test(analyticsSource), 'Analytics ครบ Hero entry และ Product Card context');
+check(/hero_cta_click/.test(home), 'Analytics มี hero_cta_click ที่ Hero CTA จริง');
+check(/package_view/.test(pdp) && /track\('package_view'/.test(pdp), 'Analytics มี package_view เมื่อ PDP พร้อม');
+check(/try\s*\{|catch\s*\(_\)/.test(analyticsSource) && /Analytics must never block/.test(analyticsSource), 'Analytics failure ไม่ block flow');
+check(/<main>/.test(home) && /<main>/.test(promotions), 'Home และ Promotions มี main landmark');
+check(/:focus-visible/.test(fs.readFileSync(path.join(ROOT, 'catalog.css'), 'utf8')), 'Catalog มี focus-visible style จาก CSS ที่โหลดจริง');
 check(/products\.html/.test(sitemap) && !/<loc>[^<]*\/product\.html<\/loc>/.test(sitemap), 'Sitemap ใช้ Catalog URL แทน PDP ที่ไม่มี slug');
 check(imageInventory.summary.products === 97 && imageInventory.summary.primary.local === 8, 'Phase 4 inventory มีสินค้า 97 รุ่นและ local primary pilot 8 รุ่น');
 check(imageInventory.summary.groups.A === 8 && imageInventory.summary.pilot.reductionPercent > 50, 'Phase 4 pilot ผ่าน verification และลดขนาดรวมมากกว่า 50%');
