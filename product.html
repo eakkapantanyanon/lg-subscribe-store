@@ -309,6 +309,34 @@
     .not-found { max-width: 640px; margin: 80px auto; text-align: center; padding: 30px; }
     .not-found a { color: var(--accent-text); }
 
+    /* ---------- Color Variant Selector ---------- */
+    .color-selector { margin-top: 16px; }
+    .color-selector .cs-title { font-size: 13px; font-weight: 700; margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+    .color-selector .cs-title .req { color: var(--red); }
+    .color-options { display: flex; flex-wrap: wrap; gap: 10px; }
+    .color-opt {
+        display: flex; align-items: center; gap: 8px;
+        padding: 8px 14px; border-radius: 12px;
+        border: 2px solid var(--line); background: var(--bg);
+        cursor: pointer; font: inherit; font-size: 14px;
+        transition: border-color .15s, background .15s, box-shadow .15s;
+    }
+    .color-opt:hover { border-color: var(--accent-border); }
+    .color-opt.selected {
+        border-color: var(--accent); background: var(--accent-soft);
+        box-shadow: 0 0 0 3px var(--accent-glow);
+    }
+    .color-opt .swatch {
+        width: 22px; height: 22px; border-radius: 50%;
+        border: 2px solid var(--line); flex-shrink: 0;
+    }
+    .color-opt.selected .swatch { border-color: var(--accent); }
+    .color-opt .cs-name { font-weight: 600; }
+    @media (max-width: 420px) {
+        .color-opt { padding: 6px 10px; font-size: 13px; }
+        .color-opt .swatch { width: 18px; height: 18px; }
+    }
+
     /* ---------- FLEXI-SUB premium design system ---------- */
     :root {
         --accent: #a50034; --accent-soft: #fdf3f5; --accent-border: #e8bccb;
@@ -530,6 +558,11 @@
     let adminSettings = { comboPct: 10, oldMin: 1, newMin: 2 };
     const sel = { customerType: null, planType: 'monthly', careType: null, term: null, variant: null };
     let currentPlanIndex = -1;
+    let selectedVariant = null;  // { sku, color, colorTh } or null
+    const COLOR_SWATCHES = {
+        'Calming Navy': '#1e3a5f', 'Essence White': '#e8e4de', 'Silver': '#b0b5bd',
+        'Calming Beige': '#d4c5a9', 'Calming Cream White': '#f0eadb', 'Cream Gray': '#c5c0b8'
+    };
 
     function track(eventName, params) {
         try {
@@ -746,7 +779,8 @@
             '<div class="crumbs"><a href="index.html#products">หน้าหลัก</a> / ' +
             '<a href="index.html?cat=' + encodeURIComponent(p.category || '') + '#products">' + (p.category || '') + '</a> / ' + p.model + '</div>' +
             '<h1>' + (p.name || '') + '</h1>' +
-            '<span class="model-chip">รหัสรุ่น ' + (p.model || '') + '</span>' +
+            '<span class="model-chip">รหัสรุ่น <span id="modelDisplay">' + (p.model || '') + '</span></span>' +
+            '<div id="colorSelectorBox"></div>' +
             ratingHtml +
             '<ul class="feature-list">' + feats.map(f => '<li>' + f + '</li>').join('') + '</ul>' +
             '<details class="specs"><summary>ดูสเปกและแผนทั้งหมด (คลิกเพื่อขยาย)</summary>' +
@@ -886,6 +920,52 @@
                 return g;
             }));
         }
+    }
+
+    /* ---------- Color Variant Selector ---------- */
+    function renderColorSelector(p) {
+        const box = document.getElementById('colorSelectorBox');
+        if (!box) return;
+        const variants = p.variants || [];
+        if (variants.length === 0) { box.innerHTML = ''; return; }
+        if (!selectedVariant || !variants.some(v => v.sku === selectedVariant.sku)) {
+            selectedVariant = variants[0];
+        }
+        let html = '<div class="color-selector">' +
+            '<div class="cs-title">สี <span class="req">*</span></div>' +
+            '<div class="color-options">';
+        variants.forEach(function(v) {
+            const sel = selectedVariant && v.sku === selectedVariant.sku ? ' selected' : '';
+            const swatchColor = COLOR_SWATCHES[v.color] || '#ccc';
+            const swatchBorder = (v.color === 'Essence White' || v.color === 'Calming Cream White') ? 'border-color:#bbb;' : '';
+            html += '<button type="button" class="color-opt' + sel + '" data-sku="' + v.sku + '"' +
+                ' data-color="' + v.color + '" data-colorth="' + (v.colorTh || v.color) + '"' +
+                ' aria-pressed="' + (sel ? 'true' : 'false') + '"' +
+                ' role="radio" aria-label="สี ' + (v.colorTh || v.color) + '">' +
+                '<span class="swatch" style="background:' + swatchColor + ';' + swatchBorder + '"></span>' +
+                '<span class="cs-name">' + (v.colorTh || v.color) + '</span></button>';
+        });
+        html += '</div></div>';
+        box.innerHTML = html;
+        box.querySelectorAll('.color-opt').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                const sku = this.getAttribute('data-sku');
+                const color = this.getAttribute('data-color');
+                const colorTh = this.getAttribute('data-colorth');
+                if (selectedVariant && selectedVariant.sku === sku) return;
+                selectedVariant = { sku: sku, color: color, colorTh: colorTh };
+                renderColorSelector(p);
+                renderGallery(p);
+                const modelEl = document.getElementById('modelDisplay');
+                if (modelEl) modelEl.textContent = sku.split('.').pop() ? p.model + ' · ' + colorTh : p.model;
+            });
+            btn.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); this.click(); }
+            });
+        });
+        // Set role=radiogroup on parent
+        const options = box.querySelector('.color-options');
+        if (options) options.setAttribute('role', 'radiogroup');
     }
 
     function group(title, required, sub, build) {
@@ -1046,7 +1126,8 @@
     function addToCart() {
         if (!SEL.isComplete(product, sel)) return;
         const cart = CART.load();
-        const next = CART.addItem(cart, product.id, currentPlanIndex, 1, sel.customerType);
+        const variantOpts = selectedVariant ? { sku: selectedVariant.sku, color: selectedVariant.color } : undefined;
+        const next = CART.addItem(cart, product.id, currentPlanIndex, 1, sel.customerType, variantOpts);
         CART.save(next);
         const plan = product.plans[currentPlanIndex] || {};
         track('add_to_cart', {
@@ -1054,10 +1135,13 @@
             plan_label: plan.label || '',
             plan_index: currentPlanIndex,
             service_type: plan.serviceType || '',
-            term_months: Number(plan.totalContractMonths || plan.months) || 0
+            term_months: Number(plan.totalContractMonths || plan.months) || 0,
+            sku: selectedVariant ? selectedVariant.sku : '',
+            color: selectedVariant ? selectedVariant.color : ''
         });
+        const colorLabel = selectedVariant ? ' (' + selectedVariant.colorTh + ')' : '';
         const toast = document.getElementById('toast');
-        toast.textContent = '✓ เพิ่ม "' + product.model + '" ลงตะกร้าแล้ว — กำลังไปหน้าตะกร้า...';
+        toast.textContent = '✓ เพิ่ม "' + product.model + colorLabel + '" ลงตะกร้าแล้ว — กำลังไปหน้าตะกร้า...';
         toast.hidden = false;
         setTimeout(() => { location.href = 'subscribe-store.html'; }, 900);
     }
@@ -1078,6 +1162,7 @@
         track('package_view', { slug: SEL.slugFor(product) });
         renderGallery(product);
         renderInfo(product);
+        renderColorSelector(product);
         updateSummary();
 
         document.getElementById('sumBreakdown').addEventListener('click', openBreakdown);

@@ -14,6 +14,11 @@ window.LG_PRODUCTS = [
     name: 'เครื่องกรองน้ำ LG PuriCare รุ่น WD516AN',
     category: 'เครื่องกรองน้ำ',
     emoji: '🌀',
+    variants: [
+      { sku: 'WD516AN.ACNPLMT', color: 'Calming Navy', colorTh: 'Calming Navy' },
+      { sku: 'WD516AN.AEWPLMT', color: 'Essence White', colorTh: 'Essence White' },
+      { sku: 'WD516AN.ASLPLMT', color: 'Silver', colorTh: 'Silver' }
+    ],
     plans: [
         {
           term: '2Y',
@@ -111,6 +116,11 @@ window.LG_PRODUCTS = [
     name: 'เครื่องกรองน้ำ LG PuriCare รุ่น WD518AN',
     category: 'เครื่องกรองน้ำ',
     emoji: '🌀',
+    variants: [
+      { sku: 'WD518AN.ABGPLMT', color: 'Calming Beige', colorTh: 'Calming Beige' },
+      { sku: 'WD518AN.AWHPLMT', color: 'Calming Cream White', colorTh: 'Calming Cream White' },
+      { sku: 'WD518AN.ACGPLMT', color: 'Cream Gray', colorTh: 'Cream Gray' }
+    ],
     plans: [
         {
           term: '2Y',

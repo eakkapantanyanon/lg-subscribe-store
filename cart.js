@@ -31,11 +31,14 @@
       items: (raw.items || [])
         .filter(function (i) { return i && i.productId; })
         .map(function (i) {
-          return {
+          var item = {
             productId: String(i.productId),
             planIndex: Number(i.planIndex) || 0,
             qty: Math.max(1, Number(i.qty) || 1)
           };
+          if (i.sku) item.sku = String(i.sku);
+          if (i.color) item.color = String(i.color);
+          return item;
         })
     };
   }
@@ -63,42 +66,53 @@
     return (cart && cart.items ? cart.items : []).reduce(function (s, i) { return s + (Number(i.qty) || 0); }, 0);
   }
 
-  // เพิ่มสินค้า (productId + planIndex เดิม → เพิ่มจำนวน) — คืน cart ใหม่
-  function addItem(cart, productId, planIndex, qty, customerType) {
+  // เพิ่มสินค้า (productId + planIndex + optional sku → เพิ่มจำนวน) — คืน cart ใหม่
+  function addItem(cart, productId, planIndex, qty, customerType, opts) {
     var c = normalizeCart(cart);
     if (customerType === 'old' || customerType === 'new') c.customerType = customerType;
     var id = String(productId);
     var pi = Number(planIndex) || 0;
     var q = Math.max(1, Number(qty) || 1);
+    var sku = opts && opts.sku ? String(opts.sku) : undefined;
+    var color = opts && opts.color ? String(opts.color) : undefined;
     var found = null;
-    c.items.forEach(function (it) { if (it.productId === id && it.planIndex === pi) found = it; });
+    c.items.forEach(function (it) {
+      if (it.productId === id && it.planIndex === pi && (it.sku || '') === (sku || '')) found = it;
+    });
     if (found) found.qty += q;
-    else c.items.push({ productId: id, planIndex: pi, qty: q });
+    else {
+      var newItem = { productId: id, planIndex: pi, qty: q };
+      if (sku) newItem.sku = sku;
+      if (color) newItem.color = color;
+      c.items.push(newItem);
+    }
     return c;
   }
 
-  function setQty(cart, productId, planIndex, qty) {
+  function setQty(cart, productId, planIndex, qty, sku) {
     var c = normalizeCart(cart);
     var id = String(productId);
     var pi = Number(planIndex) || 0;
+    var sk = sku ? String(sku) : undefined;
     c.items.forEach(function (it) {
-      if (it.productId === id && it.planIndex === pi) it.qty = Math.max(1, Number(qty) || 1);
+      if (it.productId === id && it.planIndex === pi && (it.sku || '') === (sk || '')) it.qty = Math.max(1, Number(qty) || 1);
     });
     return c;
   }
 
-  function setPlan(cart, productId, fromPlanIndex, toPlanIndex) {
+  function setPlan(cart, productId, fromPlanIndex, toPlanIndex, sku) {
     var c = normalizeCart(cart);
     var id = String(productId);
     var from = Number(fromPlanIndex) || 0;
     var to = Number(toPlanIndex) || 0;
+    var sk = sku ? String(sku) : undefined;
     var idx = -1;
-    c.items.forEach(function (it, i) { if (it.productId === id && it.planIndex === from) idx = i; });
+    c.items.forEach(function (it, i) { if (it.productId === id && it.planIndex === from && (it.sku || '') === (sk || '')) idx = i; });
     if (idx < 0) return c;
     var it = c.items[idx];
     // merge ถ้ามีรายการเดิมที่ plan ใหม่แล้ว
     var dup = null;
-    c.items.forEach(function (x, i) { if (i !== idx && x.productId === id && x.planIndex === to) dup = x; });
+    c.items.forEach(function (x, i) { if (i !== idx && x.productId === id && x.planIndex === to && (x.sku || '') === (sk || '')) dup = x; });
     if (dup) {
       dup.qty += it.qty;
       c.items.splice(idx, 1);
@@ -108,12 +122,13 @@
     return c;
   }
 
-  function removeItem(cart, productId, planIndex) {
+  function removeItem(cart, productId, planIndex, sku) {
     var c = normalizeCart(cart);
     var id = String(productId);
     var pi = (planIndex === undefined || planIndex === null) ? null : Number(planIndex);
+    var sk = sku ? String(sku) : undefined;
     c.items = c.items.filter(function (it) {
-      return !(it.productId === id && (pi === null || it.planIndex === pi));
+      return !(it.productId === id && (pi === null || it.planIndex === pi) && (sk === undefined || (it.sku || '') === sk));
     });
     return c;
   }

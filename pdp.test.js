@@ -296,6 +296,80 @@ t('บันทึก/โหลดผ่าน storage (จำลอง localSto
 });
 
 /* ================================================================
+   6. WD516/WD518 color variant support
+   ================================================================ */
+console.log('\n· WD516/WD518 color variant support');
+
+const WD516_SKUS = ['WD516AN.ACNPLMT', 'WD516AN.AEWPLMT', 'WD516AN.ASLPLMT'];
+const WD516_COLORS = ['Calming Navy', 'Essence White', 'Silver'];
+const WD518_SKUS = ['WD518AN.ABGPLMT', 'WD518AN.AWHPLMT', 'WD518AN.ACGPLMT'];
+const WD518_COLORS = ['Calming Beige', 'Calming Cream White', 'Cream Gray'];
+
+t('WD516 มี variant 3 ตัว พร้อม SKU ที่ถูกต้อง', () => {
+  const p = data.find(x => x.id === 'wd516an');
+  assert.ok(p.variants, 'wd516an มี variants');
+  assert.strictEqual(p.variants.length, 3, 'WD516 มี 3 variants');
+  p.variants.forEach((v, i) => {
+    assert.strictEqual(v.sku, WD516_SKUS[i], 'SKU ' + (i+1) + ' ถูกต้อง');
+    assert.strictEqual(v.color, WD516_COLORS[i], 'Color ' + (i+1) + ' ถูกต้อง');
+  });
+});
+
+t('WD518 มี variant 3 ตัว พร้อม SKU ที่ถูกต้อง', () => {
+  const p = data.find(x => x.id === 'wd518an');
+  assert.ok(p.variants, 'wd518an มี variants');
+  assert.strictEqual(p.variants.length, 3, 'WD518 มี 3 variants');
+  p.variants.forEach((v, i) => {
+    assert.strictEqual(v.sku, WD518_SKUS[i], 'SKU ' + (i+1) + ' ถูกต้อง');
+    assert.strictEqual(v.color, WD518_COLORS[i], 'Color ' + (i+1) + ' ถูกต้อง');
+  });
+});
+
+t('เปลี่ยนสีไม่เปลี่ยนราคา — WD516 ทุกสีมีแผนราคาเท่ากัน', () => {
+  const p = data.find(x => x.id === 'wd516an');
+  // Plan prices are shared across all colors (single product)
+  // Verify plan structure is intact
+  assert.strictEqual(p.plans.length, 6, 'WD516 มี 6 plans');
+  const visit5y = p.plans.find(pl => pl.serviceType === 'Visit' && pl.totalContractMonths === 60);
+  assert.strictEqual(visit5y.price, 799, 'Visit 5Y = 799');
+  const self5y = p.plans.find(pl => pl.serviceType === 'Self' && pl.totalContractMonths === 60);
+  assert.strictEqual(self5y.price, 699, 'Self 5Y = 699');
+});
+
+t('เปลี่ยนสีไม่เปลี่ยนราคา — WD518 ทุกสีมีแผนราคาเท่ากัน', () => {
+  const p = data.find(x => x.id === 'wd518an');
+  assert.strictEqual(p.plans.length, 6, 'WD518 มี 6 plans');
+  const visit5y = p.plans.find(pl => pl.serviceType === 'Visit' && pl.totalContractMonths === 60);
+  assert.strictEqual(visit5y.price, 799, 'Visit 5Y = 799');
+  const self5y = p.plans.find(pl => pl.serviceType === 'Self' && pl.totalContractMonths === 60);
+  assert.strictEqual(self5y.price, 699, 'Self 5Y = 699');
+});
+
+t('ตะกร้าเก็บ SKU/color — สองสีต่างกันในตะกร้า', () => {
+  let c = CART.empty();
+  c = CART.addItem(c, 'wd516an', 2, 1, 'new', { sku: 'WD516AN.ACNPLMT', color: 'Calming Navy' });
+  c = CART.addItem(c, 'wd516an', 2, 1, 'new', { sku: 'WD516AN.AEWPLMT', color: 'Essence White' });
+  assert.strictEqual(c.items.length, 2, 'สองสีเป็นคนละรายการ');
+  assert.strictEqual(c.items[0].sku, 'WD516AN.ACNPLMT');
+  assert.strictEqual(c.items[0].color, 'Calming Navy');
+  assert.strictEqual(c.items[1].sku, 'WD516AN.AEWPLMT');
+  assert.strictEqual(c.items[1].color, 'Essence White');
+  // Same SKU + same plan → merge
+  c = CART.addItem(c, 'wd516an', 2, 1, 'new', { sku: 'WD516AN.ACNPLMT', color: 'Calming Navy' });
+  assert.strictEqual(c.items.length, 2, 'merge จำนวน');
+  const cn = c.items.find(i => i.sku === 'WD516AN.ACNPLMT');
+  assert.strictEqual(cn.qty, 2, 'CN qty = 2');
+});
+
+t('ตะกร้า backward compatible — ไม่มี variant ยังทำงานได้', () => {
+  let c = CART.empty();
+  c = CART.addItem(c, 'wd516an', 2, 1, 'new');
+  assert.strictEqual(c.items.length, 1);
+  assert.strictEqual(c.items[0].sku, undefined, 'ไม่มี sku');
+  assert.strictEqual(c.items[0].color, undefined, 'ไม่มี color');
+});
+
+/* ================================================================
    สรุป
    ================================================================ */
 console.log('\n═══ ผล: ' + passed + ' ผ่าน / ' + failed + ' ไม่ผ่าน ═══');

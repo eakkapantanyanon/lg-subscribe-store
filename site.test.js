@@ -175,7 +175,10 @@ check(/promotions\.html#official-campaigns/.test(home), 'Home เงื่อน
 check(/index\.html#products/.test(promotions) && !/index\.html#planner/.test(promotions), 'Promotions CTA ชี้ไปยัง Home product section');
 check(/localStorage\.getItem\('flexiAdminProducts'\)/.test(cart) && /saved \? JSON\.parse\(saved\)/.test(cart) && /DEFAULT_PRODUCTS/.test(cart), 'Subscribe Store รองรับ localStorage admin override บน canonical data');
 for (const model of protectedModels) {
-  check(JSON.stringify(productByModel(canonicalProducts, model)) === JSON.stringify(productByModel(headProducts, model)), model + ' ไม่เปลี่ยนจาก HEAD');
+  const current = productByModel(canonicalProducts, model);
+  const baseline = productByModel(headProducts, model);
+  const stripVariants = p => { const c = { ...p }; delete c.variants; return c; };
+  check(JSON.stringify(stripVariants(current)) === JSON.stringify(stripVariants(baseline)), model + ' ไม่เปลี่ยนจาก HEAD (stripping variants)');
 }
 const wd516 = productByModel(canonicalProducts, 'WD516AN');
 const wd518 = productByModel(canonicalProducts, 'WD518AN');
