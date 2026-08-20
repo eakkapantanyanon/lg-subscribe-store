@@ -582,6 +582,81 @@
             .officer-qr { width: min(210px, 75vw); margin: auto; }
             .contact-detail { grid-template-columns: 70px 1fr; text-align: left; }
         }
+
+        /* ---- Payment Method Section ---- */
+        .payment-methods {
+            max-width: 1280px; margin: 32px auto; padding: 0 20px;
+        }
+        .payment-methods h2 {
+            font-size: 22px; font-weight: 800; letter-spacing: -.025em;
+            margin-bottom: 6px; color: var(--text);
+        }
+        .payment-methods .pm-sub {
+            font-size: 13px; color: var(--muted); margin-bottom: 20px;
+        }
+        .pm-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+        .pm-card {
+            background: #fff; border: 1px solid var(--line); border-radius: 16px;
+            padding: 24px; position: relative; overflow: hidden;
+        }
+        .pm-card::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+            background: var(--accent);
+        }
+        .pm-card h3 {
+            font-size: 17px; font-weight: 800; margin-bottom: 10px; color: var(--text);
+            display: flex; align-items: center; gap: 8px;
+        }
+        .pm-badge {
+            display: inline-block; font-size: 11px; font-weight: 700;
+            padding: 3px 10px; border-radius: 20px;
+            background: var(--accent-soft); color: var(--accent-text);
+            border: 1px solid var(--accent-border);
+        }
+        .pm-badges { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+        .pm-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
+        .pm-list li {
+            font-size: 13px; line-height: 1.5; color: #444;
+            padding-left: 20px; position: relative;
+        }
+        .pm-list li::before {
+            content: ''; position: absolute; left: 0; top: 6px;
+            width: 8px; height: 8px; border-radius: 50%;
+            background: var(--accent); opacity: .5;
+        }
+        .pm-note {
+            font-size: 12px; color: var(--muted); margin-top: 12px;
+            padding-top: 10px; border-top: 1px dashed var(--line);
+        }
+        .pm-eligibility {
+            background: #fff; border: 1px solid var(--line); border-radius: 16px;
+            padding: 22px 24px;
+        }
+        .pm-eligibility h3 {
+            font-size: 15px; font-weight: 700; margin-bottom: 14px; color: var(--text);
+        }
+        .pm-elig-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .pm-elig-group h4 {
+            font-size: 13px; font-weight: 700; color: var(--accent-text);
+            margin-bottom: 8px; display: flex; align-items: center; gap: 6px;
+        }
+        .pm-elig-group h4::before {
+            content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent);
+            flex-shrink: 0;
+        }
+        .pm-elig-group ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 5px; }
+        .pm-elig-group li {
+            font-size: 12.5px; line-height: 1.5; color: #555;
+            padding-left: 16px; position: relative;
+        }
+        .pm-elig-group li::before {
+            content: '\2022'; position: absolute; left: 0; color: var(--accent); font-weight: 700;
+        }
+        @media (max-width: 640px) {
+            .pm-cards { grid-template-columns: 1fr; }
+            .pm-elig-grid { grid-template-columns: 1fr; gap: 16px; }
+            .payment-methods { padding: 0 16px; }
+        }
     </style>
     <link rel="stylesheet" href="premium.css?v=6">
 </head>
@@ -688,6 +763,62 @@
             <div class="checkout-assurance"><span><b>✓</b>ตรวจสอบราคาก่อนส่ง</span><span><b>◇</b>ยังไม่มีการชำระเงินบนเว็บ</span><span><b>↗</b>เจ้าหน้าที่ช่วยยืนยันสิทธิ์</span></div>
         </aside>
     </main>
+
+    <section class="payment-methods" id="payment-methods" aria-labelledby="pmTitle">
+        <h2 id="pmTitle">วิธีสมัครและชำระค่าบริการ</h2>
+        <p class="pm-sub">เลือกวิธีที่สะดวกที่สุดสำหรับคุณ — ทั้งสองแบบปลอดภัยได้มาตรฐาน LG</p>
+
+        <div class="pm-cards">
+            <div class="pm-card">
+                <h3>บัตรเครดิต</h3>
+                <div class="pm-badges">
+                    <span class="pm-badge">สมัครง่าย</span>
+                    <span class="pm-badge">ไม่ต้องยื่นเอกสาร</span>
+                    <span class="pm-badge">ไม่ล็อกวงเงิน</span>
+                </div>
+                <ul class="pm-list">
+                    <li>ใช้บัตรเครดิตสำหรับชำระค่าบริการ LG Subscribe</li>
+                    <li>ไม่ต้องยื่นเอกสารประกอบการสมัคร</li>
+                </ul>
+                <p class="pm-note">* บัตรเครดิตที่ออกโดยธนาคารในประเทศไทยเท่านั้น</p>
+            </div>
+
+            <div class="pm-card">
+                <h3>หักบัญชี / บัตรเดบิต</h3>
+                <div class="pm-badges">
+                    <span class="pm-badge">ใช้เอกสาร</span>
+                    <span class="pm-badge">พิจารณา 3–4 วัน</span>
+                </div>
+                <ul class="pm-list">
+                    <li>ชำระผ่านการหักบัญชี / บัตรเดบิต</li>
+                    <li>ต้องยื่นเอกสารเพื่ออนุมัติก่อนเริ่มบริการ</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="pm-eligibility">
+            <h3>ควรรู้ก่อนสมัคร</h3>
+            <div class="pm-elig-grid">
+                <div class="pm-elig-group">
+                    <h4>บัตรเครดิต</h4>
+                    <ul>
+                        <li>ชื่อผู้ทำสัญญาและชื่อเจ้าของบัตรต้องเป็นบุคคลเดียวกัน</li>
+                        <li>บัตรต้องมีอายุการใช้งานคงเหลือมากกว่า 3 เดือน</li>
+                        <li>ต้องเป็นบัตรเครดิตที่ออกโดยธนาคารในประเทศไทย</li>
+                        <li>ไม่รองรับบัตรเครดิตออนไลน์ / Virtual Card</li>
+                    </ul>
+                </div>
+                <div class="pm-elig-group">
+                    <h4>หักบัญชี / บัตรเดบิต — เอกสารที่ต้องใช้</h4>
+                    <ul>
+                        <li><strong>เครดิตบูโร</strong> — รายงานข้อมูลเครดิตแบบมีคะแนน (ราคา 200 บาท)</li>
+                        <li><strong>พนักงานประจำ:</strong> สลิปเงินเดือนล่าสุด 1 เดือน หรือ หนังสือรับรองรายได้ + Statement ย้อนหลัง 3 เดือน</li>
+                        <li><strong>อาชีพอิสระ:</strong> Statement ย้อนหลัง 6 เดือน + เอกสารภาษี (ภ.ง.ด.90 หรือ 50 ทวิ)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <footer>
         <p>© 2026 FLEXI-SUB Store. ราคาอ้างอิงจากเอกสาร Price list_Aug_V3.pdf และ Sale Price8 - Subscription_V3.pdf</p>
