@@ -7,6 +7,16 @@
   --premium-shadow-hover: 0 2px 5px rgba(28, 8, 16, .06), 0 16px 36px rgba(28, 8, 16, .1);
 }
 
+/* =====================================================================
+   Phase 9A — Premium Thai typography.
+   IBM Plex Sans Thai (Google Fonts, loaded per-page with preconnect +
+   display=swap) is the premium brand face across this site. Noto Sans
+   Thai is a safe Thai-capable fallback, then the classic system stack.
+   ===================================================================== */
+html, body, button, input, select, textarea, optgroup {
+  font-family: "IBM Plex Sans Thai", "Noto Sans Thai", Tahoma, "Segoe UI", sans-serif;
+}
+
 /* Reusable line icons — currentColor keeps them in sync with each surface. */
 .line-icon {
   display: inline-block;
@@ -639,6 +649,81 @@ body[data-page="home"] #products .p-card:focus-visible .p-cta {
     border-radius: 18px;
   }
   body[data-page="home"] #products .mode-toggle button { min-width: 0; padding-inline: 8px; }
+}
+
+/* ================= Compare table · mobile premium presentation =================
+   Phase 9A polish: at <=480px the fixed 680px min-width forced the "FLEXI-SUB"
+   column to clip behind horizontal scrolling. Reflow the 3-column table into
+   stacked premium cards so every comparison reads fully. Desktop/tablet (>=481px)
+   keeps the original table unchanged. No comparison text is altered. */
+@media (max-width: 480px) {
+  body[data-page="home"] #compare .compare-wrap {
+    overflow: hidden;
+    border-radius: 18px;
+  }
+  body[data-page="home"] #compare .compare-table {
+    display: block;
+    width: 100%;
+    min-width: 0;
+  }
+  body[data-page="home"] #compare .compare-table thead,
+  body[data-page="home"] #compare .compare-table thead tr,
+  body[data-page="home"] #compare .compare-table thead th {
+    display: none;
+  }
+  body[data-page="home"] #compare .compare-table tbody {
+    display: block;
+  }
+  body[data-page="home"] #compare .compare-table tbody tr {
+    display: block;
+    margin-block: 10px;
+    padding: 16px 18px;
+    border: 1px solid rgba(67, 30, 43, .12);
+    border-radius: 18px;
+    background: #fff;
+    box-shadow: 0 2px 14px rgba(44, 10, 23, .05);
+  }
+  body[data-page="home"] #compare .compare-table tbody tr td {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    padding: 9px 14px;
+    text-align: left;
+    border: 0;
+    overflow-wrap: anywhere;
+  }
+  body[data-page="home"] #compare .compare-table tbody tr td:first-child {
+    color: var(--premium-brand);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: .02em;
+    text-transform: uppercase;
+    padding-top: 4px;
+  }
+  body[data-page="home"] #compare .compare-table tbody tr td:nth-child(2) {
+    background: var(--premium-brand-soft);
+    border-left: 3px solid var(--premium-brand);
+    color: #5f001e;
+  }
+  /* Reuse the existing column header words so each stack is self-labeled. */
+  body[data-page="home"] #compare .compare-table tbody tr td:nth-child(2)::before {
+    content: 'FLEXI-SUB';
+    display: block;
+    margin-bottom: 4px;
+    color: var(--premium-brand);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: .14em;
+  }
+  body[data-page="home"] #compare .compare-table tbody tr td:nth-child(3)::before {
+    content: 'ซื้อขาดทั่วไป';
+    display: block;
+    margin-bottom: 4px;
+    color: #64585d;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: .14em;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
