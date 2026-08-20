@@ -3,6 +3,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const { execFileSync } = require('child_process');
 
 const ROOT = __dirname;
 const pages = ['index.html', 'products.html', 'product.html', 'promotions.html', 'subscribe-store.html'];
@@ -98,6 +99,16 @@ const imageInventory = JSON.parse(fs.readFileSync(path.join(ROOT, 'image-invento
 const pdp = fs.readFileSync(path.join(ROOT, 'product.html'), 'utf8');
 const productSource = fs.readFileSync(path.join(ROOT, 'products.js'), 'utf8');
 const gallerySource = fs.readFileSync(path.join(ROOT, 'product-galleries.js'), 'utf8');
+const cart = fs.readFileSync(path.join(ROOT, 'subscribe-store.html'), 'utf8');
+const parseProducts = source => {
+  const marker = 'window.LG_PRODUCTS = [';
+  const start = source.indexOf(marker);
+  return eval('[' + source.slice(start + marker.length, source.lastIndexOf('];')) + ']');
+};
+const canonicalProducts = parseProducts(productSource);
+const headProducts = parseProducts(execFileSync('git', ['show', 'HEAD:products.js'], { cwd: ROOT, encoding: 'utf8' }));
+const protectedModels = ['27GX704A-B', '75QNED86BSA', 'OLED48C6PSA', 'WD516AN', 'WD518AN'];
+const productByModel = (products, model) => products.find(product => product.model === model);
 check(!/id="planner"|BUILD YOUR PACKAGE|พร้อมจัดบ้านให้สบาย/.test(home), 'Home นำ Package Planner และ Final CTA ที่ซ้ำซ้อนออกแล้ว');
 check(/id="products"/.test(home), 'Home มี Product section');
 check(/WHY LG SUBSCRIBE/.test(home) && !/WHY FLEXI-SUB/.test(home), 'Home ใช้หัวข้อ WHY LG SUBSCRIBE');
@@ -134,6 +145,22 @@ check(/fit:\s*'contain'/.test(home) && /data-fit="contain"/.test(home), 'Home He
 check(/OFFICIAL LG CAMPAIGNS/.test(promotions) && /ลด 15% ตลอดสัญญา/.test(promotions), 'Promotions มีแคมเปญล่าสุดจาก LG Thailand');
 check(/images\/promotions\/ktc-credit\.jpg/.test(promotions) && /images\/promotions\/uob-credit\.jpg/.test(promotions), 'Promotions มีรูปจริงโปรบัตรเครดิต KTC และ UOB');
 check(!/id="conditions"/.test(promotions) && !/สิทธิพิเศษหลักในเดือนนี้/.test(promotions), 'Promotions ไม่มีส่วนสิทธิพิเศษที่ซ้ำกับแคมเปญด้านบน');
+check(canonicalProducts.length === 97 && canonicalProducts.reduce((total, product) => total + product.plans.length, 0) === 197, 'Canonical products.js มีสินค้า 97 รุ่นและ 197 แผน');
+for (const page of [promotions, cart]) {
+  check(!/<script[^>]*>[\s\S]*window\.LG_PRODUCTS\s*=/.test(page), 'หน้าร้านไม่มี embedded full dataset');
+  check(page.indexOf('<script src="analytics.js">') < page.indexOf('<script src="products.js">'), 'products.js โหลดหลัง analytics.js');
+}
+check(promotions.indexOf('products.js') < promotions.indexOf('const PRODUCTS'), 'Promotions โหลด products.js ก่อน consumer script');
+check(cart.indexOf('products.js') < cart.indexOf('calculator-core.js') && cart.indexOf('products.js') < cart.indexOf('cart.js') && cart.indexOf('products.js') < cart.indexOf('product-select.js'), 'Cart โหลด products.js ก่อน calculator/cart/product-select consumers');
+check(/localStorage\.getItem\('flexiAdminProducts'\)/.test(cart) && /saved \? JSON\.parse\(saved\)/.test(cart) && /DEFAULT_PRODUCTS/.test(cart), 'Subscribe Store รองรับ localStorage admin override บน canonical data');
+for (const model of protectedModels) {
+  check(JSON.stringify(productByModel(canonicalProducts, model)) === JSON.stringify(productByModel(headProducts, model)), model + ' ไม่เปลี่ยนจาก HEAD');
+}
+const wd516 = productByModel(canonicalProducts, 'WD516AN');
+const wd518 = productByModel(canonicalProducts, 'WD518AN');
+check(wd516.plans.some(plan => plan.serviceType === 'Visit' && plan.outright) && wd518.plans.some(plan => plan.serviceType === 'Visit' && plan.outright), 'WD516AN และ WD518AN มี Visit outright');
+check(wd516.plans.some(plan => plan.serviceType === 'Self' && plan.outright) && wd518.plans.some(plan => plan.serviceType === 'Self' && plan.outright), 'WD516AN และ WD518AN มี Self outright');
+check(productByModel(canonicalProducts, 'OLED48C6PSA').plans.some(plan => /xboom BOUNCE/.test(plan.promo)), 'OLED48C6PSA มีโปรของแถม xboom BOUNCE');
 check(pages.every(page => fs.readFileSync(path.join(ROOT, page), 'utf8').includes('premium.css')), 'ทุกหน้าหลักใช้ Premium CSS กลาง');
 check(!/💳|🔧|🛡️|🔄|🔍|🛒/.test(pages.map(page => fs.readFileSync(path.join(ROOT, page), 'utf8')).join('\n')), 'แทน emoji UI ที่กำหนดด้วย line icon แล้ว');
 check(/สายเกมมิ่ง \(Gaming Lifestyle\)/.test(home) && !/คาเฟ่ \/ ธุรกิจเล็ก/.test(home), 'Home เปลี่ยน Lifestyle ธุรกิจเล็กเป็นสายเกมมิ่ง');
@@ -159,7 +186,6 @@ check(/เทคโนโลยีเครื่องดูดฝุ่นไ�
 check(pdp.indexOf("group('ประเภทแผน'") < pdp.indexOf("group('ประเภทการดูแล'"), 'PDP แสดงประเภทแผนก่อนประเภทการดูแล');
 check(/const pts = SEL\.planTypes\(product\);\s*wrap\.appendChild\(group\('ประเภทแผน'/.test(pdp), 'PDP แสดงกลุ่มประเภทแผนเสมอ');
 
-const cart = fs.readFileSync(path.join(ROOT, 'subscribe-store.html'), 'utf8');
 check(/id="cartItems"/.test(cart), 'Cart มีรายการสินค้า');
 check(/id="rememberedCustomerType"/.test(cart) && !/name="custType"/.test(cart), 'Cart แสดงประเภทลูกค้าที่จำไว้และไม่มีตัวเลือกซ้ำ');
 check(/cart\.customerType = c\[0\]/.test(pdp), 'PDP บันทึกประเภทลูกค้าทันทีที่เลือก');
