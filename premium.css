@@ -336,22 +336,22 @@ body[data-page="home"] .home-trust-item small { display: block; margin-top: 4px;
 /* Why LG Subscribe: calm, premium cards with one brand accent. */
 body[data-page="home"] #why { padding-block: clamp(70px, 6.7vw, 96px); }
 body[data-page="home"] #why .section-head { margin-bottom: clamp(30px, 3.4vw, 44px); }
-body[data-page="home"] #why .benefit-grid { gap: 20px; }
+body[data-page="home"] #why .benefit-grid { gap: 28px 48px; }
 body[data-page="home"] #why .benefit-card {
-  min-height: 292px;
-  padding: 28px 24px 25px;
-  border: 1px solid rgba(102, 56, 73, .14);
-  border-radius: var(--home-radius-md);
-  background: linear-gradient(150deg, #fff 58%, #fdf8fa 100%);
-  box-shadow: var(--home-shadow-card);
+  min-height: 0;
+  padding: 0 0 24px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  transition: none;
 }
-body[data-page="home"] #why .benefit-card::before { opacity: .82; }
-body[data-page="home"] #why .benefit-card::after { color: #cdbfc4; }
+body[data-page="home"] #why .benefit-card::before, body[data-page="home"] #why .benefit-card::after { content: none; }
+body[data-page="home"] #why .benefit-card:nth-child(n+3) { border-top: 1px solid rgba(0,0,0,.06); padding-top: 28px; }
 body[data-page="home"] #why .benefit-icon { border-radius: 16px; background: #fff1f5; box-shadow: none; }
-body[data-page="home"] #why .benefit-card h3 { min-height: 52px; margin-top: 24px; font-size: 19px; }
+body[data-page="home"] #why .benefit-card h3 { margin-top: 20px; font-size: 19px; }
 body[data-page="home"] #why .benefit-card p { font-size: 14px; line-height: 1.72; }
 body[data-page="home"] #why .benefit-note { margin-top: auto; padding-top: 18px; }
-body[data-page="home"] #why .benefit-card { display: flex; flex-direction: column; }
 
 @media (max-width: 1024px) {
   body[data-page="home"] .hero-slide { grid-template-columns: minmax(0, 47fr) minmax(0, 53fr); }
@@ -373,7 +373,7 @@ body[data-page="home"] #why .benefit-card { display: flex; flex-direction: colum
   body[data-page="home"] .home-trust-list { grid-template-columns: repeat(2, minmax(0, 1fr)); padding: 12px; gap: 10px; }
   body[data-page="home"] .home-trust-item { min-height: 104px; padding: 18px; border: 1px solid rgba(92, 47, 64, .1); border-radius: 16px; background: #fff; }
   body[data-page="home"] .home-trust-item + .home-trust-item::before { display: none; }
-  body[data-page="home"] #why .benefit-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  body[data-page="home"] #why .benefit-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px 36px; }
 }
 
 @media (max-width: 640px) {
@@ -400,10 +400,12 @@ body[data-page="home"] #why .benefit-card { display: flex; flex-direction: colum
   body[data-page="home"] .home-trust-item small { font-size: 11px; }
   body[data-page="home"] #why { padding-block: 58px; }
   body[data-page="home"] #why .section-head { margin-bottom: 26px; }
-  body[data-page="home"] #why .benefit-grid { grid-template-columns: 1fr; gap: 13px; }
-  body[data-page="home"] #why .benefit-card { min-height: 0; padding: 22px 20px; border-radius: 18px; }
-  body[data-page="home"] #why .benefit-card h3 { min-height: 0; margin-top: 18px; }
-  body[data-page="home"] #why .benefit-note { padding-top: 4px; }
+body[data-page="home"] #why .benefit-grid { grid-template-columns: 1fr; gap: 0; }
+body[data-page="home"] #why .benefit-card { padding: 0 0 20px; border-radius: 0; }
+body[data-page="home"] #why .benefit-card + .benefit-card { padding-top: 20px; }
+body[data-page="home"] #why .benefit-card:nth-child(n+3) { border-top: 0; padding-top: 20px; }
+body[data-page="home"] #why .benefit-card h3 { margin-top: 18px; }
+body[data-page="home"] #why .benefit-note { padding-top: 4px; }
 }
 
 @media (max-width: 420px) {
