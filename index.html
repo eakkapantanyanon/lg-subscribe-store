@@ -489,7 +489,7 @@
         .compare-table td:nth-child(2) { background: var(--lg-red-soft); color: #5f001e; font-weight: 700; }
         #how { background: #f8f6f5; }
         .steps { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; counter-reset: steps; }
-        .step { counter-increment: steps; padding: 30px; background: #fff; border-radius: 22px; border: 1px solid var(--line); }
+        .step { counter-increment: steps; padding: 30px; background: #fff; border-radius: 22px; border: 1px solid rgba(0,0,0,.06); }
         .step::before { content: '0' counter(steps); display: block; color: var(--lg-red); font-size: 13px; font-weight: 800; letter-spacing: .12em; margin-bottom: 32px; }
         .step h3 { font-size: 21px; margin-bottom: 8px; }
         .step p { color: var(--muted); font-size: 14px; }
@@ -556,8 +556,8 @@
         .p-cta { margin-top: 15px; font-weight: 800; color: var(--lg-red); }
 
         .steps { gap: 22px; }
-        .step { border-radius: 26px; border-color: rgba(108,67,82,.13); box-shadow: var(--premium-shadow-soft); }
-        .step::before { box-shadow: 0 10px 24px rgba(165,0,52,.18); }
+        .step { border-radius: 26px; box-shadow: none; }
+        .step::before { box-shadow: none; }
         .faq-list details { margin-bottom: 12px; border-color: rgba(108,67,82,.13); border-radius: 18px; background: rgba(255,255,255,.82); box-shadow: 0 8px 25px rgba(49,13,27,.035); }
         .faq-list summary { padding: 22px 24px; }
         .faq-list details p { padding: 0 24px 22px; }
