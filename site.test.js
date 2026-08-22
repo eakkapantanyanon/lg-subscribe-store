@@ -387,6 +387,8 @@ check(pdp.indexOf("group('ประเภทแผน'") < pdp.indexOf("group('�
 check(/const pts = SEL\.planTypes\(product\);\s*wrap\.appendChild\(group\('ประเภทแผน'/.test(pdp), 'PDP แสดงกลุ่มประเภทแผนเสมอ');
 
 check(/id="cartItems"/.test(cart), 'Cart มีรายการสินค้า');
+check(/const cartKey = \(productId, sku\)/.test(cart) && /entry\.sku/.test(cart) && /entry\.color/.test(cart), 'Cart แยกรายการตาม product + SKU และรักษาสีจาก PDP');
+check(/สี ' \+ color/.test(cart) && /SKU ' \+ sku/.test(cart), 'ข้อความส่งเจ้าหน้าที่ระบุสีและ SKU ของ variant');
 check(/id="rememberedCustomerType"/.test(cart) && !/name="custType"/.test(cart), 'Cart แสดงประเภทลูกค้าที่จำไว้และไม่มีตัวเลือกซ้ำ');
 check(/cart\.customerType = c\[0\]/.test(pdp), 'PDP บันทึกประเภทลูกค้าทันทีที่เลือก');
 check(/copyOrderForOfficer\(\)/.test(cart), 'Cart มี flow คัดลอกรายการส่งเจ้าหน้าที่');

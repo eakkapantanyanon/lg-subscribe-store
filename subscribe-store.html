@@ -914,15 +914,20 @@
             }
         }
         loadData();
-        let selected = {};   // productId -> { product, planIndex, qty }
+        let selected = {};   // cartKey(productId, sku) -> { product, planIndex, qty, sku?, color? }
         let custType = 'new';  // 'new' | 'old'
+        const cartKey = (productId, sku) => productId + (sku ? '::' + sku : '');
         const fmt = n => LG.fmtMoney(n);
 
         /* ---------- ตะกร้าร่วม (shared cart จากหน้า PDP — localStorage) ---------- */
         function saveCartState() {
-            const items = Object.keys(selected).map(id => ({
-                productId: id, planIndex: selected[id].planIndex, qty: selected[id].qty
-            }));
+            const items = Object.keys(selected).map(key => {
+                const entry = selected[key];
+                const item = { productId: entry.product.id, planIndex: entry.planIndex, qty: entry.qty };
+                if (entry.sku) item.sku = entry.sku;
+                if (entry.color) item.color = entry.color;
+                return item;
+            });
             CART.save({ customerType: custType, items: items });
         }
         (function loadCartState() {
@@ -930,12 +935,17 @@
             var migrated = false;
             cart.items.forEach(it => {
                 const p = PRODUCTS.find(x => x.id === it.productId);
+                const key = cartKey(it.productId, it.sku);
+                const entry = { product: p, planIndex: it.planIndex, qty: it.qty };
+                if (it.sku) entry.sku = it.sku;
+                if (it.color) entry.color = it.color;
                 if (p && p.plans[it.planIndex]) {
-                    selected[it.productId] = { product: p, planIndex: it.planIndex, qty: it.qty };
+                    selected[key] = entry;
                 } else if (it.productId === '27gx704a' && p && p.plans.length > 0) {
                     it.planIndex = 0;
+                    entry.planIndex = 0;
                     migrated = true;
-                    selected[it.productId] = { product: p, planIndex: 0, qty: it.qty };
+                    selected[key] = entry;
                 }
             });
             if (migrated) CART.save(cart);
@@ -1097,10 +1107,11 @@
             } else {
                 list.innerHTML = '';
                 ids.forEach(id => {
-                    const { product, planIndex, qty } = selected[id];
+                    const { product, planIndex, qty, sku, color } = selected[id];
                     const plan = product.plans[planIndex];
                     const q = qty || 1;
                     const item = planToItem(product, plan);
+                    const variantLabel = color ? ' · ' + color + (sku ? ' [' + sku + ']' : '') : '';
 
                     const li = document.createElement('li');
                     const opts = product.plans.map((pl, i) =>
@@ -1112,7 +1123,7 @@
                         '<div class="cart-item-top">' +
                             '<div>' +
                                 '<div class="cart-item-name">' + product.name + (q > 1 ? ' <span class="qty-num">×' + q + '</span>' : '') + '</div>' +
-                                '<div class="cart-item-model">' + product.model + ' · ' + plan.label + '</div>' +
+                                '<div class="cart-item-model">' + product.model + variantLabel + ' · ' + plan.label + '</div>' +
                             '</div>' +
                             '<div class="cart-item-price">' + cartItemPriceLabel(item) + '</div>' +
                         '</div>' +
@@ -1265,11 +1276,13 @@
 
             msg += 'รายการที่เลือก:\n';
             ids.forEach((id, i) => {
-                const { product, planIndex, qty } = selected[id];
+                const { product, planIndex, qty, sku, color } = selected[id];
                 const plan = product.plans[planIndex];
                 const q = qty || 1;
                 const item = planToItem(product, plan);
                 msg += (i + 1) + '. ' + product.name + ' [' + product.model + ']';
+                if (color) msg += ' · สี ' + color;
+                if (sku) msg += ' · SKU ' + sku;
                 if (q > 1) msg += ' ×' + q;
                 msg += '\n';
                 msg += '   แผน: ' + plan.label + ' | ' + cartItemPriceLabel(item);

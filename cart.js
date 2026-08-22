@@ -2,7 +2,7 @@
    cart.js — ตะกร้าสินค้าร่วม (shared cart)
    ใช้ร่วมกันระหว่าง product.html (PDP) และ subscribe-store.html (หน้าตะกร้า)
    - เก็บใน localStorage (key: flexiCart) — โครงสร้าง:
-       { customerType: 'new'|'old', items: [{ productId, planIndex, qty }] }
+       { customerType: 'new'|'old', items: [{ productId, planIndex, qty, sku?, color? }] }
    - ทุกครั้งที่ save จะ dispatch event 'flexi-cart-changed' (ใช้กับ badge ตะกร้าบนหน้า PDP)
    - รองรับ Node test (ฉีด storage ผ่าน setStorage)
    ===================================================================== */
