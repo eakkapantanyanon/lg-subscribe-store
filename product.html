@@ -222,22 +222,6 @@
         .care-lines li { grid-template-columns: 12px minmax(0, 1fr); }
         .care-lines .care-cycle { grid-column: 2; margin-top: -3px; }
     }
-    .info-btn {
-        width: 20px; height: 20px; border-radius: 50%; border: 1px solid var(--accent-border);
-        background: var(--accent-soft); color: var(--accent-text); font-size: 12px; font-weight: 700;
-        cursor: pointer; line-height: 18px; text-align: center;
-    }
-    .popover {
-        position: absolute; z-index: 60; max-width: 280px;
-        background: #1f2937; color: #f9fafb; font-size: 12.5px; line-height: 1.5;
-        border-radius: 10px; padding: 10px 12px; box-shadow: 0 8px 24px rgba(0,0,0,.25);
-        display: none;
-    }
-    .popover.show { display: block; }
-    .popover::after {
-        content: ''; position: absolute; top: -6px; left: 16px;
-        border: 6px solid transparent; border-bottom-color: #1f2937; border-top: 0;
-    }
     .variant-group { margin-top: 10px; }
     .variant-group .vg-title { font-size: 12px; font-weight: 700; color: var(--muted); margin-bottom: 6px; }
 
@@ -1099,23 +1083,6 @@
         if (!plans.length) return '';
         const min = Math.min.apply(null, plans.map(p => p.price));
         return planType === 'outright' ? '฿' + fmt(min) + ' จ่ายครั้งเดียว' : '฿' + fmt(min) + '/เดือน';
-    }
-
-    /* ---------- Popover (i) ---------- */
-    let activePopover = null;
-    function togglePopover(btn, text) {
-        if (activePopover && activePopover.btn === btn) { activePopover.el.remove(); activePopover = null; return; }
-        if (activePopover) activePopover.el.remove();
-        const el = document.createElement('div');
-        el.className = 'popover show';
-        el.textContent = text;
-        btn.parentElement.appendChild(el);
-        activePopover = { btn, el };
-        document.addEventListener('click', function h(e) {
-            if (!el.contains(e.target) && e.target !== btn && !btn.contains(e.target)) {
-                el.remove(); activePopover = null; document.removeEventListener('click', h);
-            }
-        });
     }
 
     /* ---------- Summary ---------- */
