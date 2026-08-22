@@ -182,9 +182,9 @@
         .hero-controls {
             position: absolute; bottom: 0; left: 0; right: 0; z-index: 6;
             display: flex; justify-content: space-between; align-items: flex-end;
-            padding: 0 clamp(18px, 3vw, 44px) 20px; pointer-events: none;
+            padding: 0 clamp(28px, 5vw, 76px) 22px; pointer-events: none;
         }
-        .hero-progress-wrap { display: flex; flex-direction: column; gap: 8px; }
+        .hero-progress-wrap { display: flex; flex-direction: column; gap: 8px; min-width: 0; max-width: calc(40% - 28px); }
         .hero-progress { display: flex; gap: 6px; pointer-events: auto; }
         .hero-progress button {
             width: 26px; height: 3px; border-radius: 2px; border: none; cursor: pointer; padding: 0;
@@ -196,7 +196,7 @@
             animation: heroFill var(--hero-timer) linear forwards;
         }
         @keyframes heroFill { from { width: 0; } to { width: 100%; } }
-        .hero-note { font-size: 10px; color: var(--ctl-muted); max-width: 300px; line-height: 1.5; }
+        .hero-note { font-size: 11px; color: var(--ctl-muted); max-width: min(520px, 52vw); line-height: 1.65; overflow: visible; text-wrap: pretty; }
         .hero-nav { display: flex; gap: 10px; align-items: center; pointer-events: auto; }
         .hero-nav button {
             width: 40px; height: 40px; border-radius: 50%; border: 1.5px solid var(--ctl-outline);
@@ -481,7 +481,7 @@
         .section-head h2 { letter-spacing: -.035em; }
         /* Home sections are moderate in size; render their real geometry to keep scrolling stable and avoid large intrinsic placeholders. */
         @media (max-width: 900px) { .benefit-grid { grid-template-columns: repeat(2, 1fr); gap: 24px 36px; } .header-cta { display: none; } }
-        @media (max-width: 640px) { .announcement { font-size: 11px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; } .header-inner { padding-left: 16px; padding-right: 12px; gap: 8px; } .brand-copy span { display: none; } .header-actions { gap: 6px; } .header-actions .icon-btn:first-child { display: none; } .hero-left { padding: 34px 22px 78px; overflow: hidden; } .hero-left h1 { font-size: 34px; overflow-wrap: anywhere; } .h-detail { font-size: 14px; } .h-btns { gap: 8px; } .h-btn { padding: 11px 16px; } .hero-right { min-height: 285px; } .hero-badge { right: 14px; max-width: calc(100% - 28px); } .hero-controls { max-width: 100vw; } #why { padding-top: 54px; } .benefit-grid { grid-template-columns: 1fr; gap: 0; } .benefit-card { padding: 0 0 20px; } .benefit-card + .benefit-card { padding-top: 20px; } .benefit-card:nth-child(n+3) { border-top: 0; padding-top: 20px; } .benefit-icon { width: 50px; height: 50px; border-radius: 16px; } .benefit-card h3 { margin-top: 18px; } .benefit-note { margin-top: 12px; } .lifestyle-grid { grid-template-columns: 1fr; } .lifestyle-card { min-height: 180px; } .p-img { height: 190px; } }
+        @media (max-width: 640px) { .announcement { font-size: 11px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; } .hero-controls { padding: 0 22px 14px; } .hero-progress-wrap { max-width: calc(100% - 126px); } .hero-note { max-width: 100%; font-size: 9.5px; line-height: 1.55; } .header-inner { padding-left: 16px; padding-right: 12px; gap: 8px; } .brand-copy span { display: none; } .header-actions { gap: 6px; } .header-actions .icon-btn:first-child { display: none; } .hero-left { padding: 34px 22px 78px; overflow: hidden; } .hero-left h1 { font-size: 34px; overflow-wrap: anywhere; } .h-detail { font-size: 14px; } .h-btns { gap: 8px; } .h-btn { padding: 11px 16px; } .hero-right { min-height: 285px; } .hero-badge { right: 14px; max-width: calc(100% - 28px); } .hero-controls { max-width: 100vw; } #why { padding-top: 54px; } .benefit-grid { grid-template-columns: 1fr; gap: 0; } .benefit-card { padding: 0 0 20px; } .benefit-card + .benefit-card { padding-top: 20px; } .benefit-card:nth-child(n+3) { border-top: 0; padding-top: 20px; } .benefit-icon { width: 50px; height: 50px; border-radius: 16px; } .benefit-card h3 { margin-top: 18px; } .benefit-note { margin-top: 12px; } .lifestyle-grid { grid-template-columns: 1fr; } .lifestyle-card { min-height: 180px; } .p-img { height: 190px; } }
 
         /* ================= Decision content ================= */
         #compare { background: #fff; }
