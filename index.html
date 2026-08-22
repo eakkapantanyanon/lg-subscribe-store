@@ -20,7 +20,8 @@
     <link rel="preconnect" href="https://www.lg.com" crossorigin>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anuphan:wght@300;400;500;600;700&family=Bai+Jamjuree:wght@500;600;700&display=swap">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Anuphan:wght@400;500;600;700&family=Bai+Jamjuree:wght@500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anuphan:wght@400;500;600;700&family=Bai+Jamjuree:wght@500;600;700&display=swap"></noscript>
     <link rel="preload" as="image" href="images/hero-8-d.webp" type="image/webp" media="(min-width: 861px)" fetchpriority="high">
     <link rel="preload" as="image" href="images/hero-8-m.webp" type="image/webp" media="(max-width: 860px)" fetchpriority="high">
     <title>FLEXI-SUB™ | LG Subscribe เช่าเครื่องใช้ไฟฟ้ารายเดือน</title>
@@ -687,7 +688,8 @@
             .benefit-card:hover, .lifestyle-card:hover, .p-card:hover, .p-card:hover .p-img img { transform: none; }
         }
     </style>
-    <link rel="stylesheet" href="premium.css?v=9">
+    <link rel="preload" as="style" href="premium.css?v=10" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="premium.css?v=10"></noscript>
 </head>
 <body data-page="home">
 
@@ -947,8 +949,8 @@
         <p class="copyright">© 2026 FLEXI-SUB™ — ตัวแทนจำหน่าย LG Subscribe · ข้อมูลราคาอ้างอิงจาก Price List ส.ค. 2569 (V3) · หมดเขตโปรโมชัน 31 ส.ค. 2569</p>
     </footer>
 
-    <script src="analytics.js"></script>
-    <script src="products.js"></script>
+    <script src="analytics.js" defer></script>
+    <script src="products.js" defer></script>
     <script>
         /* ---------- dataLayer / GA4: พร้อมใช้ทันทีที่ติดตั้ง GTM/GA4 ----------
            event ที่ push:
