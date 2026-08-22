@@ -10,6 +10,7 @@
 window.LG_PRODUCTS = [
   {
     id: 'wd516an',
+    img: 'images/products/wd516an.webp',
     model: 'WD516AN',
     name: 'เครื่องกรองน้ำ LG PuriCare รุ่น WD516AN',
     category: 'เครื่องกรองน้ำ',
@@ -112,6 +113,7 @@ window.LG_PRODUCTS = [
   },
   {
     id: 'wd518an',
+    img: 'images/products/wd518an.webp',
     model: 'WD518AN',
     name: 'เครื่องกรองน้ำ LG PuriCare รุ่น WD518AN',
     category: 'เครื่องกรองน้ำ',
@@ -450,6 +452,7 @@ window.LG_PRODUCTS = [
   },
   {
     id: 'gc-x257cmhw',
+    img: 'images/products/gc-x257cmhw.webp',
     model: 'GC-X257CMHW',
     name: 'ตู้เย็น Side by Side ขนาด 22.4 คิว ระบบ Inverter Compressor',
     category: 'ตู้เย็น Side by Side',
@@ -1866,7 +1869,7 @@ window.LG_PRODUCTS = [
   {
     id: 'dfc335hm',
     fallbackImg: 'https://arttato.github.io/LG-Subscribe/img/products/dfc335hm-abmpeth.jpg',
-    img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/dishwasher/dfc335hm/gallery/01_XD-G3_MatteBlack_DFC335HM_TH_Front-450.jpg',
+    img: 'images/products/dfc335hm.webp',
     model: 'DFC335HM',
     name: 'เครื่องล้างจาน DFC335HM สีดำ มี WI-FI control',
     category: 'เครื่องล้างจาน',

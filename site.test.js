@@ -45,6 +45,10 @@ const requiredAssets = [
   'images/products/saq-series.webp',
   'images/products/artcool-series.webp',
   'images/products/27lx6tdga-grab.webp',
+  'images/products/wd516an.webp',
+  'images/products/wd518an.webp',
+  'images/products/gc-x257cmhw.webp',
+  'images/products/dfc335hm.webp',
   'images/products/gc-x257cmew.webp',
   'images/products/gc-j257sqzw.webp',
   'images/products/gv-b25ffgdb.webp',
@@ -201,8 +205,8 @@ check(/products\.html/.test(sitemap) && !/<loc>[^<]*\/product\.html<\/loc>/.test
 check(imageInventory.summary.products === 97 && imageInventory.summary.primary.local === 8, 'Phase 4 inventory มีสินค้า 97 รุ่นและ local primary pilot 8 รุ่น');
 check(imageInventory.summary.groups.A === 8 && imageInventory.summary.pilot.reductionPercent > 50, 'Phase 4 pilot ผ่าน verification และลดขนาดรวมมากกว่า 50%');
 const localPrimaryRefs = productSource.match(new RegExp("img: 'images/products/[a-z0-9-]+[.]webp'", 'g')) || [];
-check(localPrimaryRefs.length === 73, 'Product data มี 73 product records ที่ใช้ local WebP หลังย้าย shared-series Group C');
-check(new Set(localPrimaryRefs.map(ref => ref.slice(ref.indexOf('images/products/'), -1))).size === 59, '73 local product records ใช้ 59 unique WebP assets โดย OLED และแอร์ series แชร์ภาพอย่างตั้งใจ');
+check(localPrimaryRefs.length === 77, 'Product data มี 77 product records ที่ใช้ local WebP หลัง final verified-image batch');
+check(new Set(localPrimaryRefs.map(ref => ref.slice(ref.indexOf('images/products/'), -1))).size === 63, '77 local product records ใช้ 63 unique WebP assets โดย OLED และแอร์ series แชร์ภาพอย่างตั้งใจ');
 check(/localPrimary/.test(pdp) && /fetchpriority="high"/.test(pdp), 'PDP ใช้ local primary ก่อน gallery และให้ priority กับภาพหลัก');
 check(/loading="lazy"/.test(catalogSource) && !/position <= 4 \? 'eager'/.test(catalogSource), 'Catalog lazy-load รูปสินค้าซึ่งอยู่ใต้ส่วนค้นหา');
 check(!/class="trust-strip"/.test(home), 'Home ไม่มี trust strip ที่ซ้ำกับ Why FLEXI-SUB');
@@ -266,7 +270,8 @@ for (const model of protectedModels) {
     } else { c.plans = []; }
     return c;
   };
-  const strip = model === '75QNED86BSA' ? stripAuthorizedQned : model === '27GX704A-B' ? stripAuthorizedGx : stripVariants;
+  const stripAuthorizedImage = p => { const c = stripVariants(p); delete c.img; return c; };
+  const strip = model === '75QNED86BSA' ? stripAuthorizedQned : model === '27GX704A-B' ? stripAuthorizedGx : (model === 'WD516AN' || model === 'WD518AN') ? stripAuthorizedImage : stripVariants;
   check(JSON.stringify(strip(current)) === JSON.stringify(strip(baseline)), model + ' ไม่เปลี่ยนจาก HEAD (authorized fields stripped)');
 }
 // 75QNED86BSA: explicit August 2026 reconciliation assertions
