@@ -1,3 +1,6 @@
 .qa-*/
 qa-*.png
 
+.serena/
+.freebuff/
+.tmp_*
