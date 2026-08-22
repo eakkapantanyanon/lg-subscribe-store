@@ -570,6 +570,109 @@
             .lifestyle-card { min-height: 0; }
             .p-img { height: 200px; }
         }
+        /* Editorial refinement: softer typography and less template-like rhythm */
+        body { font-weight: 400; letter-spacing: -.006em; }
+        section { padding-top: clamp(82px, 9vw, 124px); padding-bottom: clamp(82px, 9vw, 124px); }
+        .section-head { text-align: left; max-width: 860px; margin: 0 0 clamp(38px, 5vw, 62px); }
+        .section-head .kicker { padding: 0; border-radius: 0; background: transparent; font-size: 11px; font-weight: 600; letter-spacing: .12em; }
+        .section-head h2 { max-width: 760px; margin-top: 12px; font-size: clamp(32px, 4.4vw, 52px); line-height: 1.2; font-weight: 600; letter-spacing: -.045em; text-wrap: balance; }
+        .section-head p { max-width: 620px; margin: 12px 0 0; color: #625b5e; font-size: 16px; line-height: 1.85; font-weight: 400; }
+        #products .section-head { max-width: 680px; }
+        #products .product-grid { gap: 18px; }
+        #products .p-card { border-radius: 18px; padding: 10px 10px 20px; box-shadow: 0 6px 20px rgba(34,7,17,.045); }
+        #products .p-card:hover { transform: translateY(-3px); box-shadow: 0 14px 34px rgba(34,7,17,.09); }
+        #products .p-img { border-radius: 13px; background: #f7f5f4; }
+        #products .p-name { font-weight: 500; line-height: 1.5; letter-spacing: -.015em; }
+        #products .p-price { font-weight: 600; }
+        .hero-left { padding-top: 64px; padding-bottom: 76px; }
+        .h-label { margin-bottom: 18px; font-size: 11px; font-weight: 600; letter-spacing: .14em; }
+        .hero-left h1 { max-width: 620px; font-size: clamp(38px, 4.3vw, 60px); line-height: 1.16; font-weight: 600; letter-spacing: -.05em; text-wrap: balance; }
+        .h-dates { margin-top: 2px; margin-bottom: 12px; font-weight: 400; }
+        .h-detail { max-width: 520px; margin-bottom: 30px; font-size: 16px; line-height: 1.8; }
+        .h-btns { gap: 10px; margin-bottom: 30px; }
+        .h-btn { border-radius: 12px; padding: 12px 20px; font-weight: 600; }
+        .h-btn-solid:hover { transform: translateY(-1px); box-shadow: 0 7px 18px rgba(0,0,0,.14); }
+        .h-logo { padding: 0; border: 0; border-radius: 0; background: transparent; font-size: 12px; font-weight: 500; letter-spacing: .03em; opacity: .72; }
+        .lifestyle-card { border-radius: 18px; box-shadow: inset 0 0 0 1px rgba(108,67,82,.12); }
+        .lifestyle-card:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(34,7,17,.07); }
+        .lifestyle-card .l-emoji { box-shadow: none; border-radius: 14px; }
+        .lifestyle-card h4 { font-weight: 600; letter-spacing: -.02em; }
+        #products .p-cat { font-size: 10px; font-weight: 600; letter-spacing: .08em; }
+        #products .p-model { color: #777074; font-size: 12px; }
+        #products .p-cta { margin-top: 18px; padding-top: 12px; font-size: 13px; font-weight: 500; color: #3f383b; }
+        #why .benefit-grid { gap: 0 52px; }
+        #why .benefit-card { position: relative; padding: 30px 0 34px 76px; border-top: 1px solid rgba(65,28,42,.10); }
+        #why .benefit-card:nth-child(n+3) { padding-top: 30px; }
+        #why .benefit-icon { position: absolute; left: 0; top: 30px; width: 46px; height: 46px; border-radius: 12px; background: transparent; box-shadow: inset 0 0 0 1px rgba(165,0,52,.16); }
+        #why .benefit-card h3 { margin: 0 0 8px; font-size: 20px; font-weight: 600; letter-spacing: -.02em; }
+        #why .benefit-card p { max-width: 430px; font-size: 14px; line-height: 1.8; }
+        #why .benefit-note { margin-top: 13px; font-weight: 500; }
+        .mode-toggle { display: inline-flex; gap: 24px; padding: 0; border: 0; border-radius: 0; background: transparent; box-shadow: none; }
+        .mode-toggle button { min-height: auto; padding: 8px 0 10px; border-radius: 0; background: transparent; color: #6b6367; font-weight: 500; border-bottom: 1px solid transparent; }
+        .mode-toggle button.active { color: var(--ink); background: transparent; box-shadow: none; border-bottom-color: var(--lg-red); }
+        .lifestyle-grid { gap: 12px; margin-top: 30px; }
+        .lifestyle-card, .lifestyle-card:nth-child(1), .lifestyle-card:nth-child(2), .lifestyle-card:nth-child(3), .lifestyle-card:nth-child(4) { min-height: 0; padding: 22px 20px; border-radius: 14px; background: #fff; box-shadow: inset 0 0 0 1px rgba(65,28,42,.10); }
+        .lifestyle-card::after { content: none; }
+        .lifestyle-card.active { background: #fff8fa; box-shadow: inset 0 0 0 1.5px var(--lg-red); }
+        .lifestyle-card .l-emoji { width: 42px; height: 42px; border-radius: 12px; background: #faf7f8; }
+        .lifestyle-card h4 { margin-top: 16px; font-size: 18px; }
+        #promotions { background: #fff; }
+        #promotions .promo-grid { grid-template-columns: repeat(12, 1fr); gap: 14px; }
+        #promotions .promo-card { min-height: 350px; border-radius: 16px; }
+        #promotions .promo-card:nth-child(1), #promotions .promo-card:nth-child(4) { grid-column: span 7; }
+        #promotions .promo-card:nth-child(2), #promotions .promo-card:nth-child(3) { grid-column: span 5; }
+        #promotions .promo-body { padding: 24px 24px 22px; }
+        #promotions .promo-body h3 { max-width: 520px; font-size: 22px; line-height: 1.35; font-weight: 600; letter-spacing: -.02em; }
+        #promotions .promo-body p { max-width: 520px; line-height: 1.65; }
+        #promotions .promo-tag { top: 14px; left: 14px; padding: 5px 10px; border-radius: 8px; font-weight: 600; }
+        #promotions .promo-link { font-weight: 500; }
+        #compare .compare-wrap { border: 0; border-radius: 0; background: #fff; box-shadow: inset 0 1px 0 var(--line), inset 0 -1px 0 var(--line); }
+        #compare .compare-table th, #compare .compare-table td { padding: 22px 20px; }
+        #compare .compare-table th { background: transparent; font-weight: 500; letter-spacing: .01em; }
+        #compare .compare-table th:nth-child(2) { background: #f8eef1; color: var(--lg-red); }
+        #compare .compare-table td:first-child { font-weight: 600; }
+        #compare .compare-table td:nth-child(2) { background: #fcf7f8; color: #4f2633; font-weight: 500; }
+        #how .steps { gap: 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+        #how .step { position: relative; border: 0; border-radius: 0; padding: 32px 34px 34px; background: transparent; }
+        #how .step + .step { border-left: 1px solid var(--line); }
+        #how .step::before { font-size: 12px; font-weight: 600; color: var(--lg-red); letter-spacing: .08em; }
+        #how .step h3 { margin-top: 28px; font-size: 21px; font-weight: 600; letter-spacing: -.025em; }
+        #how .step p { margin-top: 8px; line-height: 1.75; color: #625b5e; }
+        #faq .faq-list { max-width: 980px; margin: 0; }
+        #faq .faq-list details { margin: 0; border: 0; border-bottom: 1px solid var(--line); border-radius: 0; background: transparent; box-shadow: none; }
+        #faq .faq-list details:first-child { border-top: 1px solid var(--line); }
+        #faq .faq-list summary { padding: 24px 44px 24px 0; font-weight: 500; font-size: 17px; }
+        #faq .faq-list details p { max-width: 760px; padding: 0 44px 24px 0; font-size: 15px; line-height: 1.8; }
+        #services .service-banner { border-radius: 18px; box-shadow: none; }
+        #services .service-banner h2 { max-width: 620px; font-weight: 600; letter-spacing: -.035em; line-height: 1.25; }
+        #services .service-banner .sub { line-height: 1.8; }
+        @media (min-width: 900px) {
+            #compare .section-head, #how .section-head, #faq .section-head { margin-left: 7%; }
+            #promotions .section-head { margin-left: auto; margin-right: 4%; max-width: 720px; }
+        }
+        @media (max-width: 640px) {
+            section { padding-top: 64px; padding-bottom: 64px; }
+            .section-head { margin-bottom: 34px; }
+            .section-head h2 { font-size: 30px; line-height: 1.28; letter-spacing: -.035em; }
+            .section-head p { margin-top: 10px; font-size: 14px; line-height: 1.75; }
+            #products .product-grid { gap: 14px; }
+            #products .p-card { border-radius: 16px; }
+            #how .step { padding: 26px 0; }
+            #how .step + .step { border-left: 0; border-top: 1px solid var(--line); }
+            #how .step h3 { margin-top: 18px; font-size: 19px; }
+            #faq .faq-list summary { padding: 20px 38px 20px 0; font-size: 16px; }
+            #faq .faq-list details p { padding: 0 32px 20px 0; font-size: 14px; }
+            #services .service-banner { border-radius: 14px; }
+            #why .benefit-grid { gap: 0; }
+            #why .benefit-card, #why .benefit-card:nth-child(n+3) { padding: 24px 0 26px 62px; }
+            #why .benefit-icon { top: 24px; width: 40px; height: 40px; border-radius: 11px; }
+            .mode-toggle { gap: 18px; width: 100%; overflow-x: auto; }
+            .mode-toggle button { white-space: nowrap; }
+            .lifestyle-grid { margin-top: 22px; gap: 10px; }
+            .lifestyle-card, .lifestyle-card:nth-child(1), .lifestyle-card:nth-child(2), .lifestyle-card:nth-child(3), .lifestyle-card:nth-child(4) { padding: 18px; border-radius: 12px; }
+            #promotions .promo-grid { grid-template-columns: 1fr; gap: 12px; }
+            #promotions .promo-card:nth-child(1), #promotions .promo-card:nth-child(2), #promotions .promo-card:nth-child(3), #promotions .promo-card:nth-child(4) { grid-column: auto; min-height: 300px; }
+        }
         @media (prefers-reduced-motion: reduce) {
             .benefit-card, .lifestyle-card, .p-card, .p-img img { transition: none; }
             .benefit-card:hover, .lifestyle-card:hover, .p-card:hover, .p-card:hover .p-img img { transform: none; }
@@ -762,7 +865,7 @@
                 <div class="promo-card dark featured" role="link" tabindex="0" aria-label="ดูรุ่นที่ได้รับส่วนลด" onclick="location.href='promotions.html#promos'" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();location.href='promotions.html#promos'}"
                      style="background-image:url('images/promotions/air-purifier-kum-2-tor.jpg');background-position:72% center">
                     <span class="promo-tag">ลด 50%</span>
-                    <div class="promo-body"><h3>ส่วนลด 50% นานสูงสุด 12 เดือน</h3><p>บางรุ่นลดเดือน 2–12 กันเลยทีเดียว</p><span class="promo-link">ดูรุ่นที่ร่วมรายการ →</span></div>
+                    <div class="promo-body"><h3>ส่วนลด 50% นานสูงสุด 12 เดือน</h3><p>สินค้าบางรุ่นรับส่วนลดในช่วงเดือนที่ 2–12 ตามเงื่อนไขรายการ</p><span class="promo-link">ดูรุ่นที่ร่วมรายการ →</span></div>
                 </div>
                 <div class="promo-card" role="link" tabindex="0" aria-label="ดูรุ่นที่มีของแถม" onclick="location.href='promotions.html#promos'" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();location.href='promotions.html#promos'}"
                      style="background-image:url('images/promotions/oled48-xboom.jpg');background-position:72% center">
@@ -1167,7 +1270,7 @@
                     '<div class="hero-left">' +
                         '<span class="h-label">' + s.label + '</span>' +
                         '<h1>' + s.title + '</h1>' +
-                        '<div class="h-dates">' + s.dates + '</div>' +
+                        (s.dates ? '<div class="h-dates">' + s.dates + '</div>' : '') +
                         '<p class="h-detail">' + s.detail + '</p>' +
                         '<div class="h-btns">' +
                             '<a class="h-btn ' + (s.btn1.variant === 'primary' ? 'h-btn-solid' : 'h-btn-outline') + '" href="' + s.btn1.href + '">' + s.btn1.text + '</a>' +
