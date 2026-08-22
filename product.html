@@ -1268,6 +1268,25 @@
         setTimeout(() => { location.href = 'subscribe-store.html'; }, 900);
     }
 
+    /* ---------- SEO metadata for slug-based PDP ---------- */
+    function updateProductSeo(p) {
+        const slug = SEL.slugFor(p);
+        const url = 'https://eakkapantanyanon.github.io/lg-subscribe-store/product.html?slug=' + encodeURIComponent(slug);
+        const title = (p.name || p.model) + ' — FLEXI-SUB™ LG Subscribe';
+        const desc = 'ดูรายละเอียด ' + (p.name || p.model) + ' เลือกแพ็กเกจ ระยะสัญญา และตรวจสอบค่าใช้จ่าย LG Subscribe';
+        const canonical = document.querySelector('link[rel="canonical"]');
+        if (canonical) canonical.href = url;
+        const ogUrl = document.querySelector('meta[property="og:url"]');
+        if (ogUrl) ogUrl.content = url;
+        const ogTitle = document.querySelector('meta[property="og:title"]');
+        if (ogTitle) ogTitle.content = title;
+        const ogDesc = document.querySelector('meta[property="og:description"]');
+        if (ogDesc) ogDesc.content = desc;
+        const metaDesc = document.querySelector('meta[name="description"]');
+        if (metaDesc) metaDesc.content = desc;
+        document.title = title;
+    }
+
     /* ---------- Init ---------- */
     function init() {
         updateCartBadge();
@@ -1279,7 +1298,7 @@
                 '<p><a href="index.html#products">← กลับหน้าหลัก</a></p></div>';
             return;
         }
-        document.title = (product.name || product.model) + ' — FLEXI-SUB™ LG Subscribe';
+        updateProductSeo(product);
         setRoute(SEL.slugFor(product));
         track('package_view', { slug: SEL.slugFor(product) });
         renderGallery(product);
