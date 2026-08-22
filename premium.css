@@ -226,6 +226,12 @@ body[data-page="home"] .hero-right::after {
   background: linear-gradient(90deg, rgba(25, 6, 13, .08), transparent 15%);
 }
 body[data-page="home"] .hero-campaign { z-index: 0; }
+@media (min-width: 861px) {
+  body[data-page="home"] .hero-slide:first-child .hero-campaign {
+    transform: scale(1.12);
+    transform-origin: right center;
+  }
+}
 body[data-page="home"] .hero-badge { z-index: 3; background: var(--premium-brand); }
 body[data-page="home"] .hero-controls { padding-inline: max(22px, calc((100vw - var(--home-content)) / 2 + 22px)); }
 
@@ -339,7 +345,7 @@ body[data-page="home"] #why .section-head { margin-bottom: clamp(30px, 3.4vw, 44
 body[data-page="home"] #why .benefit-grid { gap: 28px 48px; }
 body[data-page="home"] #why .benefit-card {
   min-height: 0;
-  padding: 0 0 24px;
+  padding: 30px 0 24px 76px;
   border: 0;
   border-radius: 0;
   background: transparent;
@@ -349,7 +355,7 @@ body[data-page="home"] #why .benefit-card {
 body[data-page="home"] #why .benefit-card::before, body[data-page="home"] #why .benefit-card::after { content: none; }
 body[data-page="home"] #why .benefit-card:nth-child(n+3) { border-top: 1px solid rgba(0,0,0,.06); padding-top: 28px; }
 body[data-page="home"] #why .benefit-icon { border-radius: 16px; background: #fff1f5; box-shadow: none; }
-body[data-page="home"] #why .benefit-card h3 { margin-top: 20px; font-size: 19px; }
+body[data-page="home"] #why .benefit-card h3 { margin: 0 0 8px; font-size: 19px; }
 body[data-page="home"] #why .benefit-card p { font-size: 14px; line-height: 1.72; }
 body[data-page="home"] #why .benefit-note { margin-top: auto; padding-top: 18px; }
 
@@ -401,10 +407,10 @@ body[data-page="home"] #why .benefit-note { margin-top: auto; padding-top: 18px;
   body[data-page="home"] #why { padding-block: 58px; }
   body[data-page="home"] #why .section-head { margin-bottom: 26px; }
 body[data-page="home"] #why .benefit-grid { grid-template-columns: 1fr; gap: 0; }
-body[data-page="home"] #why .benefit-card { padding: 0 0 20px; border-radius: 0; }
+body[data-page="home"] #why .benefit-card { padding: 20px 0 20px 62px; border-radius: 0; }
 body[data-page="home"] #why .benefit-card + .benefit-card { padding-top: 20px; }
 body[data-page="home"] #why .benefit-card:nth-child(n+3) { border-top: 0; padding-top: 20px; }
-body[data-page="home"] #why .benefit-card h3 { margin-top: 18px; }
+body[data-page="home"] #why .benefit-card h3 { margin: 0 0 8px; }
 body[data-page="home"] #why .benefit-note { padding-top: 4px; }
 }
 

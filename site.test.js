@@ -182,7 +182,7 @@ const protectedModels = ['27GX704A-B', '75QNED86BSA', 'WD516AN', 'WD518AN'];
 const productByModel = (products, model) => products.find(product => product.model === model);
 check(!/id="planner"|BUILD YOUR PACKAGE|พร้อมจัดบ้านให้สบาย/.test(home), 'Home นำ Package Planner และ Final CTA ที่ซ้ำซ้อนออกแล้ว');
 check(/id="products"/.test(home), 'Home มี Product section');
-check(/WHY LG SUBSCRIBE/.test(home) && !/WHY FLEXI-SUB/.test(home), 'Home ใช้หัวข้อ WHY LG SUBSCRIBE');
+check(/จุดเด่น LG SUBSCRIBE/.test(home) && !/WHY LG SUBSCRIBE/.test(home), 'Home ใช้หัวข้อภาษาไทยที่อ่านเป็นธรรมชาติ');
 check(/class="p-price"><small>เริ่มต้น<\/small> ฿/.test(home), 'Home ราคาการ์ดสินค้ามีคำว่าเริ่มต้นนำหน้า');
 check(/ค่าใช้จ่าย[\s\S]*การรับประกัน[\s\S]*การบำรุงรักษา/.test(home) && /รับประกัน 5–7 ปี/.test(home) && /รับประกัน 1–2 ปี/.test(home), 'Home ตาราง Subscribe vs ซื้อขาดตรงตามข้อมูลที่กำหนด');
 check(/id="faq"/.test(home), 'Home มี FAQ');
@@ -222,7 +222,7 @@ check(/-Birthday_1920x720\.jpg/.test(home) === false, 'Home Hero ไม่มี
 check(/ซับ 2 แถม 1/.test(home) && /ซับ 1 แถม 1/.test(home), 'Home Hero มีสไลด์โปร IXY และ OLED');
 check((home.match(/btn2: \{ text: 'เลือกสินค้า', href: 'products\.html' \}/g) || []).length === 2, 'Hero โปร IXY/OLED ส่งลูกค้าไป Catalog ก่อนตะกร้า');
 check(!/โปรปัง/.test(home) && !/โปรคุ้ม 2 ต่อ/.test(home) && !/ชวนเพื่อน/.test(home) && !/AWO/.test(home), 'Home Hero ไม่มีสไลด์ที่ลบแล้ว');
-check(/OFFICIAL LG CAMPAIGNS/.test(promotions) && /ลด 15% ตลอดสัญญา/.test(promotions), 'Promotions มีแคมเปญล่าสุดจาก LG Thailand');
+check(/แคมเปญจาก LG/.test(promotions) && /ลด 15% ตลอดสัญญา/.test(promotions), 'Promotions มีแคมเปญล่าสุดจาก LG Thailand');
 check(/href="products\.html">เลือกสินค้าที่ร่วมรายการ/.test(promotions), 'Promotion CTA พาลูกค้าไปเลือกสินค้าก่อนเข้าตะกร้า');
 check(/images\/promotions\/ktc-credit\.jpg/.test(promotions) && /images\/promotions\/uob-credit\.jpg/.test(promotions), 'Promotions มีรูปจริงโปรบัตรเครดิต KTC และ UOB');
 check(!/id="conditions"/.test(promotions) && !/สิทธิพิเศษหลักในเดือนนี้/.test(promotions), 'Promotions ไม่มีส่วนสิทธิพิเศษที่ซ้ำกับแคมเปญด้านบน');
@@ -366,8 +366,11 @@ check(/คอมโบช่วงโปรครบรอบ ลด 15% ตล�
 check(/images\/promotions\/air-purifier-kum-2-tor\.jpg/.test(home) && /images\/promotions\/oled48-xboom\.jpg/.test(home), 'Home Promotion ใช้ภาพใหม่สำหรับลด 50% และของแถม');
 check((home.match(/promo-card[^"\n]*featured/g) || []).length === 2 && /promo-card\.featured/.test(premium), 'Home โปรบิลแรกและลด 50% มี accent เด่น');
 check(/body\[data-page="home"\] \.h-btn-solid/.test(premium) && /service-banner \.btn-pill\.light/.test(premium), 'Home CTA แยกปุ่มหลักสีแบรนด์และปุ่มรองแบบ outline');
-check((home.match(/<svg class="payment-mark"/g) || []).length === 8 && (promotions.match(/<svg class="payment-mark"/g) || []).length === 8, 'Footer ใช้ SVG payment marks ครบ');
+check((home.match(/<svg class="payment-mark"/g) || []).length === 4 && (promotions.match(/<svg class="payment-mark"/g) || []).length === 4 && !/TrueMoney Wallet|Rabbit LINE Pay|ShopeePay|PromptPay/.test(home + promotions), 'Footer แสดงเฉพาะเครือข่ายบัตรเครดิต/บัตรชำระเงิน');
 check(/payment-mark:hover\s*\{[^}]*grayscale\(0\)/.test(premium), 'Payment marks เป็นสีจริงเมื่อ hover');
+check(/#why \.benefit-card \{[\s\S]*padding: 30px 0 24px 76px/.test(premium) && /padding: 20px 0 20px 62px/.test(premium), 'Why section เว้นพื้นที่ icon ไม่ให้ทับข้อความทั้ง desktop/mobile');
+check(/hero-slide:first-child \.hero-campaign[\s\S]*transform: scale\(1\.12\)/.test(premium), 'Hero แรก crop artwork ฝั่งซ้ายเพื่อไม่โชว์เศษข้อความในภาพ');
+check(!/WHY LG SUBSCRIBE|SHOP BY LIFESTYLE|CHOOSE WITH CONFIDENCE|HOW IT WORKS|OFFICIAL LG CAMPAIGNS|CREDIT CARD OFFERS|PRODUCT OFFERS|YOUR SUBSCRIPTION PLAN/.test(home + promotions + catalogHtml + cart), 'UI kicker หลักใช้ภาษาไทยสม่ำเสมอ');
 
 check(/id="addBtn"/.test(pdp), 'PDP มีปุ่มใส่ตะกร้า');
 check(/id="sumBreakdown"[^>]*type="button"[^>]*disabled/.test(pdp), 'PDP breakdown trigger เป็น semantic button และเริ่มต้น disabled');
