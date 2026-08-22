@@ -58,6 +58,10 @@ const requiredAssets = [
   'images/products/52g930b.webp',
   'images/products/40u990a.webp',
   'images/products/s95tr.webp',
+  'images/products/s70ty.webp',
+  'images/products/xboom-grab.webp',
+  'images/products/xboom-bounce.webp',
+  'images/products/xboom-stage301.webp',
   'images/products/s3mfc.webp',
   'images/products/ms3032jas.webp',
   'images/products/md19gqga1.webp',
@@ -152,7 +156,7 @@ const parseProducts = source => {
 };
 const canonicalProducts = parseProducts(productSource);
 const headProducts = parseProducts(execFileSync('git', ['show', 'HEAD:products.js'], { cwd: ROOT, encoding: 'utf8' }));
-const protectedModels = ['27GX704A-B', '75QNED86BSA', 'OLED48C6PSA', 'WD516AN', 'WD518AN'];
+const protectedModels = ['27GX704A-B', '75QNED86BSA', 'WD516AN', 'WD518AN'];
 const productByModel = (products, model) => products.find(product => product.model === model);
 check(!/id="planner"|BUILD YOUR PACKAGE|พร้อมจัดบ้านให้สบาย/.test(home), 'Home นำ Package Planner และ Final CTA ที่ซ้ำซ้อนออกแล้ว');
 check(/id="products"/.test(home), 'Home มี Product section');
@@ -179,7 +183,9 @@ check(/:focus-visible/.test(fs.readFileSync(path.join(ROOT, 'catalog.css'), 'utf
 check(/products\.html/.test(sitemap) && !/<loc>[^<]*\/product\.html<\/loc>/.test(sitemap), 'Sitemap ใช้ Catalog URL แทน PDP ที่ไม่มี slug');
 check(imageInventory.summary.products === 97 && imageInventory.summary.primary.local === 8, 'Phase 4 inventory มีสินค้า 97 รุ่นและ local primary pilot 8 รุ่น');
 check(imageInventory.summary.groups.A === 8 && imageInventory.summary.pilot.reductionPercent > 50, 'Phase 4 pilot ผ่าน verification และลดขนาดรวมมากกว่า 50%');
-check((productSource.match(/img: 'images\/products\/[a-z0-9-]+\.webp'/g) || []).length === 38, 'Product data ใช้ local WebP 38 รุ่นหลัง Phase 2 migration');
+const localPrimaryRefs = productSource.match(new RegExp("img: 'images/products/[a-z0-9-]+[.]webp'", 'g')) || [];
+check(localPrimaryRefs.length === 43, 'Product data มี 43 product records ที่ใช้ local WebP หลังแยก OLED48 bundle');
+check(new Set(localPrimaryRefs.map(ref => ref.slice(ref.indexOf('images/products/'), -1))).size === 42, '43 local product records ใช้ 42 unique WebP assets โดย OLED48 bundle แชร์ภาพอย่างตั้งใจ');
 check(/localPrimary/.test(pdp) && /fetchpriority="high"/.test(pdp), 'PDP ใช้ local primary ก่อน gallery และให้ priority กับภาพหลัก');
 check(/loading="lazy"/.test(catalogSource) && !/position <= 4 \? 'eager'/.test(catalogSource), 'Catalog lazy-load รูปสินค้าซึ่งอยู่ใต้ส่วนค้นหา');
 check(!/class="trust-strip"/.test(home), 'Home ไม่มี trust strip ที่ซ้ำกับ Why FLEXI-SUB');
@@ -196,7 +202,7 @@ check(!/โปรปัง/.test(home) && !/โปรคุ้ม 2 ต่อ/.t
 check(/OFFICIAL LG CAMPAIGNS/.test(promotions) && /ลด 15% ตลอดสัญญา/.test(promotions), 'Promotions มีแคมเปญล่าสุดจาก LG Thailand');
 check(/images\/promotions\/ktc-credit\.jpg/.test(promotions) && /images\/promotions\/uob-credit\.jpg/.test(promotions), 'Promotions มีรูปจริงโปรบัตรเครดิต KTC และ UOB');
 check(!/id="conditions"/.test(promotions) && !/สิทธิพิเศษหลักในเดือนนี้/.test(promotions), 'Promotions ไม่มีส่วนสิทธิพิเศษที่ซ้ำกับแคมเปญด้านบน');
-check(canonicalProducts.length === 98 && canonicalProducts.reduce((total, product) => total + product.plans.length, 0) === 197, 'Canonical products.js มีสินค้า 98 รุ่นและ 197 แผน');
+check(canonicalProducts.length === 99 && canonicalProducts.reduce((total, product) => total + product.plans.length, 0) === 197, 'Canonical products.js มีสินค้า 99 รายการขายและ 197 แผน');
 const fallbackPrices = { WT2520NHEG: 1999, 'GC-L257KQKW': 649, FV1409H4W: 299, SAQ11A: 799, OLED48C6PSA: 749, 'A9T-ULTRA': 749, DFC335HM: 749, AS25GCBY0: 549 };
 for (const [model, price] of Object.entries(fallbackPrices)) {
   check(new RegExp("model: ['\\\"]" + model + "['\\\"][^\\n]*price: " + price + '\\b').test(home), model + ' Home fallback price ตรง canonical');
@@ -277,7 +283,26 @@ const wd516 = productByModel(canonicalProducts, 'WD516AN');
 const wd518 = productByModel(canonicalProducts, 'WD518AN');
 check(wd516.plans.some(plan => plan.serviceType === 'Visit' && plan.outright) && wd518.plans.some(plan => plan.serviceType === 'Visit' && plan.outright), 'WD516AN และ WD518AN มี Visit outright');
 check(wd516.plans.some(plan => plan.serviceType === 'Self' && plan.outright) && wd518.plans.some(plan => plan.serviceType === 'Self' && plan.outright), 'WD516AN และ WD518AN มี Self outright');
-check(productByModel(canonicalProducts, 'OLED48C6PSA').plans.some(plan => /xboom BOUNCE/.test(plan.promo)), 'OLED48C6PSA มีโปรของแถม xboom BOUNCE');
+const oled48Regular = productByModel(canonicalProducts, 'OLED48C6PSA');
+const oled48Bundle = productByModel(canonicalProducts, 'OLED48C6PSA + xboom BOUNCE');
+check(oled48Regular.plans.length === 1 && oled48Regular.plans[0].regular === 749 && oled48Regular.plans[0].promoMonths === 8, 'OLED48C6PSA รุ่นปกติ 749 บาท/เดือน ลด 50% 8 เดือน');
+check(oled48Bundle && oled48Bundle.plans.length === 1 && oled48Bundle.plans[0].regular === 749 && oled48Bundle.plans[0].promoMonths === 3 && /xboom BOUNCE/.test(oled48Bundle.plans[0].promo), 'OLED48C6PSA รุ่นแถม 749 บาท/เดือน ลด 50% 3 เดือน + xboom BOUNCE');
+check(oled48Regular.img === oled48Bundle.img, 'OLED48C6PSA สองรายการขายแชร์ local image เดียวกันโดยไม่สร้างไฟล์ซ้ำ');
+const tvBundlePairs = [
+  ['OLED48C6PSA', 'OLED48C6PSA + xboom BOUNCE'],
+  ['OLED55C6PSA', 'OLED55C6PSA + S30A'],
+  ['OLED65C6PSA', 'OLED65C6PSA + S80TY'],
+  ['OLED77C6PSA', 'OLED77C6PSA + S80TY'],
+  ['27LX6TDGA', '27LX6TDGA + xboom GRAB']
+];
+for (const [baseModel, bundleModel] of tvBundlePairs) {
+  const base = productByModel(canonicalProducts, baseModel);
+  const bundle = productByModel(canonicalProducts, bundleModel);
+  const basePlan = base.plans[0];
+  const bundlePlan = bundle.plans[0];
+  check(basePlan.price === bundlePlan.price && basePlan.regular === bundlePlan.regular && basePlan.postPromoPrice === bundlePlan.postPromoPrice, baseModel + ' และรุ่นของแถมมีราคาต่อเดือนปกติเท่ากัน');
+  check(basePlan.promoMonths === 8 && bundlePlan.promoMonths === 3, baseModel + ' รุ่นปกติลด 50% 8 เดือน และรุ่นของแถมลด 50% 3 เดือน');
+}
 check(pages.every(page => fs.readFileSync(path.join(ROOT, page), 'utf8').includes('premium.css')), 'ทุกหน้าหลักใช้ Premium CSS กลาง');
 check(!/💳|🔧|🛡️|🔄|🔍|🛒/.test(pages.map(page => fs.readFileSync(path.join(ROOT, page), 'utf8')).join('\n')), 'แทน emoji UI ที่กำหนดด้วย line icon แล้ว');
 check(/สายเกมมิ่ง \(Gaming Lifestyle\)/.test(home) && !/คาเฟ่ \/ ธุรกิจเล็ก/.test(home), 'Home เปลี่ยน Lifestyle ธุรกิจเล็กเป็นสายเกมมิ่ง');

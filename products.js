@@ -3301,7 +3301,17 @@ window.LG_PRODUCTS = [
           totalContractMonths: 60, totalSaving: 3000,
           label: 'ไม่รับบริการ 5 ปี (60 เดือน) · โปร 8 เดือน', months: 60, price: 749,
           promo: '50% เดือน 1-20'
-        },
+        }
+    ]
+  },
+  {
+    id: 'oled48c6psa-xboom-bounce',
+    img: 'images/products/oled48c6psa.webp',
+    model: 'OLED48C6PSA + xboom BOUNCE',
+    name: 'ทีวี 48" LG OLED evo C6 4K Smart TV 2026 + xboom BOUNCE (ของแถม)',
+    category: 'โทรทัศน์ OLED',
+    emoji: '📺',
+    plans: [
         {
           term: '5Y',
           serviceType: 'No Service',
@@ -3315,7 +3325,7 @@ window.LG_PRODUCTS = [
             { range: 'บิล 16-60', price: 749, note: 'ราคาปกติ' }
           ],
           totalContractMonths: 60, totalSaving: 1125,
-          label: 'ไม่รับบริการ 5 ปี (60 เดือน) · โปร 3 เดือน', months: 60, price: 749,
+          label: 'ไม่รับบริการ 5 ปี (60 เดือน) · ของแถม xboom BOUNCE', months: 60, price: 749,
           promo: '50% เดือน 1-15 · ของแถม xboom BOUNCE'
         }
     ]
@@ -3959,7 +3969,7 @@ window.LG_PRODUCTS = [
   },
   {
     id: 's70ty',
-    img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/audio/2024/s70ty-dthallk/gallery/s70ty_basic_450.jpg',
+    img: 'images/products/s70ty.webp',
     model: 'S70TY',
     name: 'ซาวด์บาร์ LG Dolby Atmos 3.1.1 ช่อง (400W)',
     category: 'Sound bar',
@@ -3984,7 +3994,7 @@ window.LG_PRODUCTS = [
   },
   {
     id: 'xboom-grab',
-    img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/audio/2025/grab-athalbk/gallery/gallery-1/xboom-grab-2025-gallery-basic.jpg',
+    img: 'images/products/xboom-grab.webp',
     model: 'xboom GRAB',
     name: 'ลำโพงพกพา LG xboom Grab tuned by will.i.am',
     category: 'Bluetooth Speaker',
@@ -4009,7 +4019,7 @@ window.LG_PRODUCTS = [
   },
   {
     id: 'xboom-bounce',
-    img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/audio/2025/bounce-athalbk/gallery/01-basic/xboom-bounce-2025-gallery-basic.jpg',
+    img: 'images/products/xboom-bounce.webp',
     model: 'xboom BOUNCE',
     name: 'ลำโพงพกพา LG xboom Bounce by will.i.am',
     category: 'Bluetooth Speaker',
@@ -4034,7 +4044,7 @@ window.LG_PRODUCTS = [
   },
   {
     id: 'xboom-stage301',
-    img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/audio/2025/stage301-athalbk/gallery/01-basic/xboom-stage301-2025-gallery-basic.jpg',
+    img: 'images/products/xboom-stage301.webp',
     model: 'xboom STAGE301',
     name: 'LG xboom STAGE301 tuned by will.i.am',
     category: 'Bluetooth Speaker',

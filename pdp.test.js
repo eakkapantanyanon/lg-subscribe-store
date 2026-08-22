@@ -147,18 +147,18 @@ t('เครื่องกรองน้ำ WD516AN: เช่ารายเ�
   eq(so.contract, 34110, 'outright คงที่ ไม่หัก combo');
 });
 
-t('TV OLED48C6PSA: variant โปร 8 เดือน ↔ โปร 3 เดือน — ราคาเท่าแต่ตารางบิลต่าง', () => {
-  const p = data.find(x => x.id === 'oled48c6psa');
-  const sel = { customerType: 'old', planType: 'monthly', careType: 'No Service', term: 60 };
-  const variants = SEL.variantOptions(SEL.filterPlans(p, sel));
-  assert.strictEqual(variants.length, 2);
-  const a = SEL.resolvePlanIndex(p, { ...sel, variant: variants[0].key });
-  const b = SEL.resolvePlanIndex(p, { ...sel, variant: variants[1].key });
-  const sa = SEL.itemSummary(p, a, 'old', 0, {});
-  const sb = SEL.itemSummary(p, b, 'old', 0, {});
-  eq(sa.strike, sb.strike, 'ราคาเต็มเท่ากัน');
-  assert.notStrictEqual(JSON.stringify(sa.segments), JSON.stringify(sb.segments), 'ตารางบิลต่างกัน');
-  eq(sa.firstPay, 4494, 'จ่ายล่วงหน้า 4,494');
+t('TV OLED48C6PSA: รุ่นปกติ 8 เดือน ↔ รุ่นแถม xboom BOUNCE 3 เดือน — แยก product record', () => {
+  const regular = data.find(x => x.id === 'oled48c6psa');
+  const bundle = data.find(x => x.id === 'oled48c6psa-xboom-bounce');
+  assert.ok(regular && bundle, 'ต้องมีทั้งรุ่นปกติและรุ่นแถม');
+  assert.strictEqual(regular.plans.length, 1);
+  assert.strictEqual(bundle.plans.length, 1);
+  eq(regular.plans[0].regular, 749, 'รุ่นปกติ 749/เดือน');
+  eq(bundle.plans[0].regular, 749, 'รุ่นแถม 749/เดือน');
+  eq(regular.plans[0].promoMonths, 8, 'รุ่นปกติลด 50% 8 เดือน');
+  eq(bundle.plans[0].promoMonths, 3, 'รุ่นแถมลด 50% 3 เดือน');
+  assert.match(bundle.plans[0].promo, /xboom BOUNCE/);
+  assert.strictEqual(regular.img, bundle.img, 'สองรายการแชร์ภาพทีวีไฟล์เดียวกัน ไม่สร้างภาพซ้ำ');
 });
 
 /* ================================================================
