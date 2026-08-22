@@ -2014,7 +2014,7 @@ window.LG_PRODUCTS = [
   },
   {
     id: 's3mfc',
-    img: 'https://www.lg.com/content/dam/channel/wcms/th/images/washing-machine/s3mfc_albpeth_eath_th_c/TH-450.jpg',
+    img: 'images/products/s3mfc.webp',
     model: 'S3MFC',
     name: 'LG Styler ตู้ถนอมผ้า',
     category: 'ตู้ถนอมผ้า',
@@ -2056,7 +2056,7 @@ window.LG_PRODUCTS = [
   },
   {
     id: 'ms3032jas',
-    img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/microwave/2024/ms3032jas/gallery/01-basic/450x450/01-ms3032jas-front-450x450.jpg',
+    img: 'images/products/ms3032jas.webp',
     model: 'MS3032JAS',
     name: 'ไมโครเวฟอุ่นอาหาร ขนาด 30 ลิตร สีดำ',
     category: 'ไมโครเวฟ',
@@ -2080,7 +2080,7 @@ window.LG_PRODUCTS = [
   },
   {
     id: 'md19gqga1',
-    img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/dehumidifier/2025/md19gqga1/thumb-Dehu-19-450x450.jpg',
+    img: 'images/products/md19gqga1.webp',
     model: 'MD19GQGA1',
     name: 'เครื่องลดความชื้น LG PuriCare Dehumidifier 19 (30 ลิตร)',
     category: 'เครื่องลดความชื้น',
@@ -2243,7 +2243,7 @@ window.LG_PRODUCTS = [
   },
   {
     id: 'as60ghwg0',
-    img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/air-puricare/2025/as60ghwg0/gallery/450.jpg',
+    img: 'images/products/as60ghwg0.webp',
     model: 'AS60GHWG0',
     name: 'เครื่องฟอกอากาศ LG PuriCare 360 Hit 61 ตร.ม.',
     category: 'เครื่องฟอกอากาศ',
@@ -3679,7 +3679,7 @@ window.LG_PRODUCTS = [
   },
   {
     id: '27lx6tdga',
-    img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2025/lifestyle-screen/27lx6tdga-atm/gallery/gallery/new-image/SBM2-450x450.jpg',
+    img: 'images/products/27lx6tdga.webp',
     model: '27LX6TDGA',
     name: 'LG StanbyME2',
     category: 'โทรทัศน์ StanbyME',
@@ -3705,7 +3705,7 @@ window.LG_PRODUCTS = [
   },
   {
     id: '32lx6bdga',
-    img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/lifestyle-screens/32lx6bdga-atm/gallery/basic/lg-movable-screen-lx6-2026-32-gallery-basic.jpg',
+    img: 'images/products/32lx6bdga.webp',
     model: '32LX6BDGA',
     name: 'LG StanbyME 2 Max LX6 จอไลฟ์สไตล์ไร้สาย 4K ขนาด 32 นิ้ว',
     category: 'โทรทัศน์ StanbyME',
@@ -3783,7 +3783,7 @@ window.LG_PRODUCTS = [
   },
   {
     id: '45gx950a',
-    img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/monitor/2025/45gx950a-b-atm/gallery/basic/ultragear-gaming-45gx950a-2025-gallery-basic-large.jpg',
+    img: 'images/products/45gx950a.webp',
     model: '45GX950A-B',
     name: 'LG UltraGear™ 45" OLED Dual-Mode 5K2K 0.03ms DisplayHDR True Black',
     category: 'มอนิเตอร์',
@@ -3808,7 +3808,7 @@ window.LG_PRODUCTS = [
   },
   {
     id: '52g930b',
-    img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/monitor/2026/52g930b-b-atm/gallery/basic/ultragear-gaming-52g930b-2026-gallery-basic-01.jpg',
+    img: 'images/products/52g930b.webp',
     model: '52G930B-B',
     name: 'LG UltraGear evo G9 52 นิ้ว',
     category: 'มอนิเตอร์',
@@ -3833,7 +3833,7 @@ window.LG_PRODUCTS = [
   },
   {
     id: '40u990a',
-    img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/monitor/2026/40u990a-w-atm/gallery/basic/ultrafine-uhd-4k-5k-40u990a-2025-gallery-basic-1.jpg',
+    img: 'images/products/40u990a.webp',
     model: '40U990A-W',
     name: 'LG UltraFine™ 40 นิ้ว',
     category: 'มอนิเตอร์',
@@ -3934,7 +3934,7 @@ window.LG_PRODUCTS = [
   },
   {
     id: 's95tr',
-    img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/audio/2025/s95tr-dthallk/gallery/av-soundbar-s95tr-thumbnailanimation-01.jpg',
+    img: 'images/products/s95tr.webp',
     model: 'S95TR',
     name: 'ซาวด์บาร์ LG Dolby Atmos 9.1.5 ช่อง (820W)',
     category: 'Sound bar',

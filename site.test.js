@@ -48,6 +48,21 @@ const requiredAssets = [
   'images/products/tx2723st5j.webp',
   'images/products/tx2315dt5g.webp',
   'images/products/rv10vhp2b.webp',
+  'images/products/s3mfc.webp',
+  'images/products/ms3032jas.webp',
+  'images/products/md19gqga1.webp',
+  'images/products/as60ghwg0.webp',
+  'images/products/27lx6tdga.webp',
+  'images/products/32lx6bdga.webp',
+  'images/products/45gx950a.webp',
+  'images/products/52g930b.webp',
+  'images/products/40u990a.webp',
+  'images/products/s95tr.webp',
+  'images/products/s3mfc.webp',
+  'images/products/ms3032jas.webp',
+  'images/products/md19gqga1.webp',
+  'images/products/as60ghwg0.webp',
+  'images/products/27lx6tdga.webp',
   'images/hero-8-d.webp',
   'images/hero-8-m.webp',
   'images/hero-birthday-38-d.webp',
@@ -164,7 +179,7 @@ check(/:focus-visible/.test(fs.readFileSync(path.join(ROOT, 'catalog.css'), 'utf
 check(/products\.html/.test(sitemap) && !/<loc>[^<]*\/product\.html<\/loc>/.test(sitemap), 'Sitemap ใช้ Catalog URL แทน PDP ที่ไม่มี slug');
 check(imageInventory.summary.products === 97 && imageInventory.summary.primary.local === 8, 'Phase 4 inventory มีสินค้า 97 รุ่นและ local primary pilot 8 รุ่น');
 check(imageInventory.summary.groups.A === 8 && imageInventory.summary.pilot.reductionPercent > 50, 'Phase 4 pilot ผ่าน verification และลดขนาดรวมมากกว่า 50%');
-check((productSource.match(/img: 'images\/products\/[a-z0-9-]+\.webp'/g) || []).length === 28, 'Product data ใช้ local WebP 28 รุ่นหลัง Phase 2 migration');
+check((productSource.match(/img: 'images\/products\/[a-z0-9-]+\.webp'/g) || []).length === 38, 'Product data ใช้ local WebP 38 รุ่นหลัง Phase 2 migration');
 check(/localPrimary/.test(pdp) && /fetchpriority="high"/.test(pdp), 'PDP ใช้ local primary ก่อน gallery และให้ priority กับภาพหลัก');
 check(/loading="lazy"/.test(catalogSource) && !/position <= 4 \? 'eager'/.test(catalogSource), 'Catalog lazy-load รูปสินค้าซึ่งอยู่ใต้ส่วนค้นหา');
 check(!/class="trust-strip"/.test(home), 'Home ไม่มี trust strip ที่ซ้ำกับ Why FLEXI-SUB');
