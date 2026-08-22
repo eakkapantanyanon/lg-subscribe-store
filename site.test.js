@@ -409,6 +409,9 @@ check(/เทคโนโลยีเครื่องดูดฝุ่นไ�
 check(pdp.indexOf("group('ประเภทแผน'") < pdp.indexOf("group('ประเภทการดูแล'"), 'PDP แสดงประเภทแผนก่อนประเภทการดูแล');
 check(/const pts = SEL\.planTypes\(product\);\s*wrap\.appendChild\(group\('ประเภทแผน'/.test(pdp), 'PDP แสดงกลุ่มประเภทแผนเสมอ');
 check(/care-summary-label/.test(pdp) && /บริการที่ได้รับ/.test(pdp), 'PDP แสดงหัวข้อบริการที่ได้รับในรูปแบบเดียวกันทุกตัวเลือกบริการ');
+const productSelectSource = fs.readFileSync(path.join(ROOT, 'product-select.js'), 'utf8');
+check(/category === 'Wash Tower'[\s\S]*?details = serviceType === 'Visit'[\s\S]*?ตรวจและทำความสะอาดเครื่อง[\s\S]*?ทุก 12 เดือน/.test(productSelectSource), 'Wash Tower แสดงบริการเป็นรายการพร้อมรอบบริการ ไม่ยุบเป็นย่อหน้าเดียว');
+check((productSelectSource.match(/details =/g) || []).length >= 10, 'ประเภทสินค้าหลักใช้โครงสร้างรายการบริการแบบเดียวกัน');
 
 check(/id="cartItems"/.test(cart), 'Cart มีรายการสินค้า');
 check(/\.catalog-grid \.p-cta a \{ min-height: 48px/.test(fs.readFileSync(path.join(ROOT, 'catalog.css'), 'utf8')), 'Catalog mobile CTA มี touch target อย่างน้อย 48px');
