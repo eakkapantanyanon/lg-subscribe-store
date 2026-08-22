@@ -529,7 +529,7 @@ window.LG_PRODUCTS = [
   },
   {
     id: 'gc-x257cmew',
-    img: 'https://www.lg.com/content/dam/channel/wcms/th/images/refrigerator/2023/gc-x257cmew/gallery/450x450/01_VS6_X_Best_GC-X257CMEW_NonPlumbing_TE_Front_On_Food.jpg',
+    img: 'images/products/gc-x257cmew.webp',
     model: 'GC-X257CMEW',
     name: 'ตู้เย็น InstaView Side by Side 22.4 คิว GC-X257CMEW Smart Inverter Compressor™',
     category: 'ตู้เย็น Side by Side',
@@ -571,7 +571,7 @@ window.LG_PRODUCTS = [
   },
   {
     id: 'gc-j257sqzw',
-    img: 'https://www.lg.com/content/dam/channel/wcms/th/images/refrigerator/2023/gc-j257sqzw/GC-J257SQZW_450.jpg',
+    img: 'images/products/gc-j257sqzw.webp',
     model: 'GC-J257SQZW',
     name: 'ตู้เย็น Side by Side GC-J257SQZW 22.4 คิว',
     category: 'ตู้เย็น Side by Side',
@@ -613,7 +613,7 @@ window.LG_PRODUCTS = [
   },
   {
     id: 'gv-b25ffgdb',
-    img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/refrigerator/2025/gv-b25ffgdb-abmplmt/05_T-VN6_Good_GV-B25FFGDB_BM_Front_450.jpg',
+    img: 'images/products/gv-b25ffgdb.webp',
     model: 'GV-B25FFGDB',
     name: 'ตู้เย็น Multi-Door GV-B25FFGDB ขนาด 21.6 คิว ระบบ Smart Inverter Compressor',
     category: 'ตู้เย็น Multi-Door',
@@ -695,7 +695,7 @@ window.LG_PRODUCTS = [
   },
   {
     id: 'gc-g24ffqkb',
-    img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/refrigerator/2025/gc-g24ffqkb-aeeplm1/gallery-new/GC-G24FFQKB-NEW-450-09.jpg',
+    img: 'images/products/gc-g24ffqkb.webp',
     model: 'GC-G24FFQKB',
     name: 'ตู้เย็น InstaView Multi-Door 22.5 คิว GC-G24FFQKB Smart Inverter Compressor',
     category: 'ตู้เย็น Multi-Door',
@@ -737,7 +737,7 @@ window.LG_PRODUCTS = [
   },
   {
     id: 'gc-v22ffqmb',
-    img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/refrigerator/2024/gc-v22ffqmb/gallery/01-basic/ref-f-next8-gc-v22ffqmb-large-01-front.png',
+    img: 'images/products/gc-v22ffqmb.webp',
     model: 'GC-V22FFQMB',
     name: 'ตู้เย็น InstaView Multi-Door 18.7 คิว GC-V22FFQMB Smart Inverter',
     category: 'ตู้เย็น Multi-Door',
@@ -779,7 +779,7 @@ window.LG_PRODUCTS = [
   },
   {
     id: 'gc-b48fpgam',
-    img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/refrigerator/2026/gc-b48fpgam-adbplmt/gallery/basic/multi-door-richome-2026-gcfb48fpgam-blackglass-gallery-basic-large.jpg',
+    img: 'images/products/gc-b48fpgam.webp',
     model: 'GC-B48FPGAM',
     name: 'ตู้เย็น Multi-Door ขนาด 17.4 คิว ระบบ Inverter Compressor',
     category: 'ตู้เย็น Multi-Door',
@@ -821,7 +821,7 @@ window.LG_PRODUCTS = [
   },
   {
     id: 'gv-v25ffgrb',
-    img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/refrigerator/2025/gv-v25ffgrb-abmplmt/gallery/01_GV-V25FFGRB_LFB61BLGAI_Front_Food_450.jpg',
+    img: 'images/products/gv-v25ffgrb.webp',
     model: 'GV-V25FFGRB',
     name: 'ตู้เย็น InstaView Multi-Door 21.6 คิว GV-V25FFGRB Smart Inverter Compressor',
     category: 'ตู้เย็น Multi-Door',
@@ -861,7 +861,7 @@ window.LG_PRODUCTS = [
   },
   {
     id: 'gn-f392pqak',
-    img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/refrigerator/2025/gn-f392pqak-aepplm1/gallery/01_GN-F392PQAK_GT-F3953EP_EP_Front_450.jpg',
+    img: 'images/products/gn-f392pqak.webp',
     model: 'GN-F392PQAK',
     name: 'ตู้เย็น 2 ประตู 13.9 คิว Smart Inverter Compressor',
     category: 'ตู้เย็น 2 ประตู',
@@ -901,7 +901,7 @@ window.LG_PRODUCTS = [
   },
   {
     id: 'gn-f452pqak',
-    img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/refrigerator/2024/gn-f452pqak/450.jpg',
+    img: 'images/products/gn-f452pqak.webp',
     model: 'GN-F452PQAK',
     name: 'ตู้เย็น 2 ประตู ขนาด 16.2 คิว ระบบ Smart Inverter',
     category: 'ตู้เย็น 2 ประตู',
@@ -943,7 +943,7 @@ window.LG_PRODUCTS = [
   },
   {
     id: 'gn-v389fqef',
-    img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/refrigerator/2025/gn-v389fqef-aepplmt/gallery/450/01_GN-V389FQEF_GB-V300MBL_EP_Front_450.jpg',
+    img: 'images/products/gn-v389fqef.webp',
     model: 'GN-V389FQEF',
     name: 'ตู้เย็น 2 ประตู InstaView 12 คิว ระบบ Smart Inverter',
     category: 'ตู้เย็น 2 ประตู',
@@ -1059,7 +1059,7 @@ window.LG_PRODUCTS = [
   },
   {
     id: 'wt2116sheg',
-    img: 'https://www.lg.com/content/dam/channel/wcms/th/images/washing-machine/wt2116sheg_abgpeth_eath_th_c/thumbnail/350-001-wt2116sheg.jpg',
+    img: 'images/products/wt2116sheg.webp',
     model: 'WT2116SHEG',
     name: 'เครื่องซักอบผ้า LG WashTower 21/16 กก. AI DD™ พร้อม Smart WI-FI control',
     category: 'Wash Tower',
@@ -1133,7 +1133,7 @@ window.LG_PRODUCTS = [
   },
   {
     id: 'wt1410nheg',
-    img: 'https://www.lg.com/content/dam/channel/wcms/th/images/washing-machine/wt1410nheg_abgpeth_eath_th_c/WT1410NHEG_ABGPETH_EATH_TH_C-450x450.jpg',
+    img: 'images/products/wt1410nheg.webp',
     model: 'WT1410NHEG',
     name: 'เครื่องซักอบผ้า LG WashTower 14/10 กก. AI DD™ พร้อม Smart WI-FI control',
     category: 'Wash Tower',
@@ -1207,7 +1207,7 @@ window.LG_PRODUCTS = [
   },
   {
     id: 'wt2520nhen',
-    img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/washing-machine/2026/wt2520nhen-abnpeth/gallery/wt2520nhen-450.jpg',
+    img: 'images/products/wt2520nhen.webp',
     model: 'WT2520NHEN',
     name: 'เครื่องซักอบผ้า LG WashTower 25/20 กก. (Navy/Beige) AI DD™ พร้อม Smart WI-FI control',
     category: 'Wash Tower',
@@ -1281,7 +1281,7 @@ window.LG_PRODUCTS = [
   },
   {
     id: 'wt1410nhen',
-    img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/washing-machine/2025/wt1410nhen-anbppth/wt1410nhen/350-02.jpg',
+    img: 'images/products/wt1410nhen.webp',
     model: 'WT1410NHEN',
     name: 'เครื่องซักอบผ้า LG WashTower 14/10 กก. (Navy/Beige) AI DD™ พร้อม Smart WI-FI control',
     category: 'Wash Tower',
@@ -1355,7 +1355,7 @@ window.LG_PRODUCTS = [
   },
   {
     id: 'fv1409h4w',
-    img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/washing-machine/2024/fv1409h4w-abwpeth/gallery/450.jpg',
+    img: 'images/products/fv1409h4w.webp',
     model: 'FV1409H4W',
     name: 'เครื่องซักผ้า FV1409H4W ซัก 9 กก. / อบ 5 กก.',
     category: 'เครื่องซักผ้า ฝาหน้า',
@@ -1425,7 +1425,7 @@ window.LG_PRODUCTS = [
   },
   {
     id: 'f2520rntb',
-    img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/washing-machine/2025/f2520rntb-aebpeth/gallery/basic_450_image_new.jpg',
+    img: 'images/products/f2520rntb.webp',
     model: 'F2520RNTB',
     name: 'เครื่องซักผ้าฝาหน้า ซัก 20 / อบ 10 กก. F2520RNTB ระบบ AI DD™',
     category: 'เครื่องซักผ้า ฝาหน้า',
@@ -1499,7 +1499,7 @@ window.LG_PRODUCTS = [
   },
   {
     id: 'fv1413h4m',
-    img: 'https://www.lg.com/content/dam/channel/wcms/th/images/washing-machine/fv1413h4m_ambpeth_eath_th_c/450.jpg',
+    img: 'images/products/fv1413h4m.webp',
     model: 'FV1413H4M',
     name: 'เครื่องซักผ้า 13 กก. / อบ 8 กก. ระบบ AI DD™ พร้อม Smart WI-FI control',
     category: 'เครื่องซักผ้า ฝาหน้า',
@@ -1647,7 +1647,7 @@ window.LG_PRODUCTS = [
   },
   {
     id: 'tx2723st5j',
-    img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/washing-machine/2025/tx2723st5j-apbpeth/basic_450_new_image.jpg',
+    img: 'images/products/tx2723st5j.webp',
     model: 'TX2723ST5J',
     name: 'เครื่องซักผ้าฝาบน 23 กก. ระบบ Inverter Direct Drive',
     category: 'เครื่องซักผ้า ฝาบน',
@@ -1721,7 +1721,7 @@ window.LG_PRODUCTS = [
   },
   {
     id: 'tx2315dt5g',
-    img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/washing-machine/2026/tx2315dt5g-degpeth/gallery/top-loading-washing-machine-tx-2026-t95x4ehdc4-tx2315dt5g-th-e-graphite-15kg-01-front_450.jpg',
+    img: 'images/products/tx2315dt5g.webp',
     model: 'TX2315DT5G',
     name: 'เครื่องซักผ้าฝาบน 15 กก. ระบบ Inverter Direct Drive',
     category: 'เครื่องซักผ้า ฝาบน',
@@ -1791,7 +1791,7 @@ window.LG_PRODUCTS = [
   },
   {
     id: 'rv10vhp2b',
-    img: 'https://www.lg.com/content/dam/channel/wcms/th/images/washing-machine/rv10vhp2b_ablpeth_eath_th_c/450.jpg',
+    img: 'images/products/rv10vhp2b.webp',
     model: 'RV10VHP2B',
     name: 'เครื่องอบผ้า ระบบ DUAL Inverter Heat Pump™ ความจุ 10 กก. พร้อม Smart WI-FI control',
     category: 'เครื่องอบผ้า',

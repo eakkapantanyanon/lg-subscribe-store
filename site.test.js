@@ -28,6 +28,26 @@ const requiredAssets = [
   'images/products/wt2520nheg.webp',
   'images/products/fv1413s4m.webp',
   'images/products/oled48c6psa.webp',
+  'images/products/gc-x257cmew.webp',
+  'images/products/gc-j257sqzw.webp',
+  'images/products/gv-b25ffgdb.webp',
+  'images/products/gc-b48fpgam.webp',
+  'images/products/gv-v25ffgrb.webp',
+  'images/products/gn-f392pqak.webp',
+  'images/products/gn-f452pqak.webp',
+  'images/products/gn-v389fqef.webp',
+  'images/products/gc-g24ffqkb.webp',
+  'images/products/gc-v22ffqmb.webp',
+  'images/products/wt2116sheg.webp',
+  'images/products/wt1410nheg.webp',
+  'images/products/wt2520nhen.webp',
+  'images/products/wt1410nhen.webp',
+  'images/products/fv1409h4w.webp',
+  'images/products/f2520rntb.webp',
+  'images/products/fv1413h4m.webp',
+  'images/products/tx2723st5j.webp',
+  'images/products/tx2315dt5g.webp',
+  'images/products/rv10vhp2b.webp',
   'images/hero-8-d.webp',
   'images/hero-8-m.webp',
   'images/hero-birthday-38-d.webp',
@@ -144,7 +164,7 @@ check(/:focus-visible/.test(fs.readFileSync(path.join(ROOT, 'catalog.css'), 'utf
 check(/products\.html/.test(sitemap) && !/<loc>[^<]*\/product\.html<\/loc>/.test(sitemap), 'Sitemap ใช้ Catalog URL แทน PDP ที่ไม่มี slug');
 check(imageInventory.summary.products === 97 && imageInventory.summary.primary.local === 8, 'Phase 4 inventory มีสินค้า 97 รุ่นและ local primary pilot 8 รุ่น');
 check(imageInventory.summary.groups.A === 8 && imageInventory.summary.pilot.reductionPercent > 50, 'Phase 4 pilot ผ่าน verification และลดขนาดรวมมากกว่า 50%');
-check((productSource.match(/img: 'images\/products\/[a-z0-9-]+\.webp'/g) || []).length === 8, 'Product data ใช้ local WebP เฉพาะ pilot 8 รุ่น');
+check((productSource.match(/img: 'images\/products\/[a-z0-9-]+\.webp'/g) || []).length === 28, 'Product data ใช้ local WebP 28 รุ่นหลัง Phase 2 migration');
 check(/localPrimary/.test(pdp) && /fetchpriority="high"/.test(pdp), 'PDP ใช้ local primary ก่อน gallery และให้ priority กับภาพหลัก');
 check(/loading="lazy"/.test(catalogSource) && !/position <= 4 \? 'eager'/.test(catalogSource), 'Catalog lazy-load รูปสินค้าซึ่งอยู่ใต้ส่วนค้นหา');
 check(!/class="trust-strip"/.test(home), 'Home ไม่มี trust strip ที่ซ้ำกับ Why FLEXI-SUB');
