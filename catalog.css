@@ -712,6 +712,7 @@ body[data-page="catalog"] :focus-visible {
   .catalog-grid .p-name { min-height: 0; font-size: 16px; -webkit-line-clamp: 3; }
   .catalog-grid .p-price strong { font-size: 34px; }
   .catalog-grid .p-cta { min-height: auto; padding-top: 12px; }
+  .catalog-grid .p-cta a { min-height: 48px; display: flex; align-items: center; justify-content: center; }
   .catalog-hero { padding-block: 58px 64px; }
   .catalog-hero h1 { font-size: 36px; line-height: 1.22; }
   .catalog-total { margin-top: 22px; }

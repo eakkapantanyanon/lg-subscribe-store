@@ -389,6 +389,10 @@ check(pdp.indexOf("group('ประเภทแผน'") < pdp.indexOf("group('�
 check(/const pts = SEL\.planTypes\(product\);\s*wrap\.appendChild\(group\('ประเภทแผน'/.test(pdp), 'PDP แสดงกลุ่มประเภทแผนเสมอ');
 
 check(/id="cartItems"/.test(cart), 'Cart มีรายการสินค้า');
+check(/\.catalog-grid \.p-cta a \{ min-height: 48px/.test(fs.readFileSync(path.join(ROOT, 'catalog.css'), 'utf8')), 'Catalog mobile CTA มี touch target อย่างน้อย 48px');
+check(/aside \.btn-primary \{ min-height: 52px/.test(pdp), 'PDP mobile sticky CTA มี touch target 52px');
+check(/\.schedule-table \{ min-width: 520px/.test(cart) && /\.schedule-toggle \{ overflow-x: auto/.test(cart), 'Cart mobile ตารางชำระเลื่อนได้โดยไม่บีบข้อมูล');
+check(/\.contact-btn \{ border-radius: 10px; min-height: 52px/.test(cart), 'Cart mobile CTA ส่งเจ้าหน้าที่มี touch target 52px');
 check(/const cartKey = \(productId, sku\)/.test(cart) && /entry\.sku/.test(cart) && /entry\.color/.test(cart), 'Cart แยกรายการตาม product + SKU และรักษาสีจาก PDP');
 check(/สี ' \+ color/.test(cart) && /SKU ' \+ sku/.test(cart), 'ข้อความส่งเจ้าหน้าที่ระบุสีและ SKU ของ variant');
 check(/id="rememberedCustomerType"/.test(cart) && !/name="custType"/.test(cart), 'Cart แสดงประเภทลูกค้าที่จำไว้และไม่มีตัวเลือกซ้ำ');
