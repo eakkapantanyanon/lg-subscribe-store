@@ -479,7 +479,7 @@
         .p-cta { border-top: 1px solid var(--line); padding-top: 14px; display: flex; justify-content: space-between; }
         .p-cta::after { content: '\2192'; }
         .section-head h2 { letter-spacing: -.035em; }
-        #why, #products, #promotions, #compare, #how, #services, #faq, footer { content-visibility: auto; contain-intrinsic-size: 800px; }
+        /* Home sections are moderate in size; render their real geometry to keep scrolling stable and avoid large intrinsic placeholders. */
         @media (max-width: 900px) { .benefit-grid { grid-template-columns: repeat(2, 1fr); gap: 24px 36px; } .header-cta { display: none; } }
         @media (max-width: 640px) { .announcement { font-size: 11px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; } .header-inner { padding-left: 16px; padding-right: 12px; gap: 8px; } .brand-copy span { display: none; } .header-actions { gap: 6px; } .header-actions .icon-btn:first-child { display: none; } .hero-left { padding: 34px 22px 78px; overflow: hidden; } .hero-left h1 { font-size: 34px; overflow-wrap: anywhere; } .h-detail { font-size: 14px; } .h-btns { gap: 8px; } .h-btn { padding: 11px 16px; } .hero-right { min-height: 285px; } .hero-badge { right: 14px; max-width: calc(100% - 28px); } .hero-controls { max-width: 100vw; } #why { padding-top: 54px; } .benefit-grid { grid-template-columns: 1fr; gap: 0; } .benefit-card { padding: 0 0 20px; } .benefit-card + .benefit-card { padding-top: 20px; } .benefit-card:nth-child(n+3) { border-top: 0; padding-top: 20px; } .benefit-icon { width: 50px; height: 50px; border-radius: 16px; } .benefit-card h3 { margin-top: 18px; } .benefit-note { margin-top: 12px; } .lifestyle-grid { grid-template-columns: 1fr; } .lifestyle-card { min-height: 180px; } .p-img { height: 190px; } }
 
@@ -793,7 +793,7 @@
                 <details><summary>หากต้องการเปลี่ยนชื่อผู้ทำสัญญาเช่าซื้อ ต้องทำอย่างไร?</summary><p>ติดต่อ Call Center 02-057-5757 ทุกวัน เวลา 8:00–18:00 น. เพื่อแจ้งดำเนินการเปลี่ยนชื่อผู้ทำสัญญาเช่าซื้อ</p></details>
                 <details><summary>กรรมสิทธิ์ของสินค้าเป็นอย่างไร?</summary><p>ระหว่างอายุสัญญา กรรมสิทธิ์ในสินค้ายังเป็นของผู้ให้เช่าซื้อ และจะโอนเป็นของผู้เช่าซื้อเมื่อชำระครบและสิ้นสุดสัญญา</p></details>
                 <details><summary>สามารถเปลี่ยนสินค้า Subscription เมื่อมีรุ่นใหม่ออกมาได้หรือไม่?</summary><p>ยังไม่สามารถเปลี่ยนเป็นสินค้ารุ่นใหม่ได้ในระหว่างที่สัญญาเดิมยังไม่สิ้นสุด</p></details>
-                <details><summary>สามารถชำระค่าบริการด้วยวิธีใดได้บ้าง?</summary><p>ชำระได้ด้วยบัตรเครดิต บัตรเดบิต หรือหักบัญชีอัตโนมัติ ปัจจุบันบัตรเดบิตรองรับธนาคารกสิกรไทยและธนาคารกรุงเทพโดยยืนยันผ่าน OTP ส่วนการหักบัญชีอัตโนมัติรองรับธนาคารกสิกรไทยและธนาคารไทยพาณิชย์ โปรดตรวจสอบเงื่อนไขล่าสุดกับ LG ก่อนสมัคร</p></details>
+                <details><summary>สามารถชำระค่าบริการด้วยวิธีใดได้บ้าง?</summary><p>รองรับบัตรเครดิต บัตรเดบิตทุกธนาคาร และการหักบัญชีอัตโนมัติเฉพาะธนาคารไทยพาณิชย์ (SCB) และธนาคารกรุงเทพ (BBL) โดยขั้นตอนการยืนยันรายการขึ้นอยู่กับช่องทางและธนาคารที่เลือก โปรดตรวจสอบเงื่อนไขล่าสุดกับเจ้าหน้าที่ก่อนสมัคร</p></details>
             </div>
         </div>
     </section>
@@ -927,7 +927,7 @@
             </div>
             <div class="f-col">
                 <h4>บริการ</h4>
-                <a href="#services">ติดตั้งฟรี</a><a href="#services">บริการตามรอบ</a><a href="#services">ซ่อมฟรีตลอดสัญญา</a><a href="subscribe-store.html">ตะกร้าของฉัน</a>
+                <a href="#services">ติดตั้งตามเงื่อนไข</a><a href="#services">บริการตามรอบ</a><a href="#services">ซ่อมตามเงื่อนไขสัญญา</a><a href="subscribe-store.html">ตะกร้าของฉัน</a>
             </div>
             <div class="f-col">
                 <h4>แคมเปญ</h4>

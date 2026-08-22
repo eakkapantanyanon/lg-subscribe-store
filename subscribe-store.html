@@ -649,15 +649,22 @@
             display: flex; align-items: center; gap: 8px;
         }
         .pm-badge {
-            display: inline-block; font-size: 11px; font-weight: 700;
-            padding: 3px 10px; border-radius: 20px;
+            display: inline-block; font-size: 11.5px; font-weight: 700;
+            padding: 4px 10px; border-radius: 20px;
             background: var(--accent-soft); color: var(--accent-text);
             border: 1px solid var(--accent-border);
         }
+        .pm-badge-success { color: #16734a; background: #eef8f3; border-color: #cce8da; }
+        .bank-badges { display: flex; flex-wrap: wrap; gap: 10px; margin: 4px 0 14px; }
+        .bank-badge { display: inline-flex; align-items: baseline; gap: 7px; min-width: 118px; padding: 9px 12px; border: 1px solid var(--line); border-radius: 10px; background: #fff; }
+        .bank-badge strong { font-size: 16px; line-height: 1; }
+        .bank-badge small { font-size: 11px; color: #5f5559; font-weight: 600; }
+        .bank-badge.scb strong { color: #4b2382; }
+        .bank-badge.bbl strong { color: #0b4fa2; }
         .pm-badges { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
         .pm-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
         .pm-list li {
-            font-size: 13px; line-height: 1.5; color: #444;
+            font-size: 13.5px; line-height: 1.65; color: #40363a; font-weight: 500;
             padding-left: 20px; position: relative;
         }
         .pm-list li::before {
@@ -826,22 +833,40 @@
     </main>
 
     <section class="payment-methods" id="payment-methods" aria-labelledby="pmTitle">
-        <h2 id="pmTitle">ชำระค่าบริการด้วยบัตรเครดิต</h2>
-        <p class="pm-sub">LG Subscribe รองรับการชำระค่าบริการด้วยบัตรเครดิตที่ออกโดยธนาคารในประเทศไทย ตรวจสอบเงื่อนไขกับเจ้าหน้าที่ก่อนสมัคร</p>
+        <h2 id="pmTitle">วิธีชำระค่าบริการ</h2>
+        <p class="pm-sub">รองรับบัตรเครดิต บัตรเดบิตทุกธนาคาร และการหักบัญชีอัตโนมัติเฉพาะธนาคารไทยพาณิชย์ (SCB) และธนาคารกรุงเทพ (BBL)</p>
 
         <div class="pm-cards">
             <div class="pm-card">
                 <h3>บัตรเครดิต</h3>
                 <div class="pm-badges">
-                    <span class="pm-badge">สมัครง่าย</span>
-                    <span class="pm-badge">ไม่ต้องยื่นเอกสาร</span>
-                    <span class="pm-badge">ไม่ล็อกวงเงิน</span>
+                    <span class="pm-badge">Visa</span><span class="pm-badge">Mastercard</span><span class="pm-badge">JCB</span><span class="pm-badge">UnionPay</span>
                 </div>
                 <ul class="pm-list">
-                    <li>ใช้บัตรเครดิตสำหรับชำระค่าบริการ LG Subscribe</li>
-                    <li>ไม่ต้องยื่นเอกสารประกอบการสมัคร</li>
+                    <li>ใช้บัตรเครดิตที่ออกโดยธนาคารในประเทศไทย</li>
+                    <li>ชื่อผู้ทำสัญญาและชื่อเจ้าของบัตรต้องเป็นบุคคลเดียวกัน</li>
                 </ul>
-                <p class="pm-note">* บัตรเครดิตที่ออกโดยธนาคารในประเทศไทยเท่านั้น</p>
+            </div>
+
+            <div class="pm-card">
+                <h3>บัตรเดบิต</h3>
+                <div class="pm-badges"><span class="pm-badge pm-badge-success">รองรับบัตรเดบิตทุกธนาคาร</span></div>
+                <ul class="pm-list">
+                    <li>รองรับบัตรเดบิตจากทุกธนาคารในประเทศไทย</li>
+                    <li>การยืนยันรายการเป็นไปตามขั้นตอนของธนาคารผู้ออกบัตร</li>
+                </ul>
+            </div>
+
+            <div class="pm-card">
+                <h3>หักบัญชีอัตโนมัติ (Direct Debit)</h3>
+                <div class="bank-badges" aria-label="ธนาคารที่รองรับการหักบัญชีอัตโนมัติ">
+                    <span class="bank-badge scb"><strong>SCB</strong><small>ไทยพาณิชย์</small></span>
+                    <span class="bank-badge bbl"><strong>BBL</strong><small>กรุงเทพ</small></span>
+                </div>
+                <ul class="pm-list">
+                    <li>รองรับเฉพาะธนาคารไทยพาณิชย์ (SCB) และธนาคารกรุงเทพ (BBL)</li>
+                    <li>ตรวจสอบขั้นตอนยืนยันการหักบัญชีกับเจ้าหน้าที่ก่อนสมัคร</li>
+                </ul>
             </div>
         </div>
 
@@ -849,12 +874,10 @@
             <h3>ควรรู้ก่อนสมัคร</h3>
             <div class="pm-elig-grid">
                 <div class="pm-elig-group">
-                    <h4>เงื่อนไขบัตรเครดิต</h4>
+                    <h4>ข้อมูลการชำระเงิน</h4>
                     <ul>
-                        <li>ชื่อผู้ทำสัญญาและชื่อเจ้าของบัตรต้องเป็นบุคคลเดียวกัน</li>
-                        <li>บัตรต้องมีอายุการใช้งานคงเหลือมากกว่า 3 เดือน</li>
-                        <li>ต้องเป็นบัตรเครดิตที่ออกโดยธนาคารในประเทศไทย</li>
-                        <li>ไม่รองรับบัตรเครดิตออนไลน์ / Virtual Card</li>
+                        <li>เงื่อนไขการอนุมัติและการยืนยันรายการขึ้นอยู่กับช่องทางชำระเงินและธนาคารที่เลือก</li>
+                        <li>โปรดตรวจสอบข้อมูลและเงื่อนไขล่าสุดกับเจ้าหน้าที่ LG ก่อนสมัคร</li>
                     </ul>
                 </div>
             </div>

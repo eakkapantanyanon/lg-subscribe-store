@@ -100,7 +100,7 @@
         .campaign-source { color: var(--lg-red); font-size: 13px; font-weight: 800; white-space: nowrap; }
         .campaign-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
         .campaign-card { overflow: hidden; border: 1px solid var(--line); border-radius: 24px; background: #fff; box-shadow: 0 14px 38px rgba(38,10,20,.07); }
-        .campaign-card img { display: block; width: 100%; aspect-ratio: 8/3; object-fit: cover; background: #f5efeb; }
+        .campaign-card img { display: block; width: 100%; height: auto; aspect-ratio: 8/3; object-fit: cover; background: #f5efeb; }
         .campaign-copy { padding: 22px 24px 24px; }
         .campaign-date { display: inline-flex; margin-bottom: 10px; padding: 5px 10px; border-radius: 999px; background: var(--lg-red-soft); color: var(--lg-red); font-size: 11px; font-weight: 800; }
         .campaign-card h3 { margin: 0 0 7px; font-size: 20px; }
@@ -260,7 +260,8 @@
         .row-cta { display: inline-flex; padding: 8px 13px; border: 1px solid var(--lg-red); border-radius: 999px; }
         .row-cta:hover { background: var(--lg-red-soft); text-decoration: none; }
         .cta-zone { border-radius: 24px; padding: 48px 22px; background: linear-gradient(135deg,#f8edef,#fff); border: 1px solid var(--line); }
-        #official-campaigns, #promos, footer { content-visibility: auto; contain-intrinsic-size: 800px; }
+        /* Keep long product results lazy, but render campaign/footer geometry normally to avoid oversized off-screen placeholders and scroll jumps. */
+        #promos { content-visibility: auto; contain-intrinsic-size: 800px; }
         @media (max-width: 760px) { .page-hero { padding: 60px 0 74px; } .promo-stats { margin: 0; border-radius: 0; grid-template-columns: 1fr; box-shadow: none; } .promo-stat + .promo-stat { border-left: 0; border-top: 1px solid var(--line); } .campaign-head { display: block; } .campaign-source { display: inline-flex; margin-top: 10px; } .campaign-grid { grid-template-columns: 1fr; } .campaign-card img { aspect-ratio: 3/2; } .credit-promos { margin-top: 46px; padding: 24px 16px; border-radius: 22px; } .credit-grid { grid-template-columns: 1fr; } .promo-list-head { display: block; } .promo-list-head p { margin-top: 8px; } .filters { width: 100%; border-radius: 18px; } .p-card-m { border-radius: 18px; } }
         /* Editorial promotions refinement — align with the rest of the store */
         .brand-copy b { font-weight: 600; letter-spacing: -.025em; }

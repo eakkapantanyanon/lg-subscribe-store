@@ -393,7 +393,7 @@ check(/id="addBtn"/.test(pdp), 'PDP มีปุ่มใส่ตะกร้�
 check(/id="sumBreakdown"[^>]*type="button"[^>]*disabled/.test(pdp), 'PDP breakdown trigger เป็น semantic button และเริ่มต้น disabled');
 check(/id="breakdownModal"[^>]*role="dialog"[^>]*aria-modal="true"[^>]*aria-labelledby="modalTitle"/.test(pdp), 'PDP breakdown modal มี dialog semantics');
 check(/trapDialogFocus/.test(pdp) && /closeBreakdown/.test(pdp) && /modalClose\.focus\(\)/.test(pdp), 'PDP modal รองรับ focus trap, Escape และ focus return');
-check(/optionWrap\.appendChild\(iBtn\)/.test(pdp) && !/b\.appendChild\(iBtn\)/.test(pdp), 'PDP info button ไม่ซ้อนอยู่ใน option button');
+check(!/optionWrap\.appendChild\(iBtn\)/.test(pdp) && !/className = 'info-btn'/.test(pdp), 'PDP เอาปุ่ม info ซ้ำซ้อนออกจากตัวเลือกบริการ');
 check(/aria-checked=/.test(pdp) && /setAttribute\('role', 'radiogroup'\)/.test(pdp) && /ArrowRight/.test(pdp) && /ArrowLeft/.test(pdp), 'PDP color selector ใช้ radio semantics และ arrow-key navigation');
 check(/subscribe-store\.html/.test(pdp), 'PDP เชื่อมไปตะกร้า');
 check(/main\.pdp-layout/.test(pdp) && !/main \.pdp-layout/.test(pdp), 'PDP ใช้ responsive selector ที่ตรงกับ main element');
@@ -407,6 +407,7 @@ check((gallerySource.match(/https:\/\/arttato\.github\.io\/LG-Subscribe\/img\/pr
 check(/เทคโนโลยีเครื่องดูดฝุ่นไร้สาย LG CordZero/.test(pdp) && !/f\.push\('แผน '/.test(pdp), 'PDP bullet ใช้คุณสมบัติสินค้าและไม่สร้างจากข้อมูลแผน');
 check(pdp.indexOf("group('ประเภทแผน'") < pdp.indexOf("group('ประเภทการดูแล'"), 'PDP แสดงประเภทแผนก่อนประเภทการดูแล');
 check(/const pts = SEL\.planTypes\(product\);\s*wrap\.appendChild\(group\('ประเภทแผน'/.test(pdp), 'PDP แสดงกลุ่มประเภทแผนเสมอ');
+check(/care-summary-label/.test(pdp) && /บริการที่ได้รับ/.test(pdp), 'PDP แสดงหัวข้อบริการที่ได้รับในรูปแบบเดียวกันทุกตัวเลือกบริการ');
 
 check(/id="cartItems"/.test(cart), 'Cart มีรายการสินค้า');
 check(/\.catalog-grid \.p-cta a \{ min-height: 48px/.test(fs.readFileSync(path.join(ROOT, 'catalog.css'), 'utf8')), 'Catalog mobile CTA มี touch target อย่างน้อย 48px');
@@ -415,7 +416,11 @@ check(/--premium-radius-md: 16px/.test(fs.readFileSync(path.join(ROOT, 'premium.
 check(/\.big-price \{ font-size: clamp\(34px, 3vw, 42px\)/.test(pdp) && /font-variant-numeric: tabular-nums/.test(pdp), 'PDP ให้ราคาต่อเดือนเป็น visual hierarchy หลัก');
 check(/UX\/UI MAX · Catalog conversion polish/.test(fs.readFileSync(path.join(ROOT, 'catalog.css'), 'utf8')) && /\.catalog-grid \.p-price strong[^}]*color: var\(--catalog-brand\)/s.test(fs.readFileSync(path.join(ROOT, 'catalog.css'), 'utf8')), 'Catalog UX/UI Max เน้นราคาและสถานะการ์ดอย่างสม่ำเสมอ');
 check(/\.opt-card\.selected::after/.test(premium) && /body\[data-page="product-detail"\] \.color-opt\.selected/.test(premium), 'PDP UX/UI Max แสดง selection state ของแผนและสีชัดเจน');
-check(/ชำระค่าบริการด้วยบัตรเครดิต/.test(cart) && !/หักบัญชี|บัตรเดบิต|เครดิตบูโร/.test(cart), 'Cart แสดงเฉพาะการชำระด้วยบัตรเครดิตตามข้อกำหนด');
+check(/บัตรเครดิต/.test(cart) && /บัตรเดบิต/.test(cart) && /Direct Debit/.test(cart), 'Cart แสดงช่องทางบัตรเครดิต บัตรเดบิต และหักบัญชี');
+check(/รองรับบัตรเดบิตทุกธนาคาร/.test(cart) && /SCB/.test(cart) && /BBL/.test(cart) && /ธนาคารไทยพาณิชย์/.test(cart) && /ธนาคารกรุงเทพ/.test(cart), 'Cart ระบุบัตรเดบิตทุกธนาคาร และ Direct Debit เฉพาะ SCB/BBL');
+check(/บัตรเดบิตทุกธนาคาร/.test(home) && /SCB/.test(home) && /BBL/.test(home), 'Home FAQ สอดคล้องกับช่องทางชำระเงินล่าสุด');
+check(!/#why, #products, #promotions, #compare, #how, #services, #faq, footer \{ content-visibility: auto/.test(home), 'Home ไม่ใช้ intrinsic placeholder กับทุก section จนเกิดช่องว่าง/scroll jump');
+check(/\.campaign-card img \{[^}]*height: auto;[^}]*aspect-ratio: 8\/3/.test(promotions), 'Promotion campaign artwork รักษาสัดส่วน 8:3 โดยไม่ยืดความสูง');
 check(/\.schedule-table \{ min-width: 520px/.test(cart) && /\.schedule-toggle \{ overflow-x: auto/.test(cart), 'Cart mobile ตารางชำระเลื่อนได้โดยไม่บีบข้อมูล');
 check(/\.contact-btn \{ border-radius: 10px; min-height: 52px/.test(cart), 'Cart mobile CTA ส่งเจ้าหน้าที่มี touch target 52px');
 check(/const cartKey = \(productId, sku\)/.test(cart) && /entry\.sku/.test(cart) && /entry\.color/.test(cart), 'Cart แยกรายการตาม product + SKU และรักษาสีจาก PDP');
