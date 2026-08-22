@@ -583,6 +583,44 @@
             .contact-detail { grid-template-columns: 70px 1fr; text-align: left; }
         }
 
+        /* ---- Editorial checkout refinement — align with Home / Catalog / PDP ---- */
+        .sub-summary-box { border-radius: 10px; font-weight: 600; box-shadow: none; }
+        .checkout-step.active { font-weight: 600; }
+        .hero { padding-top: clamp(48px,7vw,82px); padding-bottom: 32px; }
+        .hero .eyebrow { font-size: 10px; font-weight: 600; letter-spacing: .12em; }
+        .hero h1 { max-width: 760px; font-size: clamp(34px,4.5vw,52px); font-weight: 600; line-height: 1.18; letter-spacing: -.045em; text-wrap: balance; }
+        .hero p { max-width: 650px; line-height: 1.8; }
+        .combo-banner { border-radius: 10px; box-shadow: none; }
+        .sidebar-cart { border-radius: 18px; box-shadow: 0 10px 34px rgba(38,10,20,.055); }
+        .sidebar-title { font-weight: 600; letter-spacing: -.025em; }
+        .customer-type-zone { border-radius: 10px; background: #faf8f8; }
+        .remembered-customer { border-radius: 8px; background: #faf8f8; }
+        .remembered-customer strong { font-weight: 600; }
+        .cust-input { border-radius: 9px; box-shadow: none; }
+        .cart-item-list li { padding: 20px 0; }
+        .cart-item-name { font-weight: 500; letter-spacing: -.01em; }
+        .cart-item-price { font-weight: 600; }
+        .cart-item-plan select { border-radius: 8px; box-shadow: none; }
+        .qty-btn { border-radius: 8px; box-shadow: none; }
+        .price-details { padding: 16px 0; border-top: 1px solid #eee8ea; border-bottom: 1px solid #eee8ea; border-radius: 0; background: transparent; }
+        .total-row { font-weight: 500; }
+        #cartTotal { font-weight: 600; }
+        .contact-btn { border-radius: 12px; font-weight: 600; box-shadow: none; }
+        .contact-btn:hover { transform: none; box-shadow: none; }
+        .officer-contact { border-radius: 12px; background: #fffafb; }
+        .officer-qr { border-radius: 8px; }
+        .officer-contact h3 { font-weight: 600; letter-spacing: -.02em; }
+        .official-assurance { border-radius: 8px; font-weight: 500; }
+        .contact-detail a { font-weight: 600; }
+        .checkout-assurance b { font-weight: 600; }
+        @media (max-width: 700px) {
+            .hero { padding-top: 44px; }
+            .hero h1 { font-size: 32px; line-height: 1.24; }
+            .sidebar-cart { border-radius: 14px; box-shadow: 0 8px 24px rgba(38,10,20,.05); }
+            .contact-btn { border-radius: 10px; }
+            .officer-contact { border-radius: 10px; }
+        }
+
         /* ---- Payment Method Section ---- */
         .payment-methods {
             max-width: 1280px; margin: 32px auto; padding: 0 20px;
@@ -652,10 +690,29 @@
         .pm-elig-group li::before {
             content: '\2022'; position: absolute; left: 0; color: var(--accent); font-weight: 700;
         }
+        /* Payment / assurance refinement */
+        .payment-methods { max-width: 940px; margin: 44px auto 72px; }
+        .payment-methods h2 { font-size: clamp(26px,3vw,34px); font-weight: 600; line-height: 1.25; letter-spacing: -.035em; }
+        .payment-methods .pm-sub { max-width: 680px; margin-bottom: 26px; line-height: 1.75; }
+        .pm-cards { gap: 12px; margin-bottom: 34px; }
+        .pm-card { padding: 22px 20px; border-radius: 12px; box-shadow: none; }
+        .pm-card::before { height: 1px; }
+        .pm-card h3 { font-size: 16px; font-weight: 600; letter-spacing: -.015em; }
+        .pm-badges { gap: 5px; }
+        .pm-badge { padding: 3px 7px; border-radius: 6px; font-weight: 500; }
+        .pm-list { gap: 9px; }
+        .pm-list li { line-height: 1.65; color: #5f5559; }
+        .pm-list li::before { width: 5px; height: 5px; top: 8px; }
+        .pm-note { border-radius: 8px; box-shadow: none; }
+        .pm-elig-grid { gap: 14px; }
+        .pm-elig-card { border-radius: 10px; box-shadow: none; }
+        footer { padding-top: 48px; padding-bottom: 48px; font-weight: 400; }
         @media (max-width: 640px) {
             .pm-cards { grid-template-columns: 1fr; }
-            .pm-elig-grid { grid-template-columns: 1fr; gap: 16px; }
-            .payment-methods { padding: 0 16px; }
+            .pm-elig-grid { grid-template-columns: 1fr; gap: 14px; }
+            .payment-methods { margin-top: 36px; padding: 0 16px; }
+            .payment-methods h2 { font-size: 26px; }
+            .pm-card { padding: 20px 16px; border-radius: 10px; }
         }
     </style>
     <link rel="stylesheet" href="premium.css?v=6">
