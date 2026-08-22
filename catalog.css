@@ -18,7 +18,7 @@ body[data-page="catalog"] {
   overflow-x: hidden;
   background: #fff;
   color: var(--catalog-ink);
-  font-family: "IBM Plex Sans Thai", "Noto Sans Thai", Tahoma, "Segoe UI", sans-serif;
+  font-family: "Anuphan", "Noto Sans Thai", Tahoma, "Segoe UI", sans-serif;
   line-height: 1.6;
   letter-spacing: -.01em;
 }

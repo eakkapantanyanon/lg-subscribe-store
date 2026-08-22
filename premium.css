@@ -10,6 +10,8 @@
   --premium-radius-lg: 24px;
   --premium-space-section: clamp(68px, 6.8vw, 100px);
   --premium-focus: 0 0 0 3px rgba(165, 0, 52, .18);
+  --font-body: "Anuphan", "Noto Sans Thai", Tahoma, "Segoe UI", sans-serif;
+  --font-display: "Bai Jamjuree", "Anuphan", "Noto Sans Thai", Tahoma, "Segoe UI", sans-serif;
 }
 
 /* =====================================================================
@@ -19,8 +21,29 @@
    Thai is a safe Thai-capable fallback, then the classic system stack.
    ===================================================================== */
 html, body, button, input, select, textarea, optgroup {
-  font-family: "IBM Plex Sans Thai", "Noto Sans Thai", Tahoma, "Segoe UI", sans-serif;
+  font-family: var(--font-body);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
 }
+
+/* FLEXI-SUB signature typography: editorial Thai body + geometric display face. */
+:where(h1, h2, h3, .brand-copy b, .lg-mark, .pdp-top .brand, .sidebar-title,
+       .p-name, .cart-item-name, .big-price, #cartTotal, .p-price strong,
+       .campaign-head h1, .credit-head h2, .promo-list-head h2) {
+  font-family: var(--font-display);
+}
+:where(h1, h2, .big-price, #cartTotal, .p-price strong) {
+  letter-spacing: -.018em;
+}
+:where(h3, .p-name, .cart-item-name, .sidebar-title) {
+  letter-spacing: -.008em;
+}
+body {
+  font-weight: 400;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+:where(p, li, label, input, select, button) { letter-spacing: .002em; }
 
 /* Reusable line icons — currentColor keeps them in sync with each surface. */
 .line-icon {
@@ -817,6 +840,12 @@ body[data-page="cart"] .payment-methods { max-width: 940px; }
 body[data-page="cart"] .pm-cards { grid-template-columns: minmax(0, 1fr); }
 body[data-page="cart"] .pm-elig-grid { grid-template-columns: minmax(0, 1fr); }
 body[data-page="cart"] .pm-card { border-color: rgba(92,47,64,.1); }
+body[data-page="cart"] .payment-methods :where(p, li) { font-size: 14px; line-height: 1.7; color: #4d4447; }
+body[data-page="cart"] .payment-methods :where(h2, h3, h4) { font-family: var(--font-display); }
+body[data-page="product-detail"] .care-lines li { font-size: 13.5px; line-height: 1.68; color: #51474b; }
+body[data-page="product-detail"] .care-lines .care-cycle { font-family: var(--font-display); font-weight: 600; }
+body[data-page="product-detail"] .opt-card .t { font-family: var(--font-display); font-size: 15px; font-weight: 600; }
+body[data-page="product-detail"] .opt-card .d { font-size: 13.5px; line-height: 1.68; color: #51474b; }
 @media (max-width: 720px) {
   body[data-page="product-detail"] .opt-card.selected::after { width: 20px; height: 20px; top: 8px; right: 8px; }
   body[data-page="cart"] .sidebar-cart { box-shadow: 0 10px 28px rgba(38,10,20,.06); }
