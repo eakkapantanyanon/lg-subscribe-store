@@ -225,6 +225,34 @@ check(/OFFICIAL LG CAMPAIGNS/.test(promotions) && /ลด 15% ตลอดสั
 check(/images\/promotions\/ktc-credit\.jpg/.test(promotions) && /images\/promotions\/uob-credit\.jpg/.test(promotions), 'Promotions มีรูปจริงโปรบัตรเครดิต KTC และ UOB');
 check(!/id="conditions"/.test(promotions) && !/สิทธิพิเศษหลักในเดือนนี้/.test(promotions), 'Promotions ไม่มีส่วนสิทธิพิเศษที่ซ้ำกับแคมเปญด้านบน');
 check(canonicalProducts.length === 99 && canonicalProducts.reduce((total, product) => total + product.plans.length, 0) === 197, 'Canonical products.js มีสินค้า 99 รายการขายและ 197 แผน');
+check(new Set(canonicalProducts.map(product => product.id)).size === canonicalProducts.length, 'Canonical products.js ไม่มี product id ซ้ำ');
+check(new Set(canonicalProducts.map(product => product.model)).size === canonicalProducts.length, 'Canonical products.js ไม่มี model ซ้ำ');
+const sitemapUrls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(match => match[1]);
+const expectedProductUrls = canonicalProducts.map(product => 'https://eakkapantanyanon.github.io/lg-subscribe-store/product.html?slug=' + encodeURIComponent(product.id));
+check(expectedProductUrls.every(url => sitemapUrls.includes(url)) && sitemapUrls.filter(url => /product\.html\?slug=/.test(url)).length === canonicalProducts.length, 'Sitemap มี PDP slug ครบทุก product record และไม่มีรายการเกิน');
+const parseBillRange = range => {
+  const match = String(range || '').match(/(\d+)(?:\s*-\s*(\d+))?/);
+  return match ? [Number(match[1]), Number(match[2] || match[1])] : null;
+};
+let monthlyPlanCoreValid = true;
+let billScheduleContinuityValid = true;
+for (const product of canonicalProducts) {
+  for (const plan of product.plans) {
+    if (plan.outright) continue;
+    if (!(plan.price > 0) || !(plan.regular > 0) || !(plan.postPromoPrice > 0) || !(plan.months > 0)) monthlyPlanCoreValid = false;
+    if (Array.isArray(plan.billSchedule) && plan.billSchedule.length) {
+      let previousEnd = 0;
+      for (const bill of plan.billSchedule) {
+        const parsed = parseBillRange(bill.range);
+        if (!parsed || parsed[0] !== previousEnd + 1 || parsed[1] < parsed[0]) billScheduleContinuityValid = false;
+        if (parsed) previousEnd = parsed[1];
+      }
+      if (previousEnd !== plan.totalContractMonths) billScheduleContinuityValid = false;
+    }
+  }
+}
+check(monthlyPlanCoreValid, 'ทุก monthly plan มี price/regular/postPromoPrice/months ที่เป็นค่าบวก');
+check(billScheduleContinuityValid, 'ทุก billSchedule ต่อเนื่องและจบตรง totalContractMonths');
 const fallbackPrices = { WT2520NHEG: 1999, 'GC-L257KQKW': 649, FV1409H4W: 299, SAQ11A: 799, OLED48C6PSA: 749, 'A9T-ULTRA': 749, DFC335HM: 749, AS25GCBY0: 549 };
 for (const [model, price] of Object.entries(fallbackPrices)) {
   check(new RegExp("model: ['\\\"]" + model + "['\\\"][^\\n]*price: " + price + '\\b').test(home), model + ' Home fallback price ตรง canonical');
