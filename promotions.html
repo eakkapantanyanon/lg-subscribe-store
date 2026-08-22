@@ -256,6 +256,49 @@
         .cta-zone { border-radius: 24px; padding: 48px 22px; background: linear-gradient(135deg,#f8edef,#fff); border: 1px solid var(--line); }
         #official-campaigns, #promos, footer { content-visibility: auto; contain-intrinsic-size: 800px; }
         @media (max-width: 760px) { .page-hero { padding: 60px 0 74px; } .promo-stats { margin: 0; border-radius: 0; grid-template-columns: 1fr; box-shadow: none; } .promo-stat + .promo-stat { border-left: 0; border-top: 1px solid var(--line); } .campaign-head { display: block; } .campaign-source { display: inline-flex; margin-top: 10px; } .campaign-grid { grid-template-columns: 1fr; } .campaign-card img { aspect-ratio: 3/2; } .credit-promos { margin-top: 46px; padding: 24px 16px; border-radius: 22px; } .credit-grid { grid-template-columns: 1fr; } .promo-list-head { display: block; } .promo-list-head p { margin-top: 8px; } .filters { width: 100%; border-radius: 18px; } .p-card-m { border-radius: 18px; } }
+        /* Editorial promotions refinement — align with the rest of the store */
+        .brand-copy b { font-weight: 600; letter-spacing: -.025em; }
+        .icon-btn { box-shadow: none; }
+        .campaign-date, .credit-bank { padding: 3px 0; border-radius: 0; background: transparent; font-weight: 600; }
+        .campaign-card a { font-weight: 600; text-underline-offset: 4px; }
+        .credit-promos { padding: 30px 0 0; border: 0; border-top: 1px solid var(--line); border-radius: 0; background: transparent; }
+        .credit-head .kicker, .credit-head h2 { font-weight: 600; }
+        .credit-card { border: 1px solid var(--line); border-radius: 14px; box-shadow: none; }
+        .credit-card h3 { font-weight: 600; letter-spacing: -.02em; }
+        .p-badge { padding: 2px 6px; border-radius: 4px; font-weight: 600; }
+        .p-card-m { border-radius: 12px; box-shadow: none; }
+        footer { background: #240a13; }
+        .footer-grid { padding-top: 52px; gap: 28px; }
+        .f-brand .lg-mark { font-weight: 600; }
+
+        header { box-shadow: none; border-bottom-color: rgba(92,47,64,.08); }
+        .page-hero { padding: 94px 0 104px; background: linear-gradient(115deg,#210710 0%,#690022 58%,#980030 100%); }
+        .page-hero::after { display: none; }
+        .page-hero h1 { max-width: 800px; font-size: clamp(40px,5.4vw,64px); font-weight: 600; line-height: 1.14; letter-spacing: -.045em; text-wrap: balance; }
+        .page-hero p { max-width: 660px; font-size: 15px; line-height: 1.8; }
+        .hero-actions a { min-height: 46px; padding: 0 20px; border-radius: 12px; font-weight: 600; }
+        .promo-stats { margin-top: -28px; border-radius: 14px; box-shadow: 0 10px 32px rgba(38,10,20,.07); }
+        .promo-stat strong { font-weight: 600; }
+        .campaign-head h2, .promo-list-head h2 { font-weight: 600; line-height: 1.22; letter-spacing: -.035em; }
+        .campaign-card { border-radius: 14px; box-shadow: none; }
+        .campaign-card h3 { font-weight: 600; line-height: 1.4; }
+        .filters { gap: 20px; padding: 0; border-radius: 0; background: transparent; }
+        .filters button { padding: 8px 0 10px; border-radius: 0; border-bottom: 1px solid transparent; font-weight: 500; }
+        .filters button.active { background: transparent; color: var(--lg-red); border-bottom-color: var(--lg-red); box-shadow: none; }
+        .promo-table-wrap { border-radius: 0; box-shadow: none; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+        .row-cta { border-radius: 0; border-width: 0 0 1px; padding: 7px 0; font-weight: 500; }
+        .btn-pill { border-radius: 12px; font-weight: 600; box-shadow: none; }
+        .cta-zone { border-radius: 14px; background: #fbf7f8; box-shadow: none; }
+        @media (max-width: 760px) {
+            .page-hero { padding: 62px 0 72px; }
+            .page-hero h1 { font-size: 36px; line-height: 1.2; }
+            .campaign-card, .p-card-m, .cta-zone { border-radius: 12px; box-shadow: none; }
+            .filters { width: 100%; overflow-x: auto; flex-wrap: nowrap; }
+            .filters button { flex: 0 0 auto; white-space: nowrap; }
+            .credit-promos { margin-top: 42px; padding: 24px 0 0; }
+            .credit-card { border-radius: 12px; }
+            .p-card-m { padding: 14px 0; border-width: 1px 0 0; border-radius: 0; }
+        }
     </style>
     <link rel="stylesheet" href="premium.css?v=6">
 </head>
