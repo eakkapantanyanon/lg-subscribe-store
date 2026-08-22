@@ -2465,7 +2465,7 @@ window.LG_PRODUCTS = [
   },
   {
     id: 'ixy11a',
-    img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2026/ixya/gallery/IXY11A_front_450.jpg',
+    img: 'images/products/ixy-series.webp',
     model: 'IXY11A',
     name: 'แอร์อินเวอร์เตอร์ 9,212 BTU LG DUALCOOL',
     category: 'เครื่องปรับอากาศ IXY',
@@ -2512,7 +2512,7 @@ window.LG_PRODUCTS = [
   },
   {
     id: 'ixy13a',
-    img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2026/ixya/gallery/IXY11A_front_450.jpg',
+    img: 'images/products/ixy-series.webp',
     model: 'IXY13A',
     name: 'แอร์อินเวอร์เตอร์ 12,283 BTU LG DUALCOOL',
     category: 'เครื่องปรับอากาศ IXY',
@@ -2559,7 +2559,7 @@ window.LG_PRODUCTS = [
   },
   {
     id: 'ixy18a',
-    img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2026/ixya/gallery/IXY11A_front_450.jpg',
+    img: 'images/products/ixy-series.webp',
     model: 'IXY18A',
     name: 'แอร์อินเวอร์เตอร์ 18,084 BTU LG DUALCOOL',
     category: 'เครื่องปรับอากาศ IXY',
@@ -2606,7 +2606,7 @@ window.LG_PRODUCTS = [
   },
   {
     id: 'ixy24a',
-    img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2026/ixya/gallery/IXY11A_front_450.jpg',
+    img: 'images/products/ixy-series.webp',
     model: 'IXY24A',
     name: 'แอร์อินเวอร์เตอร์ 21,154 BTU LG DUALCOOL',
     category: 'เครื่องปรับอากาศ IXY',
@@ -2653,7 +2653,7 @@ window.LG_PRODUCTS = [
   },
   {
     id: 'siq11b',
-    img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2026/siq/gallery/S1_S3NM121L1C0_Front_1_450.jpg',
+    img: 'images/products/siq-series.webp',
     model: 'SIQ11B',
     name: 'แอร์อินเวอร์เตอร์ 9,212 BTU LG DUALCOOL AI Air',
     category: 'เครื่องปรับอากาศ SIQ',
@@ -2695,7 +2695,7 @@ window.LG_PRODUCTS = [
   },
   {
     id: 'siq13b',
-    img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2026/siq/gallery/S1_S3NM121L1C0_Front_1_450.jpg',
+    img: 'images/products/siq-series.webp',
     model: 'SIQ13B',
     name: 'แอร์อินเวอร์เตอร์ 12,200 BTU LG DUALCOOL AI Air',
     category: 'เครื่องปรับอากาศ SIQ',
@@ -2737,7 +2737,7 @@ window.LG_PRODUCTS = [
   },
   {
     id: 'siq18b',
-    img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2026/siq/gallery/S1_S3NM121L1C0_Front_1_450.jpg',
+    img: 'images/products/siq-series.webp',
     model: 'SIQ18B',
     name: 'แอร์ LG DUALCOOL AI 18,000 BTU รุ่น SIQ18B',
     category: 'เครื่องปรับอากาศ SIQ',
@@ -2779,7 +2779,7 @@ window.LG_PRODUCTS = [
   },
   {
     id: 'siq24b',
-    img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2026/siq/gallery/S1_S3NM121L1C0_Front_1_450.jpg',
+    img: 'images/products/siq-series.webp',
     model: 'SIQ24B',
     name: 'แอร์อินเวอร์เตอร์ 22,178 BTU LG DUALCOOL AI Air',
     category: 'เครื่องปรับอากาศ SIQ',
@@ -2821,7 +2821,7 @@ window.LG_PRODUCTS = [
   },
   {
     id: 'saq11a',
-    img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2025/image-with-icon/saq/RAC2025-Web-Thumbnail_SAQ-450X450.jpg',
+    img: 'images/products/saq-series.webp',
     model: 'SAQ11A',
     name: 'แอร์อินเวอร์เตอร์ 9,200 BTU LG DUALCOOL AI Air รุ่น SAQ11A',
     category: 'เครื่องปรับอากาศ SAQ',
@@ -2863,7 +2863,7 @@ window.LG_PRODUCTS = [
   },
   {
     id: 'saq13a',
-    img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2025/image-with-icon/saq/RAC2025-Web-Thumbnail_SAQ-450X450.jpg',
+    img: 'images/products/saq-series.webp',
     model: 'SAQ13A',
     name: 'แอร์อินเวอร์เตอร์ 12,000 BTU LG DUALCOOL AI Air รุ่น SAQ13A',
     category: 'เครื่องปรับอากาศ SAQ',
@@ -2905,7 +2905,7 @@ window.LG_PRODUCTS = [
   },
   {
     id: 'saq18b',
-    img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2025/image-with-icon/saq/RAC2025-Web-Thumbnail_SAQ-450X450.jpg',
+    img: 'images/products/saq-series.webp',
     model: 'SAQ18B',
     name: 'แอร์ LG DUALCOOL AI 18,000 BTU รุ่น SAQ18B',
     category: 'เครื่องปรับอากาศ SAQ',
@@ -2947,7 +2947,7 @@ window.LG_PRODUCTS = [
   },
   {
     id: 'saq24b',
-    img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2025/image-with-icon/saq/RAC2025-Web-Thumbnail_SAQ-450X450.jpg',
+    img: 'images/products/saq-series.webp',
     model: 'SAQ24B',
     name: 'แอร์อินเวอร์เตอร์ 24,225 BTU LG DUALCOOL AI Air',
     category: 'เครื่องปรับอากาศ SAQ',
@@ -2989,7 +2989,7 @@ window.LG_PRODUCTS = [
   },
   {
     id: 'art13a',
-    img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2026/art13a-sr1/gallery/01_AirFit%20Artcool_S3-M091LRC0_S3NM091LRC0_EU_Front_450.jpg',
+    img: 'images/products/artcool-series.webp',
     model: 'ART13A.SR1',
     name: 'แอร์อินเวอร์เตอร์ 11,942 BTU LG ARTCOOL',
     category: 'เครื่องปรับอากาศ ART',
@@ -3031,7 +3031,7 @@ window.LG_PRODUCTS = [
   },
   {
     id: 'art18a',
-    img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/air-conditioner/2026/art13a-sr1/gallery/01_AirFit%20Artcool_S3-M091LRC0_S3NM091LRC0_EU_Front_450.jpg',
+    img: 'images/products/artcool-series.webp',
     model: 'ART18A.SR1',
     name: 'แอร์อินเวอร์เตอร์ 18,084 BTU LG ARTCOOL',
     category: 'เครื่องปรับอากาศ ART',
@@ -3741,7 +3741,7 @@ window.LG_PRODUCTS = [
   },
   {
     id: '27lx6tdga-grab',
-    img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/pto/2026/27lx6tdga-grab/27LX6TDGA.GRAB-450.jpg',
+    img: 'images/products/27lx6tdga-grab.webp',
     model: '27LX6TDGA + xboom GRAB',
     name: 'LG StanbyME2 + xboom Grab (ของแถม)',
     category: 'โทรทัศน์ StanbyME',
