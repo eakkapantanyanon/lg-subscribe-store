@@ -229,6 +229,7 @@ check(/rel="preload"\s+as="image"\s+href="images\/hero-8-d\.webp"/.test(home), '
 check(/rel="preload"\s+as="image"\s+href="images\/hero-8-m\.webp"/.test(home), 'Home preload WebP Hero mobile');
 check(!/function preloadHero\(/.test(home) && !/const probe = new Image\(\)/.test(home), 'Home ไม่ preload หรือ probe Hero carousel ที่ยังไม่เห็น');
 check(/data-src=/.test(home) && /function loadHeroImg\(/.test(home), 'Home โหลด Hero สไลด์ถัดไปเมื่อถูกแสดง');
+check(/width=\"1920\" height=\"720\" loading=\"eager\" fetchpriority=\"high\"/.test(home) && /width=\"1920\" height=\"720\" loading=\"lazy\"/.test(home), 'Home Hero ระบุ intrinsic aspect ratio เพื่อลด layout shift');
 check(/hero-track \{ min-height: 710px; \}/.test(premium) && /hero-track \{ min-height: 610px; \}/.test(premium), 'Home จองพื้นที่ Hero บน tablet และ mobile เพื่อลด CLS');
 check((home.match(/all-Banner_1920x720\.jpg/g) || []).length === 1, 'Home Hero ไม่มีภาพแคมเปญซ้ำ');
 check((home.match(/HERO_SLIDES\s*=\s*\[/g) || []).length === 1, 'Home Hero HERO_SLIDES array ปรากฏหนึ่งครั้ง');
