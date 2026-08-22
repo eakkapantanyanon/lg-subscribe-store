@@ -220,8 +220,10 @@ check((home.match(/all-Banner_1920x720\.jpg/g) || []).length === 1, 'Home Hero �
 check((home.match(/HERO_SLIDES\s*=\s*\[/g) || []).length === 1, 'Home Hero HERO_SLIDES array ปรากฏหนึ่งครั้ง');
 check(/-Birthday_1920x720\.jpg/.test(home) === false, 'Home Hero ไม่มีสไลด์โปรครบรอบ (ย้ายไป promotions.html)');
 check(/ซับ 2 แถม 1/.test(home) && /ซับ 1 แถม 1/.test(home), 'Home Hero มีสไลด์โปร IXY และ OLED');
+check((home.match(/btn2: \{ text: 'เลือกสินค้า', href: 'products\.html' \}/g) || []).length === 2, 'Hero โปร IXY/OLED ส่งลูกค้าไป Catalog ก่อนตะกร้า');
 check(!/โปรปัง/.test(home) && !/โปรคุ้ม 2 ต่อ/.test(home) && !/ชวนเพื่อน/.test(home) && !/AWO/.test(home), 'Home Hero ไม่มีสไลด์ที่ลบแล้ว');
 check(/OFFICIAL LG CAMPAIGNS/.test(promotions) && /ลด 15% ตลอดสัญญา/.test(promotions), 'Promotions มีแคมเปญล่าสุดจาก LG Thailand');
+check(/href="products\.html">เลือกสินค้าที่ร่วมรายการ/.test(promotions), 'Promotion CTA พาลูกค้าไปเลือกสินค้าก่อนเข้าตะกร้า');
 check(/images\/promotions\/ktc-credit\.jpg/.test(promotions) && /images\/promotions\/uob-credit\.jpg/.test(promotions), 'Promotions มีรูปจริงโปรบัตรเครดิต KTC และ UOB');
 check(!/id="conditions"/.test(promotions) && !/สิทธิพิเศษหลักในเดือนนี้/.test(promotions), 'Promotions ไม่มีส่วนสิทธิพิเศษที่ซ้ำกับแคมเปญด้านบน');
 check(canonicalProducts.length === 99 && canonicalProducts.reduce((total, product) => total + product.plans.length, 0) === 197, 'Canonical products.js มีสินค้า 99 รายการขายและ 197 แผน');
