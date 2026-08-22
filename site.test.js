@@ -183,6 +183,10 @@ const productByModel = (products, model) => products.find(product => product.mod
 check(!/id="planner"|BUILD YOUR PACKAGE|พร้อมจัดบ้านให้สบาย/.test(home), 'Home นำ Package Planner และ Final CTA ที่ซ้ำซ้อนออกแล้ว');
 check(/id="products"/.test(home), 'Home มี Product section');
 check(/จุดเด่น LG SUBSCRIBE/.test(home) && !/WHY LG SUBSCRIBE/.test(home), 'Home ใช้หัวข้อภาษาไทยที่อ่านเป็นธรรมชาติ');
+check(/id="hamburgerBtn"[^>]*aria-controls="mobileMenu"[^>]*aria-expanded="false"/.test(home) && /id="mobileMenu"[^>]*role="navigation"/.test(home) && /setAttribute\('aria-expanded'/.test(home), 'Home mobile menu แจ้งสถานะเปิด/ปิดให้ screen reader');
+check(/event\.key === 'Escape'[\s\S]*toggleMenu\(false\)/.test(home), 'Home mobile menu ปิดด้วยปุ่ม Escape และคืน focus ได้');
+check(/id="heroPrev"[^>]*aria-label="แบนเนอร์ก่อนหน้า"/.test(home) && /id="heroNext"[^>]*aria-label="แบนเนอร์ถัดไป"/.test(home), 'Home hero navigation มี accessible labels');
+check(/id="heroPlay"[^>]*aria-pressed="false"/.test(home) && /setAttribute\('aria-pressed'/.test(home), 'Home hero autoplay เปิดเผยสถานะ pause/play ให้ assistive technology');
 check(/class="p-price"><small>เริ่มต้น<\/small> ฿/.test(home), 'Home ราคาการ์ดสินค้ามีคำว่าเริ่มต้นนำหน้า');
 check(/ค่าใช้จ่าย[\s\S]*การรับประกัน[\s\S]*การบำรุงรักษา/.test(home) && /รับประกัน 5–7 ปี/.test(home) && /รับประกัน 1–2 ปี/.test(home), 'Home ตาราง Subscribe vs ซื้อขาดตรงตามข้อมูลที่กำหนด');
 check(/id="faq"/.test(home), 'Home มี FAQ');

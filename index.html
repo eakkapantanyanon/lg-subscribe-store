@@ -707,10 +707,10 @@
                 <button class="icon-btn" title="ค้นหา" aria-label="ค้นหาสินค้า" onclick="document.getElementById('products').scrollIntoView()"><span class="line-icon icon-search" aria-hidden="true"></span></button>
                 <button class="icon-btn" title="ตะกร้า" aria-label="เปิดตะกร้า" onclick="location.href='subscribe-store.html'"><span class="line-icon icon-cart" aria-hidden="true"></span></button>
                 <a class="header-cta" href="#products">เลือกแพ็กเกจ</a>
-                <button class="icon-btn hamburger" id="hamburgerBtn" title="เมนู" onclick="toggleMenu()">☰</button>
+                <button class="icon-btn hamburger" id="hamburgerBtn" type="button" title="เมนู" aria-label="เปิดเมนู" aria-controls="mobileMenu" aria-expanded="false" onclick="toggleMenu()">☰</button>
             </div>
         </div>
-        <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu" id="mobileMenu" role="navigation" aria-label="เมนูบนมือถือ">
             <a href="#products" onclick="toggleMenu()">ซื้อสินค้า</a>
             <a href="promotions.html">โปรโมชัน</a>
             <a href="subscribe-store.html">ตะกร้าของฉัน</a>
@@ -729,9 +729,9 @@
                 <p class="hero-note">* ราคารวมภาษีมูลค่าเพิ่มแล้ว · เงื่อนไขเป็นไปตามที่บริษัทฯ กำหนด · ข้อมูล ณ ส.ค. 2569</p>
             </div>
             <div class="hero-nav">
-                <button id="heroPrev" title="ก่อนหน้า" onclick="goHero(heroIndex - 1)">‹</button>
-                <button class="play-btn" id="heroPlay" title="เล่น/หยุดอัตโนมัติ" onclick="toggleHeroPlay()">⏸</button>
-                <button id="heroNext" title="ถัดไป" onclick="goHero(heroIndex + 1)">›</button>
+                <button id="heroPrev" type="button" title="ก่อนหน้า" aria-label="แบนเนอร์ก่อนหน้า" onclick="goHero(heroIndex - 1)">←</button>
+                <button class="play-btn" id="heroPlay" type="button" title="เล่น/หยุดอัตโนมัติ" aria-label="หยุดการเลื่อนแบนเนอร์อัตโนมัติ" aria-pressed="false" onclick="toggleHeroPlay()">⏸</button>
+                <button id="heroNext" type="button" title="ถัดไป" aria-label="แบนเนอร์ถัดไป" onclick="goHero(heroIndex + 1)">→</button>
             </div>
         </div>
     </section>
@@ -1350,13 +1350,27 @@
 
         function toggleHeroPlay() {
             heroPlaying = !heroPlaying;
-            document.getElementById('heroPlay').textContent = heroPlaying ? '⏸' : '▶';
+            const playBtn = document.getElementById('heroPlay');
+            playBtn.textContent = heroPlaying ? '⏸' : '▶';
+            playBtn.setAttribute('aria-pressed', heroPlaying ? 'false' : 'true');
+            playBtn.setAttribute('aria-label', heroPlaying ? 'หยุดการเลื่อนแบนเนอร์อัตโนมัติ' : 'เล่นแบนเนอร์อัตโนมัติ');
             restartHero();
         }
 
-        function toggleMenu() {
-            document.getElementById('mobileMenu').classList.toggle('open');
+        function toggleMenu(forceOpen) {
+            const menu = document.getElementById('mobileMenu');
+            const btn = document.getElementById('hamburgerBtn');
+            const open = typeof forceOpen === 'boolean' ? forceOpen : !menu.classList.contains('open');
+            menu.classList.toggle('open', open);
+            btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+            btn.setAttribute('aria-label', open ? 'ปิดเมนู' : 'เปิดเมนู');
         }
+        document.addEventListener('keydown', function (event) {
+            if (event.key === 'Escape' && document.getElementById('mobileMenu').classList.contains('open')) {
+                toggleMenu(false);
+                document.getElementById('hamburgerBtn').focus();
+            }
+        });
 
         const heroEl = document.querySelector('.hero');
         heroEl.addEventListener('mouseenter', () => clearInterval(heroTimer));
