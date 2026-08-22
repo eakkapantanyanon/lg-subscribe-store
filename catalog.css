@@ -642,9 +642,10 @@ body[data-page="catalog"] :focus-visible {
 .catalog-grid .p-price strong { font-size: 34px; font-weight: 600; }
 .catalog-grid .p-badge {
   margin-bottom: 14px;
-  border-radius: 8px;
+  padding: 3px 7px;
+  border-radius: 5px;
   background: #fbf1f4;
-  font-weight: 500;
+  font-weight: 600;
 }
 .catalog-grid .p-cta {
   min-height: auto;
