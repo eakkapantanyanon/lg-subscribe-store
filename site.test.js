@@ -413,6 +413,9 @@ check(/\.catalog-grid \.p-cta a \{ min-height: 48px/.test(fs.readFileSync(path.j
 check(/aside \.btn-primary \{ min-height: 52px/.test(pdp), 'PDP mobile sticky CTA มี touch target 52px');
 check(/--premium-radius-md: 16px/.test(fs.readFileSync(path.join(ROOT, 'premium.css'), 'utf8')) && /--premium-focus:/.test(fs.readFileSync(path.join(ROOT, 'premium.css'), 'utf8')), 'Premium UI มี radius/focus design tokens');
 check(/\.big-price \{ font-size: clamp\(34px, 3vw, 42px\)/.test(pdp) && /font-variant-numeric: tabular-nums/.test(pdp), 'PDP ให้ราคาต่อเดือนเป็น visual hierarchy หลัก');
+check(/UX\/UI MAX · Catalog conversion polish/.test(fs.readFileSync(path.join(ROOT, 'catalog.css'), 'utf8')) && /\.catalog-grid \.p-price strong[^}]*color: var\(--catalog-brand\)/s.test(fs.readFileSync(path.join(ROOT, 'catalog.css'), 'utf8')), 'Catalog UX/UI Max เน้นราคาและสถานะการ์ดอย่างสม่ำเสมอ');
+check(/\.opt-card\.selected::after/.test(premium) && /body\[data-page="product-detail"\] \.color-opt\.selected/.test(premium), 'PDP UX/UI Max แสดง selection state ของแผนและสีชัดเจน');
+check(/ชำระค่าบริการด้วยบัตรเครดิต/.test(cart) && !/หักบัญชี|บัตรเดบิต|เครดิตบูโร/.test(cart), 'Cart แสดงเฉพาะการชำระด้วยบัตรเครดิตตามข้อกำหนด');
 check(/\.schedule-table \{ min-width: 520px/.test(cart) && /\.schedule-toggle \{ overflow-x: auto/.test(cart), 'Cart mobile ตารางชำระเลื่อนได้โดยไม่บีบข้อมูล');
 check(/\.contact-btn \{ border-radius: 10px; min-height: 52px/.test(cart), 'Cart mobile CTA ส่งเจ้าหน้าที่มี touch target 52px');
 check(/const cartKey = \(productId, sku\)/.test(cart) && /entry\.sku/.test(cart) && /entry\.color/.test(cart), 'Cart แยกรายการตาม product + SKU และรักษาสีจาก PDP');
