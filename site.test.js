@@ -411,6 +411,8 @@ check(/const pts = SEL\.planTypes\(product\);\s*wrap\.appendChild\(group\('ป�
 check(/id="cartItems"/.test(cart), 'Cart มีรายการสินค้า');
 check(/\.catalog-grid \.p-cta a \{ min-height: 48px/.test(fs.readFileSync(path.join(ROOT, 'catalog.css'), 'utf8')), 'Catalog mobile CTA มี touch target อย่างน้อย 48px');
 check(/aside \.btn-primary \{ min-height: 52px/.test(pdp), 'PDP mobile sticky CTA มี touch target 52px');
+check(/--premium-radius-md: 16px/.test(fs.readFileSync(path.join(ROOT, 'premium.css'), 'utf8')) && /--premium-focus:/.test(fs.readFileSync(path.join(ROOT, 'premium.css'), 'utf8')), 'Premium UI มี radius/focus design tokens');
+check(/\.big-price \{ font-size: clamp\(34px, 3vw, 42px\)/.test(pdp) && /font-variant-numeric: tabular-nums/.test(pdp), 'PDP ให้ราคาต่อเดือนเป็น visual hierarchy หลัก');
 check(/\.schedule-table \{ min-width: 520px/.test(cart) && /\.schedule-toggle \{ overflow-x: auto/.test(cart), 'Cart mobile ตารางชำระเลื่อนได้โดยไม่บีบข้อมูล');
 check(/\.contact-btn \{ border-radius: 10px; min-height: 52px/.test(cart), 'Cart mobile CTA ส่งเจ้าหน้าที่มี touch target 52px');
 check(/const cartKey = \(productId, sku\)/.test(cart) && /entry\.sku/.test(cart) && /entry\.color/.test(cart), 'Cart แยกรายการตาม product + SKU และรักษาสีจาก PDP');

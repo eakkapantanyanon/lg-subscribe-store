@@ -5,6 +5,11 @@
   --premium-line: rgba(67, 30, 43, .12);
   --premium-shadow: 0 1px 2px rgba(28, 8, 16, .05), 0 8px 24px rgba(28, 8, 16, .06);
   --premium-shadow-hover: 0 2px 5px rgba(28, 8, 16, .06), 0 16px 36px rgba(28, 8, 16, .1);
+  --premium-radius-sm: 12px;
+  --premium-radius-md: 16px;
+  --premium-radius-lg: 24px;
+  --premium-space-section: clamp(68px, 6.8vw, 100px);
+  --premium-focus: 0 0 0 3px rgba(165, 0, 52, .18);
 }
 
 /* =====================================================================
@@ -36,7 +41,7 @@ html, body, button, input, select, textarea, optgroup {
 .icon-refresh { --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 7v5h-5M4 17v-5h5'/%3E%3Cpath d='M6.1 8.5A7 7 0 0 1 18.7 7L20 12M4 12l1.3 5A7 7 0 0 0 18 15.5'/%3E%3C/svg%3E"); }
 
 /* Consistent spacing and eyebrow hierarchy. */
-body[data-page="home"] section:not(.hero):not(.home-trust) { padding-block: clamp(68px, 6.8vw, 100px); }
+body[data-page="home"] section:not(.hero):not(.home-trust) { padding-block: var(--premium-space-section); }
 body[data-page="promotions"] section { padding-block: clamp(80px, 8vw, 120px); }
 .kicker, .eyebrow, .summary-eyebrow,
 body[data-page="home"] .section-head .kicker,
@@ -67,7 +72,7 @@ body[data-page="promotions"] .page-hero {
 body .p-card, body .promo-card, body .campaign-card, body .credit-card,
 body .p-card-m, body .plan-card, body .cart-item, body .summary-card,
 body .lifestyle-card, body .benefit-card {
-  border-radius: 16px;
+  border-radius: var(--premium-radius-md);
   box-shadow: var(--premium-shadow);
   transition: transform 250ms ease, box-shadow 250ms ease, border-color 250ms ease;
 }
@@ -145,6 +150,8 @@ body[data-page="home"] .service-banner .btn-pill.light:hover { background: rgba(
 }
 :where(.btn-primary, .contact-btn, .header-cta, .hero-primary, .h-btn, .btn-outline, .btn-pill) { transition: transform 250ms ease, box-shadow 250ms ease, background 250ms ease; }
 :where(.btn-primary, .contact-btn, .header-cta, .hero-primary, .h-btn, .btn-outline, .btn-pill):hover { transform: translateY(-2px); }
+:where(.btn-primary, .contact-btn, .header-cta, .hero-primary, .h-btn, .btn-outline, .btn-pill):active { transform: translateY(0) scale(.985); }
+:where(.btn-primary, .contact-btn, .header-cta, .hero-primary, .h-btn, .btn-outline, .btn-pill):focus-visible { outline: 2px solid var(--premium-brand); outline-offset: 3px; box-shadow: var(--premium-focus); }
 
 /* Payment marks: quiet by default, full contrast on intent. */
 .payments { gap: clamp(12px, 2vw, 24px); }
