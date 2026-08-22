@@ -3488,7 +3488,7 @@ window.LG_PRODUCTS = [
   },
   {
     id: '75qned86bsa',
-    img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/qned/100-55qned86bsa-atm/gallery/75qned86/gallery/75QNED86-450.jpg',
+    img: 'images/products/75qned86bsa.webp',
     model: '75QNED86BSA',
     name: 'ทีวี 75" LG QNED evo AI Mini LED QNED86 4K Smart TV 2026',
     category: 'โทรทัศน์ QNED',
@@ -3564,7 +3564,7 @@ window.LG_PRODUCTS = [
   },
   {
     id: '85qned80bsa',
-    img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/qned/75-43qned80bsa-atm/gallery/85-qned80/basic/lg-qned-evo-qned80-2026-85-gallery-basic.jpg',
+    img: 'images/products/85qned80bsa.webp',
     model: '85QNED80BSA',
     name: 'ทีวี 85" LG QNED evo AI Mini LED QNED80 4K Smart TV 2026',
     category: 'โทรทัศน์ QNED',
@@ -3589,7 +3589,7 @@ window.LG_PRODUCTS = [
   },
   {
     id: '65qned80bsa',
-    img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/qned/75-43qned80bsa-atm/gallery/65-qned80/basic/lg-qned-evo-qned80-2026-65-gallery-basic.jpg',
+    img: 'images/products/65qned80bsa.webp',
     model: '65QNED80BSA',
     name: 'ทีวี 65" LG QNED evo AI Mini LED QNED80 4K Smart TV 2026',
     category: 'โทรทัศน์ QNED',
@@ -3614,7 +3614,7 @@ window.LG_PRODUCTS = [
   },
   {
     id: '55qned80bsa',
-    img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/qned/75-43qned80bsa-atm/gallery/55-qned80/basic/lg-qned-evo-qned80-2026-55-gallery-basic.jpg',
+    img: 'images/products/55qned80bsa.webp',
     model: '55QNED80BSA',
     name: 'ทีวี 55" LG QNED evo AI Mini LED QNED80 4K Smart TV 2026',
     category: 'โทรทัศน์ QNED',
@@ -3639,7 +3639,7 @@ window.LG_PRODUCTS = [
   },
   {
     id: '75nu855bpsa',
-    img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/nano-4k-uhd/98-43nu855bpsa-atm/gallery/75-nu85/basic/lg-nano-4k-uhd-nu85-2026-75-gallery-basic.jpg',
+    img: 'images/products/75nu855bpsa.webp',
     model: '75NU855BPSA',
     name: 'ทีวี 75" LG NANO 4K UHD AI NU85 4K Smart TV 2026',
     category: 'โทรทัศน์ NanoCell',
@@ -3664,7 +3664,7 @@ window.LG_PRODUCTS = [
   },
   {
     id: '65nu855bpsa',
-    img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/nano-4k-uhd/98-43nu855bpsa-atm/gallery/65-nu85/basic/lg-nano-4k-uhd-nu85-2026-65-gallery-basic.jpg',
+    img: 'images/products/65nu855bpsa.webp',
     model: '65NU855BPSA',
     name: 'ทีวี 65" LG NANO 4K UHD AI NU85 4K Smart TV 2026',
     category: 'โทรทัศน์ NanoCell',
@@ -3767,7 +3767,7 @@ window.LG_PRODUCTS = [
   },
   {
     id: '27gx704a',
-    img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/monitor/2026/27gx704a-atm/gallery/basic/ultragear-gaming-27gx704a-2025-gallery-basic-large.jpg',
+    img: 'images/products/27gx704a.webp',
     model: '27GX704A-B',
     name: 'LG UltraGear™ GX7 27 นิ้ว 240Hz OLED QHD Gaming Monitor 27GX704A DisplayHDR™ True Black 400',
     category: 'มอนิเตอร์',
@@ -3892,7 +3892,7 @@ window.LG_PRODUCTS = [
   },
   {
     id: '32u889sa',
-    img: 'https://www.lg.com/content/dam/channel/wcms/th/images/monitor/2025/32u889sa/gallery/smart-monitor-32u889sa-2025-gallery-swing-gallery-basic-large.jpg',
+    img: 'images/products/32u889sa.webp',
     model: '32U889SA-W',
     name: 'จอมอนิเตอร์ 31.5" 4K IPS Smart Monitor Swing จอสัมผัส ขาตั้งหมุนได้',
     category: 'มอนิเตอร์',
@@ -3918,7 +3918,7 @@ window.LG_PRODUCTS = [
   },
   {
     id: '32u889sa-grab',
-    img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/pto/2026/32u889sa-grab/32U889SA.GRAB-450.jpg',
+    img: 'images/products/32u889sa-grab.webp',
     model: '32U889SA + xboom GRAB',
     name: 'จอมอนิเตอร์ 31.5" 4K IPS Smart Monitor Swing + xboom Grab (ของแถม)',
     category: 'มอนิเตอร์',

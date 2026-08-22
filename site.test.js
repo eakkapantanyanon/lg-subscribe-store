@@ -31,6 +31,15 @@ const requiredAssets = [
   'images/products/oled55c6psa.webp',
   'images/products/oled65c6psa.webp',
   'images/products/oled77c6psa.webp',
+  'images/products/75qned86bsa.webp',
+  'images/products/85qned80bsa.webp',
+  'images/products/65qned80bsa.webp',
+  'images/products/55qned80bsa.webp',
+  'images/products/27gx704a.webp',
+  'images/products/75nu855bpsa.webp',
+  'images/products/65nu855bpsa.webp',
+  'images/products/32u889sa.webp',
+  'images/products/32u889sa-grab.webp',
   'images/products/gc-x257cmew.webp',
   'images/products/gc-j257sqzw.webp',
   'images/products/gv-b25ffgdb.webp',
@@ -187,8 +196,8 @@ check(/products\.html/.test(sitemap) && !/<loc>[^<]*\/product\.html<\/loc>/.test
 check(imageInventory.summary.products === 97 && imageInventory.summary.primary.local === 8, 'Phase 4 inventory มีสินค้า 97 รุ่นและ local primary pilot 8 รุ่น');
 check(imageInventory.summary.groups.A === 8 && imageInventory.summary.pilot.reductionPercent > 50, 'Phase 4 pilot ผ่าน verification และลดขนาดรวมมากกว่า 50%');
 const localPrimaryRefs = productSource.match(new RegExp("img: 'images/products/[a-z0-9-]+[.]webp'", 'g')) || [];
-check(localPrimaryRefs.length === 49, 'Product data มี 49 product records ที่ใช้ local WebP หลังย้าย OLED shared assets');
-check(new Set(localPrimaryRefs.map(ref => ref.slice(ref.indexOf('images/products/'), -1))).size === 45, '49 local product records ใช้ 45 unique WebP assets โดย OLED bundle แชร์ภาพอย่างตั้งใจ');
+check(localPrimaryRefs.length === 58, 'Product data มี 58 product records ที่ใช้ local WebP หลังย้าย Safe Group C batch 2');
+check(new Set(localPrimaryRefs.map(ref => ref.slice(ref.indexOf('images/products/'), -1))).size === 54, '58 local product records ใช้ 54 unique WebP assets โดย OLED bundle แชร์ภาพอย่างตั้งใจ');
 check(/localPrimary/.test(pdp) && /fetchpriority="high"/.test(pdp), 'PDP ใช้ local primary ก่อน gallery และให้ priority กับภาพหลัก');
 check(/loading="lazy"/.test(catalogSource) && !/position <= 4 \? 'eager'/.test(catalogSource), 'Catalog lazy-load รูปสินค้าซึ่งอยู่ใต้ส่วนค้นหา');
 check(!/class="trust-strip"/.test(home), 'Home ไม่มี trust strip ที่ซ้ำกับ Why FLEXI-SUB');
@@ -227,6 +236,7 @@ for (const model of protectedModels) {
   // so the check catches unintended changes to every other field
   const stripAuthorizedQned = p => {
     const c = stripVariants(p);
+    delete c.img;
     if (c.plans && c.plans[0]) {
       const pl = { ...c.plans[0] };
       delete pl.regular; delete pl.effectiveMonthly; delete pl.postPromoPrice;
@@ -240,6 +250,7 @@ for (const model of protectedModels) {
   // and billing period structure. Compare base product fields + plan structural fields only.
   const stripAuthorizedGx = p => {
     const c = stripVariants(p);
+    delete c.img;
     if (c.plans && c.plans[0]) {
       const pl = { ...c.plans[0] };
       delete pl.regular; delete pl.effectiveMonthly; delete pl.postPromoPrice;
