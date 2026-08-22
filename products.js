@@ -4072,7 +4072,7 @@ window.LG_PRODUCTS = [
   },
   {
     id: 'xboom-stage501',
-    img: '',
+    img: 'images/products/xboom-stage501.webp',
     model: 'xboom STAGE501',
     name: 'LG xboom STAGE501 tuned by will.i.am',
     category: 'Bluetooth Speaker',
