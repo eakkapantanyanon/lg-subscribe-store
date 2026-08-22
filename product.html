@@ -417,6 +417,70 @@
         aside .missing-hint { grid-column: 1 / -1; margin: 4px 0 0; min-height: 0; font-size: 10px; line-height: 1.3; }
         aside .btn-outline { display: none; }
     }
+
+    /* Editorial PDP refinement — align with homepage and catalog */
+    .pdp-top { box-shadow: none; border-bottom: 1px solid rgba(65,28,42,.08); }
+    .pdp-top .brand { font-size: 17px; font-weight: 600; letter-spacing: -.02em; }
+    .pdp-top .brand small { font-weight: 500; letter-spacing: .1em; }
+    .pdp-top .back { font-weight: 500; }
+    .pdp-layout { gap: 36px; padding-top: 42px; }
+    .gallery-main { border-radius: 18px; box-shadow: none; background: #faf8f8; }
+    .gallery-thumbs { gap: 8px; }
+    .gallery-thumbs button { border-radius: 10px; box-shadow: none; }
+    .pdp-info h1 { max-width: 720px; font-size: clamp(30px,3vw,42px); font-weight: 600; line-height: 1.22; letter-spacing: -.045em; text-wrap: balance; }
+    .pdp-info .model { font-weight: 500; letter-spacing: .02em; }
+    .opt-group { margin-bottom: 28px; }
+    .opt-group .g-title { margin-bottom: 12px; font-size: 14px; font-weight: 600; letter-spacing: -.01em; }
+    .opt-card { min-height: 70px; border-radius: 12px; background: #fff; box-shadow: none; padding: 14px 15px; }
+    .opt-card:hover { transform: none; border-color: rgba(165,0,52,.38); }
+    .opt-card.selected { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); background: #fff9fb; }
+    .opt-card .t { font-size: 14px; font-weight: 600; }
+    .opt-card .d { line-height: 1.55; }
+    .opt-card .p { font-weight: 600; }
+    .pdp-summary { border-radius: 18px; padding: 24px 22px; box-shadow: 0 10px 30px rgba(38,10,20,.07); }
+    .summary-eyebrow { font-size: 10px; font-weight: 600; letter-spacing: .1em; }
+    .price-block { border-bottom: 1px solid var(--line); }
+    .summary-totals { border-radius: 10px; background: #faf8f8; }
+    .breakdown-link { font-weight: 500; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+    .btn-primary, .btn-outline { border-radius: 12px; font-weight: 600; box-shadow: none; }
+    .btn-primary:hover { transform: none; box-shadow: none; }
+    .summary-trust { gap: 8px; }
+    .summary-trust b { font-weight: 600; }
+    details.specs { margin-top: 26px; border-top: 1px solid var(--line); padding-top: 18px; }
+    details.specs summary { font-size: 13px; font-weight: 500; text-underline-offset: 3px; }
+    .specs-body { margin-top: 14px; padding: 0; border: 0; border-radius: 0; background: transparent; }
+    .specs-body table { font-size: 12.5px; }
+    .specs-body th, .specs-body td { padding: 10px 4px; }
+    .specs-body th { color: var(--muted); font-weight: 500; }
+    .specs-body .price { font-weight: 600; }
+    .care-option .opt-card { padding-right: 34px; }
+    .care-lines { margin-top: 11px; gap: 6px; }
+    .care-lines li { font-size: 11.5px; line-height: 1.55; }
+    .care-lines .care-dot { font-weight: 600; }
+    .care-lines .care-cycle strong { font-weight: 600; }
+    .term-row { margin-top: 14px; padding: 10px 0; border-bottom-style: solid; font-size: 13px; }
+    .term-row strong, .s-row b { font-weight: 600; }
+    .summary-totals { padding: 11px 0; border-radius: 0; background: transparent; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .promo-note { line-height: 1.6; }
+    .promo-note .tag { padding: 1px 5px; border-radius: 3px; font-weight: 600; }
+    .combo-hint { padding: 9px 0; border-width: 1px 0 0; border-radius: 0; background: transparent; line-height: 1.55; }
+    .combo-hint.off { border-color: var(--line); }
+    @media (max-width: 640px) {
+        details.specs { margin-top: 22px; padding-top: 16px; }
+        .specs-body th, .specs-body td { padding: 9px 3px; }
+        .care-lines li { font-size: 11px; }
+        aside.pdp-summary { border-top: 1px solid rgba(92,47,64,.12); box-shadow: 0 -8px 24px rgba(38,10,20,.07); }
+        aside .big-price { font-weight: 600; letter-spacing: -.025em; }
+        aside .btn-primary { border-radius: 10px; }
+    }
+    @media (max-width: 640px) {
+        main.pdp-layout { gap: 24px; }
+        .gallery-main { border-radius: 14px; }
+        .pdp-info h1 { font-size: 28px; line-height: 1.28; }
+        .opt-group { margin-bottom: 22px; }
+        .opt-card { border-radius: 10px; }
+        aside.pdp-summary { border-radius: 16px 16px 0 0; box-shadow: 0 -6px 24px rgba(38,10,20,.08); }
+    }
 </style>
     <link rel="stylesheet" href="premium.css?v=6">
 </head>
