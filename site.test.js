@@ -395,6 +395,8 @@ check(/\.schedule-table \{ min-width: 520px/.test(cart) && /\.schedule-toggle \{
 check(/\.contact-btn \{ border-radius: 10px; min-height: 52px/.test(cart), 'Cart mobile CTA ส่งเจ้าหน้าที่มี touch target 52px');
 check(/const cartKey = \(productId, sku\)/.test(cart) && /entry\.sku/.test(cart) && /entry\.color/.test(cart), 'Cart แยกรายการตาม product + SKU และรักษาสีจาก PDP');
 check(/สี ' \+ color/.test(cart) && /SKU ' \+ sku/.test(cart), 'ข้อความส่งเจ้าหน้าที่ระบุสีและ SKU ของ variant');
+check(/สัญญา: ' \+ item\.months/.test(cart) && /จ่ายล่วงหน้า ฿' \+ fmt\(item\.advancePayment\)/.test(cart), 'ข้อความส่งเจ้าหน้าที่ระบุระยะสัญญาและยอดล่วงหน้าเมื่อมี');
+check(/ของแถม: ' \+ product\.gift/.test(cart), 'ข้อความส่งเจ้าหน้าที่ระบุของแถมจาก product data เมื่อมี');
 check(/id="rememberedCustomerType"/.test(cart) && !/name="custType"/.test(cart), 'Cart แสดงประเภทลูกค้าที่จำไว้และไม่มีตัวเลือกซ้ำ');
 check(/cart\.customerType = c\[0\]/.test(pdp), 'PDP บันทึกประเภทลูกค้าทันทีที่เลือก');
 check(/copyOrderForOfficer\(\)/.test(cart), 'Cart มี flow คัดลอกรายการส่งเจ้าหน้าที่');
