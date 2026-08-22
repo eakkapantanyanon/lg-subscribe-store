@@ -134,13 +134,19 @@ for (const page of pages) {
   check(/<meta\s+name="theme-color"/i.test(html), page + ': theme color');
   check(html.includes('<link rel="canonical" href="' + publicCanonical[page] + '">'), page + ': canonical');
   check((html.match(/<meta property="og:(?:title|description|type|url)"/g) || []).length === 4, page + ': Open Graph basic tags');
+  if (page !== 'subscribe-store.html') {
+    check(/<meta property="og:image"/.test(html), page + ': Open Graph image');
+    check(/<meta name="twitter:card" content="summary_large_image">/.test(html), page + ': Twitter/X card');
+    check(/<meta name="twitter:(?:title|description|image)"/g.test(html), page + ': Twitter/X metadata');
+  }
   check(/<link rel="icon"/.test(html), page + ': favicon');
   check(/class="skip-link"/i.test(html), page + ': keyboard skip link');
   check(/rel="preconnect"\s+href="https:\/\/www\.lg\.com"/i.test(html), page + ': image CDN preconnect');
   check(!/href="#"/i.test(html), page + ': ไม่มี dead link href="#"');
 
-  const inlineScripts = [...html.matchAll(/<script(?:\s[^>]*)?>([\s\S]*?)<\/script>/gi)]
-    .map(match => match[1])
+  const inlineScripts = [...html.matchAll(/<script([^>]*)>([\s\S]*?)<\/script>/gi)]
+    .filter(match => !/type=["']application\/ld\+json["']/i.test(match[1] || ''))
+    .map(match => match[2])
     .filter(script => script.trim());
   try {
     inlineScripts.forEach(script => new Function(script));
@@ -183,6 +189,10 @@ const productByModel = (products, model) => products.find(product => product.mod
 check(!/id="planner"|BUILD YOUR PACKAGE|พร้อมจัดบ้านให้สบาย/.test(home), 'Home นำ Package Planner และ Final CTA ที่ซ้ำซ้อนออกแล้ว');
 check(/id="products"/.test(home), 'Home มี Product section');
 check(/จุดเด่น LG SUBSCRIBE/.test(home) && !/WHY LG SUBSCRIBE/.test(home), 'Home ใช้หัวข้อภาษาไทยที่อ่านเป็นธรรมชาติ');
+check(/"@type":"Organization"/.test(home) && /"@type":"WebSite"/.test(home), 'Home มี Organization และ WebSite structured data');
+check(/"@type":"BreadcrumbList"/.test(catalogHtml) && /"@type":"BreadcrumbList"/.test(promotions), 'Catalog และ Promotions มี Breadcrumb structured data');
+check(/id="productStructuredData"/.test(pdp) && /id="breadcrumbStructuredData"/.test(pdp) && /'@type': 'Product'/.test(pdp), 'PDP สร้าง Product และ Breadcrumb structured data ตามสินค้า');
+check(/meta name="robots" content="noindex,follow"/.test(cart), 'Cart ถูก noindex และยัง follow internal links');
 check(/id="hamburgerBtn"[^>]*aria-controls="mobileMenu"[^>]*aria-expanded="false"/.test(home) && /id="mobileMenu"[^>]*role="navigation"/.test(home) && /setAttribute\('aria-expanded'/.test(home), 'Home mobile menu แจ้งสถานะเปิด/ปิดให้ screen reader');
 check(/event\.key === 'Escape'[\s\S]*toggleMenu\(false\)/.test(home), 'Home mobile menu ปิดด้วยปุ่ม Escape และคืน focus ได้');
 check(/id="heroPrev"[^>]*aria-label="แบนเนอร์ก่อนหน้า"/.test(home) && /id="heroNext"[^>]*aria-label="แบนเนอร์ถัดไป"/.test(home), 'Home hero navigation มี accessible labels');
