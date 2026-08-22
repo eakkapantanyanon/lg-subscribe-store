@@ -15,10 +15,10 @@
 }
 
 /* =====================================================================
-   Phase 9A — Premium Thai typography.
-   IBM Plex Sans Thai (Google Fonts, loaded per-page with preconnect +
-   display=swap) is the premium brand face across this site. Noto Sans
-   Thai is a safe Thai-capable fallback, then the classic system stack.
+   FLEXI-SUB signature typography.
+   Anuphan is the readable Thai body face; Bai Jamjuree is reserved for
+   display hierarchy, prices and brand moments to create a distinct voice.
+   Both load from Google Fonts with Thai-capable fallbacks.
    ===================================================================== */
 html, body, button, input, select, textarea, optgroup {
   font-family: var(--font-body);
