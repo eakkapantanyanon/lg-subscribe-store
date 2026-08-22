@@ -199,7 +199,8 @@
     .opt-card.selected .d { color: var(--accent-text); }
     .opt-card:disabled { opacity: .45; cursor: not-allowed; }
     .care-cards { grid-template-columns: 1fr; }
-    .care-cards .opt-card { padding-right: 42px; }
+    .care-option { position: relative; }
+    .care-option .opt-card { width: 100%; padding-right: 42px; }
     .care-cards .opt-card .t,
     .care-cards .opt-card .d,
     .care-cards .opt-card .p { line-height: 1.55; }
@@ -245,7 +246,8 @@
     .big-label { font-size: 12px; color: var(--muted); font-weight: 600; }
     .promo-note { font-size: 12.5px; color: var(--text); margin-top: 10px; }
     .promo-note .tag { display: inline-block; background: #dcfce7; color: #166534; border-radius: 6px; padding: 1px 7px; font-size: 11px; font-weight: 700; margin-right: 4px; }
-    .breakdown-link { display: inline-block; margin-top: 8px; font-size: 13px; color: var(--accent-text); font-weight: 600; cursor: pointer; text-decoration: underline; }
+    .breakdown-link { display: inline-block; margin-top: 8px; padding: 0; border: 0; background: transparent; font: inherit; font-size: 13px; color: var(--accent-text); font-weight: 600; cursor: pointer; text-decoration: underline; }
+    .breakdown-link:disabled { color: var(--muted); cursor: not-allowed; text-decoration: none; }
     .term-row {
         display: flex; justify-content: space-between; align-items: center;
         margin-top: 12px; font-size: 13.5px; padding: 9px 0; border-bottom: 1px dashed var(--line);
@@ -453,7 +455,7 @@
         </div>
         <p class="promo-note" id="sumPromo"></p>
         <p class="promo-note" id="sumGift" style="display:none;background:#fef3c7;color:#92400e;border-radius:6px;padding:4px 8px;margin-top:6px;"></p>
-        <a class="breakdown-link" id="sumBreakdown">คลิกเพื่อดูค่าบริการและรายละเอียดทั้งหมด</a>
+        <button class="breakdown-link" id="sumBreakdown" type="button" disabled>คลิกเพื่อดูค่าบริการและรายละเอียดทั้งหมด</button>
         <div class="term-row"><span>ระยะเวลาสัญญา</span><strong id="sumTerm">—</strong></div>
         <div class="summary-totals">
             <div class="s-row"><span>ยอดชำระครั้งแรก</span><b id="sumFirstPay">—</b></div>
@@ -472,9 +474,9 @@
 </main>
 
 <!-- Modal: ค่าบริการและรายละเอียดทั้งหมด -->
-<div class="modal-backdrop" id="breakdownModal" hidden>
+<div class="modal-backdrop" id="breakdownModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" hidden>
     <div class="modal">
-        <button class="modal-close" id="modalClose">✕</button>
+        <button class="modal-close" id="modalClose" type="button" aria-label="ปิดรายละเอียดค่าบริการ">✕</button>
         <h3 id="modalTitle">ค่าบริการและรายละเอียดทั้งหมด</h3>
         <p class="m-sub" id="modalSub"></p>
         <div id="modalBody"></div>
@@ -510,7 +512,10 @@
     const galleryLightboxImage = document.getElementById('galleryLightboxImage');
     const galleryZoom = document.getElementById('galleryZoom');
     const galleryLightboxClose = document.getElementById('galleryLightboxClose');
+    const breakdownModal = document.getElementById('breakdownModal');
+    const modalClose = document.getElementById('modalClose');
     let galleryReturnFocus = null;
+    let breakdownReturnFocus = null;
 
     function openGalleryLightbox(src, alt, trigger) {
         if (!src) return;
@@ -541,8 +546,23 @@
     galleryLightbox.addEventListener('click', function (event) {
         if (event.target === galleryLightbox || event.target.id === 'galleryLightboxStage') closeGalleryLightbox();
     });
+    function trapDialogFocus(event, dialog) {
+        if (event.key !== 'Tab' || dialog.hidden) return;
+        const focusable = Array.from(dialog.querySelectorAll('button:not([disabled]), a[href], [tabindex]:not([tabindex="-1"])'));
+        if (!focusable.length) return;
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (event.shiftKey && document.activeElement === first) {
+            event.preventDefault(); last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+            event.preventDefault(); first.focus();
+        }
+    }
     document.addEventListener('keydown', function (event) {
-        if (event.key === 'Escape' && !galleryLightbox.hidden) closeGalleryLightbox();
+        if (event.key === 'Escape' && !galleryLightbox.hidden) { closeGalleryLightbox(); return; }
+        if (event.key === 'Escape' && !breakdownModal.hidden) { closeBreakdown(); return; }
+        if (!galleryLightbox.hidden) trapDialogFocus(event, galleryLightbox);
+        else if (!breakdownModal.hidden) trapDialogFocus(event, breakdownModal);
     });
     const CAT_EMOJI = {
         'Wash Tower': '🌀', 'เครื่องซักผ้า ฝาหน้า': '🌀', 'เครื่องซักผ้า ฝาบน': '🌀', 'เครื่องอบผ้า': '🌬️',
@@ -853,6 +873,8 @@
         wrap.appendChild(group('ประเภทการดูแล', true, '', function () {
             const g = document.createElement('div'); g.className = 'opt-cards care-cards';
             cares.forEach(function (st) {
+                const optionWrap = document.createElement('div');
+                optionWrap.className = 'care-option';
                 const info = SEL.careInfo ? SEL.careInfo(product, st) : (SEL.CARE_INFO[st] || { label: st, short: st, desc: '' });
                 const careDetails = Array.isArray(info.details) && info.details.length
                     ? '<ul class="care-lines">' + info.details.map(function (item) {
@@ -865,20 +887,21 @@
                     careDetails +
                     '<span class="p">' + priceForCare(product, sel.planType, st) + '</span>',
                     sel.careType === st ? 'selected' : '');
-                b.style.position = 'relative';
                 if (info.desc) {
                     const iBtn = document.createElement('button');
                     iBtn.className = 'info-btn'; iBtn.type = 'button'; iBtn.textContent = 'i';
-                    iBtn.style.cssText = 'position:absolute;top:8px;right:8px;';
+                    iBtn.setAttribute('aria-label', 'รายละเอียด ' + info.label);
+                    iBtn.style.cssText = 'position:absolute;top:8px;right:8px;z-index:1;';
                     iBtn.onclick = (e) => { e.stopPropagation(); togglePopover(iBtn, info.desc); };
-                    b.appendChild(iBtn);
+                    optionWrap.appendChild(iBtn);
                 }
                 b.onclick = () => {
                     if (sel.careType === st) { sel.careType = null; sel.term = null; sel.variant = null; }
                     else { sel.careType = st; if (!SEL.terms(product, sel.planType, st).includes(Number(sel.term))) { sel.term = null; sel.variant = null; } }
                     renderOptions(); updateSummary();
                 };
-                g.appendChild(b);
+                optionWrap.insertBefore(b, optionWrap.firstChild);
+                g.appendChild(optionWrap);
             });
             return g;
         }));
@@ -943,7 +966,7 @@
             const swatchBorder = (v.color === 'Essence White' || v.color === 'Calming Cream White') ? 'border-color:#bbb;' : '';
             html += '<button type="button" class="color-opt' + sel + '" data-sku="' + v.sku + '"' +
                 ' data-color="' + v.color + '" data-colorth="' + (v.colorTh || v.color) + '"' +
-                ' aria-pressed="' + (sel ? 'true' : 'false') + '"' +
+                ' aria-checked="' + (sel ? 'true' : 'false') + '" tabindex="' + (sel ? '0' : '-1') + '"' +
                 ' role="radio" aria-label="สี ' + (v.colorTh || v.color) + '">' +
                 '<span class="swatch" style="background:' + swatchColor + ';' + swatchBorder + '"></span>' +
                 '<span class="cs-name">' + (v.colorTh || v.color) + '</span></button>';
@@ -955,20 +978,36 @@
                 const sku = this.getAttribute('data-sku');
                 const color = this.getAttribute('data-color');
                 const colorTh = this.getAttribute('data-colorth');
+                const hadFocus = document.activeElement === this;
                 if (selectedVariant && selectedVariant.sku === sku) return;
                 selectedVariant = { sku: sku, color: color, colorTh: colorTh };
                 renderColorSelector(p);
+                if (hadFocus) {
+                    const replacement = box.querySelector('.color-opt.selected');
+                    if (replacement) replacement.focus();
+                }
                 renderGallery(p);
                 const modelEl = document.getElementById('modelDisplay');
                 if (modelEl) modelEl.textContent = sku.split('.').pop() ? p.model + ' · ' + colorTh : p.model;
             });
-            btn.addEventListener('keydown', function(e) {
-                if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); this.click(); }
-            });
         });
-        // Set role=radiogroup on parent
+        // Set radio-group semantics and standard arrow-key navigation.
         const options = box.querySelector('.color-options');
-        if (options) options.setAttribute('role', 'radiogroup');
+        if (options) {
+            options.setAttribute('role', 'radiogroup');
+            options.setAttribute('aria-label', 'เลือกสีสินค้า');
+            const radios = Array.from(options.querySelectorAll('[role="radio"]'));
+            radios.forEach(function (radio, index) {
+                radio.addEventListener('keydown', function (e) {
+                    let next = null;
+                    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') next = radios[(index + 1) % radios.length];
+                    else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') next = radios[(index - 1 + radios.length) % radios.length];
+                    else if (e.key === 'Home') next = radios[0];
+                    else if (e.key === 'End') next = radios[radios.length - 1];
+                    if (next) { e.preventDefault(); next.focus(); next.click(); }
+                });
+            });
+        }
     }
 
     function group(title, required, sub, build) {
@@ -1019,7 +1058,9 @@
         currentPlanIndex = idx;
         const complete = SEL.isComplete(product, sel);
         const addBtn = document.getElementById('addBtn');
+        const breakdownBtn = document.getElementById('sumBreakdown');
         addBtn.disabled = !complete;
+        breakdownBtn.disabled = idx < 0;
 
         document.getElementById('missingHint').textContent = complete
             ? '' : ('กรุณาเลือก: ' + SEL.missing(product, sel).join(', '));
@@ -1088,8 +1129,9 @@
     /* ---------- Modal breakdown ---------- */
     function openBreakdown() {
         if (currentPlanIndex < 0) return;
+        breakdownReturnFocus = document.activeElement;
         const s = SEL.itemSummary(product, currentPlanIndex, sel.customerType || 'new', CART.totalQty(CART.load()), adminSettings);
-        const modal = document.getElementById('breakdownModal');
+        const modal = breakdownModal;
         document.getElementById('modalTitle').textContent = 'ค่าบริการและรายละเอียดทั้งหมด';
         document.getElementById('modalSub').textContent = (product.name || '') + ' · ' + s.plan.label;
 
@@ -1116,6 +1158,12 @@
                 '<div class="row"><span>ประหยัดรวม</span><b>' + (s.totalSaving > 0 ? '฿' + fmt(s.totalSaving) : '—') + '</b></div>' +
             '</div>';
         modal.hidden = false;
+        modalClose.focus();
+    }
+    function closeBreakdown() {
+        if (breakdownModal.hidden) return;
+        breakdownModal.hidden = true;
+        if (breakdownReturnFocus && typeof breakdownReturnFocus.focus === 'function') breakdownReturnFocus.focus();
     }
     function segNote(s, seg) {
         const half = s.plan.postPromoPrice / 2;
@@ -1174,11 +1222,9 @@
         updateSummary();
 
         document.getElementById('sumBreakdown').addEventListener('click', openBreakdown);
-        document.getElementById('modalClose').addEventListener('click', () => {
-            document.getElementById('breakdownModal').hidden = true;
-        });
-        document.getElementById('breakdownModal').addEventListener('click', e => {
-            if (e.target.id === 'breakdownModal') document.getElementById('breakdownModal').hidden = true;
+        modalClose.addEventListener('click', closeBreakdown);
+        breakdownModal.addEventListener('click', e => {
+            if (e.target.id === 'breakdownModal') closeBreakdown();
         });
         document.getElementById('addBtn').addEventListener('click', addToCart);
     }

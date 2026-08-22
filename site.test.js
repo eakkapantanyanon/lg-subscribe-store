@@ -255,6 +255,11 @@ check((home.match(/<svg class="payment-mark"/g) || []).length === 8 && (promotio
 check(/payment-mark:hover\s*\{[^}]*grayscale\(0\)/.test(premium), 'Payment marks เป็นสีจริงเมื่อ hover');
 
 check(/id="addBtn"/.test(pdp), 'PDP มีปุ่มใส่ตะกร้า');
+check(/id="sumBreakdown"[^>]*type="button"[^>]*disabled/.test(pdp), 'PDP breakdown trigger เป็น semantic button และเริ่มต้น disabled');
+check(/id="breakdownModal"[^>]*role="dialog"[^>]*aria-modal="true"[^>]*aria-labelledby="modalTitle"/.test(pdp), 'PDP breakdown modal มี dialog semantics');
+check(/trapDialogFocus/.test(pdp) && /closeBreakdown/.test(pdp) && /modalClose\.focus\(\)/.test(pdp), 'PDP modal รองรับ focus trap, Escape และ focus return');
+check(/optionWrap\.appendChild\(iBtn\)/.test(pdp) && !/b\.appendChild\(iBtn\)/.test(pdp), 'PDP info button ไม่ซ้อนอยู่ใน option button');
+check(/aria-checked=/.test(pdp) && /setAttribute\('role', 'radiogroup'\)/.test(pdp) && /ArrowRight/.test(pdp) && /ArrowLeft/.test(pdp), 'PDP color selector ใช้ radio semantics และ arrow-key navigation');
 check(/subscribe-store\.html/.test(pdp), 'PDP เชื่อมไปตะกร้า');
 check(/main\.pdp-layout/.test(pdp) && !/main \.pdp-layout/.test(pdp), 'PDP ใช้ responsive selector ที่ตรงกับ main element');
 check(/Array\.isArray\(p\.gallery\)/.test(pdp) && /gallerySource\.slice\(0, 4\)/.test(pdp), 'PDP รองรับแกลลอรี่สินค้าไม่เกิน 4 ภาพ');
