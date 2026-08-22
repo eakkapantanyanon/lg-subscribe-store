@@ -28,6 +28,9 @@ const requiredAssets = [
   'images/products/wt2520nheg.webp',
   'images/products/fv1413s4m.webp',
   'images/products/oled48c6psa.webp',
+  'images/products/oled55c6psa.webp',
+  'images/products/oled65c6psa.webp',
+  'images/products/oled77c6psa.webp',
   'images/products/gc-x257cmew.webp',
   'images/products/gc-j257sqzw.webp',
   'images/products/gv-b25ffgdb.webp',
@@ -184,8 +187,8 @@ check(/products\.html/.test(sitemap) && !/<loc>[^<]*\/product\.html<\/loc>/.test
 check(imageInventory.summary.products === 97 && imageInventory.summary.primary.local === 8, 'Phase 4 inventory มีสินค้า 97 รุ่นและ local primary pilot 8 รุ่น');
 check(imageInventory.summary.groups.A === 8 && imageInventory.summary.pilot.reductionPercent > 50, 'Phase 4 pilot ผ่าน verification และลดขนาดรวมมากกว่า 50%');
 const localPrimaryRefs = productSource.match(new RegExp("img: 'images/products/[a-z0-9-]+[.]webp'", 'g')) || [];
-check(localPrimaryRefs.length === 43, 'Product data มี 43 product records ที่ใช้ local WebP หลังแยก OLED48 bundle');
-check(new Set(localPrimaryRefs.map(ref => ref.slice(ref.indexOf('images/products/'), -1))).size === 42, '43 local product records ใช้ 42 unique WebP assets โดย OLED48 bundle แชร์ภาพอย่างตั้งใจ');
+check(localPrimaryRefs.length === 49, 'Product data มี 49 product records ที่ใช้ local WebP หลังย้าย OLED shared assets');
+check(new Set(localPrimaryRefs.map(ref => ref.slice(ref.indexOf('images/products/'), -1))).size === 45, '49 local product records ใช้ 45 unique WebP assets โดย OLED bundle แชร์ภาพอย่างตั้งใจ');
 check(/localPrimary/.test(pdp) && /fetchpriority="high"/.test(pdp), 'PDP ใช้ local primary ก่อน gallery และให้ priority กับภาพหลัก');
 check(/loading="lazy"/.test(catalogSource) && !/position <= 4 \? 'eager'/.test(catalogSource), 'Catalog lazy-load รูปสินค้าซึ่งอยู่ใต้ส่วนค้นหา');
 check(!/class="trust-strip"/.test(home), 'Home ไม่มี trust strip ที่ซ้ำกับ Why FLEXI-SUB');

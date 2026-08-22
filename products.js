@@ -3332,7 +3332,7 @@ window.LG_PRODUCTS = [
   },
   {
     id: 'oled55c6psa',
-    img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/oled/oled81-42c6psa-atm/gallery/55-c6/update/OLED55C6PSA-450-01.jpg',
+    img: 'images/products/oled55c6psa.webp',
     model: 'OLED55C6PSA',
     name: 'ทีวี 55" LG OLED evo C6 4K Smart TV 2026',
     category: 'โทรทัศน์ OLED',
@@ -3358,7 +3358,7 @@ window.LG_PRODUCTS = [
   },
   {
     id: 'oled65c6psa',
-    img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/oled/oled81-42c6psa-atm/gallery/65-c6/update/OLED65C6PSA-450-01.jpg',
+    img: 'images/products/oled65c6psa.webp',
     model: 'OLED65C6PSA',
     name: 'ทีวี 65" LG OLED evo C6 4K Smart TV 2026',
     category: 'โทรทัศน์ OLED',
@@ -3384,7 +3384,7 @@ window.LG_PRODUCTS = [
   },
   {
     id: 'oled77c6psa',
-    img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/oled/oled81-42c6psa-atm/gallery/77-c6/update/OLED77C6PSA-450-01.jpg',
+    img: 'images/products/oled77c6psa.webp',
     model: 'OLED77C6PSA',
     name: 'ทีวี 77" LG OLED evo C6 4K Smart TV 2026',
     category: 'โทรทัศน์ OLED',
@@ -3410,7 +3410,7 @@ window.LG_PRODUCTS = [
   },
   {
     id: 'oled77c6psa-s80ty',
-    img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/oled/oled81-42c6psa-atm/gallery/77-c6/update/OLED77C6PSA-450-01.jpg',
+    img: 'images/products/oled77c6psa.webp',
     model: 'OLED77C6PSA + S80TY',
     name: 'ทีวี 77" LG OLED evo C6 4K Smart TV 2026 + Soundbar S80TY (ของแถม)',
     category: 'โทรทัศน์ OLED',
@@ -3436,7 +3436,7 @@ window.LG_PRODUCTS = [
   },
   {
     id: 'oled65c6psa-s80ty',
-    img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/oled/oled81-42c6psa-atm/gallery/65-c6/update/OLED65C6PSA-450-01.jpg',
+    img: 'images/products/oled65c6psa.webp',
     model: 'OLED65C6PSA + S80TY',
     name: 'ทีวี 65" LG OLED evo C6 4K Smart TV 2026 + Soundbar S80TY (ของแถม)',
     category: 'โทรทัศน์ OLED',
@@ -3462,7 +3462,7 @@ window.LG_PRODUCTS = [
   },
   {
     id: 'oled55c6psa-s30a',
-    img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/tv/2026/oled/oled81-42c6psa-atm/gallery/55-c6/update/OLED55C6PSA-450-01.jpg',
+    img: 'images/products/oled55c6psa.webp',
     model: 'OLED55C6PSA + S30A',
     name: 'ทีวี 55" LG OLED evo C6 4K Smart TV 2026 + Soundbar S30A (ของแถม)',
     category: 'โทรทัศน์ OLED',
