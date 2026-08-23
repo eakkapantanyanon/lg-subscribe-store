@@ -736,6 +736,77 @@ body[data-page="catalog"] :focus-visible {
   .catalog-footer p { margin: 0; }
 }
 
+.p-card-wrap { position: relative; min-width: 0; }
+.p-card-wrap .p-card { height: auto; }
+.p-compare {
+  width: 100%;
+  min-height: 44px;
+  margin-top: 8px;
+  border: 1px solid rgba(92,47,64,.14);
+  border-radius: 10px;
+  background: #fff;
+  color: #5c2f40;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.p-compare:hover,
+.p-compare[aria-pressed="true"] { border-color: rgba(165,0,52,.3); background: #fff6f8; color: var(--catalog-brand); }
+.p-compare:focus-visible { outline: 2px solid var(--catalog-brand); outline-offset: 2px; }
+.catalog-compare-bar {
+  position: sticky;
+  top: 76px;
+  z-index: 8;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 24px;
+  padding: 14px 16px;
+  border: 1px solid rgba(165,0,52,.14);
+  border-radius: 14px;
+  background: rgba(255,255,255,.96);
+  box-shadow: 0 12px 34px rgba(38,10,20,.08);
+  backdrop-filter: blur(12px);
+}
+.catalog-compare-bar[hidden], .catalog-compare-panel[hidden] { display: none; }
+.catalog-compare-bar strong { display: block; color: var(--catalog-ink); }
+.catalog-compare-bar span { color: #6b6367; font-size: 12px; }
+.catalog-compare-actions { display: flex; gap: 8px; }
+.catalog-compare-actions button,
+.catalog-compare-head button {
+  min-height: 42px;
+  padding: 8px 14px;
+  border: 1px solid rgba(92,47,64,.16);
+  border-radius: 10px;
+  background: #fff;
+  color: var(--catalog-ink);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+#catalogCompareOpen { border-color: var(--catalog-brand); background: var(--catalog-brand); color: #fff; }
+#catalogCompareOpen:disabled { opacity: .45; cursor: not-allowed; }
+.catalog-compare-panel { margin-top: 56px; padding-top: 24px; scroll-margin-top: 92px; }
+.catalog-compare-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; margin-bottom: 18px; }
+.catalog-compare-head h2 { margin: 4px 0 0; font-size: clamp(26px, 3vw, 38px); }
+.catalog-compare-scroll { overflow-x: auto; border: 1px solid rgba(92,47,64,.1); border-radius: 14px; }
+.catalog-compare-table { width: 100%; min-width: 720px; border-collapse: collapse; background: #fff; }
+.catalog-compare-table th, .catalog-compare-table td { padding: 16px; border-bottom: 1px solid rgba(92,47,64,.08); text-align: left; vertical-align: top; }
+.catalog-compare-table thead th { background: #faf7f8; color: var(--catalog-ink); }
+.catalog-compare-table thead th:first-child, .catalog-compare-table tbody th { width: 150px; color: #6b6367; font-size: 12px; }
+.catalog-compare-table thead strong, .catalog-compare-table thead small { display: block; }
+.catalog-compare-table thead small { margin-top: 4px; color: #6b6367; font-weight: 400; }
+.catalog-compare-table a { color: var(--catalog-brand); font-weight: 700; text-underline-offset: 3px; }
+@media (max-width: 640px) {
+  .catalog-compare-bar { top: 68px; align-items: stretch; flex-direction: column; gap: 10px; }
+  .catalog-compare-actions { width: 100%; }
+  .catalog-compare-actions button { flex: 1; min-height: 48px; }
+  .p-compare { min-height: 48px; }
+  .catalog-compare-head { align-items: flex-start; }
+}
+
 /* ================= UX/UI MAX · Catalog conversion polish ================= */
 .catalog-search-field input {
   border-color: rgba(92, 47, 64, .14);

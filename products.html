@@ -102,6 +102,16 @@
                     </div>
                     <p id="catalogResultCount" role="status" aria-live="polite">กำลังโหลดสินค้า</p>
                 </div>
+                <div class="catalog-compare-bar" id="catalogCompareBar" role="region" aria-label="สินค้าเปรียบเทียบ" hidden>
+                    <div>
+                        <strong>เปรียบเทียบสินค้า</strong>
+                        <span id="catalogCompareSummary">เลือกได้สูงสุด 3 รุ่น</span>
+                    </div>
+                    <div class="catalog-compare-actions">
+                        <button type="button" id="catalogCompareClear">ล้าง</button>
+                        <button type="button" id="catalogCompareOpen" disabled>เปรียบเทียบ <span id="catalogCompareCount">0</span> รุ่น</button>
+                    </div>
+                </div>
                 <div class="product-grid catalog-grid" id="catalogGrid"></div>
                 <div class="catalog-load-more" id="catalogLoadMoreWrap" hidden>
                     <button type="button" id="catalogLoadMore" aria-controls="catalogGrid" aria-describedby="catalogLoadMoreStatus">
@@ -114,6 +124,18 @@
                     <p>ลองเปลี่ยนคำค้นหาหรือหมวดสินค้า</p>
                     <button type="button" id="resetCatalog">แสดงสินค้าทั้งหมด</button>
                 </div>
+                <section class="catalog-compare-panel" id="catalogComparePanel" aria-labelledby="catalogCompareTitle" hidden>
+                    <div class="catalog-compare-head">
+                        <div>
+                            <span class="catalog-kicker">เทียบก่อนเลือกแพ็กเกจ</span>
+                            <h2 id="catalogCompareTitle">เปรียบเทียบสินค้าที่เลือก</h2>
+                        </div>
+                        <button type="button" id="catalogCompareClose" aria-label="ปิดตารางเปรียบเทียบ">ปิด</button>
+                    </div>
+                    <div class="catalog-compare-scroll" tabindex="0" aria-label="ตารางเปรียบเทียบสินค้า">
+                        <table class="catalog-compare-table" id="catalogCompareTable"></table>
+                    </div>
+                </section>
             </div>
         </section>
     </main>
@@ -128,6 +150,6 @@
 
     <script src="analytics.js"></script>
     <script src="products.js"></script>
-    <script src="catalog.js?v=3"></script>
+    <script src="catalog.js?v=4"></script>
 </body>
 </html>

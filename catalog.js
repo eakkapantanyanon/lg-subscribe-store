@@ -18,7 +18,16 @@
     const loadMoreWrap = document.getElementById('catalogLoadMoreWrap');
     const loadMoreButton = document.getElementById('catalogLoadMore');
     const loadMoreStatus = document.getElementById('catalogLoadMoreStatus');
-const budgetOptions = document.getElementById('budgetOptions');
+    const budgetOptions = document.getElementById('budgetOptions');
+    const compareBar = document.getElementById('catalogCompareBar');
+    const compareSummary = document.getElementById('catalogCompareSummary');
+    const compareCount = document.getElementById('catalogCompareCount');
+    const compareClear = document.getElementById('catalogCompareClear');
+    const compareOpen = document.getElementById('catalogCompareOpen');
+    const comparePanel = document.getElementById('catalogComparePanel');
+    const compareClose = document.getElementById('catalogCompareClose');
+    const compareTable = document.getElementById('catalogCompareTable');
+    const compareSlugs = [];
 
     let searchTrackTimer = 0;
 
@@ -135,23 +144,81 @@ const budgetOptions = document.getElementById('budgetOptions');
         });
     }
 
+    function selectedForCompare(product) {
+        return compareSlugs.indexOf(slugFor(product)) !== -1;
+    }
+
+    function compareProductBySlug(slug) {
+        return PRODUCTS.find(function (product) { return slugFor(product) === slug; });
+    }
+
+    function syncCompareControls() {
+        if (!compareBar) return;
+        compareBar.hidden = compareSlugs.length === 0;
+        compareCount.textContent = String(compareSlugs.length);
+        compareOpen.disabled = compareSlugs.length < 2;
+        compareSummary.textContent = compareSlugs.length < 2
+            ? 'เลือกอีก ' + (2 - compareSlugs.length) + ' รุ่นเพื่อเริ่มเปรียบเทียบ'
+            : 'พร้อมเทียบ ' + compareSlugs.length + ' รุ่น · เลือกได้สูงสุด 3 รุ่น';
+        grid.querySelectorAll('button[data-compare-slug]').forEach(function (button) {
+            const selected = compareSlugs.indexOf(button.dataset.compareSlug || '') !== -1;
+            button.setAttribute('aria-pressed', String(selected));
+            button.textContent = selected ? '✓ เลือกไว้เปรียบเทียบ' : '＋ เปรียบเทียบ';
+        });
+    }
+
+    function comparePlanSummary(product) {
+        const plans = Array.isArray(product.plans) ? product.plans : [];
+        const monthly = plans.filter(function (plan) { return Number.isFinite(Number(plan.price)); });
+        const terms = Array.from(new Set(monthly.map(function (plan) {
+            return Number(plan.totalContractMonths || plan.months || 0);
+        }).filter(Boolean))).sort(function (a, b) { return a - b; });
+        return terms.length ? terms.map(function (months) { return months + ' เดือน'; }).join(', ') : 'ดูรายละเอียดแพ็กเกจ';
+    }
+
+    function renderCompareTable() {
+        if (!compareTable) return;
+        const selectedProducts = compareSlugs.map(compareProductBySlug).filter(Boolean);
+        if (selectedProducts.length < 2) return;
+        const rows = [
+            ['หมวดสินค้า', function (product) { return product.category || 'LG Subscribe'; }],
+            ['รุ่น', function (product) { return product.model || '-'; }],
+            ['ราคาเริ่มต้น', function (product) { return '฿' + formatPrice(minimumMonthlyPrice(product)) + '/เดือน'; }],
+            ['ระยะสัญญาที่มี', comparePlanSummary],
+            ['จุดเด่น', badgeFor]
+        ];
+        compareTable.innerHTML = '<thead><tr><th scope="col">หัวข้อ</th>' + selectedProducts.map(function (product) {
+            return '<th scope="col"><strong>' + escapeHtml(product.name || product.model) + '</strong><small>' + escapeHtml(product.model || '') + '</small></th>';
+        }).join('') + '</tr></thead><tbody>' + rows.map(function (row) {
+            return '<tr><th scope="row">' + escapeHtml(row[0]) + '</th>' + selectedProducts.map(function (product) {
+                return '<td>' + escapeHtml(row[1](product)) + '</td>';
+            }).join('') + '</tr>';
+        }).join('') + '<tr><th scope="row">ดูแพ็กเกจ</th>' + selectedProducts.map(function (product) {
+            return '<td><a href="product.html?slug=' + encodeURIComponent(slugFor(product)) + '">ดูราคาและแพ็กเกจ</a></td>';
+        }).join('') + '</tr></tbody>';
+    }
+
     function productCard(product, position) {
         const slug = slugFor(product);
         const image = product.img
             ? '<img src="' + escapeHtml(product.img) + '" alt="' + escapeHtml(product.name || product.model) + '" width="450" height="450" loading="lazy" decoding="async"' + (product.fallbackImg ? ' data-fallback-src="' + escapeHtml(product.fallbackImg) + '"' : '') + '>'
             : '';
 
-        return '<a class="p-card" href="product.html?slug=' + encodeURIComponent(slug) + '" data-source="catalog" data-category="' + escapeHtml(product.category || '') + '" data-model="' + escapeHtml(product.model || '') + '" data-product-name="' + escapeHtml(product.name || '') + '" data-position="' + position + '">' +
-            '<div class="p-img"><span class="p-emoji" aria-hidden="true">' + escapeHtml(product.emoji || '📦') + '</span>' + image + '</div>' +
-            '<div class="p-body">' +
-                '<div class="p-cat">' + escapeHtml(product.category || 'LG Subscribe') + '</div>' +
-                '<h3 class="p-name">' + escapeHtml(product.name || product.model) + '</h3>' +
-                '<div class="p-model">' + escapeHtml(product.model || '') + '</div>' +
-                '<div class="p-price"><small>เริ่มต้น</small><span>฿<strong>' + formatPrice(minimumMonthlyPrice(product)) + '</strong></span><small>/เดือน</small></div>' +
-                '<span class="p-badge">' + escapeHtml(badgeFor(product)) + '</span>' +
-                '<span class="p-cta">ดูแพ็กเกจและราคา</span>' +
-            '</div>' +
-        '</a>';
+        const isCompared = selectedForCompare(product);
+        return '<article class="p-card-wrap">' +
+            '<a class="p-card" href="product.html?slug=' + encodeURIComponent(slug) + '" data-source="catalog" data-category="' + escapeHtml(product.category || '') + '" data-model="' + escapeHtml(product.model || '') + '" data-product-name="' + escapeHtml(product.name || '') + '" data-position="' + position + '">' +
+                '<div class="p-img"><span class="p-emoji" aria-hidden="true">' + escapeHtml(product.emoji || '📦') + '</span>' + image + '</div>' +
+                '<div class="p-body">' +
+                    '<div class="p-cat">' + escapeHtml(product.category || 'LG Subscribe') + '</div>' +
+                    '<h3 class="p-name">' + escapeHtml(product.name || product.model) + '</h3>' +
+                    '<div class="p-model">' + escapeHtml(product.model || '') + '</div>' +
+                    '<div class="p-price"><small>เริ่มต้น</small><span>฿<strong>' + formatPrice(minimumMonthlyPrice(product)) + '</strong></span><small>/เดือน</small></div>' +
+                    '<span class="p-badge">' + escapeHtml(badgeFor(product)) + '</span>' +
+                    '<span class="p-cta">ดูแพ็กเกจและราคา</span>' +
+                '</div>' +
+            '</a>' +
+            '<button class="p-compare" type="button" data-compare-slug="' + escapeHtml(slug) + '" aria-pressed="' + isCompared + '">' + (isCompared ? '✓ เลือกไว้เปรียบเทียบ' : '＋ เปรียบเทียบ') + '</button>' +
+        '</article>';
     }
 
     function updateResultsState(matchedProducts, renderedCount) {
@@ -179,6 +246,7 @@ const budgetOptions = document.getElementById('budgetOptions');
         }).join('');
 
         updateResultsState(matchedProducts, renderedProducts.length);
+        syncCompareControls();
 
         return matchedProducts.length;
     }
@@ -200,6 +268,7 @@ const budgetOptions = document.getElementById('budgetOptions');
 
         state.visibleLimit = end;
         updateResultsState(matchedProducts, end);
+        syncCompareControls();
         track('catalog_load_more', {
             result_count: matchedProducts.length,
             visible_count: end
@@ -293,6 +362,42 @@ const budgetOptions = document.getElementById('budgetOptions');
 
     resetButton.addEventListener('click', resetCatalog);
     loadMoreButton.addEventListener('click', appendNextBatch);
+
+    grid.addEventListener('click', function (event) {
+        const button = event.target.closest('button[data-compare-slug]');
+        if (!button) return;
+        const slug = button.dataset.compareSlug || '';
+        const existingIndex = compareSlugs.indexOf(slug);
+        if (existingIndex !== -1) {
+            compareSlugs.splice(existingIndex, 1);
+        } else if (compareSlugs.length < 3) {
+            compareSlugs.push(slug);
+        } else {
+            compareSummary.textContent = 'เลือกเปรียบเทียบได้สูงสุด 3 รุ่น';
+            return;
+        }
+        syncCompareControls();
+        track('catalog_compare_select', { product_slug: slug, selected_count: compareSlugs.length });
+    });
+
+    if (compareClear) compareClear.addEventListener('click', function () {
+        compareSlugs.length = 0;
+        if (comparePanel) comparePanel.hidden = true;
+        syncCompareControls();
+    });
+
+    if (compareOpen) compareOpen.addEventListener('click', function () {
+        if (compareSlugs.length < 2) return;
+        renderCompareTable();
+        comparePanel.hidden = false;
+        comparePanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        track('catalog_compare_view', { product_count: compareSlugs.length, product_slugs: compareSlugs.join(',') });
+    });
+
+    if (compareClose) compareClose.addEventListener('click', function () {
+        comparePanel.hidden = true;
+        compareOpen.focus();
+    });
 
     grid.addEventListener('error', function (event) {
         const image = event.target;
