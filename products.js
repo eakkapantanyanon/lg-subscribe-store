@@ -2128,6 +2128,7 @@ window.LG_PRODUCTS = [
     name: 'เครื่องลดความชื้น LG PuriCare Dehumidifier 23 (40 ลิตร) + AeroMini (ของแถม)',
     category: 'เครื่องลดความชื้น',
     emoji: '💧',
+    gift: 'AeroMini AS30GGW10',
     plans: [
         {
           term: '5Y',
@@ -3314,6 +3315,7 @@ window.LG_PRODUCTS = [
     name: 'ทีวี 48" LG OLED evo C6 4K Smart TV 2026 + xboom BOUNCE (ของแถม)',
     category: 'โทรทัศน์ OLED',
     emoji: '📺',
+    gift: 'xboom BOUNCE',
     plans: [
         {
           term: '5Y',
@@ -3418,6 +3420,7 @@ window.LG_PRODUCTS = [
     name: 'ทีวี 77" LG OLED evo C6 4K Smart TV 2026 + Soundbar S80TY (ของแถม)',
     category: 'โทรทัศน์ OLED',
     emoji: '📺',
+    gift: 'Soundbar S80TY',
     plans: [
         {
           term: '5Y',
@@ -3444,6 +3447,7 @@ window.LG_PRODUCTS = [
     name: 'ทีวี 65" LG OLED evo C6 4K Smart TV 2026 + Soundbar S80TY (ของแถม)',
     category: 'โทรทัศน์ OLED',
     emoji: '📺',
+    gift: 'Soundbar S80TY',
     plans: [
         {
           term: '5Y',
@@ -3470,6 +3474,7 @@ window.LG_PRODUCTS = [
     name: 'ทีวี 55" LG OLED evo C6 4K Smart TV 2026 + Soundbar S30A (ของแถม)',
     category: 'โทรทัศน์ OLED',
     emoji: '📺',
+    gift: 'Soundbar S30A',
     plans: [
         {
           term: '5Y',
@@ -3749,6 +3754,7 @@ window.LG_PRODUCTS = [
     name: 'LG StanbyME2 + xboom Grab (ของแถม)',
     category: 'โทรทัศน์ StanbyME',
     emoji: '📺',
+    gift: 'xboom GRAB',
     plans: [
         {
           term: '5Y',
@@ -3926,6 +3932,7 @@ window.LG_PRODUCTS = [
     name: 'จอมอนิเตอร์ 31.5" 4K IPS Smart Monitor Swing + xboom Grab (ของแถม)',
     category: 'มอนิเตอร์',
     emoji: '🖥️',
+    gift: 'xboom GRAB',
     plans: [
         {
           term: '5Y',

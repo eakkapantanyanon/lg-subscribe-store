@@ -250,6 +250,7 @@ check(canonicalProducts.length === 99 && canonicalProducts.reduce((total, produc
 check(/ทุกรุ่น 99 รายการ/.test(home) && /<strong>99 รุ่น<\/strong>/.test(promotions), 'Home และ Promotions แสดงจำนวนสินค้า 99 รุ่นตรงกับ canonical data');
 check(new Set(canonicalProducts.map(product => product.id)).size === canonicalProducts.length, 'Canonical products.js ไม่มี product id ซ้ำ');
 check(new Set(canonicalProducts.map(product => product.model)).size === canonicalProducts.length, 'Canonical products.js ไม่มี model ซ้ำ');
+check(canonicalProducts.filter(product => /\(ของแถม\)/.test(product.name || '')).every(product => Boolean(product.gift)), 'สินค้าที่ระบุของแถมมี gift field สำหรับ PDP และข้อความส่งฝ่ายขายครบ');
 const sitemapUrls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(match => match[1]);
 const expectedProductUrls = canonicalProducts.map(product => 'https://eakkapantanyanon.github.io/lg-subscribe-store/product.html?slug=' + encodeURIComponent(product.id));
 check(expectedProductUrls.every(url => sitemapUrls.includes(url)) && sitemapUrls.filter(url => /product\.html\?slug=/.test(url)).length === canonicalProducts.length, 'Sitemap มี PDP slug ครบทุก product record และไม่มีรายการเกิน');
