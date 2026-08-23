@@ -431,8 +431,11 @@ execFileSync('node', [path.join(ROOT, 'scripts', 'audit-care-service.js')], { cw
 check(fs.existsSync(path.join(ROOT, 'docs', 'audits', 'care-service-coverage.json')), 'มี Care Service coverage report ล่าสุด');
 const careCoverage = JSON.parse(fs.readFileSync(path.join(ROOT, 'docs', 'audits', 'care-service-coverage.json'), 'utf8'));
 check(careCoverage.summary.products === canonicalProducts.length && careCoverage.summary.verifiedDetailModels.includes('AS25GCBY0'), 'Care Service coverage สร้างใหม่จาก catalog/runtime และพบ AeroCat override');
+check(careCoverage.summary.productsWithCarePlans === 66 && careCoverage.summary.productsWithVerifiedDetail === 66, 'Care Service detail ครบสินค้าที่มี Visit/Self ทั้ง 66 รุ่น');
 const careRegister = fs.readFileSync(path.join(ROOT, 'docs', 'audits', 'care-service-source-register.md'), 'utf8');
-check(/AS25GCBY0/.test(careRegister) && /DETAIL PENDING/.test(careRegister) && /CARE_DETAIL_OVERRIDES\.AS25GCBY0/.test(careRegister), 'ทะเบียน Care Service แยก verified detail กับรุ่นที่รอ source');
+check(/ตู้ถนอมผ้า \(Styler\)/.test(careRegister) && /GC-X257CMHW/.test(careRegister) && /GC-L24FFCBB/.test(careRegister), 'ทะเบียน Care Service บันทึกกฎ Styler และตู้เย็นต่อท่อ');
+check(/GC-X24FFCRB/.test(careRegister) && !canonicalProducts.some(p => p.model === 'GC-X24FFCRB'), 'GC-X24FFCRB ถูกจดเป็น future model และยังไม่เข้า catalog ปัจจุบัน');
+check(/AS25GCBY0/.test(careRegister) && /CARE_DETAIL_OVERRIDES\.AS25GCBY0/.test(careRegister), 'ทะเบียน Care Service เก็บ AeroCat model-specific override');
 check(/care-service-source-register\.md/.test(fs.readFileSync(path.join(ROOT, 'README.md'), 'utf8')), 'README ชี้ไปทะเบียน Care Service source');
 check(/care-service-coverage\.json/.test(careRegister), 'ทะเบียน Care Service ชี้ไป coverage report ที่สร้างซ้ำได้');
 

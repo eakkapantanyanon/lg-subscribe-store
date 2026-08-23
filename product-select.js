@@ -212,6 +212,51 @@
       } : null;
     }
 
+    if (category === 'ตู้ถนอมผ้า' && serviceType === 'Self') {
+      return {
+        source: 'Care Service 2026(1).pdf p.14 + business rule: Styler ทุกรุ่นใช้บริการเดียวกัน', desc: selfDesc,
+        details: [
+          { text: 'จัดส่งแผ่นน้ำหอม 4 กล่อง', cycle: 'หลังวันติดตั้ง' },
+          { text: 'จัดส่งแผ่นน้ำหอม 4 กล่อง', cycle: 'ทุก 12 เดือน' },
+          { text: 'จัดส่งถังจ่ายน้ำและถังระบายน้ำ', cycle: 'ครบ 36 เดือน' }
+        ]
+      };
+    }
+
+    if (/^ตู้เย็น /.test(category) && serviceType === 'Visit') {
+      var plumbedRefrigerators = ['GC-X257CMHW', 'GC-L24FFCBB + MS2032GAS', 'GC-X24FFCRB'];
+      if (plumbedRefrigerators.indexOf(model) !== -1) {
+        return {
+          source: 'Care Service 2026(1).pdf p.6 + business rule: plumbed refrigerator models', desc: visitDesc,
+          details: [
+            { text: 'เปลี่ยน Pre-Carbon Block Filter', cycle: 'ทุก 6 เดือน' },
+            { text: 'เปลี่ยน UF Membrane Filter', cycle: 'ทุก 12 เดือน' },
+            { text: 'เปลี่ยน Post Carbon Block Filter', cycle: 'ทุก 12 เดือน' },
+            { text: 'ตรวจสอบผลิตภัณฑ์', cycle: 'ทุก 6 เดือน' },
+            { text: 'ทำความสะอาดภายนอก', cycle: 'ทุก 6 เดือน' },
+            { text: 'ทำความสะอาดขอบยางประตู', cycle: 'ทุก 6 เดือน' },
+            { text: 'ทำความสะอาดคอมเพรสเซอร์', cycle: 'ทุก 6 เดือน' },
+            { text: 'ทำความสะอาด Dispenser (ที่กดน้ำ)', cycle: 'ทุก 6 เดือน' },
+            { text: 'ทำความสะอาดช่องทำน้ำแข็ง', cycle: 'ทุก 6 เดือน' },
+            { text: 'เปลี่ยนตัวกรอง Deodorizing', cycle: 'ทุก 24 เดือน' }
+          ]
+        };
+      }
+      return {
+        source: 'Care Service 2026(1).pdf p.5 + business rule: refrigerator models not classified as plumbed', desc: visitDesc,
+        details: [
+          { text: 'ตรวจสอบผลิตภัณฑ์', cycle: 'ทุก 2 ปี' },
+          { text: 'ทำความสะอาดภายนอก', cycle: 'ทุก 2 ปี' },
+          { text: 'ทำความสะอาดขอบยางประตู', cycle: 'ทุก 2 ปี' },
+          { text: 'ทำความสะอาดคอมเพรสเซอร์', cycle: 'ทุก 2 ปี' },
+          { text: 'ทำความสะอาด Dispenser (ที่กดน้ำ)', cycle: 'ทุก 2 ปี · เฉพาะรุ่นที่รองรับ' },
+          { text: 'ทำความสะอาดช่องทำน้ำแข็ง', cycle: 'ทุก 2 ปี · เฉพาะรุ่นที่รองรับ' },
+          { text: 'ทำความสะอาดแท็งก์น้ำ', cycle: 'ทุก 2 ปี · เฉพาะรุ่นที่รองรับ' },
+          { text: 'เปลี่ยนตัวกรอง Deodorizing', cycle: 'ทุก 2 ปี · เฉพาะรุ่นที่รองรับ' }
+        ]
+      };
+    }
+
     if (category === 'เครื่องลดความชื้น') {
       return serviceType === 'Visit' ? {
         source: 'Care Service 2026(1).pdf p.22', desc: visitDesc,

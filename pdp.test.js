@@ -121,15 +121,39 @@ t('Care Service 2026 เติมรายละเอียดเฉพาะ�
   assert.ok(SEL.careInfo(commercialAir, 'Visit').details.some(x => /ตรวจเช็คและบำรุงรักษา/.test(x.text) && /4/.test(x.cycle)));
 });
 
-t('รุ่นที่ไม่มี Care detail ยืนยันต้องไม่ยืมรายละเอียดจากรุ่นอื่น', () => {
-  const genericProduct = data.find(x => x.model === 'GC-L257KQKW');
-  assert.ok(genericProduct, 'ต้องพบรุ่น GC-L257KQKW ใน catalog');
-  const info = SEL.careInfo(genericProduct, 'Visit');
-  assert.strictEqual(info.details.length, 2);
-  assert.ok(info.details.some(x => x.text === 'รายละเอียดงานบริการ/อุปกรณ์'));
-  assert.ok(!info.details.some(x => /V-Pet Filter|โดมแมว|เบาะรองนั่ง/.test(x.text)));
-  assert.ok(!/AS25GCBY0/.test(info.source || ''));
-  assert.ok(!/โดมแมว|V-Pet Filter|ค่าเช่าถูกลง/.test(info.desc));
+t('Styler ทุกรุ่นใช้ Care Service ชุดเดียวกัน และ S3MFC ใช้ Self Service หน้า 14', () => {
+  const styler = data.find(x => x.model === 'S3MFC');
+  const info = SEL.careInfo(styler, 'Self');
+  assert.match(info.source, /Care Service 2026\(1\)\.pdf p\.14/);
+  assert.ok(info.details.some(x => /แผ่นน้ำหอม 4 กล่อง/.test(x.text) && x.cycle === 'ทุก 12 เดือน'));
+  assert.ok(info.details.some(x => /ถังจ่ายน้ำและถังระบายน้ำ/.test(x.text) && x.cycle === 'ครบ 36 เดือน'));
+});
+
+t('ตู้เย็นต่อท่อใช้ Care Service หน้า 6 เฉพาะรุ่นที่กำหนด', () => {
+  const plumbedModels = ['GC-X257CMHW', 'GC-L24FFCBB + MS2032GAS'];
+  plumbedModels.forEach(model => {
+    const product = data.find(x => x.model === model);
+    const info = SEL.careInfo(product, 'Visit');
+    assert.match(info.source, /Care Service 2026\(1\)\.pdf p\.6/);
+    assert.ok(info.details.some(x => /Pre-Carbon Block Filter/.test(x.text) && x.cycle === 'ทุก 6 เดือน'));
+    assert.ok(info.details.some(x => /Deodorizing/.test(x.text) && x.cycle === 'ทุก 24 เดือน'));
+  });
+  assert.strictEqual(data.some(x => x.model === 'GC-X24FFCRB'), false, 'GC-X24FFCRB เป็นรุ่นเดือนถัดไป ยังไม่เพิ่มเข้า catalog ปัจจุบัน');
+});
+
+t('ตู้เย็นทั่วไปไม่ยืมบริการต่อท่อน้ำ', () => {
+  const fridge = data.find(x => x.model === 'GC-B257SQYL');
+  const info = SEL.careInfo(fridge, 'Visit');
+  assert.match(info.source, /Care Service 2026\(1\)\.pdf p\.5/);
+  assert.ok(info.details.some(x => /ตรวจสอบผลิตภัณฑ์/.test(x.text) && x.cycle === 'ทุก 2 ปี'));
+  assert.ok(!info.details.some(x => /Pre-Carbon Block Filter|UF Membrane Filter|Post Carbon Block Filter/.test(x.text)));
+});
+
+t('No Service และ fallback ไม่ยืมรายละเอียด Care จากรุ่นอื่น', () => {
+  const noService = data.find(x => x.model === 'OLED48C6PSA');
+  const info = SEL.careInfo(noService, 'No Service');
+  assert.strictEqual(info, SEL.CARE_INFO['No Service']);
+  assert.ok(!/V-Pet Filter|โดมแมว|Pre-Carbon Block Filter|แผ่นน้ำหอม/.test(info.desc));
   assert.ok(!/ทุก 6\/12 เดือน/.test(SEL.CARE_INFO.Visit.desc));
   assert.ok(!/รับประกันเท่านั้น/.test(SEL.CARE_INFO['No Service'].desc));
 });
