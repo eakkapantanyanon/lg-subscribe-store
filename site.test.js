@@ -433,7 +433,7 @@ check(/catalog\.css\?v=4/.test(catalogHtml) && /\.catalog-grid \.p-model \{[\s\S
 check(!/class="catalog-brand"[^>]*aria-label=/.test(catalogHtml) && !/loadMoreButton\.setAttribute\('aria-label'/.test(catalogSource), 'Catalog accessible names ใช้ข้อความที่มองเห็นโดยไม่ override aria-label');
 check(/th\.setAttribute\('aria-label', 'รูปสินค้า '/.test(pdp) && /ดูตะกร้า ' \+ visibleCount \+ ' รายการ'/.test(pdp), 'PDP thumbnail และตะกร้ามี accessible name ที่สื่อความหมาย');
 check(/\.crumbs a \{[^}]*text-decoration: underline/.test(pdp), 'PDP breadcrumb links แยกจากข้อความด้วย underline');
-check(/\.credit-note \{[^}]*color: #6d625a/.test(promotions) && /\.b-gray \{ background: #666;/.test(promotions) && /\.f-col a \{[^}]*min-height: 24px/.test(promotions), 'Promotions contrast และ footer touch targets ผ่านเกณฑ์');
+check(/\.credit-note \{[^}]*color: #6d625a/.test(promotions) && /\.b-gray \{ background: #666;/.test(promotions) && /\.f-col a \{[^}]*min-height: 24px/.test(promotions) && /p-card-m :where\(\.p-cat, \.p-price small, \.row-cta\) \{ background-color: #fff;/.test(promotions), 'Promotions contrast และ footer touch targets ผ่านเกณฑ์');
 check(/\.cart-empty \{ color: #6f666a/.test(cart) && /\.first-bill-note \{ font-size: 12px; color: #6f666a/.test(cart) && /<h2 id="officerContactTitle">/.test(cart), 'Cart contrast และ heading hierarchy ผ่านเกณฑ์');
 check(/\.opt-card\.selected::after/.test(premium) && /body\[data-page="product-detail"\] \.color-opt\.selected/.test(premium), 'PDP UX/UI Max แสดง selection state ของแผนและสีชัดเจน');
 check(/บัตรเครดิต/.test(cart) && /บัตรเดบิต/.test(cart) && /Direct Debit/.test(cart), 'Cart แสดงช่องทางบัตรเครดิต บัตรเดบิต และหักบัญชี');
