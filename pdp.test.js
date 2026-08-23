@@ -107,6 +107,17 @@ t('AS25GCBY0 ใช้ Care Service override เฉพาะรุ่น', () =>
   assert.match(visit.source, /AS25GCBY0/);
 });
 
+t('WashTower แยก Visit/Self ชัดเจนและไม่ปนรายการบริการ', () => {
+  const tower = data.find(x => x.model === 'WT2520NHEG');
+  const visit = SEL.careInfo(tower, 'Visit');
+  const self = SEL.careInfo(tower, 'Self');
+  assert.ok(visit.details.some(x => /ตรวจสอบผลิตภัณฑ์/.test(x.text)));
+  assert.ok(visit.details.some(x => /ทำความสะอาดภายในและภายนอก/.test(x.text)));
+  assert.ok(self.details.every(x => /จัดส่ง/.test(x.text)));
+  assert.ok(!self.details.some(x => /ตรวจสอบผลิตภัณฑ์|ทำความสะอาดภายในและภายนอก|แยกชิ้นส่วน/.test(x.text)));
+  assert.notDeepStrictEqual(visit.details, self.details);
+});
+
 t('Care Service 2026 เติมรายละเอียดเฉพาะรุ่น/หมวดที่เอกสารรองรับ', () => {
   const water = data.find(x => x.model === 'WD516AN');
   const tower = data.find(x => x.model === 'WT2520NHEG');
