@@ -57,6 +57,49 @@
             </div>
         </section>
 
+        <section class="smart-finder" aria-labelledby="smartFinderTitle">
+            <div class="catalog-shell smart-finder-shell">
+                <div class="smart-finder-head">
+                    <div>
+                        <span class="catalog-kicker">ช่วยคัดรุ่นให้เร็วขึ้น</span>
+                        <h2 id="smartFinderTitle">ค้นหาสินค้าอัจฉริยะ</h2>
+                        <p>เลือกประเภทสินค้า งบต่อเดือน และรูปแบบบริการที่ต้องการ ระบบจะคัดจากสินค้าและแพ็กเกจจริงในแคตตาล็อก</p>
+                    </div>
+                    <button type="button" id="smartFinderReset">ล้างตัวเลือก</button>
+                </div>
+                <div class="smart-finder-grid">
+                    <fieldset class="smart-finder-step">
+                        <legend>1. กำลังมองหาอะไร</legend>
+                        <div id="smartFinderGroups" class="smart-finder-options"></div>
+                    </fieldset>
+                    <fieldset class="smart-finder-step">
+                        <legend>2. งบประมาณต่อเดือน</legend>
+                        <div id="smartFinderBudgets" class="smart-finder-options smart-finder-options-compact">
+                            <button type="button" data-finder-budget-min="0" data-finder-budget-max="0" aria-pressed="true">ไม่จำกัด</button>
+                            <button type="button" data-finder-budget-min="0" data-finder-budget-max="500" aria-pressed="false">ไม่เกิน ฿500</button>
+                            <button type="button" data-finder-budget-min="500" data-finder-budget-max="800" aria-pressed="false">฿501–800</button>
+                            <button type="button" data-finder-budget-min="800" data-finder-budget-max="1200" aria-pressed="false">฿801–1,200</button>
+                            <button type="button" data-finder-budget-min="1200" data-finder-budget-max="2000" aria-pressed="false">฿1,201–2,000</button>
+                            <button type="button" data-finder-budget-min="2000" data-finder-budget-max="0" aria-pressed="false">มากกว่า ฿2,000</button>
+                        </div>
+                    </fieldset>
+                    <fieldset class="smart-finder-step">
+                        <legend>3. รูปแบบบริการ</legend>
+                        <div id="smartFinderService" class="smart-finder-options smart-finder-options-compact">
+                            <button type="button" data-finder-service="" aria-pressed="true">ไม่จำกัด</button>
+                            <button type="button" data-finder-service="Visit" aria-pressed="false">มีเจ้าหน้าที่ดูแล</button>
+                            <button type="button" data-finder-service="Self" aria-pressed="false">ดูแลด้วยตนเอง</button>
+                            <button type="button" data-finder-service="No Service" aria-pressed="false">ไม่รวมบริการ</button>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="smart-finder-action">
+                    <p id="smartFinderSummary" role="status" aria-live="polite">เลือกประเภทสินค้าอย่างน้อย 1 กลุ่มเพื่อเริ่มค้นหา</p>
+                    <button type="button" id="smartFinderApply" disabled>แนะนำรุ่นที่เหมาะกับฉัน</button>
+                </div>
+            </div>
+        </section>
+
         <section class="catalog-controls" aria-labelledby="catalogControlsTitle">
             <div class="catalog-shell">
                 <h2 class="sr-only" id="catalogControlsTitle">ค้นหาและกรองสินค้า</h2>
@@ -154,6 +197,6 @@
 
     <script src="analytics.js"></script>
     <script src="products.js"></script>
-    <script src="catalog.js?v=5"></script>
+    <script src="catalog.js?v=6"></script>
 </body>
 </html>

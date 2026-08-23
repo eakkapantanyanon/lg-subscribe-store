@@ -4,7 +4,7 @@
     const PRODUCTS = Array.isArray(window.LG_PRODUCTS) ? window.LG_PRODUCTS : [];
     const INITIAL_BATCH_SIZE = 16;
     const LOAD_MORE_BATCH_SIZE = 16;
-    const state = { query: '', category: '', budgetMin: 0, budgetMax: 0, savedOnly: false, visibleLimit: INITIAL_BATCH_SIZE };
+    const state = { query: '', category: '', budgetMin: 0, budgetMax: 0, savedOnly: false, finderCategories: [], finderService: '', visibleLimit: INITIAL_BATCH_SIZE };
 
     const grid = document.getElementById('catalogGrid');
     const filters = document.getElementById('catalogFilters');
@@ -21,6 +21,24 @@
     const budgetOptions = document.getElementById('budgetOptions');
     const savedFilter = document.getElementById('catalogSavedFilter');
     const savedCount = document.getElementById('catalogSavedCount');
+    const finderGroups = document.getElementById('smartFinderGroups');
+    const finderBudgets = document.getElementById('smartFinderBudgets');
+    const finderService = document.getElementById('smartFinderService');
+    const finderApply = document.getElementById('smartFinderApply');
+    const finderReset = document.getElementById('smartFinderReset');
+    const finderSummary = document.getElementById('smartFinderSummary');
+    const FINDER_GROUPS = [
+        { key: 'laundry', label: 'ซักผ้า / อบผ้า', categories: ['Wash Tower', 'เครื่องซักผ้า ฝาหน้า', 'เครื่องซักผ้า ฝาบน', 'เครื่องอบผ้า', 'ตู้ถนอมผ้า'] },
+        { key: 'fridge', label: 'ตู้เย็น', categories: ['ตู้เย็น Side by Side', 'ตู้เย็น Multi-Door', 'ตู้เย็น 2 ประตู'] },
+        { key: 'tv', label: 'ทีวี / มอนิเตอร์', categories: ['โทรทัศน์ OLED', 'โทรทัศน์ QNED', 'โทรทัศน์ NanoCell', 'โทรทัศน์ StanbyME', 'มอนิเตอร์'] },
+        { key: 'ac', label: 'เครื่องปรับอากาศ', prefix: 'เครื่องปรับอากาศ' },
+        { key: 'air', label: 'อากาศ / ความชื้น', categories: ['เครื่องฟอกอากาศ', 'เครื่องลดความชื้น'] },
+        { key: 'clean', label: 'ทำความสะอาด', categories: ['เครื่องดูดฝุ่น', 'เครื่องล้างจาน'] },
+        { key: 'water', label: 'เครื่องกรองน้ำ', categories: ['เครื่องกรองน้ำ'] },
+        { key: 'audio', label: 'เครื่องเสียง', categories: ['Sound bar', 'Bluetooth Speaker'] },
+        { key: 'kitchen', label: 'ครัว', categories: ['ไมโครเวฟ'] }
+    ];
+    let finderSelection = { group: '', budgetMin: 0, budgetMax: 0, service: '' };
     const SAVED_STORAGE_KEY = 'lg_subscribe_saved_products_v1';
     let savedSlugs = loadSavedSlugs();
     const compareBar = document.getElementById('catalogCompareBar');
@@ -166,12 +184,75 @@
         });
     }
 
+    function finderGroupForKey(key) {
+        return FINDER_GROUPS.find(function (group) { return group.key === key; });
+    }
+
+    function productMatchesFinderGroup(product, group) {
+        if (!group) return true;
+        if (group.prefix) return String(product.category || '').indexOf(group.prefix) === 0;
+        return Array.isArray(group.categories) && group.categories.indexOf(product.category) !== -1;
+    }
+
+    function productHasService(product, serviceType) {
+        if (!serviceType) return true;
+        return Array.isArray(product.plans) && product.plans.some(function (plan) {
+            return String(plan.serviceType || '') === serviceType;
+        });
+    }
+
+    function renderFinderGroups() {
+        if (!finderGroups) return;
+        finderGroups.innerHTML = FINDER_GROUPS.map(function (group) {
+            const count = PRODUCTS.filter(function (product) { return productMatchesFinderGroup(product, group); }).length;
+            const active = finderSelection.group === group.key;
+            return '<button type="button" data-finder-group="' + group.key + '" aria-pressed="' + active + '"><strong>' + escapeHtml(group.label) + '</strong><small>' + count + ' รุ่น</small></button>';
+        }).join('');
+    }
+
+    function finderPreviewCount() {
+        const group = finderGroupForKey(finderSelection.group);
+        return PRODUCTS.filter(function (product) {
+            if (!productMatchesFinderGroup(product, group)) return false;
+            const monthly = minimumMonthlyPrice(product);
+            if (finderSelection.budgetMin > 0 && monthly <= finderSelection.budgetMin) return false;
+            if (finderSelection.budgetMax > 0 && monthly > finderSelection.budgetMax) return false;
+            return productHasService(product, finderSelection.service);
+        }).length;
+    }
+
+    function syncFinderSummary() {
+        if (!finderSummary || !finderApply) return;
+        const ready = Boolean(finderSelection.group);
+        finderApply.disabled = !ready;
+        finderSummary.textContent = ready
+            ? 'พบ ' + finderPreviewCount() + ' รุ่นที่ตรงกับตัวเลือกเบื้องต้น'
+            : 'เลือกประเภทสินค้าอย่างน้อย 1 กลุ่มเพื่อเริ่มค้นหา';
+    }
+
+    function resetFinderControls() {
+        finderSelection = { group: '', budgetMin: 0, budgetMax: 0, service: '' };
+        state.finderCategories = [];
+        state.finderService = '';
+        renderFinderGroups();
+        if (finderBudgets) finderBudgets.querySelectorAll('button[data-finder-budget-min]').forEach(function (button) {
+            const active = Number(button.dataset.finderBudgetMin || 0) === 0 && Number(button.dataset.finderBudgetMax || 0) === 0;
+            button.setAttribute('aria-pressed', String(active));
+        });
+        if (finderService) finderService.querySelectorAll('button[data-finder-service]').forEach(function (button) {
+            button.setAttribute('aria-pressed', String((button.dataset.finderService || '') === ''));
+        });
+        syncFinderSummary();
+    }
+
     function filteredProducts() {
         const query = state.query.trim().toLocaleLowerCase('th');
 
         return PRODUCTS.filter(function (product) {
             if (state.savedOnly && !isSaved(product)) return false;
             if (state.category && product.category !== state.category) return false;
+            if (state.finderCategories.length && state.finderCategories.indexOf(product.category) === -1) return false;
+            if (state.finderService && !productHasService(product, state.finderService)) return false;
             const monthly = minimumMonthlyPrice(product);
             if (state.budgetMin > 0 && monthly <= state.budgetMin) return false;
             if (state.budgetMax > 0 && monthly > state.budgetMax) return false;
@@ -335,6 +416,9 @@
         state.budgetMin = 0;
         state.budgetMax = 0;
         state.savedOnly = false;
+        state.finderCategories = [];
+        state.finderService = '';
+        resetFinderControls();
         if (savedFilter) savedFilter.setAttribute('aria-pressed', 'false');
         if (budgetOptions) budgetOptions.querySelectorAll('button[data-budget-min]').forEach(function (button) {
             button.setAttribute('aria-pressed', String(Number(button.dataset.budgetMin || 0) === 0 && Number(button.dataset.budgetMax || 0) === 0));
@@ -479,6 +563,75 @@
 
         image.hidden = true;
     }, true);
+
+    if (finderGroups) finderGroups.addEventListener('click', function (event) {
+        const button = event.target.closest('button[data-finder-group]');
+        if (!button) return;
+        finderSelection.group = button.dataset.finderGroup || '';
+        renderFinderGroups();
+        syncFinderSummary();
+    });
+
+    if (finderBudgets) finderBudgets.addEventListener('click', function (event) {
+        const button = event.target.closest('button[data-finder-budget-min]');
+        if (!button) return;
+        finderSelection.budgetMin = Number(button.dataset.finderBudgetMin || 0);
+        finderSelection.budgetMax = Number(button.dataset.finderBudgetMax || 0);
+        finderBudgets.querySelectorAll('button[data-finder-budget-min]').forEach(function (item) {
+            item.setAttribute('aria-pressed', String(item === button));
+        });
+        syncFinderSummary();
+    });
+
+    if (finderService) finderService.addEventListener('click', function (event) {
+        const button = event.target.closest('button[data-finder-service]');
+        if (!button) return;
+        finderSelection.service = button.dataset.finderService || '';
+        finderService.querySelectorAll('button[data-finder-service]').forEach(function (item) {
+            item.setAttribute('aria-pressed', String(item === button));
+        });
+        syncFinderSummary();
+    });
+
+    if (finderApply) finderApply.addEventListener('click', function () {
+        const group = finderGroupForKey(finderSelection.group);
+        if (!group) return;
+        state.query = '';
+        state.category = '';
+        state.savedOnly = false;
+        state.finderCategories = Array.from(new Set(PRODUCTS.filter(function (product) {
+            return productMatchesFinderGroup(product, group);
+        }).map(function (product) { return product.category; })));
+        state.finderService = finderSelection.service;
+        state.budgetMin = finderSelection.budgetMin;
+        state.budgetMax = finderSelection.budgetMax;
+        searchInput.value = '';
+        updateClearButton();
+        syncFilterSelection();
+        if (savedFilter) savedFilter.setAttribute('aria-pressed', 'false');
+        resetVisibleLimit();
+        const count = renderProducts();
+        document.getElementById('catalogResultsTitle').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        track('smart_finder_apply', {
+            finder_group: finderSelection.group,
+            budget_min_exclusive: finderSelection.budgetMin || 0,
+            budget_max_inclusive: finderSelection.budgetMax || 'unbounded',
+            service_type: finderSelection.service || 'any',
+            result_count: count
+        });
+    });
+
+    if (finderReset) finderReset.addEventListener('click', function () {
+        resetFinderControls();
+        state.budgetMin = 0;
+        state.budgetMax = 0;
+        resetVisibleLimit();
+        renderProducts();
+        track('smart_finder_reset', {});
+    });
+
+    renderFinderGroups();
+    syncFinderSummary();
 
     const initialQuery = new URLSearchParams(window.location.search).get('q');
     if (initialQuery) {
