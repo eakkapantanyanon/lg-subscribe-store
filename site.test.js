@@ -500,7 +500,8 @@ check(/line\.me\/R\/ti\/p\/@lgthailand/.test(cart), 'Cart มีลิงก์�
 check(/061-267-0518/.test(cart) && /tel:0612670518/.test(cart), 'Cart แสดงเบอร์โทรเจ้าหน้าที่และลิงก์โทรออก');
 check(/line-lgthailand-qr\.png/.test(cart), 'Cart แสดง QR Code สำหรับ LINE');
 check(/ฝ่ายขาย LG โดยตรง/.test(cart) && /ไม่ผ่านตัวแทน/.test(cart) && /LINE Official ของ LG/.test(cart), 'Cart ยืนยันช่องทางฝ่ายขาย LG โดยตรง');
-check(/analytics\.js/.test(home) && /analytics\.js/.test(pdp) && /analytics\.js/.test(cart), 'Conversion analytics ครบทุก flow หลัก');
+check(/analytics\.js/.test(home) && /analytics\.js/.test(pdp) && /analytics\.js/.test(cart) && /analytics\.js/.test(guide), 'Conversion analytics ครบทุก flow หลักรวม Guide');
+check(/funnel_session_id/.test(analyticsSource) && /funnel_stage/.test(analyticsSource) && /funnel_stage_view/.test(analyticsSource) && /guide_smart_finder_click/.test(analyticsSource) && /data-page="guide"/.test(guide), 'Analytics เชื่อม Guide → Discovery → PDP → Lead handoff ด้วย session-scoped funnel context โดยไม่เก็บ PII');
 check(/package_view/.test(pdp) && /track\('add_to_cart'/.test(pdp), 'PDP ส่ง package view และ successful add-to-cart events');
 
 console.log('\n═══ Site smoke test: ' + (failures ? failures + ' ไม่ผ่าน' : 'ผ่านทั้งหมด') + ' ═══');

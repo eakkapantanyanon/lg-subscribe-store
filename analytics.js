@@ -4,6 +4,35 @@
 
   window.dataLayer = window.dataLayer || [];
 
+  const FUNNEL_SESSION_KEY = 'flexi_funnel_session_v1';
+  const FUNNEL_STAGE_BY_PAGE = {
+    guide: 'guide',
+    catalog: 'discovery',
+    'product-detail': 'consideration',
+    cart: 'lead_handoff'
+  };
+
+  function funnelSessionId() {
+    try {
+      let id = window.sessionStorage.getItem(FUNNEL_SESSION_KEY);
+      if (!id) {
+        id = 'fs_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 10);
+        window.sessionStorage.setItem(FUNNEL_SESSION_KEY, id);
+      }
+      return id;
+    } catch (_) {
+      return 'fs_ephemeral';
+    }
+  }
+
+  function pageType() {
+    return document.body && document.body.dataset.page || 'unknown';
+  }
+
+  function funnelStage() {
+    return FUNNEL_STAGE_BY_PAGE[pageType()] || 'other';
+  }
+
   function push(event, params) {
     try {
       if (!Array.isArray(window.dataLayer)) window.dataLayer = [];
@@ -11,6 +40,9 @@
         event: event,
         page_path: location.pathname,
         page_title: document.title,
+        page_type: pageType(),
+        funnel_stage: funnelStage(),
+        funnel_session_id: funnelSessionId(),
       }, params || {}));
     } catch (_) {
       // Analytics must never block the shopping flow.
@@ -27,7 +59,10 @@
   }
 
   document.addEventListener('DOMContentLoaded', function () {
-    push('flexi_page_ready', { page_type: document.body.dataset.page || 'unknown' });
+    push('flexi_page_ready', { page_type: pageType() });
+    if (funnelStage() !== 'other') {
+      push('funnel_stage_view', { stage_name: funnelStage() });
+    }
 
     document.addEventListener('click', function (event) {
       const target = event.target.closest('a, button, [role="link"], .p-card, .lifestyle-card, .opt-card, .cat-tab');
@@ -67,6 +102,17 @@
       }
       if (target.matches('.filters button, .cat-tab')) {
         push('promotion_filter_change', { selected_value: text(target) });
+      }
+      if (pageType() === 'guide' && target.matches('a[href*="products.html?sf_group="]')) {
+        try {
+          const url = new URL(target.href, location.href);
+          push('guide_smart_finder_click', {
+            finder_group: url.searchParams.get('sf_group') || 'unknown',
+            link_text: text(target)
+          });
+        } catch (_) {
+          // Link navigation must continue even if analytics parsing fails.
+        }
       }
       if (target.matches('a[href*="line.me"]')) {
         push('line_contact_click', { placement: target.className || target.closest('section,footer,aside')?.id || 'link' });
