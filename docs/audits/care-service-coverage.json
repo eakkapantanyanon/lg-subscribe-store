@@ -1,0 +1,997 @@
+{
+  "generatedAt": "generated-by: node scripts/audit-care-service.js",
+  "policy": "Service cycle may come from verified Price List. Detailed tasks/parts require a separate confirmed Care Service source; do not infer across models/categories.",
+  "summary": {
+    "products": 99,
+    "productsWithCarePlans": 66,
+    "productsWithVerifiedCycle": 66,
+    "carePlanCount": 164,
+    "carePlansWithVerifiedCycle": 162,
+    "unresolvedCarePlans": [
+      {
+        "model": "WD516AN",
+        "serviceType": "Self",
+        "termMonths": 24,
+        "price": 31410,
+        "outright": true,
+        "currentCycle": "ไม่มีบริการ"
+      },
+      {
+        "model": "WD518AN",
+        "serviceType": "Visit",
+        "termMonths": 24,
+        "price": 34110,
+        "outright": true,
+        "currentCycle": "ทุก 6 เดือน"
+      }
+    ],
+    "productsWithVerifiedDetail": 50,
+    "verifiedDetailModels": [
+      "WD516AN",
+      "WD518AN",
+      "WD110MN",
+      "A9T-ULTRA",
+      "A9T-CORE",
+      "A9T-LITE",
+      "WT2520NHEG",
+      "WT2116SHEG",
+      "WT1410NHEG",
+      "WT2520NHEN",
+      "WT1410NHEN",
+      "FV1409H4W",
+      "F2520RNTB",
+      "FV1413H4M",
+      "FV1413S4M",
+      "TX2723ST5J",
+      "TX2315DT5G",
+      "RV10VHP2B",
+      "DFC335HM",
+      "DFC533FV + MS2032GAS",
+      "MD19GQGA1",
+      "DD23GMWE1 + AS30GGW10",
+      "AS35GGW10",
+      "AS25GCBY0",
+      "AS60GHWG0",
+      "AS65GDBY0",
+      "AS10GDBY0",
+      "IXY11A",
+      "IXY13A",
+      "IXY18A",
+      "IXY24A",
+      "SIQ11B",
+      "SIQ13B",
+      "SIQ18B",
+      "SIQ24B",
+      "SAQ11A",
+      "SAQ13A",
+      "SAQ18B",
+      "SAQ24B",
+      "ART13A.SR1",
+      "ART18A.SR1",
+      "ZT4Q18GPLA1",
+      "ZT4Q24GPLA1",
+      "ZT4Q36GNLA1",
+      "ZT4Q48GMLA1",
+      "ZT1Q12GULA1",
+      "ZT1Q18GTLA1",
+      "ZT1Q24GTLA1",
+      "ZTRQ36GYLA1",
+      "ZTRQ48GYLA1"
+    ],
+    "byCategory": {
+      "เครื่องกรองน้ำ": {
+        "products": 3,
+        "cycleVerified": 3,
+        "detailVerified": 3
+      },
+      "เครื่องดูดฝุ่น": {
+        "products": 3,
+        "cycleVerified": 3,
+        "detailVerified": 3
+      },
+      "ตู้เย็น Side by Side": {
+        "products": 6,
+        "cycleVerified": 6,
+        "detailVerified": 0
+      },
+      "ตู้เย็น Multi-Door": {
+        "products": 6,
+        "cycleVerified": 6,
+        "detailVerified": 0
+      },
+      "ตู้เย็น 2 ประตู": {
+        "products": 3,
+        "cycleVerified": 3,
+        "detailVerified": 0
+      },
+      "Wash Tower": {
+        "products": 5,
+        "cycleVerified": 5,
+        "detailVerified": 5
+      },
+      "เครื่องซักผ้า ฝาหน้า": {
+        "products": 4,
+        "cycleVerified": 4,
+        "detailVerified": 4
+      },
+      "เครื่องซักผ้า ฝาบน": {
+        "products": 2,
+        "cycleVerified": 2,
+        "detailVerified": 2
+      },
+      "เครื่องอบผ้า": {
+        "products": 1,
+        "cycleVerified": 1,
+        "detailVerified": 1
+      },
+      "เครื่องล้างจาน": {
+        "products": 2,
+        "cycleVerified": 2,
+        "detailVerified": 2
+      },
+      "ตู้ถนอมผ้า": {
+        "products": 1,
+        "cycleVerified": 1,
+        "detailVerified": 0
+      },
+      "เครื่องลดความชื้น": {
+        "products": 2,
+        "cycleVerified": 2,
+        "detailVerified": 2
+      },
+      "เครื่องฟอกอากาศ": {
+        "products": 5,
+        "cycleVerified": 5,
+        "detailVerified": 5
+      },
+      "เครื่องปรับอากาศ IXY": {
+        "products": 4,
+        "cycleVerified": 4,
+        "detailVerified": 4
+      },
+      "เครื่องปรับอากาศ SIQ": {
+        "products": 4,
+        "cycleVerified": 4,
+        "detailVerified": 4
+      },
+      "เครื่องปรับอากาศ SAQ": {
+        "products": 4,
+        "cycleVerified": 4,
+        "detailVerified": 4
+      },
+      "เครื่องปรับอากาศ ART": {
+        "products": 2,
+        "cycleVerified": 2,
+        "detailVerified": 2
+      },
+      "เครื่องปรับอากาศ SAC 4Way Cassette": {
+        "products": 4,
+        "cycleVerified": 4,
+        "detailVerified": 4
+      },
+      "เครื่องปรับอากาศ SAC 1 Way Cassette": {
+        "products": 3,
+        "cycleVerified": 3,
+        "detailVerified": 3
+      },
+      "เครื่องปรับอากาศ SAC Round Cassette": {
+        "products": 2,
+        "cycleVerified": 2,
+        "detailVerified": 2
+      }
+    }
+  },
+  "rows": [
+    {
+      "model": "WD516AN",
+      "category": "เครื่องกรองน้ำ",
+      "cycleVerified": true,
+      "cycles": [
+        "ทุก 6 เดือน"
+      ],
+      "sources": [
+        "Price list_Aug_V3.pdf p.3",
+        "Price list_Aug_V3.pdf p.4"
+      ],
+      "detailStatus": "VERIFIED_MODEL_SPECIFIC"
+    },
+    {
+      "model": "WD518AN",
+      "category": "เครื่องกรองน้ำ",
+      "cycleVerified": true,
+      "cycles": [
+        "ทุก 6 เดือน"
+      ],
+      "sources": [
+        "Price list_Aug_V3.pdf p.3",
+        "Price list_Aug_V3.pdf p.4"
+      ],
+      "detailStatus": "VERIFIED_MODEL_SPECIFIC"
+    },
+    {
+      "model": "WD110MN",
+      "category": "เครื่องกรองน้ำ",
+      "cycleVerified": true,
+      "cycles": [
+        "ทุก 6 เดือน"
+      ],
+      "sources": [
+        "Price list_Aug_V3.pdf p.4"
+      ],
+      "detailStatus": "VERIFIED_MODEL_SPECIFIC"
+    },
+    {
+      "model": "A9T-ULTRA",
+      "category": "เครื่องดูดฝุ่น",
+      "cycleVerified": true,
+      "cycles": [
+        "ทุก 12 เดือน"
+      ],
+      "sources": [
+        "Price list_Aug_V3.pdf p.5"
+      ],
+      "detailStatus": "VERIFIED_MODEL_SPECIFIC"
+    },
+    {
+      "model": "A9T-CORE",
+      "category": "เครื่องดูดฝุ่น",
+      "cycleVerified": true,
+      "cycles": [
+        "ทุก 12 เดือน"
+      ],
+      "sources": [
+        "Price list_Aug_V3.pdf p.5"
+      ],
+      "detailStatus": "VERIFIED_MODEL_SPECIFIC"
+    },
+    {
+      "model": "A9T-LITE",
+      "category": "เครื่องดูดฝุ่น",
+      "cycleVerified": true,
+      "cycles": [
+        "ทุก 12 เดือน"
+      ],
+      "sources": [
+        "Price list_Aug_V3.pdf p.5"
+      ],
+      "detailStatus": "VERIFIED_MODEL_SPECIFIC"
+    },
+    {
+      "model": "GC-L257KQKW",
+      "category": "ตู้เย็น Side by Side",
+      "cycleVerified": true,
+      "cycles": [
+        "ทุก 24 เดือน"
+      ],
+      "sources": [
+        "Price list_Aug_V3.pdf p.2"
+      ],
+      "detailStatus": "DETAIL_PENDING"
+    },
+    {
+      "model": "GC-B257SQYL",
+      "category": "ตู้เย็น Side by Side",
+      "cycleVerified": true,
+      "cycles": [
+        "ทุก 24 เดือน"
+      ],
+      "sources": [
+        "Price list_Aug_V3.pdf p.3"
+      ],
+      "detailStatus": "DETAIL_PENDING"
+    },
+    {
+      "model": "GC-X257CMHW",
+      "category": "ตู้เย็น Side by Side",
+      "cycleVerified": true,
+      "cycles": [
+        "ทุก 6 เดือน"
+      ],
+      "sources": [
+        "Price list_Aug_V3.pdf p.7"
+      ],
+      "detailStatus": "DETAIL_PENDING"
+    },
+    {
+      "model": "GC-L257SFZW",
+      "category": "ตู้เย็น Side by Side",
+      "cycleVerified": true,
+      "cycles": [
+        "ทุก 24 เดือน"
+      ],
+      "sources": [
+        "Price list_Aug_V3.pdf p.7"
+      ],
+      "detailStatus": "DETAIL_PENDING"
+    },
+    {
+      "model": "GC-X257CMEW",
+      "category": "ตู้เย็น Side by Side",
+      "cycleVerified": true,
+      "cycles": [
+        "ทุก 24 เดือน"
+      ],
+      "sources": [
+        "Price list_Aug_V3.pdf p.8"
+      ],
+      "detailStatus": "DETAIL_PENDING"
+    },
+    {
+      "model": "GC-J257SQZW",
+      "category": "ตู้เย็น Side by Side",
+      "cycleVerified": true,
+      "cycles": [
+        "ทุก 24 เดือน"
+      ],
+      "sources": [
+        "Price list_Aug_V3.pdf p.8"
+      ],
+      "detailStatus": "DETAIL_PENDING"
+    },
+    {
+      "model": "GV-B25FFGDB",
+      "category": "ตู้เย็น Multi-Door",
+      "cycleVerified": true,
+      "cycles": [
+        "ทุก 24 เดือน"
+      ],
+      "sources": [
+        "Price list_Aug_V3.pdf p.2"
+      ],
+      "detailStatus": "DETAIL_PENDING"
+    },
+    {
+      "model": "GC-L24FFCBB + MS2032GAS",
+      "category": "ตู้เย็น Multi-Door",
+      "cycleVerified": true,
+      "cycles": [
+        "ทุก 6 เดือน"
+      ],
+      "sources": [
+        "Price list_Aug_V3.pdf p.6"
+      ],
+      "detailStatus": "DETAIL_PENDING"
+    },
+    {
+      "model": "GC-G24FFQKB",
+      "category": "ตู้เย็น Multi-Door",
+      "cycleVerified": true,
+      "cycles": [
+        "ทุก 24 เดือน"
+      ],
+      "sources": [
+        "Price list_Aug_V3.pdf p.9"
+      ],
+      "detailStatus": "DETAIL_PENDING"
+    },
+    {
+      "model": "GC-V22FFQMB",
+      "category": "ตู้เย็น Multi-Door",
+      "cycleVerified": true,
+      "cycles": [
+        "ทุก 24 เดือน"
+      ],
+      "sources": [
+        "Price list_Aug_V3.pdf p.9"
+      ],
+      "detailStatus": "DETAIL_PENDING"
+    },
+    {
+      "model": "GC-B48FPGAM",
+      "category": "ตู้เย็น Multi-Door",
+      "cycleVerified": true,
+      "cycles": [
+        "ทุก 24 เดือน"
+      ],
+      "sources": [
+        "Price list_Aug_V3.pdf p.10"
+      ],
+      "detailStatus": "DETAIL_PENDING"
+    },
+    {
+      "model": "GV-V25FFGRB",
+      "category": "ตู้เย็น Multi-Door",
+      "cycleVerified": true,
+      "cycles": [
+        "ทุก 24 เดือน"
+      ],
+      "sources": [
+        "Price list_Aug_V3.pdf p.11"
+      ],
+      "detailStatus": "DETAIL_PENDING"
+    },
+    {
+      "model": "GN-F392PQAK",
+      "category": "ตู้เย็น 2 ประตู",
+      "cycleVerified": true,
+      "cycles": [
+        "ทุก 24 เดือน"
+      ],
+      "sources": [
+        "Price list_Aug_V3.pdf p.3"
+      ],
+      "detailStatus": "DETAIL_PENDING"
+    },
+    {
+      "model": "GN-F452PQAK",
+      "category": "ตู้เย็น 2 ประตู",
+      "cycleVerified": true,
+      "cycles": [
+        "ทุก 24 เดือน"
+      ],
+      "sources": [
+        "Price list_Aug_V3.pdf p.12"
+      ],
+      "detailStatus": "DETAIL_PENDING"
+    },
+    {
+      "model": "GN-V389FQEF",
+      "category": "ตู้เย็น 2 ประตู",
+      "cycleVerified": true,
+      "cycles": [
+        "ทุก 24 เดือน"
+      ],
+      "sources": [
+        "Price list_Aug_V3.pdf p.12"
+      ],
+      "detailStatus": "DETAIL_PENDING"
+    },
+    {
+      "model": "WT2520NHEG",
+      "category": "Wash Tower",
+      "cycleVerified": true,
+      "cycles": [
+        "ทุก 12 เดือน"
+      ],
+      "sources": [
+        "Price list_Aug_V3.pdf p.13"
+      ],
+      "detailStatus": "VERIFIED_MODEL_SPECIFIC"
+    },
+    {
+      "model": "WT2116SHEG",
+      "category": "Wash Tower",
+      "cycleVerified": true,
+      "cycles": [
+        "ทุก 12 เดือน"
+      ],
+      "sources": [
+        "Price list_Aug_V3.pdf p.15"
+      ],
+      "detailStatus": "VERIFIED_MODEL_SPECIFIC"
+    },
+    {
+      "model": "WT1410NHEG",
+      "category": "Wash Tower",
+      "cycleVerified": true,
+      "cycles": [
+        "ทุก 12 เดือน"
+      ],
+      "sources": [
+        "Price list_Aug_V3.pdf p.16"
+      ],
+      "detailStatus": "VERIFIED_MODEL_SPECIFIC"
+    },
+    {
+      "model": "WT2520NHEN",
+      "category": "Wash Tower",
+      "cycleVerified": true,
+      "cycles": [
+        "ทุก 12 เดือน"
+      ],
+      "sources": [
+        "Price list_Aug_V3.pdf p.14"
+      ],
+      "detailStatus": "VERIFIED_MODEL_SPECIFIC"
+    },
+    {
+      "model": "WT1410NHEN",
+      "category": "Wash Tower",
+      "cycleVerified": true,
+      "cycles": [
+        "ทุก 12 เดือน"
+      ],
+      "sources": [
+        "Price list_Aug_V3.pdf p.17"
+      ],
+      "detailStatus": "VERIFIED_MODEL_SPECIFIC"
+    },
+    {
+      "model": "FV1409H4W",
+      "category": "เครื่องซักผ้า ฝาหน้า",
+      "cycleVerified": true,
+      "cycles": [
+        "ทุก 12 เดือน"
+      ],
+      "sources": [
+        "Price list_Aug_V3.pdf p.4"
+      ],
+      "detailStatus": "VERIFIED_MODEL_SPECIFIC"
+    },
+    {
+      "model": "F2520RNTB",
+      "category": "เครื่องซักผ้า ฝาหน้า",
+      "cycleVerified": true,
+      "cycles": [
+        "ทุก 12 เดือน"
+      ],
+      "sources": [
+        "Price list_Aug_V3.pdf p.18"
+      ],
+      "detailStatus": "VERIFIED_MODEL_SPECIFIC"
+    },
+    {
+      "model": "FV1413H4M",
+      "category": "เครื่องซักผ้า ฝาหน้า",
+      "cycleVerified": true,
+      "cycles": [
+        "ทุก 12 เดือน"
+      ],
+      "sources": [
+        "Price list_Aug_V3.pdf p.19"
+      ],
+      "detailStatus": "VERIFIED_MODEL_SPECIFIC"
+    },
+    {
+      "model": "FV1413S4M",
+      "category": "เครื่องซักผ้า ฝาหน้า",
+      "cycleVerified": true,
+      "cycles": [
+        "ทุก 12 เดือน"
+      ],
+      "sources": [
+        "Price list_Aug_V3.pdf p.20"
+      ],
+      "detailStatus": "VERIFIED_MODEL_SPECIFIC"
+    },
+    {
+      "model": "TX2723ST5J",
+      "category": "เครื่องซักผ้า ฝาบน",
+      "cycleVerified": true,
+      "cycles": [
+        "ทุก 12 เดือน"
+      ],
+      "sources": [
+        "Price list_Aug_V3.pdf p.21"
+      ],
+      "detailStatus": "VERIFIED_MODEL_SPECIFIC"
+    },
+    {
+      "model": "TX2315DT5G",
+      "category": "เครื่องซักผ้า ฝาบน",
+      "cycleVerified": true,
+      "cycles": [
+        "ทุก 12 เดือน"
+      ],
+      "sources": [
+        "Price list_Aug_V3.pdf p.22"
+      ],
+      "detailStatus": "VERIFIED_MODEL_SPECIFIC"
+    },
+    {
+      "model": "RV10VHP2B",
+      "category": "เครื่องอบผ้า",
+      "cycleVerified": true,
+      "cycles": [
+        "ทุก 12 เดือน"
+      ],
+      "sources": [
+        "Price list_Aug_V3.pdf p.23"
+      ],
+      "detailStatus": "VERIFIED_MODEL_SPECIFIC"
+    },
+    {
+      "model": "DFC335HM",
+      "category": "เครื่องล้างจาน",
+      "cycleVerified": true,
+      "cycles": [
+        "ทุก 12 เดือน"
+      ],
+      "sources": [
+        "Price list_Aug_V3.pdf p.24"
+      ],
+      "detailStatus": "VERIFIED_MODEL_SPECIFIC"
+    },
+    {
+      "model": "DFC533FV + MS2032GAS",
+      "category": "เครื่องล้างจาน",
+      "cycleVerified": true,
+      "cycles": [
+        "ทุก 12 เดือน"
+      ],
+      "sources": [
+        "Price list_Aug_V3.pdf p.25"
+      ],
+      "detailStatus": "VERIFIED_MODEL_SPECIFIC"
+    },
+    {
+      "model": "S3MFC",
+      "category": "ตู้ถนอมผ้า",
+      "cycleVerified": true,
+      "cycles": [
+        "ทุก 12 เดือน"
+      ],
+      "sources": [
+        "Price list_Aug_V3.pdf p.26"
+      ],
+      "detailStatus": "DETAIL_PENDING"
+    },
+    {
+      "model": "MD19GQGA1",
+      "category": "เครื่องลดความชื้น",
+      "cycleVerified": true,
+      "cycles": [
+        "ทุก 12 เดือน"
+      ],
+      "sources": [
+        "Price list_Aug_V3.pdf p.5"
+      ],
+      "detailStatus": "VERIFIED_MODEL_SPECIFIC"
+    },
+    {
+      "model": "DD23GMWE1 + AS30GGW10",
+      "category": "เครื่องลดความชื้น",
+      "cycleVerified": true,
+      "cycles": [
+        "ทุก 12 เดือน"
+      ],
+      "sources": [
+        "Price list_Aug_V3.pdf p.28"
+      ],
+      "detailStatus": "VERIFIED_MODEL_SPECIFIC"
+    },
+    {
+      "model": "AS35GGW10",
+      "category": "เครื่องฟอกอากาศ",
+      "cycleVerified": true,
+      "cycles": [
+        "ทุก 6 เดือน"
+      ],
+      "sources": [
+        "Price list_Aug_V3.pdf p.6"
+      ],
+      "detailStatus": "VERIFIED_MODEL_SPECIFIC"
+    },
+    {
+      "model": "AS25GCBY0",
+      "category": "เครื่องฟอกอากาศ",
+      "cycleVerified": true,
+      "cycles": [
+        "ทุก 12 เดือน"
+      ],
+      "sources": [
+        "Price list_Aug_V3.pdf p.29"
+      ],
+      "detailStatus": "VERIFIED_MODEL_SPECIFIC"
+    },
+    {
+      "model": "AS60GHWG0",
+      "category": "เครื่องฟอกอากาศ",
+      "cycleVerified": true,
+      "cycles": [
+        "ทุก 12 เดือน",
+        "ทุก 6 เดือน"
+      ],
+      "sources": [
+        "Price list_Aug_V3.pdf p.30"
+      ],
+      "detailStatus": "VERIFIED_MODEL_SPECIFIC"
+    },
+    {
+      "model": "AS65GDBY0",
+      "category": "เครื่องฟอกอากาศ",
+      "cycleVerified": true,
+      "cycles": [
+        "ทุก 12 เดือน",
+        "ทุก 6 เดือน"
+      ],
+      "sources": [
+        "Price list_Aug_V3.pdf p.31"
+      ],
+      "detailStatus": "VERIFIED_MODEL_SPECIFIC"
+    },
+    {
+      "model": "AS10GDBY0",
+      "category": "เครื่องฟอกอากาศ",
+      "cycleVerified": true,
+      "cycles": [
+        "ทุก 12 เดือน",
+        "ทุก 6 เดือน"
+      ],
+      "sources": [
+        "Price list_Aug_V3.pdf p.32"
+      ],
+      "detailStatus": "VERIFIED_MODEL_SPECIFIC"
+    },
+    {
+      "model": "IXY11A",
+      "category": "เครื่องปรับอากาศ IXY",
+      "cycleVerified": true,
+      "cycles": [
+        "ทุก 6 เดือน",
+        "ทุก 12 เดือน"
+      ],
+      "sources": [
+        "Price list_Aug_V3.pdf p.7"
+      ],
+      "detailStatus": "VERIFIED_MODEL_SPECIFIC"
+    },
+    {
+      "model": "IXY13A",
+      "category": "เครื่องปรับอากาศ IXY",
+      "cycleVerified": true,
+      "cycles": [
+        "ทุก 6 เดือน",
+        "ทุก 12 เดือน"
+      ],
+      "sources": [
+        "Price list_Aug_V3.pdf p.7"
+      ],
+      "detailStatus": "VERIFIED_MODEL_SPECIFIC"
+    },
+    {
+      "model": "IXY18A",
+      "category": "เครื่องปรับอากาศ IXY",
+      "cycleVerified": true,
+      "cycles": [
+        "ทุก 6 เดือน",
+        "ทุก 12 เดือน"
+      ],
+      "sources": [
+        "Price list_Aug_V3.pdf p.7"
+      ],
+      "detailStatus": "VERIFIED_MODEL_SPECIFIC"
+    },
+    {
+      "model": "IXY24A",
+      "category": "เครื่องปรับอากาศ IXY",
+      "cycleVerified": true,
+      "cycles": [
+        "ทุก 6 เดือน",
+        "ทุก 12 เดือน"
+      ],
+      "sources": [
+        "Price list_Aug_V3.pdf p.7"
+      ],
+      "detailStatus": "VERIFIED_MODEL_SPECIFIC"
+    },
+    {
+      "model": "SIQ11B",
+      "category": "เครื่องปรับอากาศ SIQ",
+      "cycleVerified": true,
+      "cycles": [
+        "ทุก 6 เดือน",
+        "ทุก 12 เดือน"
+      ],
+      "sources": [
+        "Price list_Aug_V3.pdf p.36"
+      ],
+      "detailStatus": "VERIFIED_MODEL_SPECIFIC"
+    },
+    {
+      "model": "SIQ13B",
+      "category": "เครื่องปรับอากาศ SIQ",
+      "cycleVerified": true,
+      "cycles": [
+        "ทุก 6 เดือน",
+        "ทุก 12 เดือน"
+      ],
+      "sources": [
+        "Price list_Aug_V3.pdf p.36"
+      ],
+      "detailStatus": "VERIFIED_MODEL_SPECIFIC"
+    },
+    {
+      "model": "SIQ18B",
+      "category": "เครื่องปรับอากาศ SIQ",
+      "cycleVerified": true,
+      "cycles": [
+        "ทุก 6 เดือน",
+        "ทุก 12 เดือน"
+      ],
+      "sources": [
+        "Price list_Aug_V3.pdf p.37"
+      ],
+      "detailStatus": "VERIFIED_MODEL_SPECIFIC"
+    },
+    {
+      "model": "SIQ24B",
+      "category": "เครื่องปรับอากาศ SIQ",
+      "cycleVerified": true,
+      "cycles": [
+        "ทุก 6 เดือน",
+        "ทุก 12 เดือน"
+      ],
+      "sources": [
+        "Price list_Aug_V3.pdf p.37"
+      ],
+      "detailStatus": "VERIFIED_MODEL_SPECIFIC"
+    },
+    {
+      "model": "SAQ11A",
+      "category": "เครื่องปรับอากาศ SAQ",
+      "cycleVerified": true,
+      "cycles": [
+        "ทุก 6 เดือน",
+        "ทุก 12 เดือน"
+      ],
+      "sources": [
+        "Price list_Aug_V3.pdf p.34"
+      ],
+      "detailStatus": "VERIFIED_MODEL_SPECIFIC"
+    },
+    {
+      "model": "SAQ13A",
+      "category": "เครื่องปรับอากาศ SAQ",
+      "cycleVerified": true,
+      "cycles": [
+        "ทุก 6 เดือน",
+        "ทุก 12 เดือน"
+      ],
+      "sources": [
+        "Price list_Aug_V3.pdf p.34"
+      ],
+      "detailStatus": "VERIFIED_MODEL_SPECIFIC"
+    },
+    {
+      "model": "SAQ18B",
+      "category": "เครื่องปรับอากาศ SAQ",
+      "cycleVerified": true,
+      "cycles": [
+        "ทุก 6 เดือน",
+        "ทุก 12 เดือน"
+      ],
+      "sources": [
+        "Price list_Aug_V3.pdf p.35"
+      ],
+      "detailStatus": "VERIFIED_MODEL_SPECIFIC"
+    },
+    {
+      "model": "SAQ24B",
+      "category": "เครื่องปรับอากาศ SAQ",
+      "cycleVerified": true,
+      "cycles": [
+        "ทุก 6 เดือน",
+        "ทุก 12 เดือน"
+      ],
+      "sources": [
+        "Price list_Aug_V3.pdf p.35"
+      ],
+      "detailStatus": "VERIFIED_MODEL_SPECIFIC"
+    },
+    {
+      "model": "ART13A.SR1",
+      "category": "เครื่องปรับอากาศ ART",
+      "cycleVerified": true,
+      "cycles": [
+        "ทุก 6 เดือน",
+        "ทุก 12 เดือน"
+      ],
+      "sources": [
+        "Price list_Aug_V3.pdf p.33"
+      ],
+      "detailStatus": "VERIFIED_MODEL_SPECIFIC"
+    },
+    {
+      "model": "ART18A.SR1",
+      "category": "เครื่องปรับอากาศ ART",
+      "cycleVerified": true,
+      "cycles": [
+        "ทุก 6 เดือน",
+        "ทุก 12 เดือน"
+      ],
+      "sources": [
+        "Price list_Aug_V3.pdf p.33"
+      ],
+      "detailStatus": "VERIFIED_MODEL_SPECIFIC"
+    },
+    {
+      "model": "ZT4Q18GPLA1",
+      "category": "เครื่องปรับอากาศ SAC 4Way Cassette",
+      "cycleVerified": true,
+      "cycles": [
+        "ทุก 4 เดือน"
+      ],
+      "sources": [
+        "Price list_Aug_V3.pdf p.38"
+      ],
+      "detailStatus": "VERIFIED_MODEL_SPECIFIC"
+    },
+    {
+      "model": "ZT4Q24GPLA1",
+      "category": "เครื่องปรับอากาศ SAC 4Way Cassette",
+      "cycleVerified": true,
+      "cycles": [
+        "ทุก 4 เดือน"
+      ],
+      "sources": [
+        "Price list_Aug_V3.pdf p.38"
+      ],
+      "detailStatus": "VERIFIED_MODEL_SPECIFIC"
+    },
+    {
+      "model": "ZT4Q36GNLA1",
+      "category": "เครื่องปรับอากาศ SAC 4Way Cassette",
+      "cycleVerified": true,
+      "cycles": [
+        "ทุก 4 เดือน"
+      ],
+      "sources": [
+        "Price list_Aug_V3.pdf p.38"
+      ],
+      "detailStatus": "VERIFIED_MODEL_SPECIFIC"
+    },
+    {
+      "model": "ZT4Q48GMLA1",
+      "category": "เครื่องปรับอากาศ SAC 4Way Cassette",
+      "cycleVerified": true,
+      "cycles": [
+        "ทุก 4 เดือน"
+      ],
+      "sources": [
+        "Price list_Aug_V3.pdf p.38"
+      ],
+      "detailStatus": "VERIFIED_MODEL_SPECIFIC"
+    },
+    {
+      "model": "ZT1Q12GULA1",
+      "category": "เครื่องปรับอากาศ SAC 1 Way Cassette",
+      "cycleVerified": true,
+      "cycles": [
+        "ทุก 4 เดือน"
+      ],
+      "sources": [
+        "Price list_Aug_V3.pdf p.39"
+      ],
+      "detailStatus": "VERIFIED_MODEL_SPECIFIC"
+    },
+    {
+      "model": "ZT1Q18GTLA1",
+      "category": "เครื่องปรับอากาศ SAC 1 Way Cassette",
+      "cycleVerified": true,
+      "cycles": [
+        "ทุก 4 เดือน"
+      ],
+      "sources": [
+        "Price list_Aug_V3.pdf p.39"
+      ],
+      "detailStatus": "VERIFIED_MODEL_SPECIFIC"
+    },
+    {
+      "model": "ZT1Q24GTLA1",
+      "category": "เครื่องปรับอากาศ SAC 1 Way Cassette",
+      "cycleVerified": true,
+      "cycles": [
+        "ทุก 4 เดือน"
+      ],
+      "sources": [
+        "Price list_Aug_V3.pdf p.39"
+      ],
+      "detailStatus": "VERIFIED_MODEL_SPECIFIC"
+    },
+    {
+      "model": "ZTRQ36GYLA1",
+      "category": "เครื่องปรับอากาศ SAC Round Cassette",
+      "cycleVerified": true,
+      "cycles": [
+        "ทุก 4 เดือน"
+      ],
+      "sources": [
+        "Price list_Aug_V3.pdf p.40"
+      ],
+      "detailStatus": "VERIFIED_MODEL_SPECIFIC"
+    },
+    {
+      "model": "ZTRQ48GYLA1",
+      "category": "เครื่องปรับอากาศ SAC Round Cassette",
+      "cycleVerified": true,
+      "cycles": [
+        "ทุก 4 เดือน"
+      ],
+      "sources": [
+        "Price list_Aug_V3.pdf p.40"
+      ],
+      "detailStatus": "VERIFIED_MODEL_SPECIFIC"
+    }
+  ]
+}

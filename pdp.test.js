@@ -107,6 +107,33 @@ t('AS25GCBY0 ใช้ Care Service override เฉพาะรุ่น', () =>
   assert.match(visit.source, /AS25GCBY0/);
 });
 
+t('Care Service 2026 เติมรายละเอียดเฉพาะรุ่น/หมวดที่เอกสารรองรับ', () => {
+  const water = data.find(x => x.model === 'WD516AN');
+  const tower = data.find(x => x.model === 'WT2520NHEG');
+  const purifier = data.find(x => x.model === 'AS60GHWG0');
+  const homeAir = data.find(x => x.model === 'IXY11A');
+  const commercialAir = data.find(x => x.model === 'ZT4Q18GPLA1');
+  assert.match(SEL.careInfo(water, 'Visit').source, /Care Service 2026\(1\)\.pdf p\.3/);
+  assert.ok(SEL.careInfo(water, 'Self').details.some(x => /UF Membrane/.test(x.text) && /12/.test(x.cycle)));
+  assert.ok(SEL.careInfo(tower, 'Visit').details.some(x => /แยกชิ้นส่วน/.test(x.text) && /36 และ 72/.test(x.cycle)));
+  assert.ok(SEL.careInfo(purifier, 'Visit').details.some(x => /HEPA\/CARBON/.test(x.text) && /12/.test(x.cycle)));
+  assert.ok(SEL.careInfo(homeAir, 'Visit').details.some(x => /ล้างใหญ่/.test(x.text) && /12/.test(x.cycle)));
+  assert.ok(SEL.careInfo(commercialAir, 'Visit').details.some(x => /ตรวจเช็คและบำรุงรักษา/.test(x.text) && /4/.test(x.cycle)));
+});
+
+t('รุ่นที่ไม่มี Care detail ยืนยันต้องไม่ยืมรายละเอียดจากรุ่นอื่น', () => {
+  const genericProduct = data.find(x => x.model === 'GC-L257KQKW');
+  assert.ok(genericProduct, 'ต้องพบรุ่น GC-L257KQKW ใน catalog');
+  const info = SEL.careInfo(genericProduct, 'Visit');
+  assert.strictEqual(info.details.length, 2);
+  assert.ok(info.details.some(x => x.text === 'รายละเอียดงานบริการ/อุปกรณ์'));
+  assert.ok(!info.details.some(x => /V-Pet Filter|โดมแมว|เบาะรองนั่ง/.test(x.text)));
+  assert.ok(!/AS25GCBY0/.test(info.source || ''));
+  assert.ok(!/โดมแมว|V-Pet Filter|ค่าเช่าถูกลง/.test(info.desc));
+  assert.ok(!/ทุก 6\/12 เดือน/.test(SEL.CARE_INFO.Visit.desc));
+  assert.ok(!/รับประกันเท่านั้น/.test(SEL.CARE_INFO['No Service'].desc));
+});
+
 /* ================================================================
    2. เปลี่ยนตัวเลือก → ราคาสรุปเปลี่ยนถูกต้อง (หัวใจของ requirement)
    ================================================================ */

@@ -22,15 +22,15 @@
   var CARE_INFO = {
     Visit: {
       label: 'รายเดือนพร้อมบริการ', short: 'พร้อมบริการ',
-      desc: 'ช่าง LG เข้าดูแลถึงบ้านตามรอบ (ทุก 6/12 เดือน) — ตรวจเช็คและล้างบำรุงให้ถึงที่ รวมในค่าเช่าแล้ว'
+      desc: 'ผู้เชี่ยวชาญ LG เข้าดูแลถึงบ้านตามรอบบริการของแพ็กเกจ — รายละเอียดงานขึ้นอยู่กับรุ่นและเงื่อนไขบริการ'
     },
     Self: {
       label: 'รายเดือนเปลี่ยนด้วยตัวเอง', short: 'เปลี่ยนเอง',
-      desc: 'LG ส่งอะไหล่ให้เปลี่ยนเองที่บ้าน — ค่าเช่าถูกลง แต่ต้องเปลี่ยนอะไหล่ด้วยตัวเอง'
+      desc: 'LG จัดส่งอุปกรณ์ตามรอบบริการของแพ็กเกจเพื่อดูแลด้วยตัวเอง — รายการอุปกรณ์ขึ้นอยู่กับรุ่นและเงื่อนไขบริการ'
     },
     'No Service': {
       label: 'ไม่รับบริการดูแล', short: 'ไม่รับบริการ',
-      desc: 'รับประกันเท่านั้น ไม่มีค่ารอบบริการ — เหมาะกับทีวี/จอ/ลำโพง/ไมโครเวฟ ที่ไม่ต้องดูแลรายเดือน'
+      desc: 'แพ็กเกจนี้ไม่มีรอบบริการดูแลเพิ่มเติม รายละเอียดการรับประกันและเงื่อนไขเป็นไปตามสินค้าที่เลือก'
     }
   };
 
@@ -38,6 +38,7 @@
   var CARE_DETAIL_OVERRIDES = {
     AS25GCBY0: {
       Visit: {
+        source: 'Care Service AS25GCBY0 — อัปเดตเฉพาะรุ่น',
         desc: 'ผู้เชี่ยวชาญจาก LG เข้าบริการถึงบ้านตามรอบบริการ',
         details: [
           { text: 'ทำความสะอาดภายในและภายนอกของผลิตภัณฑ์', cycle: 'ทุก 12 เดือน' },
@@ -51,6 +52,7 @@
         ]
       },
       Self: {
+        source: 'Care Service AS25GCBY0 — อัปเดตเฉพาะรุ่น',
         desc: 'บำรุงรักษาด้วยตัวเอง โดย LG จัดส่งอุปกรณ์ตามรอบบริการ',
         details: [
           { text: 'จัดส่งไส้กรอง Aero Series V-Pet Filter (H13)', cycle: 'ทุก 12 เดือน' },
@@ -62,6 +64,245 @@
     }
   };
 
+  function documentedCareInfo(product, serviceType) {
+    if (!product) return null;
+    var model = product.model || '';
+    var category = product.category || '';
+    var visitDesc = 'ผู้เชี่ยวชาญจาก LG เข้าบริการถึงบ้านตามรอบบริการ';
+    var selfDesc = 'บำรุงรักษาด้วยตัวเอง โดย LG จัดส่งอุปกรณ์ตามรอบบริการ';
+
+    if (['WD516AN', 'WD518AN', 'WD110MN'].indexOf(model) !== -1) {
+      return serviceType === 'Visit' ? {
+        source: 'Care Service 2026(1).pdf p.3', desc: visitDesc,
+        details: [
+          { text: 'เปลี่ยน Pre-Carbon Block Filter', cycle: 'ทุก 6 เดือน' },
+          { text: 'เปลี่ยน UF Membrane Filter', cycle: 'ทุก 12 เดือน' },
+          { text: 'ฆ่าเชื้อตามทางเดินน้ำด้วยไฟฟ้า', cycle: 'ทุก 6 เดือน' },
+          { text: 'ตรวจสอบการรั่วไหลของผลิตภัณฑ์', cycle: 'ทุก 6 เดือน' },
+          { text: 'ทำความสะอาดในจุดที่เข้าถึงยาก', cycle: 'ทุก 6 เดือน' },
+          { text: 'ทำความสะอาดทั้งภายในและภายนอก', cycle: 'ทุก 6 เดือน' }
+        ]
+      } : serviceType === 'Self' ? {
+        source: 'Care Service 2026(1).pdf p.3', desc: selfDesc,
+        details: [
+          { text: 'จัดส่ง Pre-Carbon Block Filter', cycle: 'ทุก 6 เดือน' },
+          { text: 'จัดส่ง UF Membrane Filter', cycle: 'ทุก 12 เดือน' }
+        ]
+      } : null;
+    }
+
+    if (category === 'Wash Tower') {
+      return serviceType === 'Visit' ? {
+        source: 'Care Service 2026(1).pdf p.9', desc: visitDesc,
+        details: [
+          { text: 'แผ่นถนอมผ้า 4 กล่อง', cycle: 'หลังวันติดตั้ง' },
+          { text: 'ตัวกรองใยผ้า 2 ชั้น', cycle: 'หลังวันติดตั้ง' },
+          { text: 'ตรวจสอบผลิตภัณฑ์', cycle: 'ทุก 12 เดือน' },
+          { text: 'ทำความสะอาดลิ้นชักใส่น้ำยาซักผ้า', cycle: 'ทุก 12 เดือน' },
+          { text: 'ทำความสะอาดขอบยาง', cycle: 'ทุก 12 เดือน' },
+          { text: 'ทำความสะอาดตัวกรอง', cycle: 'ทุก 12 เดือน' },
+          { text: 'ทำความสะอาดภายในและภายนอก', cycle: 'ทุก 12 เดือน' },
+          { text: 'แผ่นถนอมผ้า 4 กล่อง', cycle: 'ทุก 12 เดือน' },
+          { text: 'ตัวกรองสิ่งสกปรก', cycle: 'ครบ 36 เดือน' },
+          { text: 'ถอดและทำความสะอาดโดยแยกชิ้นส่วน', cycle: 'ครบ 36 และ 72 เดือน' }
+        ]
+      } : serviceType === 'Self' ? {
+        source: 'Care Service 2026(1).pdf p.9', desc: selfDesc,
+        details: [
+          { text: 'จัดส่งแผ่นถนอมผ้า 4 กล่อง', cycle: 'หลังวันติดตั้ง' },
+          { text: 'จัดส่งตัวกรองใยผ้า 2 ชั้น', cycle: 'หลังวันติดตั้ง' },
+          { text: 'จัดส่งน้ำยาล้างเครื่องซักผ้า', cycle: 'ทุก 12 เดือน' },
+          { text: 'จัดส่งแผ่นถนอมผ้า 4 กล่อง', cycle: 'ทุก 12 เดือน' },
+          { text: 'จัดส่งตัวกรองสิ่งสกปรก', cycle: 'ครบ 36 เดือน' }
+        ]
+      } : null;
+    }
+
+    if (category === 'เครื่องซักผ้า ฝาหน้า') {
+      return serviceType === 'Visit' ? {
+        source: 'Care Service 2026(1).pdf p.10', desc: visitDesc,
+        details: [
+          { text: 'ตรวจสอบผลิตภัณฑ์', cycle: 'ทุก 12 เดือน' },
+          { text: 'ทำความสะอาดลิ้นชักใส่น้ำยาซักผ้า', cycle: 'ทุก 12 เดือน' },
+          { text: 'ทำความสะอาดขอบยาง', cycle: 'ทุก 12 เดือน' },
+          { text: 'ทำความสะอาดตัวกรอง', cycle: 'ทุก 12 เดือน' },
+          { text: 'ทำความสะอาดภายในและภายนอก', cycle: 'ทุก 12 เดือน' },
+          { text: 'จัดส่งตัวกรองสิ่งสกปรก', cycle: 'ครบ 36 เดือน' },
+          { text: 'ถอดและทำความสะอาดโดยแยกชิ้นส่วน', cycle: 'ครบ 36 และ 72 เดือน' }
+        ]
+      } : serviceType === 'Self' ? {
+        source: 'Care Service 2026(1).pdf p.10', desc: selfDesc,
+        details: [
+          { text: 'จัดส่งน้ำยาล้างเครื่องซักผ้า', cycle: 'ทุก 12 เดือน' },
+          { text: 'จัดส่งตัวกรองสิ่งสกปรก', cycle: 'ครบ 36 เดือน' }
+        ]
+      } : null;
+    }
+
+    if (category === 'เครื่องซักผ้า ฝาบน') {
+      return serviceType === 'Visit' ? {
+        source: 'Care Service 2026(1).pdf p.11', desc: visitDesc,
+        details: [
+          { text: 'ตรวจสอบผลิตภัณฑ์', cycle: 'ทุก 12 เดือน' },
+          { text: 'ทำความสะอาดลิ้นชักใส่น้ำยาซักผ้า', cycle: 'ทุก 12 เดือน' },
+          { text: 'ทำความสะอาดตัวกรอง', cycle: 'ทุก 12 เดือน' },
+          { text: 'ทำความสะอาดภายในและภายนอก', cycle: 'ทุก 12 เดือน' },
+          { text: 'จัดส่งตัวกรองสิ่งสกปรก', cycle: 'ครบ 36 เดือน' },
+          { text: 'ถอดและทำความสะอาดโดยแยกชิ้นส่วน', cycle: 'ครบ 36 และ 72 เดือน' }
+        ]
+      } : serviceType === 'Self' ? {
+        source: 'Care Service 2026(1).pdf p.11', desc: selfDesc,
+        details: [
+          { text: 'จัดส่งน้ำยาล้างเครื่องซักผ้า', cycle: 'ทุก 12 เดือน' },
+          { text: 'จัดส่งตัวกรองสิ่งสกปรก', cycle: 'ครบ 36 เดือน' }
+        ]
+      } : null;
+    }
+
+    if (category === 'เครื่องอบผ้า') {
+      return serviceType === 'Visit' ? {
+        source: 'Care Service 2026(1).pdf p.12', desc: visitDesc,
+        details: [
+          { text: 'ตัวกรองใยผ้า 2 ชั้น', cycle: 'หลังวันติดตั้ง' },
+          { text: 'แผ่นถนอมผ้า 4 กล่อง', cycle: 'ทุก 12 เดือน' },
+          { text: 'ตรวจสอบผลิตภัณฑ์', cycle: 'ทุก 12 เดือน' },
+          { text: 'ทำความสะอาดตัวกรองใยผ้า', cycle: 'ทุก 12 เดือน' },
+          { text: 'ทำความสะอาดภายในและภายนอก', cycle: 'ทุก 12 เดือน' },
+          { text: 'ถอดและทำความสะอาดโดยแยกชิ้นส่วน', cycle: 'ครบ 36 และ 72 เดือน' }
+        ]
+      } : serviceType === 'Self' ? {
+        source: 'Care Service 2026(1).pdf p.12', desc: selfDesc,
+        details: [
+          { text: 'จัดส่งตัวกรองใยผ้า 2 ชั้น', cycle: 'หลังวันติดตั้ง' },
+          { text: 'จัดส่งแผ่นถนอมผ้า 4 กล่อง', cycle: 'ทุก 12 เดือน' }
+        ]
+      } : null;
+    }
+
+    if (category === 'เครื่องดูดฝุ่น' && serviceType === 'Self') {
+      return {
+        source: 'Care Service 2026(1).pdf p.15', desc: selfDesc,
+        details: [
+          { text: 'ถุงเก็บฝุ่น 4 ชิ้น', cycle: 'หลังวันติดตั้ง' },
+          { text: 'จัดส่งถุงเก็บฝุ่น 6 ชิ้น', cycle: 'ทุก 12 เดือน' },
+          { text: 'จัดส่งตัวกรองฝุ่น 1 ชุด', cycle: 'ทุก 12 เดือน' },
+          { text: 'จัดส่งแบตเตอรี่ใหม่ 1 ก้อน', cycle: 'ครบ 36 เดือน' },
+          { text: 'จัดส่งผ้าถูพื้น 1 คู่', cycle: 'ครบ 36 เดือน · เฉพาะรุ่นที่รองรับ' }
+        ]
+      };
+    }
+
+    if (category === 'เครื่องล้างจาน') {
+      return serviceType === 'Visit' ? {
+        source: 'Care Service 2026(1).pdf p.23', desc: visitDesc,
+        details: [
+          { text: 'ที่ตรวจสอบคุณภาพน้ำ', cycle: 'หลังวันติดตั้ง / ทุก 12 เดือน' },
+          { text: 'เกลือ 4 แพ็ค', cycle: 'หลังวันติดตั้ง / ทุก 12 เดือน' },
+          { text: 'ตัวกรองสิ่งสกปรก', cycle: 'ทุก 12 เดือน' },
+          { text: 'ตรวจสอบผลิตภัณฑ์', cycle: 'ทุก 12 เดือน' },
+          { text: 'ทำความสะอาดภายในและภายนอก', cycle: 'ทุก 12 เดือน' }
+        ]
+      } : serviceType === 'Self' ? {
+        source: 'Care Service 2026(1).pdf p.23', desc: selfDesc,
+        details: [
+          { text: 'จัดส่งตัวกรองสิ่งสกปรก', cycle: 'หลังวันติดตั้ง / ทุก 12 เดือน' },
+          { text: 'จัดส่งที่ตรวจสอบคุณภาพน้ำ 1 ชิ้น', cycle: 'หลังวันติดตั้ง / ทุก 12 เดือน' },
+          { text: 'จัดส่งเกลือ 4 แพ็ค', cycle: 'หลังวันติดตั้ง / ทุก 12 เดือน' }
+        ]
+      } : null;
+    }
+
+    if (category === 'เครื่องลดความชื้น') {
+      return serviceType === 'Visit' ? {
+        source: 'Care Service 2026(1).pdf p.22', desc: visitDesc,
+        details: [
+          { text: 'เปลี่ยน Air Purification Kit', cycle: 'ทุก 12 เดือน' },
+          { text: 'ตรวจสอบผลิตภัณฑ์', cycle: 'ทุก 12 เดือน' },
+          { text: 'ทำความสะอาดตัวเครื่อง', cycle: 'ทุก 12 เดือน' },
+          { text: 'ทำความสะอาดถังน้ำ', cycle: 'ทุก 12 เดือน' },
+          { text: 'เปลี่ยนถังเก็บน้ำแบบใส', cycle: 'ครบ 36 เดือน' }
+        ]
+      } : serviceType === 'Self' ? {
+        source: 'Care Service 2026(1).pdf p.22', desc: selfDesc,
+        details: [
+          { text: 'จัดส่ง Air Purification Kit', cycle: 'ทุก 12 เดือน' },
+          { text: 'จัดส่งถังเก็บน้ำแบบใส', cycle: 'ครบ 36 เดือน' }
+        ]
+      } : null;
+    }
+
+    if (['AS60GHWG0', 'AS65GDBY0', 'AS10GDBY0'].indexOf(model) !== -1) {
+      return serviceType === 'Visit' ? {
+        source: 'Care Service 2026(1).pdf p.17', desc: visitDesc,
+        details: [
+          { text: 'ทำความสะอาดภายในและภายนอก', cycle: 'ทุก 6 เดือน' },
+          { text: 'ตรวจสอบเซนเซอร์จับฝุ่น', cycle: 'ทุก 6 เดือน' },
+          { text: 'เปลี่ยน PRE-FILTER', cycle: 'ทุก 6 เดือน' },
+          { text: 'เปลี่ยนไส้กรอง H13 HEPA/CARBON FILTER', cycle: 'ทุก 12 เดือน' }
+        ]
+      } : serviceType === 'Self' ? {
+        source: 'Care Service 2026(1).pdf p.17', desc: selfDesc,
+        details: [
+          { text: 'จัดส่ง PRE-FILTER', cycle: 'ทุก 6 เดือน' },
+          { text: 'จัดส่งไส้กรอง H13 HEPA/CARBON FILTER', cycle: 'ทุก 12 เดือน' }
+        ]
+      } : null;
+    }
+
+    if (model === 'AS35GGW10') {
+      return serviceType === 'Visit' ? {
+        source: 'Care Service 2026(1).pdf p.18', desc: visitDesc,
+        details: [
+          { text: 'ทำความสะอาดภายในและภายนอก', cycle: 'ทุก 6 เดือน' },
+          { text: 'ตรวจสอบเซนเซอร์จับฝุ่น', cycle: 'ทุก 6 เดือน' },
+          { text: 'เปลี่ยน PRE-FILTER', cycle: 'ทุก 6 เดือน' },
+          { text: 'เปลี่ยนไส้กรอง H13 HEPA/CARBON FILTER', cycle: 'ทุก 12 เดือน' }
+        ]
+      } : serviceType === 'Self' ? {
+        source: 'Care Service 2026(1).pdf p.18', desc: selfDesc,
+        details: [
+          { text: 'จัดส่ง PRE-FILTER', cycle: 'ทุก 6 เดือน' },
+          { text: 'จัดส่งไส้กรอง H13 HEPA/CARBON FILTER', cycle: 'ทุก 12 เดือน' }
+        ]
+      } : null;
+    }
+
+    if (/^เครื่องปรับอากาศ (IXY|SIQ|SAQ|ART)$/.test(category) && serviceType === 'Visit') {
+      return {
+        source: 'Care Service 2026(1).pdf p.24', desc: visitDesc,
+        details: [
+          { text: 'ทำความสะอาดตัวเครื่องและหน้ากากแอร์', cycle: 'ทุก 6 เดือน' },
+          { text: 'ทำความสะอาดแผ่นกรองฝุ่น Pre Filter', cycle: 'ทุก 6 เดือน' },
+          { text: 'ตรวจสอบประสิทธิภาพผลิตภัณฑ์', cycle: 'ทุก 6 เดือน' },
+          { text: 'ตรวจเช็คเซ็นเซอร์', cycle: 'ทุก 6 เดือน' },
+          { text: 'ตรวจเช็คน้ำยาทำความเย็น', cycle: 'ทุก 6 เดือน' },
+          { text: 'ทำความสะอาดคอยล์เย็นและพัดลมโพรงกระรอก', cycle: 'ทุก 6 เดือน' },
+          { text: 'ฉายรังสี UV ที่แผงคอยล์เย็นเพื่อกำจัดเชื้อโรค', cycle: 'ทุก 6 เดือน' },
+          { text: 'เปลี่ยนแผ่นกรองฝุ่น PM 2.5', cycle: 'ทุก 6 เดือน' },
+          { text: 'ทำความสะอาดล้างใหญ่', cycle: 'ทุก 12 เดือน' }
+        ]
+      };
+    }
+
+    if (/^เครื่องปรับอากาศ SAC /.test(category) && serviceType === 'Visit') {
+      return {
+        source: 'Care Service 2026(1).pdf p.25', desc: visitDesc,
+        details: [
+          { text: 'เข้าบริการตรวจเช็คและบำรุงรักษา', cycle: 'ทุก 4 เดือน' },
+          { text: 'ทำความสะอาดแผ่นกรองอากาศ (Filter)', cycle: 'ทุก 4 เดือน' },
+          { text: 'ทำความสะอาดตัวเครื่องคอยล์เย็นและหน้ากากแอร์', cycle: 'ทุก 4 เดือน' },
+          { text: 'ตรวจวัดอุณหภูมิ Supply และ Return', cycle: 'ทุก 4 เดือน' },
+          { text: 'ตรวจเช็คมอเตอร์พัดลมชุดคอยล์เย็นและคอยล์ร้อน', cycle: 'ทุก 4 เดือน' },
+          { text: 'ตรวจเช็คจุดเชื่อมต่อระบบไฟฟ้า', cycle: 'ทุก 4 เดือน' },
+          { text: 'ตรวจเช็คท่อน้ำยาและฉนวนหุ้มท่อ', cycle: 'ทุก 4 เดือน' },
+          { text: 'งาน Major Cleaning / ตรวจระบบเชิงลึก', cycle: 'ทุก 12 เดือน' }
+        ]
+      };
+    }
+
+    return null;
+  }
+
   function careInfo(product, serviceType) {
     var fallback = CARE_INFO[serviceType] || { label: serviceType, short: serviceType, desc: '' };
     if (!product || serviceType === 'No Service') return fallback;
@@ -71,7 +312,15 @@
       short: fallback.short,
       desc: override.desc,
       details: override.details,
-      source: 'Care Service AS25GCBY0 — อัปเดตเฉพาะรุ่น'
+      source: override.source || 'Care Service — ข้อมูลยืนยันเฉพาะรุ่น'
+    };
+    var documented = documentedCareInfo(product, serviceType);
+    if (documented) return {
+      label: fallback.label,
+      short: fallback.short,
+      desc: documented.desc,
+      details: documented.details,
+      source: documented.source
     };
 
     var cycles = (product.plans || [])

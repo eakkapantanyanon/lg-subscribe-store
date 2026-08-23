@@ -418,7 +418,23 @@ const productSelectSource = fs.readFileSync(path.join(ROOT, 'product-select.js')
 const serviceCycleSource = fs.readFileSync(path.join(ROOT, 'service-cycles.js'), 'utf8');
 check(/service-cycles\.js\?v=20260823/.test(pdp) && /Price list_Aug_V3\.pdf/.test(serviceCycleSource), 'PDP โหลดรอบบริการจาก Price List ที่ตรวจสอบแล้ว');
 check(!/ตรวจและทำความสะอาดเครื่อง[\s\S]*?ทุก 12 เดือน/.test(productSelectSource) && /รอบเข้าดูแล/.test(productSelectSource), 'PDP ไม่สร้างรายละเอียดงานบริการเฉพาะหมวดโดยไม่มี source ยืนยัน');
+check(!/ทุก 6\/12 เดือน/.test(productSelectSource) && !/ค่าเช่าถูกลง/.test(productSelectSource) && !/รับประกันเท่านั้น/.test(productSelectSource), 'ข้อความ Care fallback ไม่อ้างรอบ/ประโยชน์/การรับประกันที่ไม่ได้ยืนยันกับทุกรุ่น');
+check(/รายละเอียดงานขึ้นอยู่กับรุ่นและเงื่อนไขบริการ/.test(productSelectSource) && /รายการอุปกรณ์ขึ้นอยู่กับรุ่นและเงื่อนไขบริการ/.test(productSelectSource), 'Care fallback บอกขอบเขตข้อมูลอย่างตรงไปตรงมา');
 check(/window\.LG_SERVICE_CYCLE_MAP=map/.test(serviceCycleSource) && /serviceSource/.test(serviceCycleSource), 'รอบบริการทุกหมวดใช้ source map เดียวจาก Price List ที่ตรวจสอบแล้ว');
+check(/CARE_DETAIL_OVERRIDES/.test(productSelectSource) && /override\.source/.test(productSelectSource), 'Care detail เฉพาะรุ่นเก็บ source แยกจาก fallback อย่างชัดเจน');
+check(/product-select\.js\?v=20260823-care3/.test(pdp) && /product-select\.js\?v=20260823-care3/.test(cart), 'PDP/Cart cache-bust Care Service runtime เวอร์ชันล่าสุด');
+check(/Care Service AS25GCBY0/.test(productSelectSource) && /ครบ 36 เดือน/.test(productSelectSource), 'AeroCat ใช้รายละเอียด Care Service ล่าสุดเฉพาะรุ่น');
+check(fs.existsSync(path.join(ROOT, 'docs', 'audits', 'care-service-source-register.md')), 'มีทะเบียน Source of Truth สำหรับ Care Service');
+check(fs.existsSync(path.join(ROOT, 'scripts', 'audit-care-service.js')), 'มี Care Service coverage audit ที่รันซ้ำได้');
+check(/select\.careInfo/.test(fs.readFileSync(path.join(ROOT, 'scripts', 'audit-care-service.js'), 'utf8')), 'Care Service audit ตรวจ detail coverage จาก runtime careInfo จริง');
+execFileSync('node', [path.join(ROOT, 'scripts', 'audit-care-service.js')], { cwd: ROOT, stdio: 'pipe' });
+check(fs.existsSync(path.join(ROOT, 'docs', 'audits', 'care-service-coverage.json')), 'มี Care Service coverage report ล่าสุด');
+const careCoverage = JSON.parse(fs.readFileSync(path.join(ROOT, 'docs', 'audits', 'care-service-coverage.json'), 'utf8'));
+check(careCoverage.summary.products === canonicalProducts.length && careCoverage.summary.verifiedDetailModels.includes('AS25GCBY0'), 'Care Service coverage สร้างใหม่จาก catalog/runtime และพบ AeroCat override');
+const careRegister = fs.readFileSync(path.join(ROOT, 'docs', 'audits', 'care-service-source-register.md'), 'utf8');
+check(/AS25GCBY0/.test(careRegister) && /DETAIL PENDING/.test(careRegister) && /CARE_DETAIL_OVERRIDES\.AS25GCBY0/.test(careRegister), 'ทะเบียน Care Service แยก verified detail กับรุ่นที่รอ source');
+check(/care-service-source-register\.md/.test(fs.readFileSync(path.join(ROOT, 'README.md'), 'utf8')), 'README ชี้ไปทะเบียน Care Service source');
+check(/care-service-coverage\.json/.test(careRegister), 'ทะเบียน Care Service ชี้ไป coverage report ที่สร้างซ้ำได้');
 
 check(/id="cartItems"/.test(cart), 'Cart มีรายการสินค้า');
 check(/\.catalog-grid \.p-cta a \{ min-height: 48px/.test(fs.readFileSync(path.join(ROOT, 'catalog.css'), 'utf8')), 'Catalog mobile CTA มี touch target อย่างน้อย 48px');
