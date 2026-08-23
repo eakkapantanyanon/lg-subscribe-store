@@ -429,6 +429,12 @@ check(/<script src="analytics\.js" defer><\/script>/.test(home) && /<script src=
 check(/function syncCanonicalProducts\(\)/.test(home) && /DOMContentLoaded[\s\S]*syncCanonicalProducts\(\);[\s\S]*renderCats\(\);[\s\S]*renderLifestyle\(\);[\s\S]*renderProducts\(\);/.test(home), 'Home รอ canonical product data ก่อนคำนวณ Category/Lifestyle/Product Grid');
 check(/<link rel="stylesheet" href="premium\.css\?v=10">/.test(home) && /family=Anuphan:wght@400;500;600;700/.test(home), 'Home คง critical layout CSS แบบ blocking เพื่อป้องกัน CLS และตัด Anuphan 300 ที่ไม่จำเป็น');
 check(/UX\/UI MAX · Catalog conversion polish/.test(fs.readFileSync(path.join(ROOT, 'catalog.css'), 'utf8')) && /\.catalog-grid \.p-price strong[^}]*color: var\(--catalog-brand\)/s.test(fs.readFileSync(path.join(ROOT, 'catalog.css'), 'utf8')), 'Catalog UX/UI Max เน้นราคาและสถานะการ์ดอย่างสม่ำเสมอ');
+check(/catalog\.css\?v=4/.test(catalogHtml) && /\.catalog-grid \.p-model \{[\s\S]*?color: #6f666a/.test(fs.readFileSync(path.join(ROOT, 'catalog.css'), 'utf8')), 'Catalog model text ใช้ contrast ที่ผ่าน WCAG และ cache version ล่าสุด');
+check(!/class="catalog-brand"[^>]*aria-label=/.test(catalogHtml) && /ดูเพิ่มเติม — อีก/.test(catalogSource), 'Catalog accessible names สอดคล้องกับข้อความที่มองเห็น');
+check(/th\.setAttribute\('aria-label', 'รูปสินค้า '/.test(pdp) && /ดูตะกร้า ' \+ visibleCount \+ ' รายการ'/.test(pdp), 'PDP thumbnail และตะกร้ามี accessible name ที่สื่อความหมาย');
+check(/\.crumbs a \{[^}]*text-decoration: underline/.test(pdp), 'PDP breadcrumb links แยกจากข้อความด้วย underline');
+check(/\.credit-note \{[^}]*color: #6d625a/.test(promotions) && /\.b-gray \{ background: #666;/.test(promotions) && /\.f-col a \{[^}]*min-height: 24px/.test(promotions), 'Promotions contrast และ footer touch targets ผ่านเกณฑ์');
+check(/\.cart-empty \{ color: #6f666a/.test(cart) && /\.first-bill-note \{ font-size: 12px; color: #6f666a/.test(cart) && /<h2 id="officerContactTitle">/.test(cart), 'Cart contrast และ heading hierarchy ผ่านเกณฑ์');
 check(/\.opt-card\.selected::after/.test(premium) && /body\[data-page="product-detail"\] \.color-opt\.selected/.test(premium), 'PDP UX/UI Max แสดง selection state ของแผนและสีชัดเจน');
 check(/บัตรเครดิต/.test(cart) && /บัตรเดบิต/.test(cart) && /Direct Debit/.test(cart), 'Cart แสดงช่องทางบัตรเครดิต บัตรเดบิต และหักบัญชี');
 check(/รองรับบัตรเดบิตทุกธนาคาร/.test(cart) && /SCB/.test(cart) && /BBL/.test(cart) && /ธนาคารไทยพาณิชย์/.test(cart) && /ธนาคารกรุงเทพ/.test(cart), 'Cart ระบุบัตรเดบิตทุกธนาคาร และ Direct Debit เฉพาะ SCB/BBL');
