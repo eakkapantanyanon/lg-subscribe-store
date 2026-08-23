@@ -284,7 +284,7 @@ for (const [model, price] of Object.entries(fallbackPrices)) {
 }
 for (const page of [promotions, cart]) {
   check(!/<script[^>]*>[\s\S]*window\.LG_PRODUCTS\s*=/.test(page), 'หน้าร้านไม่มี embedded full dataset');
-  check(page.indexOf('<script src="analytics.js">') < page.indexOf('<script src="products.js">'), 'products.js โหลดหลัง analytics.js');
+  check(page.indexOf('analytics.js') < page.indexOf('<script src="products.js">'), 'products.js โหลดหลัง analytics.js');
 }
 check(promotions.indexOf('products.js') < promotions.indexOf('const PRODUCTS'), 'Promotions โหลด products.js ก่อน consumer script');
 check(cart.indexOf('products.js') < cart.indexOf('calculator-core.js') && cart.indexOf('products.js') < cart.indexOf('cart.js') && cart.indexOf('products.js') < cart.indexOf('product-select.js'), 'Cart โหลด products.js ก่อน calculator/cart/product-select consumers');
@@ -459,7 +459,7 @@ check(/\.big-price \{ font-size: clamp\(34px, 3vw, 42px\)/.test(pdp) && /font-va
 check(!/card\.setAttribute\('aria-label', 'ดูแพ็กเกจ '/.test(home), 'Home product cards ใช้ visible text เป็น accessible name');
 check(/#products \.p-model \{ color: #6f666a/.test(home) && /body\[data-page="home"\] #products \.p-model \{[\s\S]*?color: #6f666a/.test(premium), 'Home product model contrast ผ่านเกณฑ์ WCAG รวม premium override');
 check(!/<div class="f-col">\s*<h4>/.test(home) && /\.f-col h3 \{/.test(home), 'Home footer heading hierarchy ต่อเนื่อง');
-check(/<script src="analytics\.js" defer><\/script>/.test(home) && /<script src="products\.js" defer><\/script>/.test(home), 'Home defer analytics และ canonical products.js โดยไม่ block initial render');
+check(/<script src="analytics\.js\?v=ga4-1" defer><\/script>/.test(home) && /<script src="products\.js" defer><\/script>/.test(home), 'Home defer analytics และ canonical products.js โดยไม่ block initial render');
 check(/function syncCanonicalProducts\(\)/.test(home) && /DOMContentLoaded[\s\S]*syncCanonicalProducts\(\);[\s\S]*renderCats\(\);[\s\S]*renderLifestyle\(\);[\s\S]*renderProducts\(\);/.test(home), 'Home รอ canonical product data ก่อนคำนวณ Category/Lifestyle/Product Grid');
 check(/<link rel="stylesheet" href="premium\.css\?v=10">/.test(home) && /family=Anuphan:wght@400;500;600;700/.test(home), 'Home คง critical layout CSS แบบ blocking เพื่อป้องกัน CLS และตัด Anuphan 300 ที่ไม่จำเป็น');
 check(/UX\/UI MAX · Catalog conversion polish/.test(fs.readFileSync(path.join(ROOT, 'catalog.css'), 'utf8')) && /\.catalog-grid \.p-price strong[^}]*color: var\(--catalog-brand\)/s.test(fs.readFileSync(path.join(ROOT, 'catalog.css'), 'utf8')), 'Catalog UX/UI Max เน้นราคาและสถานะการ์ดอย่างสม่ำเสมอ');
@@ -502,6 +502,8 @@ check(/line-lgthailand-qr\.png/.test(cart), 'Cart แสดง QR Code สำห
 check(/ฝ่ายขาย LG โดยตรง/.test(cart) && /ไม่ผ่านตัวแทน/.test(cart) && /LINE Official ของ LG/.test(cart), 'Cart ยืนยันช่องทางฝ่ายขาย LG โดยตรง');
 check(/analytics\.js/.test(home) && /analytics\.js/.test(pdp) && /analytics\.js/.test(cart) && /analytics\.js/.test(guide), 'Conversion analytics ครบทุก flow หลักรวม Guide');
 check(/funnel_session_id/.test(analyticsSource) && /funnel_stage/.test(analyticsSource) && /funnel_stage_view/.test(analyticsSource) && /guide_smart_finder_click/.test(analyticsSource) && /data-page="guide"/.test(guide), 'Analytics เชื่อม Guide → Discovery → PDP → Lead handoff ด้วย session-scoped funnel context โดยไม่เก็บ PII');
+check(/G-YQ5EW1VQPX/.test(analyticsSource) && /googletagmanager\.com\/gtag\/js/.test(analyticsSource) && /window\.gtag\('event'/.test(analyticsSource), 'GA4 Measurement ID และ Funnel event transport ถูกเชื่อมกับ Google tag');
+check([home, pdp, catalogHtml, promotions, guide, cart].every((page) => /analytics\.js\?v=ga4-1/.test(page)), 'ทุก flow หลักใช้ cache-busted GA4 analytics bundle เวอร์ชันเดียวกัน');
 check(/package_view/.test(pdp) && /track\('add_to_cart'/.test(pdp), 'PDP ส่ง package view และ successful add-to-cart events');
 
 console.log('\n═══ Site smoke test: ' + (failures ? failures + ' ไม่ผ่าน' : 'ผ่านทั้งหมด') + ' ═══');
