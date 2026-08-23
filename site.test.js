@@ -414,6 +414,9 @@ check(/เทคโนโลยีเครื่องดูดฝุ่นไ�
 check(pdp.indexOf("group('ประเภทแผน'") < pdp.indexOf("group('ประเภทการดูแล'"), 'PDP แสดงประเภทแผนก่อนประเภทการดูแล');
 check(/const pts = SEL\.planTypes\(product\);\s*wrap\.appendChild\(group\('ประเภทแผน'/.test(pdp), 'PDP แสดงกลุ่มประเภทแผนเสมอ');
 check(/care-detail-trigger/.test(pdp) && /care-popover-title/.test(pdp) && /บริการที่คุณได้รับ/.test(pdp) && /care-cycle-group/.test(pdp), 'PDP ซ่อนข้อมูลบริการไว้ใน popover และจัดกลุ่มให้อ่านตามรอบบริการ');
+check(/care-popover-close/.test(pdp) && /role', 'dialog'/.test(pdp), 'Care popover มีปุ่มปิดและ semantics สำหรับรายละเอียดบริการ');
+check(/background: #fff; color: #231d20/.test(pdp) && /care-cycle-group \{ padding: 11px 12px/.test(pdp), 'Care popover ใช้พื้นสว่าง contrast สูงและแยกรอบบริการเป็นกลุ่ม');
+check(/\.care-detail-trigger \{ position: relative/.test(pdp) && !/\.care-detail-trigger \{ position: absolute/.test(pdp), 'ปุ่มรายละเอียดบริการไม่ซ้อนตำแหน่งกับเครื่องหมายเลือกแพ็กเกจ');
 const productSelectSource = fs.readFileSync(path.join(ROOT, 'product-select.js'), 'utf8');
 const serviceCycleSource = fs.readFileSync(path.join(ROOT, 'service-cycles.js'), 'utf8');
 check(/service-cycles\.js\?v=20260823/.test(pdp) && /Price list_Aug_V3\.pdf/.test(serviceCycleSource), 'PDP โหลดรอบบริการจาก Price List ที่ตรวจสอบแล้ว');
