@@ -510,6 +510,8 @@ check([home, pdp, catalogHtml, promotions, guide, cart].every((page) => /LG Subs
 check(![home, pdp, catalogHtml, promotions, guide, cart].some((page) => /FLEXI-SUB/.test(page)), 'ทุกหน้าหลักไม่มีชื่อแบรนด์ FLEXI-SUB เดิมหลงเหลือ');
 check(/\.catalog-grid \.p-img img \{[\s\S]*?box-sizing: border-box;[\s\S]*?object-fit: contain;[\s\S]*?object-position: center;/m.test(catalogCss), 'Catalog product images fit inside card without padding-induced crop');
 check(/body\[data-page="home"\] #products \.p-img img \{[\s\S]*?box-sizing: border-box;[\s\S]*?object-fit: contain;[\s\S]*?object-position: center;/m.test(premium), 'Home product images fit inside card without padding-induced crop');
+check(/\.p-img \{[\s\S]*?box-sizing: border-box;[\s\S]*?object-fit: contain;[\s\S]*?object-position: center;/.test(cart), 'Cart product images fit inside card without padding-induced crop');
+check(/\.gallery-main img \{[^}]*box-sizing: border-box;[^}]*object-fit: contain;[^}]*object-position: center;/.test(pdp) && /\.g-thumb img \{[^}]*box-sizing: border-box;[^}]*object-fit: contain;[^}]*object-position: center;/.test(pdp), 'PDP main and thumbnail images keep full product visible and centered');
 check([home, pdp, catalogHtml, promotions, guide, cart].every((page) => /analytics\.js\?v=ga4-1/.test(page)), 'ทุก flow หลักใช้ cache-busted GA4 analytics bundle เวอร์ชันเดียวกัน');
 check(/package_view/.test(pdp) && /track\('add_to_cart'/.test(pdp), 'PDP ส่ง package view และ successful add-to-cart events');
 
