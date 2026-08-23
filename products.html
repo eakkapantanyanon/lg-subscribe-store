@@ -80,6 +80,10 @@
                         <h2 id="budgetFinderTitle">ช่วยเลือกรุ่นตามงบรายเดือน</h2>
                         <p>เลือกช่วงงบที่สะดวกจ่ายต่อเดือน ระบบจะแสดงเฉพาะสินค้าที่มีราคาเริ่มต้นอยู่ในช่วงนั้น</p>
                     </div>
+                    <div class="catalog-saved-tools" aria-label="รายการสินค้าที่บันทึก">
+                        <button type="button" id="catalogSavedFilter" aria-pressed="false">♡ รุ่นที่บันทึก <span id="catalogSavedCount">0</span></button>
+                        <span id="catalogSavedHint">บันทึกรุ่นที่สนใจไว้กลับมาดูภายหลังได้ในเครื่องนี้</span>
+                    </div>
                     <div class="budget-options" id="budgetOptions" role="group" aria-label="กรองตามงบรายเดือน">
                         <button type="button" data-budget-min="0" data-budget-max="0" aria-pressed="true">ทุกช่วงราคา</button>
                         <button type="button" data-budget-min="0" data-budget-max="500" aria-pressed="false">ไม่เกิน ฿500/เดือน</button>
@@ -150,6 +154,6 @@
 
     <script src="analytics.js"></script>
     <script src="products.js"></script>
-    <script src="catalog.js?v=4"></script>
+    <script src="catalog.js?v=5"></script>
 </body>
 </html>

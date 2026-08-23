@@ -4,7 +4,7 @@
     const PRODUCTS = Array.isArray(window.LG_PRODUCTS) ? window.LG_PRODUCTS : [];
     const INITIAL_BATCH_SIZE = 16;
     const LOAD_MORE_BATCH_SIZE = 16;
-    const state = { query: '', category: '', budgetMin: 0, budgetMax: 0, visibleLimit: INITIAL_BATCH_SIZE };
+    const state = { query: '', category: '', budgetMin: 0, budgetMax: 0, savedOnly: false, visibleLimit: INITIAL_BATCH_SIZE };
 
     const grid = document.getElementById('catalogGrid');
     const filters = document.getElementById('catalogFilters');
@@ -19,6 +19,10 @@
     const loadMoreButton = document.getElementById('catalogLoadMore');
     const loadMoreStatus = document.getElementById('catalogLoadMoreStatus');
     const budgetOptions = document.getElementById('budgetOptions');
+    const savedFilter = document.getElementById('catalogSavedFilter');
+    const savedCount = document.getElementById('catalogSavedCount');
+    const SAVED_STORAGE_KEY = 'lg_subscribe_saved_products_v1';
+    let savedSlugs = loadSavedSlugs();
     const compareBar = document.getElementById('catalogCompareBar');
     const compareSummary = document.getElementById('catalogCompareSummary');
     const compareCount = document.getElementById('catalogCompareCount');
@@ -30,6 +34,43 @@
     const compareSlugs = [];
 
     let searchTrackTimer = 0;
+
+    function loadSavedSlugs() {
+        try {
+            const parsed = JSON.parse(window.localStorage.getItem(SAVED_STORAGE_KEY) || '[]');
+            if (!Array.isArray(parsed)) return [];
+            return parsed.filter(function (slug) {
+                return typeof slug === 'string' && PRODUCTS.some(function (product) { return slugFor(product) === slug; });
+            }).slice(0, 50);
+        } catch (error) {
+            return [];
+        }
+    }
+
+    function persistSavedSlugs() {
+        try {
+            window.localStorage.setItem(SAVED_STORAGE_KEY, JSON.stringify(savedSlugs));
+        } catch (error) {
+            // Saving is optional; catalog browsing must continue if storage is unavailable.
+        }
+    }
+
+    function isSaved(product) {
+        return savedSlugs.indexOf(slugFor(product)) !== -1;
+    }
+
+    function syncSavedControls() {
+        if (!savedFilter) return;
+        savedCount.textContent = String(savedSlugs.length);
+        savedFilter.setAttribute('aria-pressed', String(state.savedOnly));
+        savedFilter.disabled = savedSlugs.length === 0 && !state.savedOnly;
+        grid.querySelectorAll('button[data-save-slug]').forEach(function (button) {
+            const saved = savedSlugs.indexOf(button.dataset.saveSlug || '') !== -1;
+            button.setAttribute('aria-pressed', String(saved));
+            button.setAttribute('aria-label', saved ? 'นำรุ่นนี้ออกจากรายการที่บันทึก' : 'บันทึกรุ่นนี้ไว้ดูภายหลัง');
+            button.textContent = saved ? '♥' : '♡';
+        });
+    }
 
     function escapeHtml(value) {
         return String(value == null ? '' : value)
@@ -129,6 +170,7 @@
         const query = state.query.trim().toLocaleLowerCase('th');
 
         return PRODUCTS.filter(function (product) {
+            if (state.savedOnly && !isSaved(product)) return false;
             if (state.category && product.category !== state.category) return false;
             const monthly = minimumMonthlyPrice(product);
             if (state.budgetMin > 0 && monthly <= state.budgetMin) return false;
@@ -205,7 +247,9 @@
             : '';
 
         const isCompared = selectedForCompare(product);
+        const saved = isSaved(product);
         return '<article class="p-card-wrap">' +
+            '<button class="p-save" type="button" data-save-slug="' + escapeHtml(slug) + '" aria-pressed="' + saved + '" aria-label="' + (saved ? 'นำรุ่นนี้ออกจากรายการที่บันทึก' : 'บันทึกรุ่นนี้ไว้ดูภายหลัง') + '">' + (saved ? '♥' : '♡') + '</button>' +
             '<a class="p-card" href="product.html?slug=' + encodeURIComponent(slug) + '" data-source="catalog" data-category="' + escapeHtml(product.category || '') + '" data-model="' + escapeHtml(product.model || '') + '" data-product-name="' + escapeHtml(product.name || '') + '" data-position="' + position + '">' +
                 '<div class="p-img"><span class="p-emoji" aria-hidden="true">' + escapeHtml(product.emoji || '📦') + '</span>' + image + '</div>' +
                 '<div class="p-body">' +
@@ -247,6 +291,7 @@
 
         updateResultsState(matchedProducts, renderedProducts.length);
         syncCompareControls();
+        syncSavedControls();
 
         return matchedProducts.length;
     }
@@ -289,6 +334,8 @@
         state.category = '';
         state.budgetMin = 0;
         state.budgetMax = 0;
+        state.savedOnly = false;
+        if (savedFilter) savedFilter.setAttribute('aria-pressed', 'false');
         if (budgetOptions) budgetOptions.querySelectorAll('button[data-budget-min]').forEach(function (button) {
             button.setAttribute('aria-pressed', String(Number(button.dataset.budgetMin || 0) === 0 && Number(button.dataset.budgetMax || 0) === 0));
         });
@@ -312,6 +359,13 @@
             category: state.category || 'all',
             result_count: count
         });
+    });
+
+    if (savedFilter) savedFilter.addEventListener('click', function () {
+        state.savedOnly = !state.savedOnly;
+        resetVisibleLimit();
+        const count = renderProducts();
+        track('catalog_saved_filter', { active: state.savedOnly, saved_count: savedSlugs.length, result_count: count });
     });
 
     if (budgetOptions) budgetOptions.addEventListener('click', function (event) {
@@ -364,6 +418,19 @@
     loadMoreButton.addEventListener('click', appendNextBatch);
 
     grid.addEventListener('click', function (event) {
+        const saveButton = event.target.closest('button[data-save-slug]');
+        if (saveButton) {
+            const savedSlug = saveButton.dataset.saveSlug || '';
+            const savedIndex = savedSlugs.indexOf(savedSlug);
+            if (savedIndex === -1) savedSlugs.push(savedSlug);
+            else savedSlugs.splice(savedIndex, 1);
+            persistSavedSlugs();
+            if (state.savedOnly && savedIndex !== -1) renderProducts();
+            else syncSavedControls();
+            track('catalog_save_toggle', { product_slug: savedSlug, saved: savedIndex === -1, saved_count: savedSlugs.length });
+            return;
+        }
+
         const button = event.target.closest('button[data-compare-slug]');
         if (!button) return;
         const slug = button.dataset.compareSlug || '';

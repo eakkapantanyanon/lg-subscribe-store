@@ -736,7 +736,43 @@ body[data-page="catalog"] :focus-visible {
   .catalog-footer p { margin: 0; }
 }
 
+.catalog-saved-tools { display: flex; align-items: center; gap: 12px; margin: 14px 0 4px; }
+.catalog-saved-tools button {
+  min-height: 42px;
+  padding: 8px 13px;
+  border: 1px solid rgba(165,0,52,.18);
+  border-radius: 10px;
+  background: #fff;
+  color: #5c2f40;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+.catalog-saved-tools button[aria-pressed="true"] { border-color: var(--catalog-brand); background: #fff6f8; color: var(--catalog-brand); }
+.catalog-saved-tools button:disabled { opacity: .55; cursor: default; }
+.catalog-saved-tools span { color: #6b6367; font-size: 12px; }
 .p-card-wrap { position: relative; min-width: 0; }
+.p-save {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 3;
+  display: grid;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  place-items: center;
+  border: 1px solid rgba(92,47,64,.12);
+  border-radius: 50%;
+  background: rgba(255,255,255,.94);
+  color: #5c2f40;
+  font-size: 21px;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(38,10,20,.06);
+}
+.p-save:hover, .p-save[aria-pressed="true"] { border-color: rgba(165,0,52,.3); color: var(--catalog-brand); }
+.p-save:focus-visible { outline: 2px solid var(--catalog-brand); outline-offset: 2px; }
 .p-card-wrap .p-card { height: auto; }
 .p-compare {
   width: 100%;
@@ -800,6 +836,9 @@ body[data-page="catalog"] :focus-visible {
 .catalog-compare-table thead small { margin-top: 4px; color: #6b6367; font-weight: 400; }
 .catalog-compare-table a { color: var(--catalog-brand); font-weight: 700; text-underline-offset: 3px; }
 @media (max-width: 640px) {
+  .catalog-saved-tools { align-items: flex-start; flex-direction: column; gap: 6px; }
+  .catalog-saved-tools button { width: 100%; min-height: 48px; }
+  .p-save { top: 20px; right: 20px; width: 42px; height: 42px; }
   .catalog-compare-bar { top: 68px; align-items: stretch; flex-direction: column; gap: 10px; }
   .catalog-compare-actions { width: 100%; }
   .catalog-compare-actions button { flex: 1; min-height: 48px; }
