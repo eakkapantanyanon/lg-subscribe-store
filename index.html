@@ -1289,7 +1289,7 @@
                     '</div>' +
                     '<div class="hero-right">' +
                         '<img class="hero-campaign' + (s.fx === 'oled' ? ' kenburns' : '') + '"' +
-                        (i === 0 ? ' src="' + heroSrcFor(i) + '" width="1920" height="720" loading="eager" fetchpriority="high" decoding="async"' : ' data-src="' + heroSrcFor(i) + '" width="1920" height="720" loading="lazy" decoding="async"') +
+                        (i === 0 ? ' src="' + heroSrcFor(i) + '" width="1920" height="720" loading="eager" fetchpriority="high"' : ' data-src="' + heroSrcFor(i) + '" width="1920" height="720" loading="lazy" decoding="async"') +
                         ' data-fallback-src="' + heroImgFor(s) + '" alt="' + s.title + '" data-slot="' + i + '" />' +
                         (s.fx === 'oled' ? '<div class="hero-shimmer"></div>' : '') +
                         (s.badge ? '<span class="hero-badge">' + s.badge + '</span>' : '') +
