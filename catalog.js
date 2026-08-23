@@ -414,7 +414,7 @@
         return '<article class="p-card-wrap">' +
             '<button class="p-save" type="button" data-save-slug="' + escapeHtml(slug) + '" aria-pressed="' + saved + '" aria-label="' + (saved ? 'นำรุ่นนี้ออกจากรายการที่บันทึก' : 'บันทึกรุ่นนี้ไว้ดูภายหลัง') + '">' + (saved ? '♥' : '♡') + '</button>' +
             '<a class="p-card" href="product.html?slug=' + encodeURIComponent(slug) + '" data-source="catalog" data-category="' + escapeHtml(product.category || '') + '" data-model="' + escapeHtml(product.model || '') + '" data-product-name="' + escapeHtml(product.name || '') + '" data-position="' + position + '">' +
-                '<div class="p-img"><span class="p-emoji" aria-hidden="true">' + escapeHtml(product.emoji || '📦') + '</span>' + image + '</div>' +
+                '<div class="p-img">' + (image ? image + '<span class="p-emoji" aria-hidden="true" hidden>' + escapeHtml(product.emoji || '📦') + '</span>' : '<span class="p-emoji" aria-hidden="true">' + escapeHtml(product.emoji || '📦') + '</span>') + '</div>' +
                 '<div class="p-body">' +
                     '<div class="p-cat">' + escapeHtml(product.category || 'LG Subscribe') + '</div>' +
                     '<h3 class="p-name">' + escapeHtml(product.name || product.model) + '</h3>' +
@@ -645,6 +645,8 @@
         }
 
         image.hidden = true;
+        const emoji = image.nextElementSibling;
+        if (emoji && emoji.classList.contains('p-emoji')) emoji.hidden = false;
     }, true);
 
     if (finderGroups) finderGroups.addEventListener('click', function (event) {
