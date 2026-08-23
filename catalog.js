@@ -145,7 +145,7 @@
                 '<div class="p-model">' + escapeHtml(product.model || '') + '</div>' +
                 '<div class="p-price"><small>เริ่มต้น</small><span>฿<strong>' + formatPrice(minimumMonthlyPrice(product)) + '</strong></span><small>/เดือน</small></div>' +
                 '<span class="p-badge">' + escapeHtml(badgeFor(product)) + '</span>' +
-                '<span class="p-cta">ดูแพ็กเกจ</span>' +
+                '<span class="p-cta">ดูแพ็กเกจและราคา</span>' +
             '</div>' +
         '</a>';
     }
