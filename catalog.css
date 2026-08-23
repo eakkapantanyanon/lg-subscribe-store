@@ -342,8 +342,9 @@ body[data-page="catalog"] :focus-visible {
 }
 .catalog-grid .p-img {
   position: relative;
-  display: grid;
-  place-items: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   height: 220px;
   overflow: hidden;
   border: 1px solid rgba(92, 47, 64, .07);
