@@ -518,7 +518,7 @@
 <a class="skip-link" href="#pdpLayout">ข้ามไปยังรายละเอียดสินค้า</a>
 
 <header class="pdp-top">
-    <a class="back" href="index.html#products">← กลับหน้าหลัก</a>
+    <a class="back" href="products.html">← กลับไปเลือกสินค้า</a>
     <div class="brand">FLEXI-SUB<small>™ LG Subscribe</small></div>
     <a class="cart-btn" href="subscribe-store.html" title="ดูตะกร้า" aria-label="ดูตะกร้า 0 รายการ"><span class="line-icon icon-cart" aria-hidden="true"></span><span class="count" id="cartCount">0</span></a>
 </header>
@@ -1413,8 +1413,8 @@
         product = SEL.findBySlug(PRODUCTS, slug);
         if (!product) {
             document.getElementById('pdpLayout').innerHTML =
-                '<div class="not-found"><h2>ไม่พบสินค้านี้</h2><p>ลองกลับไปเลือกสินค้าจากหน้าหลัก</p>' +
-                '<p><a href="index.html#products">← กลับหน้าหลัก</a></p></div>';
+                '<div class="not-found"><h2>ไม่พบสินค้านี้</h2><p>ลองกลับไปเลือกสินค้าจากหน้าสินค้าทั้งหมด</p>' +
+                '<p><a href="products.html">← กลับไปเลือกสินค้า</a></p></div>';
             return;
         }
         updateProductSeo(product);
