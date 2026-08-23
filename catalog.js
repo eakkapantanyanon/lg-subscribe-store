@@ -26,6 +26,7 @@
     const finderService = document.getElementById('smartFinderService');
     const finderApply = document.getElementById('smartFinderApply');
     const finderReset = document.getElementById('smartFinderReset');
+    const finderShare = document.getElementById('smartFinderShare');
     const finderSummary = document.getElementById('smartFinderSummary');
     const FINDER_GROUPS = [
         { key: 'laundry', label: 'ซักผ้า / อบผ้า', categories: ['Wash Tower', 'เครื่องซักผ้า ฝาหน้า', 'เครื่องซักผ้า ฝาบน', 'เครื่องอบผ้า', 'ตู้ถนอมผ้า'] },
@@ -39,6 +40,7 @@
         { key: 'kitchen', label: 'ครัว', categories: ['ไมโครเวฟ'] }
     ];
     let finderSelection = { group: '', budgetMin: 0, budgetMax: 0, service: '' };
+    const FINDER_STORAGE_KEY = 'lg_subscribe_smart_finder_v1';
     const SAVED_STORAGE_KEY = 'lg_subscribe_saved_products_v1';
     let savedSlugs = loadSavedSlugs();
     const compareBar = document.getElementById('catalogCompareBar');
@@ -71,6 +73,43 @@
         } catch (error) {
             // Saving is optional; catalog browsing must continue if storage is unavailable.
         }
+    }
+
+    function loadFinderSelection() {
+        try {
+            const parsed = JSON.parse(window.localStorage.getItem(FINDER_STORAGE_KEY) || '{}');
+            if (!parsed || typeof parsed !== 'object') return null;
+            const group = finderGroupForKey(String(parsed.group || ''));
+            if (!group) return null;
+            return {
+                group: group.key,
+                budgetMin: Number(parsed.budgetMin || 0),
+                budgetMax: Number(parsed.budgetMax || 0),
+                service: ['Visit', 'Self', 'No Service'].indexOf(parsed.service) !== -1 ? parsed.service : ''
+            };
+        } catch (error) {
+            return null;
+        }
+    }
+
+    function persistFinderSelection() {
+        try {
+            window.localStorage.setItem(FINDER_STORAGE_KEY, JSON.stringify(finderSelection));
+        } catch (error) {
+            // Personalization is optional; catalog browsing must continue if storage is unavailable.
+        }
+    }
+
+    function finderUrl(selection) {
+        const url = new URL(window.location.href);
+        ['sf_group', 'sf_min', 'sf_max', 'sf_service'].forEach(function (key) { url.searchParams.delete(key); });
+        if (selection && selection.group) {
+            url.searchParams.set('sf_group', selection.group);
+            if (selection.budgetMin) url.searchParams.set('sf_min', String(selection.budgetMin));
+            if (selection.budgetMax) url.searchParams.set('sf_max', String(selection.budgetMax));
+            if (selection.service) url.searchParams.set('sf_service', selection.service);
+        }
+        return url;
     }
 
     function isSaved(product) {
@@ -225,9 +264,22 @@
         if (!finderSummary || !finderApply) return;
         const ready = Boolean(finderSelection.group);
         finderApply.disabled = !ready;
+        if (finderShare) finderShare.disabled = !ready;
         finderSummary.textContent = ready
             ? 'พบ ' + finderPreviewCount() + ' รุ่นที่ตรงกับตัวเลือกเบื้องต้น'
             : 'เลือกประเภทสินค้าอย่างน้อย 1 กลุ่มเพื่อเริ่มค้นหา';
+    }
+
+    function syncFinderInputs() {
+        renderFinderGroups();
+        if (finderBudgets) finderBudgets.querySelectorAll('button[data-finder-budget-min]').forEach(function (button) {
+            const active = Number(button.dataset.finderBudgetMin || 0) === finderSelection.budgetMin && Number(button.dataset.finderBudgetMax || 0) === finderSelection.budgetMax;
+            button.setAttribute('aria-pressed', String(active));
+        });
+        if (finderService) finderService.querySelectorAll('button[data-finder-service]').forEach(function (button) {
+            button.setAttribute('aria-pressed', String((button.dataset.finderService || '') === finderSelection.service));
+        });
+        syncFinderSummary();
     }
 
     function resetFinderControls() {
@@ -568,6 +620,7 @@
         const button = event.target.closest('button[data-finder-group]');
         if (!button) return;
         finderSelection.group = button.dataset.finderGroup || '';
+        persistFinderSelection();
         renderFinderGroups();
         syncFinderSummary();
     });
@@ -577,6 +630,7 @@
         if (!button) return;
         finderSelection.budgetMin = Number(button.dataset.finderBudgetMin || 0);
         finderSelection.budgetMax = Number(button.dataset.finderBudgetMax || 0);
+        persistFinderSelection();
         finderBudgets.querySelectorAll('button[data-finder-budget-min]').forEach(function (item) {
             item.setAttribute('aria-pressed', String(item === button));
         });
@@ -587,6 +641,7 @@
         const button = event.target.closest('button[data-finder-service]');
         if (!button) return;
         finderSelection.service = button.dataset.finderService || '';
+        persistFinderSelection();
         finderService.querySelectorAll('button[data-finder-service]').forEach(function (item) {
             item.setAttribute('aria-pressed', String(item === button));
         });
@@ -611,6 +666,8 @@
         if (savedFilter) savedFilter.setAttribute('aria-pressed', 'false');
         resetVisibleLimit();
         const count = renderProducts();
+        persistFinderSelection();
+        window.history.replaceState(null, '', finderUrl(finderSelection).toString());
         document.getElementById('catalogResultsTitle').scrollIntoView({ behavior: 'smooth', block: 'start' });
         track('smart_finder_apply', {
             finder_group: finderSelection.group,
@@ -621,8 +678,42 @@
         });
     });
 
+    if (finderShare) finderShare.addEventListener('click', function () {
+        if (!finderSelection.group) return;
+        const url = finderUrl(finderSelection).toString();
+        function copied() {
+            finderSummary.textContent = 'คัดลอกลิงก์ตัวเลือกแล้ว สามารถส่งให้คนอื่นเปิดผลแบบเดียวกันได้';
+            track('smart_finder_share', { finder_group: finderSelection.group, service_type: finderSelection.service || 'any' });
+        }
+        if (navigator.clipboard && typeof navigator.clipboard.writeText === 'function') {
+            navigator.clipboard.writeText(url).then(copied).catch(function () {
+                const textarea = document.createElement('textarea');
+                textarea.value = url;
+                textarea.setAttribute('readonly', '');
+                textarea.style.position = 'fixed';
+                textarea.style.opacity = '0';
+                document.body.appendChild(textarea);
+                textarea.select();
+                try { document.execCommand('copy'); copied(); } catch (error) { finderSummary.textContent = 'ไม่สามารถคัดลอกอัตโนมัติได้ กรุณาคัดลอกจากแถบที่อยู่'; }
+                textarea.remove();
+            });
+        } else {
+            const textarea = document.createElement('textarea');
+            textarea.value = url;
+            textarea.setAttribute('readonly', '');
+            textarea.style.position = 'fixed';
+            textarea.style.opacity = '0';
+            document.body.appendChild(textarea);
+            textarea.select();
+            try { document.execCommand('copy'); copied(); } catch (error) { finderSummary.textContent = 'ไม่สามารถคัดลอกอัตโนมัติได้ กรุณาคัดลอกจากแถบที่อยู่'; }
+            textarea.remove();
+        }
+    });
+
     if (finderReset) finderReset.addEventListener('click', function () {
         resetFinderControls();
+        try { window.localStorage.removeItem(FINDER_STORAGE_KEY); } catch (error) {}
+        window.history.replaceState(null, '', finderUrl(null).toString());
         state.budgetMin = 0;
         state.budgetMax = 0;
         resetVisibleLimit();
@@ -630,8 +721,22 @@
         track('smart_finder_reset', {});
     });
 
-    renderFinderGroups();
-    syncFinderSummary();
+    const finderParams = new URLSearchParams(window.location.search);
+    const finderGroupParam = finderParams.get('sf_group') || '';
+    const finderGroup = finderGroupForKey(finderGroupParam);
+    const savedFinderSelection = loadFinderSelection();
+    const finderFromUrl = Boolean(finderGroup);
+    if (finderFromUrl) {
+        finderSelection = {
+            group: finderGroup.key,
+            budgetMin: Number(finderParams.get('sf_min') || 0),
+            budgetMax: Number(finderParams.get('sf_max') || 0),
+            service: ['Visit', 'Self', 'No Service'].indexOf(finderParams.get('sf_service')) !== -1 ? finderParams.get('sf_service') : ''
+        };
+    } else if (savedFinderSelection) {
+        finderSelection = savedFinderSelection;
+    }
+    syncFinderInputs();
 
     const initialQuery = new URLSearchParams(window.location.search).get('q');
     if (initialQuery) {
@@ -639,7 +744,16 @@
         searchInput.value = state.query;
         updateClearButton();
     }
+    if (finderFromUrl) {
+        state.finderCategories = Array.from(new Set(PRODUCTS.filter(function (product) {
+            return productMatchesFinderGroup(product, finderGroup);
+        }).map(function (product) { return product.category; })));
+        state.finderService = finderSelection.service;
+        state.budgetMin = finderSelection.budgetMin;
+        state.budgetMax = finderSelection.budgetMax;
+    }
     total.textContent = PRODUCTS.length + ' รายการ';
     renderFilters();
     renderProducts();
+    if (finderFromUrl) track('smart_finder_restore', { finder_group: finderSelection.group, result_count: filteredProducts().length });
 }());
