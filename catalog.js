@@ -158,6 +158,35 @@
         return Number(value || 0).toLocaleString('en-US');
     }
 
+    function promotionInsight(product) {
+        const plans = Array.isArray(product.plans) ? product.plans : [];
+        const monthlyPlans = plans.filter(function (plan) {
+            return !plan.outright && Number.isFinite(Number(plan.price)) && Number(plan.price) > 0;
+        });
+        if (!monthlyPlans.length) return null;
+
+        const promoStarts = monthlyPlans.map(function (plan) {
+            const promoPrice = Number(plan.effectiveMonthly);
+            const normalPrice = Number(plan.postPromoPrice || plan.regular || plan.price);
+            return Number.isFinite(promoPrice) && promoPrice > 0 && Number.isFinite(normalPrice) && promoPrice < normalPrice ? promoPrice : 0;
+        }).filter(function (price) { return price > 0; });
+        const savings = monthlyPlans.map(function (plan) { return Number(plan.totalSaving); })
+            .filter(function (saving) { return Number.isFinite(saving) && saving > 0; });
+
+        const promoStart = promoStarts.length ? Math.min.apply(null, promoStarts) : 0;
+        const maxSaving = savings.length ? Math.max.apply(null, savings) : 0;
+        return promoStart || maxSaving ? { promoStart: promoStart, maxSaving: maxSaving } : null;
+    }
+
+    function promotionInsightText(product) {
+        const insight = promotionInsight(product);
+        if (!insight) return 'ไม่มีโปรพิเศษในข้อมูลแพ็กเกจ';
+        const parts = [];
+        if (insight.promoStart) parts.push('โปรเริ่ม ฿' + formatPrice(insight.promoStart));
+        if (insight.maxSaving) parts.push('ประหยัดสูงสุด ฿' + formatPrice(insight.maxSaving));
+        return parts.length ? parts.join(' · ') : 'ดูรายละเอียดโปรโมชั่น';
+    }
+
     function badgeFor(product) {
         const category = product.category || '';
         const model = product.model || '';
@@ -359,6 +388,7 @@
             ['หมวดสินค้า', function (product) { return product.category || 'LG Subscribe'; }],
             ['รุ่น', function (product) { return product.model || '-'; }],
             ['ราคาเริ่มต้น', function (product) { return '฿' + formatPrice(minimumMonthlyPrice(product)) + '/เดือน'; }],
+            ['โปรโมชั่นจากแพ็กเกจ', promotionInsightText],
             ['ระยะสัญญาที่มี', comparePlanSummary],
             ['จุดเด่น', badgeFor]
         ];
@@ -390,6 +420,7 @@
                     '<h3 class="p-name">' + escapeHtml(product.name || product.model) + '</h3>' +
                     '<div class="p-model">' + escapeHtml(product.model || '') + '</div>' +
                     '<div class="p-price"><small>เริ่มต้น</small><span>฿<strong>' + formatPrice(minimumMonthlyPrice(product)) + '</strong></span><small>/เดือน</small></div>' +
+                    (promotionInsight(product) ? '<div class="p-promo-insight">' + escapeHtml(promotionInsightText(product)) + '</div>' : '') +
                     '<span class="p-badge">' + escapeHtml(badgeFor(product)) + '</span>' +
                     '<span class="p-cta">ดูแพ็กเกจและราคา</span>' +
                 '</div>' +

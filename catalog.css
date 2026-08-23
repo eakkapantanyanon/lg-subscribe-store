@@ -431,6 +431,13 @@ body[data-page="catalog"] :focus-visible {
   font-weight: 650;
   letter-spacing: 0;
 }
+.catalog-grid .p-promo-insight {
+  margin: 9px 2px 0;
+  color: #5f5458;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.45;
+}
 .catalog-grid .p-badge {
   display: inline-flex;
   align-items: center;
