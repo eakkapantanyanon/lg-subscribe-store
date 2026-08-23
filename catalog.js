@@ -181,10 +181,10 @@
     function promotionInsightText(product) {
         const insight = promotionInsight(product);
         if (!insight) return 'ไม่มีโปรพิเศษในข้อมูลแพ็กเกจ';
-        const parts = [];
-        if (insight.promoStart) parts.push('โปรเริ่ม ฿' + formatPrice(insight.promoStart));
-        if (insight.maxSaving) parts.push('ประหยัดสูงสุด ฿' + formatPrice(insight.maxSaving));
-        return parts.length ? parts.join(' · ') : 'ดูรายละเอียดโปรโมชั่น';
+        return [
+            insight.promoStart ? 'โปรเริ่ม ฿' + formatPrice(insight.promoStart) : '',
+            insight.maxSaving ? 'ประหยัดสูงสุด ฿' + formatPrice(insight.maxSaving) : ''
+        ].filter(Boolean).join(' · ') || 'ดูรายละเอียดโปรโมชั่น';
     }
 
     function badgeFor(product) {

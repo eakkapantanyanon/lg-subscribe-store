@@ -482,6 +482,7 @@ check(/id="smartFinderShare"/.test(catalogHtml) && /lg_subscribe_smart_finder_v1
 check(/new URLSearchParams\(window\.location\.search\)\.get\('q'\)/.test(catalogSource), 'Catalog รองรับ deep-link คำค้นหาจาก SEO content');
 check(/id="priceIntel"/.test(pdp) && /Array\.isArray\(s\.plan\.billSchedule\)/.test(pdp) && /ราคาแต่ละช่วง:/.test(pdp) && /ดูตารางราคาแต่ละช่วง/.test(pdp), 'PDP อธิบายราคาแต่ละช่วงจาก canonical billSchedule ก่อนเปิดรายละเอียด');
 check(/LG Subscribe คืออะไร/.test(guide) && /ค้นหารุ่นตามงบรายเดือน/.test(guide) && /ยอดรวมตลอดสัญญา/.test(guide), 'SEO guide ตอบ intent เรื่อง Subscribe งบ และค่าใช้จ่าย');
+check(/\"@type\":\"FAQPage\"/.test(guide) && /\"@type\":\"BreadcrumbList\"/.test(guide) && /products\.html\?sf_group=tv/.test(guide) && /products\.html\?sf_group=laundry/.test(guide) && /products\.html\?sf_group=water/.test(guide), 'SEO guide มี FAQ/Breadcrumb structured data และ deep-link เข้า Smart Product Finder จากกลุ่มสินค้าจริง');
 check(/subscribe-guide\.html/.test(home) && /subscribe-guide\.html/.test(sitemap), 'Home และ sitemap เชื่อมไปคู่มือ LG Subscribe');
 check(!/#why, #products, #promotions, #compare, #how, #services, #faq, footer \{ content-visibility: auto/.test(home), 'Home ไม่ใช้ intrinsic placeholder กับทุก section จนเกิดช่องว่าง/scroll jump');
 check(/\.campaign-card img \{[^}]*height: auto;[^}]*aspect-ratio: 8\/3/.test(promotions), 'Promotion campaign artwork รักษาสัดส่วน 8:3 โดยไม่ยืดความสูง');
