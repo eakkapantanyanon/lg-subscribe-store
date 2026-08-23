@@ -35,9 +35,44 @@
   };
 
   /* ---------- รายละเอียดบริการจาก source ที่ตรวจสอบแล้ว ---------- */
+  var CARE_DETAIL_OVERRIDES = {
+    AS25GCBY0: {
+      Visit: {
+        desc: 'ผู้เชี่ยวชาญจาก LG เข้าบริการถึงบ้านตามรอบบริการ',
+        details: [
+          { text: 'ทำความสะอาดภายในและภายนอกของผลิตภัณฑ์', cycle: 'ทุก 12 เดือน' },
+          { text: 'ทำความสะอาดโดมแมว', cycle: 'ทุก 12 เดือน' },
+          { text: 'ตรวจสอบสภาพการทำงานผลิตภัณฑ์', cycle: 'ทุก 12 เดือน' },
+          { text: 'ตรวจสอบเซนเซอร์จับฝุ่น', cycle: 'ทุก 12 เดือน' },
+          { text: 'เปลี่ยนไส้กรอง Aero Series V-Pet Filter (H13)', cycle: 'ทุก 12 เดือน' },
+          { text: 'เปลี่ยนเบาะรองนั่ง 1 ชิ้น', cycle: 'ครบ 36 เดือน' },
+          { text: 'เปลี่ยนผ้าบุผนัง 1 ชุด', cycle: 'ครบ 36 เดือน' },
+          { text: 'เปลี่ยนขั้นบันไดสำหรับแมว 1 ชิ้น', cycle: 'ครบ 36 เดือน' }
+        ]
+      },
+      Self: {
+        desc: 'บำรุงรักษาด้วยตัวเอง โดย LG จัดส่งอุปกรณ์ตามรอบบริการ',
+        details: [
+          { text: 'จัดส่งไส้กรอง Aero Series V-Pet Filter (H13)', cycle: 'ทุก 12 เดือน' },
+          { text: 'จัดส่งเบาะรองนั่ง 1 ชิ้น', cycle: 'ครบ 36 เดือน' },
+          { text: 'จัดส่งผ้าบุผนัง 1 ชุด', cycle: 'ครบ 36 เดือน' },
+          { text: 'จัดส่งขั้นบันไดสำหรับแมว 1 ชิ้น', cycle: 'ครบ 36 เดือน' }
+        ]
+      }
+    }
+  };
+
   function careInfo(product, serviceType) {
     var fallback = CARE_INFO[serviceType] || { label: serviceType, short: serviceType, desc: '' };
     if (!product || serviceType === 'No Service') return fallback;
+    var override = CARE_DETAIL_OVERRIDES[product.model] && CARE_DETAIL_OVERRIDES[product.model][serviceType];
+    if (override) return {
+      label: fallback.label,
+      short: fallback.short,
+      desc: override.desc,
+      details: override.details,
+      source: 'Care Service AS25GCBY0 — อัปเดตเฉพาะรุ่น'
+    };
 
     var cycles = (product.plans || [])
       .filter(function (plan) { return plan.serviceType === serviceType && plan.serviceCycle && plan.serviceCycle !== 'ไม่มีบริการ'; })

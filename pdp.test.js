@@ -95,6 +95,18 @@ t('ข้อความประเภทการดูแลอ้างอ�
   assert.strictEqual(SEL.careInfo(noService, 'No Service').desc, SEL.CARE_INFO['No Service'].desc);
 });
 
+t('AS25GCBY0 ใช้ Care Service override เฉพาะรุ่น', () => {
+  const aeroCat = data.find(x => x.model === 'AS25GCBY0');
+  const visit = SEL.careInfo(aeroCat, 'Visit');
+  const self = SEL.careInfo(aeroCat, 'Self');
+  assert.strictEqual(visit.details.length, 8);
+  assert.ok(visit.details.some(x => /V-Pet Filter/.test(x.text) && x.cycle === 'ทุก 12 เดือน'));
+  assert.ok(visit.details.some(x => /เบาะรองนั่ง/.test(x.text) && x.cycle === 'ครบ 36 เดือน'));
+  assert.strictEqual(self.details.length, 4);
+  assert.ok(self.details.every(x => /จัดส่ง/.test(x.text)));
+  assert.match(visit.source, /AS25GCBY0/);
+});
+
 /* ================================================================
    2. เปลี่ยนตัวเลือก → ราคาสรุปเปลี่ยนถูกต้อง (หัวใจของ requirement)
    ================================================================ */
