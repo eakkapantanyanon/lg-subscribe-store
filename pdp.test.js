@@ -111,6 +111,8 @@ t('WashTower แยก Visit/Self ชัดเจนและไม่ปนร�
   const tower = data.find(x => x.model === 'WT2520NHEG');
   const visit = SEL.careInfo(tower, 'Visit');
   const self = SEL.careInfo(tower, 'Self');
+  assert.strictEqual(visit.details.length, 10, 'WashTower Visit ต้องมีครบ 10 รายการตาม Care Service p.9');
+  assert.strictEqual(self.details.length, 5, 'WashTower Self ต้องมีครบ 5 รายการตาม Care Service p.9');
   assert.ok(visit.details.some(x => /ตรวจสอบผลิตภัณฑ์/.test(x.text)));
   assert.ok(visit.details.some(x => /ทำความสะอาดภายในและภายนอก/.test(x.text)));
   assert.ok(self.details.every(x => /จัดส่ง/.test(x.text)));

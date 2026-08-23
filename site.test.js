@@ -417,6 +417,8 @@ check(/care-detail-trigger/.test(pdp) && /care-popover-title/.test(pdp) && /บ�
 check(/ดูรายละเอียด —/.test(pdp) && /care-popover-plan/.test(pdp) && /aria-controls/.test(pdp), 'ปุ่มรายละเอียดผูกกับประเภทบริการของการ์ดและ popover ของตัวเองอย่างชัดเจน');
 check(/\.care-option \{ position: relative; padding-bottom: 11px; border-bottom: 1px solid/.test(pdp) && /\.care-detail-trigger \{ position: relative;/.test(pdp), 'การ์ดบริการแต่ละตัวมีขอบเขตชัดและปุ่มรายละเอียดไม่ซ้อนกับสถานะเลือก');
 check(/care-popover-close/.test(pdp) && /role', 'dialog'/.test(pdp), 'Care popover มีปุ่มปิดและ semantics สำหรับรายละเอียดบริการ');
+check(/care-popover-summary/.test(pdp) && /care-popover-groups/.test(pdp) && /แสดงบริการทั้งหมดของแพ็กเกจนี้/.test(pdp), 'Care popover แสดงจำนวนรายการและจัดกลุ่มบริการทั้งหมดให้เห็นชัด');
+check(/\.care-popover \{ position: fixed; z-index: 120; top: 50%; left: 50%; width: min\(680px/.test(pdp), 'Desktop Care popover เปิดเป็น dialog กลางจอเพื่อไม่ตัดรายการบริการ');
 check(/background: #fff; color: #231d20/.test(pdp) && /care-cycle-group \{ padding: 11px 12px/.test(pdp), 'Care popover ใช้พื้นสว่าง contrast สูงและแยกรอบบริการเป็นกลุ่ม');
 check(/\.care-detail-trigger \{ position: relative/.test(pdp) && !/\.care-detail-trigger \{ position: absolute/.test(pdp), 'ปุ่มรายละเอียดบริการไม่ซ้อนตำแหน่งกับเครื่องหมายเลือกแพ็กเกจ');
 const productSelectSource = fs.readFileSync(path.join(ROOT, 'product-select.js'), 'utf8');
