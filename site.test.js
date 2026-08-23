@@ -17,6 +17,7 @@ const requiredAssets = [
   'premium.css',
   'catalog.css',
   'catalog.js',
+  'service-cycles.js',
   'sitemap.xml',
   'image-inventory-phase4.json',
   'scripts/audit-product-images.js',
@@ -412,10 +413,12 @@ check((gallerySource.match(/https:\/\/arttato\.github\.io\/LG-Subscribe\/img\/pr
 check(/เทคโนโลยีเครื่องดูดฝุ่นไร้สาย LG CordZero/.test(pdp) && !/f\.push\('แผน '/.test(pdp), 'PDP bullet ใช้คุณสมบัติสินค้าและไม่สร้างจากข้อมูลแผน');
 check(pdp.indexOf("group('ประเภทแผน'") < pdp.indexOf("group('ประเภทการดูแล'"), 'PDP แสดงประเภทแผนก่อนประเภทการดูแล');
 check(/const pts = SEL\.planTypes\(product\);\s*wrap\.appendChild\(group\('ประเภทแผน'/.test(pdp), 'PDP แสดงกลุ่มประเภทแผนเสมอ');
-check(/care-detail-trigger/.test(pdp) && /care-popover-title/.test(pdp) && /บริการที่ได้รับ/.test(pdp), 'PDP ซ่อนรายละเอียดบริการไว้ใน popover ที่เปิดดูได้ทุกตัวเลือกบริการ');
+check(/care-detail-trigger/.test(pdp) && /care-popover-title/.test(pdp) && /ข้อมูลบริการ/.test(pdp), 'PDP ซ่อนข้อมูลบริการไว้ใน popover ที่เปิดดูได้ทุกตัวเลือกบริการ');
 const productSelectSource = fs.readFileSync(path.join(ROOT, 'product-select.js'), 'utf8');
-check(/category === 'Wash Tower'[\s\S]*?details = serviceType === 'Visit'[\s\S]*?ตรวจและทำความสะอาดเครื่อง[\s\S]*?ทุก 12 เดือน/.test(productSelectSource), 'Wash Tower แสดงบริการเป็นรายการพร้อมรอบบริการ ไม่ยุบเป็นย่อหน้าเดียว');
-check((productSelectSource.match(/details =/g) || []).length >= 10, 'ประเภทสินค้าหลักใช้โครงสร้างรายการบริการแบบเดียวกัน');
+const serviceCycleSource = fs.readFileSync(path.join(ROOT, 'service-cycles.js'), 'utf8');
+check(/service-cycles\.js\?v=20260823/.test(pdp) && /Price list_Aug_V3\.pdf/.test(serviceCycleSource), 'PDP โหลดรอบบริการจาก Price List ที่ตรวจสอบแล้ว');
+check(!/ตรวจและทำความสะอาดเครื่อง[\s\S]*?ทุก 12 เดือน/.test(productSelectSource) && /รอบเข้าดูแล/.test(productSelectSource), 'PDP ไม่สร้างรายละเอียดงานบริการเฉพาะหมวดโดยไม่มี source ยืนยัน');
+check(/window\.LG_SERVICE_CYCLE_MAP=map/.test(serviceCycleSource) && /serviceSource/.test(serviceCycleSource), 'รอบบริการทุกหมวดใช้ source map เดียวจาก Price List ที่ตรวจสอบแล้ว');
 
 check(/id="cartItems"/.test(cart), 'Cart มีรายการสินค้า');
 check(/\.catalog-grid \.p-cta a \{ min-height: 48px/.test(fs.readFileSync(path.join(ROOT, 'catalog.css'), 'utf8')), 'Catalog mobile CTA มี touch target อย่างน้อย 48px');
@@ -442,7 +445,7 @@ check(/\.opt-card\.selected::after/.test(premium) && /body\[data-page="product-d
 check(/บัตรเครดิต/.test(cart) && /บัตรเดบิต/.test(cart) && /Direct Debit/.test(cart), 'Cart แสดงช่องทางบัตรเครดิต บัตรเดบิต และหักบัญชี');
 check(/รองรับบัตรเดบิตทุกธนาคาร/.test(cart) && /SCB/.test(cart) && /BBL/.test(cart) && /ธนาคารไทยพาณิชย์/.test(cart) && /ธนาคารกรุงเทพ/.test(cart), 'Cart ระบุบัตรเดบิตทุกธนาคาร และ Direct Debit เฉพาะ SCB/BBL');
 check(/บัตรเดบิตทุกธนาคาร/.test(home) && /SCB/.test(home) && /BBL/.test(home), 'Home FAQ สอดคล้องกับช่องทางชำระเงินล่าสุด');
-check(/id="budgetOptions"/.test(catalogHtml) && /catalog_budget_filter/.test(catalogSource) && /state\.maxMonthly/.test(catalogSource) && /catalog\.js\?v=2/.test(catalogHtml), 'Catalog มี Product Discovery ตามงบรายเดือนจาก canonical plans และ cache version ล่าสุด');
+check(/id="budgetOptions"/.test(catalogHtml) && /catalog_budget_filter/.test(catalogSource) && /state\.budgetMin/.test(catalogSource) && /state\.budgetMax/.test(catalogSource) && /data-budget-min="500" data-budget-max="800"/.test(catalogHtml) && /catalog\.js\?v=3/.test(catalogHtml), 'Catalog แบ่ง Product Discovery เป็นช่วงราคาไม่ซ้ำกันจาก canonical plans และ cache version ล่าสุด');
 check(/new URLSearchParams\(window\.location\.search\)\.get\('q'\)/.test(catalogSource), 'Catalog รองรับ deep-link คำค้นหาจาก SEO content');
 check(/id="priceIntel"/.test(pdp) && /Array\.isArray\(s\.plan\.billSchedule\)/.test(pdp) && /ราคาแต่ละช่วง:/.test(pdp) && /ดูตารางราคาแต่ละช่วง/.test(pdp), 'PDP อธิบายราคาแต่ละช่วงจาก canonical billSchedule ก่อนเปิดรายละเอียด');
 check(/LG Subscribe คืออะไร/.test(guide) && /ค้นหารุ่นตามงบรายเดือน/.test(guide) && /ยอดรวมตลอดสัญญา/.test(guide), 'SEO guide ตอบ intent เรื่อง Subscribe งบ และค่าใช้จ่าย');

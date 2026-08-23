@@ -4,7 +4,7 @@
     const PRODUCTS = Array.isArray(window.LG_PRODUCTS) ? window.LG_PRODUCTS : [];
     const INITIAL_BATCH_SIZE = 16;
     const LOAD_MORE_BATCH_SIZE = 16;
-    const state = { query: '', category: '', maxMonthly: 0, visibleLimit: INITIAL_BATCH_SIZE };
+    const state = { query: '', category: '', budgetMin: 0, budgetMax: 0, visibleLimit: INITIAL_BATCH_SIZE };
 
     const grid = document.getElementById('catalogGrid');
     const filters = document.getElementById('catalogFilters');
@@ -121,7 +121,9 @@ const budgetOptions = document.getElementById('budgetOptions');
 
         return PRODUCTS.filter(function (product) {
             if (state.category && product.category !== state.category) return false;
-            if (state.maxMonthly > 0 && minimumMonthlyPrice(product) > state.maxMonthly) return false;
+            const monthly = minimumMonthlyPrice(product);
+            if (state.budgetMin > 0 && monthly <= state.budgetMin) return false;
+            if (state.budgetMax > 0 && monthly > state.budgetMax) return false;
             if (!query) return true;
 
             const haystack = [product.name, product.model, product.category]
@@ -216,9 +218,10 @@ const budgetOptions = document.getElementById('budgetOptions');
     function resetCatalog() {
         state.query = '';
         state.category = '';
-        state.maxMonthly = 0;
-        if (budgetOptions) budgetOptions.querySelectorAll('button[data-budget]').forEach(function (button) {
-            button.setAttribute('aria-pressed', String(Number(button.dataset.budget || 0) === 0));
+        state.budgetMin = 0;
+        state.budgetMax = 0;
+        if (budgetOptions) budgetOptions.querySelectorAll('button[data-budget-min]').forEach(function (button) {
+            button.setAttribute('aria-pressed', String(Number(button.dataset.budgetMin || 0) === 0 && Number(button.dataset.budgetMax || 0) === 0));
         });
         resetVisibleLimit();
         searchInput.value = '';
@@ -243,15 +246,20 @@ const budgetOptions = document.getElementById('budgetOptions');
     });
 
     if (budgetOptions) budgetOptions.addEventListener('click', function (event) {
-        const button = event.target.closest('button[data-budget]');
+        const button = event.target.closest('button[data-budget-min]');
         if (!button) return;
-        state.maxMonthly = Number(button.dataset.budget || 0);
-        budgetOptions.querySelectorAll('button[data-budget]').forEach(function (item) {
+        state.budgetMin = Number(button.dataset.budgetMin || 0);
+        state.budgetMax = Number(button.dataset.budgetMax || 0);
+        budgetOptions.querySelectorAll('button[data-budget-min]').forEach(function (item) {
             item.setAttribute('aria-pressed', String(item === button));
         });
         resetVisibleLimit();
         const count = renderProducts();
-        track('catalog_budget_filter', { max_monthly: state.maxMonthly || 'all', result_count: count });
+        track('catalog_budget_filter', {
+            min_monthly_exclusive: state.budgetMin || 0,
+            max_monthly_inclusive: state.budgetMax || 'unbounded',
+            result_count: count
+        });
     });
 
     searchInput.addEventListener('input', function () {

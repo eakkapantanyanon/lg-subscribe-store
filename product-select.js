@@ -34,168 +34,37 @@
     }
   };
 
-  /* ---------- รายละเอียดบริการตามประเภทสินค้า ---------- */
+  /* ---------- รายละเอียดบริการจาก source ที่ตรวจสอบแล้ว ---------- */
   function careInfo(product, serviceType) {
     var fallback = CARE_INFO[serviceType] || { label: serviceType, short: serviceType, desc: '' };
     if (!product || serviceType === 'No Service') return fallback;
 
-    var id = String(product.id || '').toLowerCase();
-    var category = String(product.category || '');
-    var desc = '';
-    var details = null;
+    var cycles = (product.plans || [])
+      .filter(function (plan) { return plan.serviceType === serviceType && plan.serviceCycle && plan.serviceCycle !== 'ไม่มีบริการ'; })
+      .map(function (plan) { return plan.serviceCycle; });
+    cycles = cycles.filter(function (cycle, index) { return cycles.indexOf(cycle) === index; });
 
-    if (category === 'เครื่องกรองน้ำ') {
-      desc = serviceType === 'Visit'
-        ? 'ผู้เชี่ยวชาญ LG เปลี่ยน Pre-Carbon Filter ทุก 6 เดือน และ UF Membrane Filter ทุก 12 เดือน พร้อมฆ่าเชื้อทางเดินน้ำ ตรวจรั่ว และทำความสะอาด'
-        : 'LG จัดส่ง Pre-Carbon Filter ทุก 6 เดือน และ UF Membrane Filter ทุก 12 เดือน สำหรับเปลี่ยนด้วยตัวเอง';
-      details = serviceType === 'Visit'
-        ? [
-            { text: 'เปลี่ยน Pre-Carbon Block Filter', cycle: 'ทุก 6 เดือน' },
-            { text: 'เปลี่ยน UF Membrane Filter', cycle: 'ทุก 12 เดือน' },
-            { text: 'ฆ่าเชื้อทางเดินน้ำด้วยไฟฟ้า', cycle: 'ทุก 6 เดือน' },
-            { text: 'ตรวจสอบการรั่วไหลของผลิตภัณฑ์', cycle: 'ทุก 6 เดือน' },
-            { text: 'ทำความสะอาดในจุดที่เข้าถึงยาก', cycle: 'ทุก 6 เดือน' },
-            { text: 'ทำความสะอาดทั้งภายในและภายนอก', cycle: 'ทุก 6 เดือน' }
-          ]
-        : [
-            { text: 'จัดส่ง Pre-Carbon Block Filter', cycle: 'ทุก 6 เดือน' },
-            { text: 'จัดส่ง UF Membrane Filter', cycle: 'ทุก 12 เดือน' }
-          ];
-    } else if (id === 'gc-l24ffcbb') {
-      desc = 'ผู้เชี่ยวชาญ LG ตรวจและทำความสะอาดทุก 6 เดือน พร้อมเปลี่ยน Pre-Carbon Filter ทุก 6 เดือน และ UF/Post Carbon Filter ทุก 12 เดือน';
-      details = [
-        { text: 'ตรวจและทำความสะอาดเครื่อง', cycle: 'ทุก 6 เดือน' },
-        { text: 'เปลี่ยน Pre-Carbon Filter', cycle: 'ทุก 6 เดือน' },
-        { text: 'เปลี่ยน UF/Post Carbon Filter', cycle: 'ทุก 12 เดือน' }
-      ];
-    } else if (category.indexOf('ตู้เย็น') === 0) {
-      desc = 'ผู้เชี่ยวชาญ LG ตรวจสอบและทำความสะอาดตัวเครื่อง ขอบยาง คอมเพรสเซอร์ และส่วนรองรับ ทุก 2 ปี';
-      details = [
-        { text: 'ตรวจสอบและทำความสะอาดตัวเครื่อง', cycle: 'ทุก 2 ปี' },
-        { text: 'ตรวจขอบยาง คอมเพรสเซอร์ และส่วนรองรับ', cycle: 'ทุก 2 ปี' }
-      ];
-    } else if (category === 'Wash Tower') {
-      desc = serviceType === 'Visit'
-        ? 'ผู้เชี่ยวชาญ LG ตรวจ ทำความสะอาด และดูแลเครื่องทุก 12 เดือน พร้อมบริการถอดล้างใหญ่ตามรอบที่กำหนด'
-        : 'LG จัดส่งน้ำยาล้างถัง แผ่นอบผ้า และไส้กรองตามรอบ สำหรับดูแลด้วยตัวเอง';
-      details = serviceType === 'Visit'
-        ? [
-            { text: 'ตรวจและทำความสะอาดเครื่อง', cycle: 'ทุก 12 เดือน' },
-            { text: 'ดูแลจุดสำคัญและตรวจการทำงาน', cycle: 'ทุก 12 เดือน' },
-            { text: 'บริการถอดล้างใหญ่', cycle: 'ตามรอบที่กำหนด' }
-          ]
-        : [
-            { text: 'จัดส่งน้ำยาล้างถัง', cycle: 'ตามรอบที่กำหนด' },
-            { text: 'จัดส่งแผ่นอบผ้า', cycle: 'ตามรอบที่กำหนด' },
-            { text: 'จัดส่งไส้กรอง', cycle: 'ตามรอบที่กำหนด' }
-          ];
-    } else if (category === 'เครื่องซักผ้า ฝาหน้า') {
-      desc = serviceType === 'Visit'
-        ? 'ผู้เชี่ยวชาญ LG ตรวจและทำความสะอาดเครื่องทุก 12 เดือน พร้อมถอดล้างถังตามรอบที่กำหนด'
-        : 'LG จัดส่งน้ำยาล้างถังและอุปกรณ์ดูแลตามรอบ สำหรับทำความสะอาดด้วยตัวเอง';
-      details = serviceType === 'Visit'
-        ? [
-            { text: 'ตรวจและทำความสะอาดเครื่อง', cycle: 'ทุก 12 เดือน' },
-            { text: 'บริการถอดล้างถัง', cycle: 'ตามรอบที่กำหนด' }
-          ]
-        : [
-            { text: 'จัดส่งน้ำยาล้างถังและอุปกรณ์ดูแล', cycle: 'ตามรอบที่กำหนด' }
-          ];
-    } else if (category === 'เครื่องซักผ้า ฝาบน') {
-      desc = serviceType === 'Visit'
-        ? 'ผู้เชี่ยวชาญ LG ตรวจและทำความสะอาดเครื่องทุก 12 เดือน พร้อมถอดล้างถังตามรอบที่กำหนด'
-        : 'LG จัดส่งน้ำยาล้างถังและอุปกรณ์ดูแลตามรอบ สำหรับทำความสะอาดด้วยตัวเอง';
-      details = serviceType === 'Visit'
-        ? [
-            { text: 'ตรวจและทำความสะอาดเครื่อง', cycle: 'ทุก 12 เดือน' },
-            { text: 'บริการถอดล้างถัง', cycle: 'ตามรอบที่กำหนด' }
-          ]
-        : [
-            { text: 'จัดส่งน้ำยาล้างถังและอุปกรณ์ดูแล', cycle: 'ตามรอบที่กำหนด' }
-          ];
-    } else if (category === 'เครื่องอบผ้า') {
-      desc = serviceType === 'Visit'
-        ? 'ผู้เชี่ยวชาญ LG ตรวจ ทำความสะอาดไส้กรองและชุดแลกเปลี่ยนความร้อน พร้อมดูแลเครื่องตามรอบทุก 12 เดือน'
-        : 'LG จัดส่งไส้กรองและแผ่นปรับผ้านุ่มตามรอบ สำหรับเปลี่ยนและดูแลด้วยตัวเอง';
-      details = serviceType === 'Visit'
-        ? [
-            { text: 'ตรวจและทำความสะอาดไส้กรอง', cycle: 'ทุก 12 เดือน' },
-            { text: 'ทำความสะอาดชุดแลกเปลี่ยนความร้อน', cycle: 'ทุก 12 เดือน' }
-          ]
-        : [
-            { text: 'จัดส่งไส้กรอง', cycle: 'ตามรอบที่กำหนด' },
-            { text: 'จัดส่งแผ่นปรับผ้านุ่ม', cycle: 'ตามรอบที่กำหนด' }
-          ];
-    } else if (category === 'เครื่องดูดฝุ่น' && serviceType === 'Self') {
-      desc = 'LG จัดส่งถุงเก็บฝุ่นและไส้กรองทุก 12 เดือน พร้อมแบตเตอรี่เมื่อครบ 36 เดือน และอุปกรณ์ตามเงื่อนไขของรุ่น';
-      details = [
-        { text: 'จัดส่งถุงเก็บฝุ่นและไส้กรอง', cycle: 'ทุก 12 เดือน' },
-        { text: 'จัดส่งแบตเตอรี่', cycle: 'เมื่อครบ 36 เดือน' },
-        { text: 'อุปกรณ์เพิ่มเติม', cycle: 'ตามเงื่อนไขของรุ่น' }
-      ];
-    } else if (category === 'เครื่องฟอกอากาศ') {
-      if (id === 'as25gcby0' && serviceType === 'Visit') {
-        desc = 'ผู้เชี่ยวชาญ LG ตรวจและทำความสะอาดเครื่อง พร้อมเปลี่ยนไส้กรองตามรอบบริการที่กำหนดสำหรับ AeroCatTower';
-        details = [
-          { text: 'ตรวจและทำความสะอาดเครื่อง', cycle: 'ตามรอบที่กำหนด' },
-          { text: 'เปลี่ยนไส้กรอง', cycle: 'ตามรอบที่กำหนด' }
-        ];
-      } else if (id !== 'as25gcby0') {
-        desc = serviceType === 'Visit'
-          ? 'ผู้เชี่ยวชาญ LG ทำความสะอาด Pre-filter ทุก 6 เดือน และเปลี่ยน H13 HEPA/Carbon Filter ทุก 12 เดือน'
-          : 'LG จัดส่ง Pre-filter ทุก 6 เดือน และ H13 HEPA/Carbon Filter ทุก 12 เดือน สำหรับเปลี่ยนด้วยตัวเอง';
-        details = serviceType === 'Visit'
-          ? [
-              { text: 'ทำความสะอาด Pre-filter', cycle: 'ทุก 6 เดือน' },
-              { text: 'เปลี่ยน H13 HEPA/Carbon Filter', cycle: 'ทุก 12 เดือน' }
-            ]
-          : [
-              { text: 'จัดส่ง Pre-filter', cycle: 'ทุก 6 เดือน' },
-              { text: 'จัดส่ง H13 HEPA/Carbon Filter', cycle: 'ทุก 12 เดือน' }
-            ];
-      }
-    } else if (category === 'เครื่องลดความชื้น') {
-      desc = serviceType === 'Visit'
-        ? 'ผู้เชี่ยวชาญ LG ตรวจและทำความสะอาดเครื่อง พร้อมเปลี่ยน Air Purification Kit ทุก 12 เดือน และดูแลถังน้ำตามรอบ'
-        : 'LG จัดส่ง Air Purification Kit ทุก 12 เดือน และอุปกรณ์ดูแลตามรอบ สำหรับเปลี่ยนด้วยตัวเอง';
-      details = serviceType === 'Visit'
-        ? [
-            { text: 'ตรวจและทำความสะอาดเครื่อง', cycle: 'ตามรอบที่กำหนด' },
-            { text: 'เปลี่ยน Air Purification Kit', cycle: 'ทุก 12 เดือน' },
-            { text: 'ดูแลถังน้ำ', cycle: 'ตามรอบที่กำหนด' }
-          ]
-        : [
-            { text: 'จัดส่ง Air Purification Kit', cycle: 'ทุก 12 เดือน' },
-            { text: 'จัดส่งอุปกรณ์ดูแล', cycle: 'ตามรอบที่กำหนด' }
-          ];
-    } else if (category === 'เครื่องล้างจาน') {
-      desc = serviceType === 'Visit'
-        ? 'ผู้เชี่ยวชาญ LG ตรวจคุณภาพน้ำ เติมเกลือ และทำความสะอาดไส้กรองกับภายในเครื่องทุก 12 เดือน'
-        : 'LG จัดส่งเกลือและอุปกรณ์ดูแลทุก 12 เดือน สำหรับทำความสะอาดและบำรุงรักษาด้วยตัวเอง';
-      details = serviceType === 'Visit'
-        ? [
-            { text: 'ตรวจคุณภาพน้ำและเติมเกลือ', cycle: 'ทุก 12 เดือน' },
-            { text: 'ทำความสะอาดไส้กรองและภายในเครื่อง', cycle: 'ทุก 12 เดือน' }
-          ]
-        : [
-            { text: 'จัดส่งเกลือและอุปกรณ์ดูแล', cycle: 'ทุก 12 เดือน' }
-          ];
-    } else if (category.indexOf('เครื่องปรับอากาศ SAC') === 0) {
-      desc = 'ผู้เชี่ยวชาญ LG ตรวจเช็กทุก 4 เดือน พร้อมล้างเครื่อง 3 ครั้งต่อปี แบ่งเป็นล้างย่อย 2 ครั้ง และล้างใหญ่ 1 ครั้ง';
-      details = [
-        { text: 'ตรวจเช็กเครื่อง', cycle: 'ทุก 4 เดือน' },
-        { text: 'ล้างย่อย', cycle: '2 ครั้ง/ปี' },
-        { text: 'ล้างใหญ่', cycle: '1 ครั้ง/ปี' }
-      ];
-    } else if (category.indexOf('เครื่องปรับอากาศ ') === 0) {
-      desc = 'ผู้เชี่ยวชาญ LG ตรวจเช็กและทำความสะอาดทุก 6 เดือน พร้อมล้างใหญ่ตามรอบทุก 12 เดือน';
-      details = [
-        { text: 'ตรวจเช็กและทำความสะอาดเครื่อง', cycle: 'ทุก 6 เดือน' },
-        { text: 'ล้างใหญ่', cycle: 'ทุก 12 เดือน' }
-      ];
-    }
+    var cycleText = cycles.length === 1
+      ? cycles[0]
+      : (cycles.length > 1 ? cycles.join(' / ') + ' ตามแพ็กเกจที่เลือก' : 'ตามเงื่อนไขของแพ็กเกจ');
+    var source = (product.plans || []).find(function (plan) {
+      return plan.serviceType === serviceType && plan.serviceSource;
+    });
 
-    return desc ? { label: fallback.label, short: fallback.short, desc: desc, details: details } : fallback;
+    var desc = serviceType === 'Visit'
+      ? 'บริการดูแลโดยผู้เชี่ยวชาญ LG ตามรอบของแพ็กเกจที่เลือก'
+      : 'แพ็กเกจดูแลด้วยตัวเองตามรอบของแพ็กเกจที่เลือก';
+
+    return {
+      label: fallback.label,
+      short: fallback.short,
+      desc: desc,
+      details: [
+        { text: serviceType === 'Visit' ? 'รอบเข้าดูแล' : 'รอบการดูแล', cycle: cycleText },
+        { text: 'รายละเอียดงานบริการ/อุปกรณ์', cycle: 'ขึ้นอยู่กับรุ่นและเงื่อนไขแพ็กเกจ' }
+      ],
+      source: source ? source.serviceSource : ''
+    };
   }
 
   /* ---------- ตัวเลือกที่สินค้ารองรับ ---------- */

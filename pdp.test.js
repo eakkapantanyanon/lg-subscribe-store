@@ -10,6 +10,7 @@
    วิธีใช้: node pdp.test.js
    ===================================================================== */
 const fs = require('fs');
+const vm = require('vm');
 const assert = require('assert');
 const LG = require('./calculator-core.js');
 const CART = require('./cart.js');
@@ -20,6 +21,9 @@ const src = fs.readFileSync('products.js', 'utf8');
 const marker = 'window.LG_PRODUCTS = [';
 const data = eval('[' + src.slice(src.indexOf(marker) + marker.length, src.lastIndexOf('];')) + ']')
   .map(p => ({ ...p, plans: p.plans.map(LG.normalizePlan) }));
+const serviceContext = { window: { LG_PRODUCTS: data } };
+vm.createContext(serviceContext);
+vm.runInContext(fs.readFileSync('service-cycles.js', 'utf8'), serviceContext);
 
 let passed = 0, failed = 0;
 function t(name, fn) {
@@ -81,13 +85,13 @@ t('แผนที่ (planType,care,term) เหลือหลายแผน 
   assert.notStrictEqual(p.plans[v12].price, p.plans[v6].price, 'รอบบริการต่าง → ราคาต่าง');
 });
 
-t('ข้อความประเภทการดูแลเปลี่ยนตามรุ่นและประเภทบริการ', () => {
+t('ข้อความประเภทการดูแลอ้างอิงรอบบริการที่ตรวจสอบแล้ว', () => {
   const water = data.find(x => x.id === 'wd516an');
   const commercialAir = data.find(x => x.id === 'zt4q18');
   const noService = data.find(x => x.id === 'oled48c6psa');
-  assert.match(SEL.careInfo(water, 'Visit').desc, /Pre-Carbon Filter ทุก 6 เดือน/);
-  assert.match(SEL.careInfo(water, 'Self').desc, /จัดส่ง.*UF Membrane Filter/);
-  assert.match(SEL.careInfo(commercialAir, 'Visit').desc, /ตรวจเช็กทุก 4 เดือน/);
+  assert.match(SEL.careInfo(water, 'Visit').details[0].cycle, /6|12/);
+  assert.match(SEL.careInfo(commercialAir, 'Visit').details[0].cycle, /4/);
+  assert.ok((water.plans || []).some(plan => plan.serviceSource && /Price list_Aug_V3\.pdf/.test(plan.serviceSource)));
   assert.strictEqual(SEL.careInfo(noService, 'No Service').desc, SEL.CARE_INFO['No Service'].desc);
 });
 

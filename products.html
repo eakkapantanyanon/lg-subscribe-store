@@ -78,14 +78,15 @@
                 <div class="budget-finder" aria-labelledby="budgetFinderTitle">
                     <div class="catalog-filter-head">
                         <h2 id="budgetFinderTitle">ช่วยเลือกรุ่นตามงบรายเดือน</h2>
-                        <p>เลือกราคาสูงสุดที่สะดวกจ่ายต่อเดือน ระบบจะคัดจากแพ็กเกจจริงของสินค้าทั้งหมด</p>
+                        <p>เลือกช่วงงบที่สะดวกจ่ายต่อเดือน ระบบจะแสดงเฉพาะสินค้าที่มีราคาเริ่มต้นอยู่ในช่วงนั้น</p>
                     </div>
                     <div class="budget-options" id="budgetOptions" role="group" aria-label="กรองตามงบรายเดือน">
-                        <button type="button" data-budget="0" aria-pressed="true">ไม่จำกัดงบ</button>
-                        <button type="button" data-budget="500" aria-pressed="false">ไม่เกิน ฿500/เดือน</button>
-                        <button type="button" data-budget="800" aria-pressed="false">ไม่เกิน ฿800/เดือน</button>
-                        <button type="button" data-budget="1200" aria-pressed="false">ไม่เกิน ฿1,200/เดือน</button>
-                        <button type="button" data-budget="2000" aria-pressed="false">ไม่เกิน ฿2,000/เดือน</button>
+                        <button type="button" data-budget-min="0" data-budget-max="0" aria-pressed="true">ทุกช่วงราคา</button>
+                        <button type="button" data-budget-min="0" data-budget-max="500" aria-pressed="false">ไม่เกิน ฿500/เดือน</button>
+                        <button type="button" data-budget-min="500" data-budget-max="800" aria-pressed="false">฿501–800/เดือน</button>
+                        <button type="button" data-budget-min="800" data-budget-max="1200" aria-pressed="false">฿801–1,200/เดือน</button>
+                        <button type="button" data-budget-min="1200" data-budget-max="2000" aria-pressed="false">฿1,201–2,000/เดือน</button>
+                        <button type="button" data-budget-min="2000" data-budget-max="0" aria-pressed="false">มากกว่า ฿2,000/เดือน</button>
                     </div>
                     <p class="budget-note">* ใช้ราคาแพ็กเกจรายเดือนปกติเป็นเกณฑ์ ก่อนส่วนลดเฉพาะช่วง โปรคอมโบ หรือเงื่อนไขลูกค้าเดิม</p>
                 </div>
@@ -127,6 +128,6 @@
 
     <script src="analytics.js"></script>
     <script src="products.js"></script>
-    <script src="catalog.js?v=2"></script>
+    <script src="catalog.js?v=3"></script>
 </body>
 </html>

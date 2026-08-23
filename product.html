@@ -214,6 +214,7 @@
     .care-popover[hidden] { display: none; }
     .care-popover::before { content: ''; position: absolute; top: -6px; right: 24px; width: 12px; height: 12px; background: #24262d; transform: rotate(45deg); }
     .care-popover-title { display: block; margin-bottom: 8px; font-size: 12px; font-weight: 700; color: #fff; }
+    .care-source { display: block; margin-top: 10px; padding-top: 9px; border-top: 1px solid rgba(255,255,255,.16); color: #d9dbe1; font-size: 10px; line-height: 1.45; }
     .care-popover .care-lines { margin: 0; }
     .care-popover .care-lines li, .care-popover .care-lines .care-cycle, .care-popover .d { color: #fff; }
     .care-popover .care-lines .care-dot, .care-popover .care-lines .care-cycle strong { color: #ffb4c8; }
@@ -571,6 +572,7 @@
 
 <script src="analytics.js"></script>
 <script src="products.js?v=gallery-fallback-fix"></script>
+<script src="service-cycles.js?v=20260823"></script>
 <script src="product-galleries.js?v=20260820-sku-galleries"></script>
 <script src="calculator-core.js"></script>
 <script src="cart.js"></script>
@@ -956,12 +958,13 @@
                 const optionWrap = document.createElement('div');
                 optionWrap.className = 'care-option';
                 const info = SEL.careInfo ? SEL.careInfo(product, st) : (SEL.CARE_INFO[st] || { label: st, short: st, desc: '' });
+                const sourceNote = info.source ? '<span class="care-source">อ้างอิงรอบบริการจาก ' + info.source + '</span>' : '';
                 const careDetails = Array.isArray(info.details) && info.details.length
-                    ? '<span class="care-popover-title">บริการที่ได้รับ</span><ul class="care-lines">' + info.details.map(function (item) {
+                    ? '<span class="care-popover-title">ข้อมูลบริการ</span><ul class="care-lines">' + info.details.map(function (item) {
                         const cycle = String(item.cycle || '').replace(/(\d+)/, '<strong>$1</strong>');
                         return '<li><span class="care-dot">•</span><span>' + item.text + '</span><span class="care-cycle">' + cycle + '</span></li>';
-                      }).join('') + '</ul>'
-                    : '<span class="care-popover-title">บริการที่ได้รับ</span><span class="d">' + info.desc + '</span>';
+                      }).join('') + '</ul>' + sourceNote
+                    : '<span class="care-popover-title">ข้อมูลบริการ</span><span class="d">' + info.desc + '</span>' + sourceNote;
                 const b = optCard(
                     '<span class="t">' + info.label + '</span>' +
                     '<span class="p">' + priceForCare(product, sel.planType, st) + '</span>',
