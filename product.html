@@ -207,7 +207,16 @@
     .opt-card:disabled { opacity: .45; cursor: not-allowed; }
     .care-cards { grid-template-columns: 1fr; }
     .care-option { position: relative; }
-    .care-option .opt-card { width: 100%; padding-right: 14px; }
+    .care-option .opt-card { width: 100%; padding-right: 148px; }
+    .care-detail-trigger { position: absolute; top: 13px; right: 13px; z-index: 3; border: 0; background: transparent; color: var(--accent-text); font: inherit; font-size: 11px; font-weight: 700; cursor: pointer; padding: 5px 6px; border-radius: 7px; }
+    .care-detail-trigger:hover, .care-detail-trigger:focus-visible { background: #fff0f4; outline: 2px solid transparent; }
+    .care-popover { position: absolute; z-index: 20; top: 44px; right: 10px; width: min(310px, calc(100vw - 48px)); padding: 14px 15px; border-radius: 12px; background: #24262d; color: #fff; box-shadow: 0 14px 36px rgba(24,18,21,.24); text-align: left; }
+    .care-popover[hidden] { display: none; }
+    .care-popover::before { content: ''; position: absolute; top: -6px; right: 24px; width: 12px; height: 12px; background: #24262d; transform: rotate(45deg); }
+    .care-popover-title { display: block; margin-bottom: 8px; font-size: 12px; font-weight: 700; color: #fff; }
+    .care-popover .care-lines { margin: 0; }
+    .care-popover .care-lines li, .care-popover .care-lines .care-cycle, .care-popover .d { color: #fff; }
+    .care-popover .care-lines .care-dot, .care-popover .care-lines .care-cycle strong { color: #ffb4c8; }
     .care-summary-label { display: block; margin: 10px 0 6px; color: var(--accent-text); font-size: 11px; font-weight: 700; letter-spacing: .02em; }
     .care-cards .opt-card .t,
     .care-cards .opt-card .d,
@@ -219,6 +228,10 @@
     .care-lines .care-cycle strong { color: var(--accent); }
     .opt-card.selected .care-lines li { color: var(--accent-text); }
     @media (max-width: 420px) {
+        .care-option .opt-card { padding-right: 14px; padding-top: 42px; }
+        .care-detail-trigger { top: 8px; right: 8px; }
+        .care-popover { position: fixed; z-index: 80; left: 16px; right: 16px; top: auto; bottom: 18px; width: auto; max-height: 58vh; overflow: auto; border-radius: 16px; }
+        .care-popover::before { display: none; }
         .care-lines li { grid-template-columns: 12px minmax(0, 1fr); }
         .care-lines .care-cycle { grid-column: 2; margin-top: -3px; }
     }
@@ -941,16 +954,42 @@
                 optionWrap.className = 'care-option';
                 const info = SEL.careInfo ? SEL.careInfo(product, st) : (SEL.CARE_INFO[st] || { label: st, short: st, desc: '' });
                 const careDetails = Array.isArray(info.details) && info.details.length
-                    ? '<span class="care-summary-label">บริการที่ได้รับ</span><ul class="care-lines">' + info.details.map(function (item) {
+                    ? '<span class="care-popover-title">บริการที่ได้รับ</span><ul class="care-lines">' + info.details.map(function (item) {
                         const cycle = String(item.cycle || '').replace(/(\d+)/, '<strong>$1</strong>');
                         return '<li><span class="care-dot">•</span><span>' + item.text + '</span><span class="care-cycle">' + cycle + '</span></li>';
                       }).join('') + '</ul>'
-                    : '<span class="care-summary-label">บริการที่ได้รับ</span><span class="d">' + info.desc + '</span>';
+                    : '<span class="care-popover-title">บริการที่ได้รับ</span><span class="d">' + info.desc + '</span>';
                 const b = optCard(
                     '<span class="t">' + info.label + '</span>' +
-                    careDetails +
                     '<span class="p">' + priceForCare(product, sel.planType, st) + '</span>',
                     sel.careType === st ? 'selected' : '');
+                const detailBtn = document.createElement('button');
+                detailBtn.type = 'button';
+                detailBtn.className = 'care-detail-trigger';
+                detailBtn.setAttribute('aria-label', 'ดูรายละเอียดบริการ ' + info.label);
+                detailBtn.setAttribute('aria-expanded', 'false');
+                detailBtn.innerHTML = '<span aria-hidden="true">ⓘ</span> รายละเอียดบริการ';
+                const popover = document.createElement('div');
+                popover.className = 'care-popover';
+                popover.hidden = true;
+                popover.innerHTML = careDetails;
+                detailBtn.addEventListener('click', function (event) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    const willOpen = popover.hidden;
+                    document.querySelectorAll('.care-popover').forEach(function (item) { item.hidden = true; });
+                    document.querySelectorAll('.care-detail-trigger').forEach(function (item) { item.setAttribute('aria-expanded', 'false'); });
+                    popover.hidden = !willOpen;
+                    detailBtn.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
+                });
+                detailBtn.addEventListener('keydown', function (event) {
+                    if (event.key === 'Escape') {
+                        popover.hidden = true;
+                        detailBtn.setAttribute('aria-expanded', 'false');
+                    }
+                });
+                optionWrap.appendChild(detailBtn);
+                optionWrap.appendChild(popover);
                 b.onclick = () => {
                     if (sel.careType === st) { sel.careType = null; sel.term = null; sel.variant = null; }
                     else { sel.careType = st; if (!SEL.terms(product, sel.planType, st).includes(Number(sel.term))) { sel.term = null; sel.variant = null; } }
