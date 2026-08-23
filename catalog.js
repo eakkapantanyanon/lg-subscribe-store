@@ -162,7 +162,7 @@
         if (remaining > 0) {
             const nextBatch = Math.min(LOAD_MORE_BATCH_SIZE, remaining);
             loadMoreStatus.textContent = 'แสดง ' + renderedCount + ' จาก ' + matchedProducts.length;
-            loadMoreButton.setAttribute('aria-label', 'ดูเพิ่มเติม — อีก ' + nextBatch + ' รายการ');
+
         }
     }
 
