@@ -413,7 +413,7 @@ check((gallerySource.match(/https:\/\/arttato\.github\.io\/LG-Subscribe\/img\/pr
 check(/เทคโนโลยีเครื่องดูดฝุ่นไร้สาย LG CordZero/.test(pdp) && !/f\.push\('แผน '/.test(pdp), 'PDP bullet ใช้คุณสมบัติสินค้าและไม่สร้างจากข้อมูลแผน');
 check(pdp.indexOf("group('ประเภทแผน'") < pdp.indexOf("group('ประเภทการดูแล'"), 'PDP แสดงประเภทแผนก่อนประเภทการดูแล');
 check(/const pts = SEL\.planTypes\(product\);\s*wrap\.appendChild\(group\('ประเภทแผน'/.test(pdp), 'PDP แสดงกลุ่มประเภทแผนเสมอ');
-check(/care-detail-trigger/.test(pdp) && /care-popover-title/.test(pdp) && /ข้อมูลบริการ/.test(pdp), 'PDP ซ่อนข้อมูลบริการไว้ใน popover ที่เปิดดูได้ทุกตัวเลือกบริการ');
+check(/care-detail-trigger/.test(pdp) && /care-popover-title/.test(pdp) && /บริการที่คุณได้รับ/.test(pdp) && /care-cycle-group/.test(pdp), 'PDP ซ่อนข้อมูลบริการไว้ใน popover และจัดกลุ่มให้อ่านตามรอบบริการ');
 const productSelectSource = fs.readFileSync(path.join(ROOT, 'product-select.js'), 'utf8');
 const serviceCycleSource = fs.readFileSync(path.join(ROOT, 'service-cycles.js'), 'utf8');
 check(/service-cycles\.js\?v=20260823/.test(pdp) && /Price list_Aug_V3\.pdf/.test(serviceCycleSource), 'PDP โหลดรอบบริการจาก Price List ที่ตรวจสอบแล้ว');
@@ -422,8 +422,9 @@ check(!/ทุก 6\/12 เดือน/.test(productSelectSource) && !/ค่�
 check(/รายละเอียดงานขึ้นอยู่กับรุ่นและเงื่อนไขบริการ/.test(productSelectSource) && /รายการอุปกรณ์ขึ้นอยู่กับรุ่นและเงื่อนไขบริการ/.test(productSelectSource), 'Care fallback บอกขอบเขตข้อมูลอย่างตรงไปตรงมา');
 check(/window\.LG_SERVICE_CYCLE_MAP=map/.test(serviceCycleSource) && /serviceSource/.test(serviceCycleSource), 'รอบบริการทุกหมวดใช้ source map เดียวจาก Price List ที่ตรวจสอบแล้ว');
 check(/CARE_DETAIL_OVERRIDES/.test(productSelectSource) && /override\.source/.test(productSelectSource), 'Care detail เฉพาะรุ่นเก็บ source แยกจาก fallback อย่างชัดเจน');
-check(/product-select\.js\?v=20260823-care3/.test(pdp) && /product-select\.js\?v=20260823-care3/.test(cart), 'PDP/Cart cache-bust Care Service runtime เวอร์ชันล่าสุด');
+check(/product-select\.js\?v=20260823-care4/.test(pdp) && /product-select\.js\?v=20260823-care4/.test(cart), 'PDP/Cart cache-bust Care Service runtime เวอร์ชันล่าสุด');
 check(/Care Service AS25GCBY0/.test(productSelectSource) && /ครบ 36 เดือน/.test(productSelectSource), 'AeroCat ใช้รายละเอียด Care Service ล่าสุดเฉพาะรุ่น');
+check(!/อ้างอิงรอบบริการจาก/.test(pdp) && /รายละเอียดบริการเป็นไปตามรุ่น แพ็กเกจ และเงื่อนไขบริการที่เลือก/.test(pdp), 'Tooltip ลูกค้าไม่แสดงชื่อ source ทางเทคนิคและใช้หมายเหตุที่อ่านง่าย');
 check(fs.existsSync(path.join(ROOT, 'docs', 'audits', 'care-service-source-register.md')), 'มีทะเบียน Source of Truth สำหรับ Care Service');
 check(fs.existsSync(path.join(ROOT, 'scripts', 'audit-care-service.js')), 'มี Care Service coverage audit ที่รันซ้ำได้');
 check(/select\.careInfo/.test(fs.readFileSync(path.join(ROOT, 'scripts', 'audit-care-service.js'), 'utf8')), 'Care Service audit ตรวจ detail coverage จาก runtime careInfo จริง');

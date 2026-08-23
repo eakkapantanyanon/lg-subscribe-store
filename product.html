@@ -210,14 +210,18 @@
     .care-option .opt-card { width: 100%; padding-right: 148px; }
     .care-detail-trigger { position: absolute; top: 13px; right: 13px; z-index: 3; border: 0; background: transparent; color: var(--accent-text); font: inherit; font-size: 11px; font-weight: 700; cursor: pointer; padding: 5px 6px; border-radius: 7px; }
     .care-detail-trigger:hover, .care-detail-trigger:focus-visible { background: #fff0f4; outline: 2px solid transparent; }
-    .care-popover { position: absolute; z-index: 20; top: 44px; right: 10px; width: min(310px, calc(100vw - 48px)); padding: 14px 15px; border-radius: 12px; background: #24262d; color: #fff; box-shadow: 0 14px 36px rgba(24,18,21,.24); text-align: left; }
+    .care-popover { position: absolute; z-index: 20; top: 44px; right: 10px; width: min(390px, calc(100vw - 48px)); max-height: min(520px, 70vh); overflow: auto; padding: 16px 17px; border-radius: 14px; background: #24262d; color: #fff; box-shadow: 0 14px 36px rgba(24,18,21,.24); text-align: left; }
     .care-popover[hidden] { display: none; }
     .care-popover::before { content: ''; position: absolute; top: -6px; right: 24px; width: 12px; height: 12px; background: #24262d; transform: rotate(45deg); }
-    .care-popover-title { display: block; margin-bottom: 8px; font-size: 12px; font-weight: 700; color: #fff; }
-    .care-source { display: block; margin-top: 10px; padding-top: 9px; border-top: 1px solid rgba(255,255,255,.16); color: #d9dbe1; font-size: 10px; line-height: 1.45; }
-    .care-popover .care-lines { margin: 0; }
-    .care-popover .care-lines li, .care-popover .care-lines .care-cycle, .care-popover .d { color: #fff; }
-    .care-popover .care-lines .care-dot, .care-popover .care-lines .care-cycle strong { color: #ffb4c8; }
+    .care-popover-title { display: block; margin-bottom: 4px; font-size: 14px; font-weight: 800; line-height: 1.45; color: #fff; }
+    .care-popover-intro { display: block; margin-bottom: 12px; color: #d9dbe1; font-size: 11.5px; line-height: 1.55; }
+    .care-cycle-group + .care-cycle-group { margin-top: 13px; padding-top: 12px; border-top: 1px solid rgba(255,255,255,.12); }
+    .care-cycle-heading { display: inline-flex; align-items: center; margin-bottom: 7px; padding: 3px 8px; border-radius: 999px; background: rgba(255,180,200,.12); color: #ffc1d1; font-size: 11.5px; font-weight: 800; line-height: 1.4; }
+    .care-popover .care-lines { margin: 0; gap: 6px; }
+    .care-popover .care-lines li { grid-template-columns: 12px minmax(0, 1fr); color: #fff; font-size: 12.5px; line-height: 1.55; }
+    .care-popover .care-lines .care-dot { color: #ffb4c8; }
+    .care-popover .d { color: #fff; font-size: 12.5px; line-height: 1.6; }
+    .care-popover-note { display: block; margin-top: 13px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,.14); color: #cfd1d7; font-size: 10.5px; line-height: 1.5; }
     .care-summary-label { display: block; margin: 10px 0 6px; color: var(--accent-text); font-size: 11px; font-weight: 700; letter-spacing: .02em; }
     .care-cards .opt-card .t,
     .care-cards .opt-card .d,
@@ -231,10 +235,12 @@
     @media (max-width: 420px) {
         .care-option .opt-card { padding-right: 14px; padding-top: 42px; }
         .care-detail-trigger { top: 8px; right: 8px; }
-        .care-popover { position: fixed; z-index: 80; left: 16px; right: 16px; top: auto; bottom: 18px; width: auto; max-height: 58vh; overflow: auto; border-radius: 16px; }
+        .care-popover { position: fixed; z-index: 80; left: 12px; right: 12px; top: auto; bottom: 12px; width: auto; max-height: 68vh; overflow: auto; padding: 17px 16px 18px; border-radius: 18px; }
         .care-popover::before { display: none; }
-        .care-lines li { grid-template-columns: 12px minmax(0, 1fr); }
-        .care-lines .care-cycle { grid-column: 2; margin-top: -3px; }
+        .care-popover-title { font-size: 15px; }
+        .care-popover-intro { font-size: 12px; }
+        .care-cycle-heading { font-size: 12px; }
+        .care-popover .care-lines li { font-size: 13px; line-height: 1.6; }
     }
     .variant-group { margin-top: 10px; }
     .variant-group .vg-title { font-size: 12px; font-weight: 700; color: var(--muted); margin-bottom: 6px; }
@@ -576,7 +582,7 @@
 <script src="product-galleries.js?v=20260820-sku-galleries"></script>
 <script src="calculator-core.js"></script>
 <script src="cart.js"></script>
-<script src="product-select.js?v=20260823-care3"></script>
+<script src="product-select.js?v=20260823-care4"></script>
 <script>
 (function () {
     'use strict';
@@ -958,13 +964,25 @@
                 const optionWrap = document.createElement('div');
                 optionWrap.className = 'care-option';
                 const info = SEL.careInfo ? SEL.careInfo(product, st) : (SEL.CARE_INFO[st] || { label: st, short: st, desc: '' });
-                const sourceNote = info.source ? '<span class="care-source">อ้างอิงรอบบริการจาก ' + info.source + '</span>' : '';
+                const customerNote = '<span class="care-popover-note">รายละเอียดบริการเป็นไปตามรุ่น แพ็กเกจ และเงื่อนไขบริการที่เลือก</span>';
                 const careDetails = Array.isArray(info.details) && info.details.length
-                    ? '<span class="care-popover-title">ข้อมูลบริการ</span><ul class="care-lines">' + info.details.map(function (item) {
-                        const cycle = String(item.cycle || '').replace(/(\d+)/, '<strong>$1</strong>');
-                        return '<li><span class="care-dot">•</span><span>' + item.text + '</span><span class="care-cycle">' + cycle + '</span></li>';
-                      }).join('') + '</ul>' + sourceNote
-                    : '<span class="care-popover-title">ข้อมูลบริการ</span><span class="d">' + info.desc + '</span>' + sourceNote;
+                    ? (function () {
+                        const grouped = [];
+                        info.details.forEach(function (item) {
+                            const cycle = String(item.cycle || 'ตามเงื่อนไขบริการ');
+                            let bucket = grouped.find(function (group) { return group.cycle === cycle; });
+                            if (!bucket) { bucket = { cycle: cycle, items: [] }; grouped.push(bucket); }
+                            bucket.items.push(item.text);
+                        });
+                        return '<span class="care-popover-title">บริการที่คุณได้รับ</span>' +
+                            (info.desc ? '<span class="care-popover-intro">' + info.desc + '</span>' : '') +
+                            grouped.map(function (group) {
+                                return '<div class="care-cycle-group"><span class="care-cycle-heading">' + group.cycle + '</span><ul class="care-lines">' +
+                                    group.items.map(function (text) { return '<li><span class="care-dot">•</span><span>' + text + '</span></li>'; }).join('') +
+                                    '</ul></div>';
+                            }).join('') + customerNote;
+                      })()
+                    : '<span class="care-popover-title">บริการที่คุณได้รับ</span><span class="d">' + info.desc + '</span>' + customerNote;
                 const b = optCard(
                     '<span class="t">' + info.label + '</span>' +
                     '<span class="p">' + priceForCare(product, sel.planType, st) + '</span>',
