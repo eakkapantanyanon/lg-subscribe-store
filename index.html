@@ -949,7 +949,7 @@
     </footer>
 
     <script src="analytics.js" defer></script>
-    <script src="products.js"></script>
+    <script src="products.js" defer></script>
     <script>
         /* ---------- dataLayer / GA4: พร้อมใช้ทันทีที่ติดตั้ง GTM/GA4 ----------
            event ที่ push:
@@ -971,9 +971,12 @@
             { model: 'DFC335HM', name: 'เครื่องล้างจาน (Wi-Fi control)', category: 'เครื่องล้างจาน', emoji: '🍽️', price: 749, img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/dishwasher/dfc335hm/gallery/01_XD-G3_MatteBlack_DFC335HM_TH_Front-450.jpg' },
             { model: 'AS25GCBY0', name: 'เครื่องฟอกอากาศ AeroCat Tower', category: 'เครื่องฟอกอากาศ', emoji: '🌫️', price: 549, img: 'https://www.lg.com/content/dam/channel/wcms/th/image-update/air-puricare/2025/as25gcby0-abae/gallery/basic/air-purifier-aerocattower-2025-as207cbz0-gallery-basic-large.jpg' }
         ];
-        let PRODUCTS = (window.LG_PRODUCTS && window.LG_PRODUCTS.length) ? window.LG_PRODUCTS : FEATURED_FALLBACK;
+        let PRODUCTS = FEATURED_FALLBACK;
         const allProductsLink = document.getElementById('allProductsLink');
-        if (allProductsLink) allProductsLink.textContent = 'ทุกรุ่น ' + PRODUCTS.length + ' รายการ →';
+        function syncCanonicalProducts() {
+            PRODUCTS = (window.LG_PRODUCTS && window.LG_PRODUCTS.length) ? window.LG_PRODUCTS : FEATURED_FALLBACK;
+            if (allProductsLink) allProductsLink.textContent = 'ทุกรุ่น ' + PRODUCTS.length + ' รายการ →';
+        }
         const CAT_EMOJI = {
             'Wash Tower': '🌀', 'เครื่องซักผ้า ฝาหน้า': '🌀', 'เครื่องซักผ้า ฝาบน': '🌀', 'เครื่องอบผ้า': '🌬️',
             'ตู้เย็น Side by Side': '🧊', 'ตู้เย็น Multi-Door': '🧊', 'ตู้เย็น 2 ประตู': '🧊',
@@ -1400,10 +1403,13 @@
         applyUrlParamsToCalc();
 
         arrangeHomepageSections();
-        renderCats();
-        renderSubCats();
-        renderLifestyle();
-        renderProducts();
+        document.addEventListener('DOMContentLoaded', function () {
+            syncCanonicalProducts();
+            renderCats();
+            renderSubCats();
+            renderLifestyle();
+            renderProducts();
+        });
         buildHero();
         pushDataLayer('hero_ready', { hero_slides: HERO_SLIDES.length, page_title: document.title });
         /* โหมดอ่านเร็ว: เริ่มแบบหยุดนิ่ง ไม่เลื่อนอัตโนมัติ (ยังสลับสไลด์ด้วยปุ่มได้) */
