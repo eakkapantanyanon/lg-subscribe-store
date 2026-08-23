@@ -3881,6 +3881,7 @@ window.LG_PRODUCTS = [
     name: '34" 21:9 UltraWide™ WQHD (3440x1440) IPS Monitor',
     category: 'มอนิเตอร์',
     emoji: '🖥️',
+    img: 'images/products/34u650a-b.jpg',
     plans: [
         {
           term: '5Y',

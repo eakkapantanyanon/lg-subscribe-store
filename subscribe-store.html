@@ -822,9 +822,9 @@
                     <img src="images/line-lgthailand-qr.png" width="800" height="800" alt="QR Code สำหรับเพิ่ม LINE ไอดี @lgthailand">
                 </div>
                 <div>
-                    <h2 id="officerContactTitle">ติดต่อฝ่ายขาย LG โดยตรง</h2>
-                    <div class="official-assurance">✓ มั่นใจได้ ฝ่ายขาย LG โดยตรง ไม่ผ่านตัวแทน<br>ทำรายการผ่าน LINE Official ของ LG เท่านั้น</div>
-                    <p>สแกน QR Code หรือแตะข้อมูลด้านล่างเพื่อเริ่มพูดคุยกับฝ่ายขาย</p>
+                    <h2 id="officerContactTitle">ส่งรายการให้เจ้าหน้าที่ LG ตรวจสอบ</h2>
+                    <div class="official-assurance">LG Subscribe By E-Promoter ช่วยคุณเลือกสินค้าและเตรียมรายการ<br>สิทธิ์ ราคา และขั้นตอนสมัครสุดท้ายให้เจ้าหน้าที่ LG ยืนยันอีกครั้ง</div>
+                    <p>สแกน QR Code หรือเปิด LINE ด้านล่าง แล้วส่งรายการที่เตรียมไว้ให้เจ้าหน้าที่ตรวจสอบ</p>
                     <div class="contact-detail"><span>LINE ID</span><a href="https://line.me/R/ti/p/@lgthailand" target="_blank" rel="noopener">@lgthailand</a></div>
                     <div class="contact-detail"><span>โทรศัพท์</span><a href="tel:0612670518">061-267-0518</a></div>
                 </div>
@@ -1281,7 +1281,7 @@
             const saving = LG.grandTotalSaving(items, cr);
 
             let msg = 'สวัสดีค่ะ/ครับ\n';
-            msg += 'ติดต่อฝ่ายขาย สนใจสมัคร LG Subscribe รายเดือน\n';
+            msg += 'สนใจสมัคร LG Subscribe รายเดือน — รายการจาก LG Subscribe By E-Promoter\n';
             msg += '👤 ชื่อ: ' + name + '\n';
             msg += '📞 เบอร์โทร: ' + phone + '\n';
             msg += '🏷️ สถานะ: ' + (custType === 'old' ? 'ลูกค้าเดิม LG Subscribe' : 'ลูกค้าใหม่') + '\n\n';
@@ -1315,6 +1315,7 @@
             msg += 'ยอดสุทธิ: ฿' + fmt(net) + '/เดือน\n';
             msg += 'ยอดชำระครั้งแรก: ฿' + fmt(firstPay) + '\n';
             msg += 'ยอดรวมตลอดสัญญา: ฿' + fmt(grand) + (saving > 0 ? ' (ประหยัด ฿' + fmt(saving) + ')' : '') + '\n';
+            msg += '\nรบกวนตรวจสอบสิทธิ์ โปรโมชั่น และขั้นตอนสมัครล่าสุดให้ด้วยครับ/ค่ะ\n';
 
             return msg;
         }

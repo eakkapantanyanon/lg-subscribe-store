@@ -499,7 +499,7 @@ check(/lead_validation_error/.test(cart) && /lead_order_copied/.test(cart), 'Car
 check(/line\.me\/R\/ti\/p\/@lgthailand/.test(cart), 'Cart มีลิงก์ติดต่อ LINE @lgthailand');
 check(/061-267-0518/.test(cart) && /tel:0612670518/.test(cart), 'Cart แสดงเบอร์โทรเจ้าหน้าที่และลิงก์โทรออก');
 check(/line-lgthailand-qr\.png/.test(cart), 'Cart แสดง QR Code สำหรับ LINE');
-check(/ฝ่ายขาย LG โดยตรง/.test(cart) && /ไม่ผ่านตัวแทน/.test(cart) && /LINE Official ของ LG/.test(cart), 'Cart ยืนยันช่องทางฝ่ายขาย LG โดยตรง');
+check(/LG Subscribe By E-Promoter ช่วยคุณเลือกสินค้าและเตรียมรายการ/.test(cart) && /เจ้าหน้าที่ LG ยืนยันอีกครั้ง/.test(cart), 'Cart อธิบายบทบาท E-Promoter และการยืนยันขั้นสุดท้ายโดยเจ้าหน้าที่ LG ชัดเจน');
 check((cart.match(/href="products\.html"/g) || []).length >= 3 && /class="back" href="products\.html">← กลับไปเลือกสินค้า/.test(pdp), 'Sales flow จาก Cart/PDP กลับเข้าหน้า Catalog หลักแทน Home product section เก่า');
 check(/location\.href='products\.html'/.test(promotions) && /hero-secondary" href="products\.html"/.test(promotions) && /products\.html\?sf_group=fridge/.test(promotions) && /products\.html\?sf_group=tv/.test(promotions), 'Promotions พาลูกค้าเข้าสู่ Catalog/Smart Finder ตามหมวดจริง');
 check(/analytics\.js/.test(home) && /analytics\.js/.test(pdp) && /analytics\.js/.test(cart) && /analytics\.js/.test(guide), 'Conversion analytics ครบทุก flow หลักรวม Guide');
