@@ -170,6 +170,7 @@ console.log('\n· Conversion flow anchors');
 const home = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8');
 const promotions = fs.readFileSync(path.join(ROOT, 'promotions.html'), 'utf8');
 const premium = fs.readFileSync(path.join(ROOT, 'premium.css'), 'utf8');
+const catalogCss = fs.readFileSync(path.join(ROOT, 'catalog.css'), 'utf8');
 const catalogHtml = fs.readFileSync(path.join(ROOT, 'products.html'), 'utf8');
 const catalogSource = fs.readFileSync(path.join(ROOT, 'catalog.js'), 'utf8');
 const analyticsSource = fs.readFileSync(path.join(ROOT, 'analytics.js'), 'utf8');
@@ -461,9 +462,9 @@ check(/#products \.p-model \{ color: #6f666a/.test(home) && /body\[data-page="ho
 check(!/<div class="f-col">\s*<h4>/.test(home) && /\.f-col h3 \{/.test(home), 'Home footer heading hierarchy ต่อเนื่อง');
 check(/<script src="analytics\.js\?v=ga4-1" defer><\/script>/.test(home) && /<script src="products\.js" defer><\/script>/.test(home), 'Home defer analytics และ canonical products.js โดยไม่ block initial render');
 check(/function syncCanonicalProducts\(\)/.test(home) && /DOMContentLoaded[\s\S]*syncCanonicalProducts\(\);[\s\S]*renderCats\(\);[\s\S]*renderLifestyle\(\);[\s\S]*renderProducts\(\);/.test(home), 'Home รอ canonical product data ก่อนคำนวณ Category/Lifestyle/Product Grid');
-check(/<link rel="stylesheet" href="premium\.css\?v=10">/.test(home) && /family=Anuphan:wght@400;500;600;700/.test(home), 'Home คง critical layout CSS แบบ blocking เพื่อป้องกัน CLS และตัด Anuphan 300 ที่ไม่จำเป็น');
+check(/<link rel="stylesheet" href="premium\.css\?v=11">/.test(home) && /family=Anuphan:wght@400;500;600;700/.test(home), 'Home คง critical layout CSS แบบ blocking เพื่อป้องกัน CLS และตัด Anuphan 300 ที่ไม่จำเป็น');
 check(/UX\/UI MAX · Catalog conversion polish/.test(fs.readFileSync(path.join(ROOT, 'catalog.css'), 'utf8')) && /\.catalog-grid \.p-price strong[^}]*color: var\(--catalog-brand\)/s.test(fs.readFileSync(path.join(ROOT, 'catalog.css'), 'utf8')), 'Catalog UX/UI Max เน้นราคาและสถานะการ์ดอย่างสม่ำเสมอ');
-check(/catalog\.css\?v=5/.test(catalogHtml) && /\.catalog-grid \.p-model \{[\s\S]*?color: #6f666a/.test(fs.readFileSync(path.join(ROOT, 'catalog.css'), 'utf8')), 'Catalog model text ใช้ contrast ที่ผ่าน WCAG และ cache version ล่าสุด');
+check(/catalog\.css\?v=6/.test(catalogHtml) && /\.catalog-grid \.p-model \{[\s\S]*?color: #6f666a/.test(fs.readFileSync(path.join(ROOT, 'catalog.css'), 'utf8')), 'Catalog model text ใช้ contrast ที่ผ่าน WCAG และ cache version ล่าสุด');
 check(!/class="catalog-brand"[^>]*aria-label=/.test(catalogHtml) && !/loadMoreButton\.setAttribute\('aria-label'/.test(catalogSource), 'Catalog accessible names ใช้ข้อความที่มองเห็นโดยไม่ override aria-label');
 check(/th\.setAttribute\('aria-label', 'รูปสินค้า '/.test(pdp) && /ดูตะกร้า ' \+ visibleCount \+ ' รายการ'/.test(pdp), 'PDP thumbnail และตะกร้ามี accessible name ที่สื่อความหมาย');
 check(/\.crumbs a \{[^}]*text-decoration: underline/.test(pdp), 'PDP breadcrumb links แยกจากข้อความด้วย underline');
@@ -507,6 +508,8 @@ check(/funnel_session_id/.test(analyticsSource) && /funnel_stage/.test(analytics
 check(/G-YQ5EW1VQPX/.test(analyticsSource) && /googletagmanager\.com\/gtag\/js/.test(analyticsSource) && /window\.gtag\('event'/.test(analyticsSource), 'GA4 Measurement ID และ Funnel event transport ถูกเชื่อมกับ Google tag');
 check([home, pdp, catalogHtml, promotions, guide, cart].every((page) => /LG Subscribe By E-Promoter/.test(page)), 'ทุกหน้าหลักใช้ชื่อแบรนด์ LG Subscribe By E-Promoter สอดคล้องกัน');
 check(![home, pdp, catalogHtml, promotions, guide, cart].some((page) => /FLEXI-SUB/.test(page)), 'ทุกหน้าหลักไม่มีชื่อแบรนด์ FLEXI-SUB เดิมหลงเหลือ');
+check(/\.catalog-grid \.p-img img \{[\s\S]*?box-sizing: border-box;[\s\S]*?object-fit: contain;[\s\S]*?object-position: center;/m.test(catalogCss), 'Catalog product images fit inside card without padding-induced crop');
+check(/body\[data-page="home"\] #products \.p-img img \{[\s\S]*?box-sizing: border-box;[\s\S]*?object-fit: contain;[\s\S]*?object-position: center;/m.test(premium), 'Home product images fit inside card without padding-induced crop');
 check([home, pdp, catalogHtml, promotions, guide, cart].every((page) => /analytics\.js\?v=ga4-1/.test(page)), 'ทุก flow หลักใช้ cache-busted GA4 analytics bundle เวอร์ชันเดียวกัน');
 check(/package_view/.test(pdp) && /track\('add_to_cart'/.test(pdp), 'PDP ส่ง package view และ successful add-to-cart events');
 

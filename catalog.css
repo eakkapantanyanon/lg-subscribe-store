@@ -358,7 +358,9 @@ body[data-page="catalog"] :focus-visible {
   height: 100%;
   padding: 16px;
   background: linear-gradient(145deg, #fff 0%, #f7f5f6 100%);
+  box-sizing: border-box;
   object-fit: contain;
+  object-position: center;
 }
 .catalog-grid .p-img img[hidden] { display: none; }
 .catalog-grid .p-emoji {
