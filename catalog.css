@@ -697,7 +697,7 @@ body[data-page="catalog"] :focus-visible {
   .catalog-shell,
   .catalog-header-inner { padding-inline: 16px; }
   .catalog-header-inner { min-height: 68px; gap: 14px; }
-  .catalog-brand strong { font-size: 15px; }
+  .catalog-brand strong { max-width: 165px; font-size: 13px; line-height: 1.15; }
   .catalog-brand small { display: none; }
   .catalog-lg-mark { width: 32px; height: 32px; }
   .catalog-home-link { min-height: 40px; padding: 8px 12px; font-size: 11px; }

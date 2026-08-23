@@ -505,6 +505,8 @@ check(/location\.href='products\.html'/.test(promotions) && /hero-secondary" hre
 check(/analytics\.js/.test(home) && /analytics\.js/.test(pdp) && /analytics\.js/.test(cart) && /analytics\.js/.test(guide), 'Conversion analytics ครบทุก flow หลักรวม Guide');
 check(/funnel_session_id/.test(analyticsSource) && /funnel_stage/.test(analyticsSource) && /funnel_stage_view/.test(analyticsSource) && /guide_smart_finder_click/.test(analyticsSource) && /data-page="guide"/.test(guide), 'Analytics เชื่อม Guide → Discovery → PDP → Lead handoff ด้วย session-scoped funnel context โดยไม่เก็บ PII');
 check(/G-YQ5EW1VQPX/.test(analyticsSource) && /googletagmanager\.com\/gtag\/js/.test(analyticsSource) && /window\.gtag\('event'/.test(analyticsSource), 'GA4 Measurement ID และ Funnel event transport ถูกเชื่อมกับ Google tag');
+check([home, pdp, catalogHtml, promotions, guide, cart].every((page) => /LG Subscribe By E-Promoter/.test(page)), 'ทุกหน้าหลักใช้ชื่อแบรนด์ LG Subscribe By E-Promoter สอดคล้องกัน');
+check(![home, pdp, catalogHtml, promotions, guide, cart].some((page) => /FLEXI-SUB/.test(page)), 'ทุกหน้าหลักไม่มีชื่อแบรนด์ FLEXI-SUB เดิมหลงเหลือ');
 check([home, pdp, catalogHtml, promotions, guide, cart].every((page) => /analytics\.js\?v=ga4-1/.test(page)), 'ทุก flow หลักใช้ cache-busted GA4 analytics bundle เวอร์ชันเดียวกัน');
 check(/package_view/.test(pdp) && /track\('add_to_cart'/.test(pdp), 'PDP ส่ง package view และ successful add-to-cart events');
 
