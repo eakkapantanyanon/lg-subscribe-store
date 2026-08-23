@@ -425,7 +425,7 @@ check(!/card\.setAttribute\('aria-label', 'ดูแพ็กเกจ '/.test(h
 check(/#products \.p-model \{ color: #6f666a/.test(home) && /body\[data-page="home"\] #products \.p-model \{[\s\S]*?color: #6f666a/.test(premium), 'Home product model contrast ผ่านเกณฑ์ WCAG รวม premium override');
 check(!/<div class="f-col">\s*<h4>/.test(home) && /\.f-col h3 \{/.test(home), 'Home footer heading hierarchy ต่อเนื่อง');
 check(/<script src="analytics\.js" defer><\/script>/.test(home) && /<script src="products\.js"><\/script>/.test(home), 'Home โหลด canonical products.js ก่อน inline product UI และ defer เฉพาะ analytics');
-check(/rel="preload" as="style" href="premium\.css\?v=10"/.test(home) && /family=Anuphan:wght@400;500;600;700/.test(home), 'Home critical path ลด render-blocking CSS/font และตัด Anuphan 300 ที่ไม่จำเป็น');
+check(/<link rel="stylesheet" href="premium\.css\?v=10">/.test(home) && /family=Anuphan:wght@400;500;600;700/.test(home), 'Home คง critical layout CSS แบบ blocking เพื่อป้องกัน CLS และตัด Anuphan 300 ที่ไม่จำเป็น');
 check(/UX\/UI MAX · Catalog conversion polish/.test(fs.readFileSync(path.join(ROOT, 'catalog.css'), 'utf8')) && /\.catalog-grid \.p-price strong[^}]*color: var\(--catalog-brand\)/s.test(fs.readFileSync(path.join(ROOT, 'catalog.css'), 'utf8')), 'Catalog UX/UI Max เน้นราคาและสถานะการ์ดอย่างสม่ำเสมอ');
 check(/\.opt-card\.selected::after/.test(premium) && /body\[data-page="product-detail"\] \.color-opt\.selected/.test(premium), 'PDP UX/UI Max แสดง selection state ของแผนและสีชัดเจน');
 check(/บัตรเครดิต/.test(cart) && /บัตรเดบิต/.test(cart) && /Direct Debit/.test(cart), 'Cart แสดงช่องทางบัตรเครดิต บัตรเดบิต และหักบัญชี');
