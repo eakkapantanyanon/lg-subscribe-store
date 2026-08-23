@@ -317,6 +317,8 @@
             transition: opacity 0.3s;
         }
         .contact-btn:hover { opacity: 0.9; }
+        .line-open-btn { width: 100%; min-height: 48px; margin-top: 8px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--accent); border-radius: 10px; color: var(--accent-text); background: #fff; font-size: 14px; font-weight: 600; text-decoration: none; box-sizing: border-box; }
+        .line-open-btn:hover, .line-open-btn:focus-visible { background: var(--accent-soft); outline: 2px solid transparent; }
         .contact-note { font-size: 12px; color: #6f666a; text-align: center; margin-top: 10px; }
 
         /* ---- แถบแจ้งเตือนโปรโมชัน ---- */
@@ -824,10 +826,11 @@
                     <div class="contact-detail"><span>โทรศัพท์</span><a href="tel:0612670518">061-267-0518</a></div>
                 </div>
             </section>
-            <p class="copy-help">กรอกชื่อและเบอร์โทร แล้วคัดลอกรายการไปวางในแชตกับเจ้าหน้าที่</p>
-            <button class="contact-btn" id="sendToOfficerBtn" onclick="copyOrderForOfficer()">☎ เตรียมคำขอให้เจ้าหน้าที่ติดต่อกลับ</button>
+            <p class="copy-help">กรอกชื่อและเบอร์โทร แล้วเตรียมรายการสำหรับส่งให้ฝ่ายขาย LG</p>
+            <button class="contact-btn" id="sendToOfficerBtn" onclick="copyOrderForOfficer()">คัดลอกรายการสำหรับส่ง LINE</button>
+            <a class="line-open-btn" id="openLineBtn" href="https://line.me/R/ti/p/@lgthailand" target="_blank" rel="noopener" onclick="trackLineOpen()">เปิด LINE @lgthailand</a>
             <p class="checkout-status" id="checkoutStatus" role="status" aria-live="polite"></p>
-            <p class="contact-note">*หลังคัดลอกสำเร็จ ให้เปิด LINE @lgthailand แล้ววางข้อความในช่องแชต</p>
+            <p class="contact-note">ขั้นตอน: คัดลอกรายการ → เปิด LINE → วางข้อความและส่งให้ฝ่ายขาย LG</p>
             <div class="checkout-assurance"><span><b>✓</b>ตรวจสอบราคาก่อนส่ง</span><span><b>◇</b>ยังไม่มีการชำระเงินบนเว็บ</span><span><b>↗</b>เจ้าหน้าที่ช่วยยืนยันสิทธิ์</span></div>
         </aside>
     </main>
@@ -1331,14 +1334,22 @@
                     if (!document.execCommand('copy')) throw new Error('copy failed');
                     textarea.remove();
                 }
-                document.getElementById('checkoutStatus').textContent = '✓ คัดลอกรายการแล้ว เปิด LINE @lgthailand แล้ววางข้อความเพื่อส่งให้เจ้าหน้าที่';
+                document.getElementById('checkoutStatus').textContent = '✓ คัดลอกรายการแล้ว ขั้นต่อไปเปิด LINE @lgthailand แล้ววางข้อความส่งให้ฝ่ายขาย LG';
                 if (window.FLEXIAnalytics) window.FLEXIAnalytics.push('lead_order_copied', {
                     cart_item_count: Object.keys(selected).length,
                     customer_type: custType
                 });
+                document.getElementById('openLineBtn').focus();
             } catch (error) {
                 document.getElementById('checkoutStatus').textContent = 'ไม่สามารถคัดลอกอัตโนมัติได้ กรุณาลองใหม่หรือถ่ายภาพหน้าจอส่งให้เจ้าหน้าที่';
             }
+        }
+
+        function trackLineOpen() {
+            if (window.FLEXIAnalytics) window.FLEXIAnalytics.push('lead_line_open', {
+                cart_item_count: Object.keys(selected).length,
+                customer_type: custType
+            });
         }
 
         document.getElementById('custName').addEventListener('input', function () { clearCheckoutError('custName'); });
