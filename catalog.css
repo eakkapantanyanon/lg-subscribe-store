@@ -368,6 +368,8 @@ body[data-page="catalog"] :focus-visible {
   z-index: 0;
   font-size: 48px;
 }
+.catalog-grid .p-emoji[hidden] { display: none !important; }
+.catalog-grid .p-img img:not([hidden]) { position: relative; z-index: 1; }
 .catalog-grid .p-cat {
   min-height: calc(1.35em * 2);
   margin: 17px 2px 0;
