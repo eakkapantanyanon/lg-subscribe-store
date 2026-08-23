@@ -4,6 +4,23 @@
 
   window.dataLayer = window.dataLayer || [];
 
+  const GA4_MEASUREMENT_ID = 'G-YQ5EW1VQPX';
+
+  function loadGa4() {
+    if (document.querySelector('script[data-flexi-ga4]')) return;
+    const script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(GA4_MEASUREMENT_ID);
+    script.dataset.flexiGa4 = 'true';
+    document.head.appendChild(script);
+
+    window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
+    window.gtag('js', new Date());
+    window.gtag('config', GA4_MEASUREMENT_ID, { send_page_view: true });
+  }
+
+  loadGa4();
+
   const FUNNEL_SESSION_KEY = 'flexi_funnel_session_v1';
   const FUNNEL_STAGE_BY_PAGE = {
     guide: 'guide',
@@ -36,14 +53,20 @@
   function push(event, params) {
     try {
       if (!Array.isArray(window.dataLayer)) window.dataLayer = [];
-      window.dataLayer.push(Object.assign({
+      const payload = Object.assign({
         event: event,
         page_path: location.pathname,
         page_title: document.title,
         page_type: pageType(),
         funnel_stage: funnelStage(),
         funnel_session_id: funnelSessionId(),
-      }, params || {}));
+      }, params || {});
+      window.dataLayer.push(payload);
+      if (typeof window.gtag === 'function') {
+        const gaParams = Object.assign({}, payload);
+        delete gaParams.event;
+        window.gtag('event', event, gaParams);
+      }
     } catch (_) {
       // Analytics must never block the shopping flow.
     }
