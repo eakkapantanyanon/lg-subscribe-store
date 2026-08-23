@@ -251,7 +251,9 @@
     .big-label { font-size: 12px; color: var(--muted); font-weight: 600; letter-spacing: .01em; }
     .promo-note { font-size: 12.5px; color: var(--text); margin-top: 12px; line-height: 1.6; }
     .promo-note .tag { display: inline-block; background: #f7e9ee; color: var(--accent-text); border: 1px solid rgba(165,0,52,.12); border-radius: 999px; padding: 2px 8px; font-size: 11px; font-weight: 700; margin-right: 4px; }
-    .breakdown-link { display: inline-block; margin-top: 8px; padding: 0; border: 0; background: transparent; font: inherit; font-size: 13px; color: var(--accent-text); font-weight: 600; cursor: pointer; text-decoration: underline; }
+    .price-intel { margin-top: 10px; padding: 10px 12px; border: 1px solid #eadde2; border-radius: 10px; background: #fff8fa; color: #51474b; font-size: 12px; line-height: 1.55; }
+.price-intel strong { color: var(--accent-text); }
+.breakdown-link { display: inline-block; margin-top: 8px; padding: 0; border: 0; background: transparent; font: inherit; font-size: 13px; color: var(--accent-text); font-weight: 600; cursor: pointer; text-decoration: underline; }
     .breakdown-link:disabled { color: var(--muted); cursor: not-allowed; text-decoration: none; }
     .term-row {
         display: flex; justify-content: space-between; align-items: center;
@@ -394,7 +396,7 @@
     @media (max-width: 1080px) {
         main.pdp-layout { grid-template-columns: minmax(0,1fr) minmax(0,1fr); padding-bottom: 220px; }
         aside.pdp-summary { max-height: none; overflow: visible; padding: 14px 20px; border-radius: 20px 20px 0 0; }
-        aside .summary-eyebrow, aside .strike, aside .promo-note, aside .breakdown-link, aside .term-row, aside .summary-totals, aside .combo-hint, aside .summary-trust { display: none; }
+        aside .summary-eyebrow, aside .strike, aside .promo-note, aside .price-intel, aside .breakdown-link, aside .term-row, aside .summary-totals, aside .combo-hint, aside .summary-trust { display: none; }
         aside .price-block { border: 0; padding: 0; }
         aside .big-price { font-size: 29px; }
         aside .btn-row { flex-direction: row; margin-top: 8px; }
@@ -526,7 +528,8 @@
         </div>
         <p class="promo-note" id="sumPromo"></p>
         <p class="promo-note" id="sumGift" style="display:none;background:#fef3c7;color:#92400e;border-radius:6px;padding:4px 8px;margin-top:6px;"></p>
-        <button class="breakdown-link" id="sumBreakdown" type="button" disabled>คลิกเพื่อดูค่าบริการและรายละเอียดทั้งหมด</button>
+        <div class="price-intel" id="priceIntel" hidden></div>
+        <button class="breakdown-link" id="sumBreakdown" type="button" disabled>ดูตารางราคาแต่ละช่วงและรายละเอียดทั้งหมด</button>
         <div class="term-row"><span>ระยะเวลาสัญญา</span><strong id="sumTerm">—</strong></div>
         <div class="summary-totals">
             <div class="s-row"><span>ยอดชำระครั้งแรก</span><b id="sumFirstPay">—</b></div>
@@ -1149,6 +1152,8 @@
             el('sumBig').textContent = '฿—';
             el('sumBigLabel').textContent = 'เลือกตัวเลือกให้ครบเพื่อดูราคา';
             el('sumPromo').textContent = '';
+            el('priceIntel').hidden = true;
+            el('priceIntel').textContent = '';
             el('sumTerm').textContent = '—';
             el('sumFirstPay').textContent = '—';
             el('sumContract').textContent = '—';
@@ -1171,6 +1176,19 @@
         if (s.plan.promo) promoBits.push('<span class="tag">' + s.plan.promo.replace(/·/g, '·') + '</span>');
         promoBits.push('ราคาโปรนี้ใช้ได้เฉพาะช่วงโปรโมชันปัจจุบัน');
         el('sumPromo').innerHTML = promoBits.join(' ');
+
+        // สรุปโครงสร้างราคาให้เข้าใจก่อนเปิดตารางรายละเอียด
+        const priceIntel = el('priceIntel');
+        const schedule = Array.isArray(s.plan.billSchedule) ? s.plan.billSchedule : [];
+        if (!s.plan.outright && schedule.length) {
+            priceIntel.innerHTML = '<strong>ราคาแต่ละช่วง:</strong> ' + schedule.map(function (seg) {
+                return seg.range + ' ฿' + fmt(seg.price) + '/เดือน' + (seg.note ? ' (' + seg.note + ')' : '');
+            }).join(' · ');
+            priceIntel.hidden = false;
+        } else {
+            priceIntel.hidden = true;
+            priceIntel.textContent = '';
+        }
 
         // ของแถม
         const giftEl = el('sumGift');

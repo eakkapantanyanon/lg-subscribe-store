@@ -6,7 +6,7 @@ const path = require('path');
 const { execFileSync } = require('child_process');
 
 const ROOT = __dirname;
-const pages = ['index.html', 'products.html', 'product.html', 'promotions.html', 'subscribe-store.html'];
+const pages = ['index.html', 'products.html', 'product.html', 'promotions.html', 'subscribe-store.html', 'subscribe-guide.html'];
 const requiredAssets = [
   'products.js',
   'product-galleries.js',
@@ -125,7 +125,8 @@ const publicCanonical = {
   'products.html': 'https://eakkapantanyanon.github.io/lg-subscribe-store/products.html',
   'promotions.html': 'https://eakkapantanyanon.github.io/lg-subscribe-store/promotions.html',
   'subscribe-store.html': 'https://eakkapantanyanon.github.io/lg-subscribe-store/subscribe-store.html',
-  'product.html': 'https://eakkapantanyanon.github.io/lg-subscribe-store/product.html'
+  'product.html': 'https://eakkapantanyanon.github.io/lg-subscribe-store/product.html',
+  'subscribe-guide.html': 'https://eakkapantanyanon.github.io/lg-subscribe-store/subscribe-guide.html'
 };
 for (const page of pages) {
   const html = fs.readFileSync(path.join(ROOT, page), 'utf8');
@@ -177,6 +178,7 @@ const pdp = fs.readFileSync(path.join(ROOT, 'product.html'), 'utf8');
 const productSource = fs.readFileSync(path.join(ROOT, 'products.js'), 'utf8');
 const gallerySource = fs.readFileSync(path.join(ROOT, 'product-galleries.js'), 'utf8');
 const cart = fs.readFileSync(path.join(ROOT, 'subscribe-store.html'), 'utf8');
+const guide = fs.readFileSync(path.join(ROOT, 'subscribe-guide.html'), 'utf8');
 const parseProducts = source => {
   const marker = 'window.LG_PRODUCTS = [';
   const start = source.indexOf(marker);
@@ -409,7 +411,7 @@ check((gallerySource.match(/https:\/\/arttato\.github\.io\/LG-Subscribe\/img\/pr
 check(/เทคโนโลยีเครื่องดูดฝุ่นไร้สาย LG CordZero/.test(pdp) && !/f\.push\('แผน '/.test(pdp), 'PDP bullet ใช้คุณสมบัติสินค้าและไม่สร้างจากข้อมูลแผน');
 check(pdp.indexOf("group('ประเภทแผน'") < pdp.indexOf("group('ประเภทการดูแล'"), 'PDP แสดงประเภทแผนก่อนประเภทการดูแล');
 check(/const pts = SEL\.planTypes\(product\);\s*wrap\.appendChild\(group\('ประเภทแผน'/.test(pdp), 'PDP แสดงกลุ่มประเภทแผนเสมอ');
-check(/care-summary-label/.test(pdp) && /บริการที่ได้รับ/.test(pdp), 'PDP แสดงหัวข้อบริการที่ได้รับในรูปแบบเดียวกันทุกตัวเลือกบริการ');
+check(/care-detail-trigger/.test(pdp) && /care-popover-title/.test(pdp) && /บริการที่ได้รับ/.test(pdp), 'PDP ซ่อนรายละเอียดบริการไว้ใน popover ที่เปิดดูได้ทุกตัวเลือกบริการ');
 const productSelectSource = fs.readFileSync(path.join(ROOT, 'product-select.js'), 'utf8');
 check(/category === 'Wash Tower'[\s\S]*?details = serviceType === 'Visit'[\s\S]*?ตรวจและทำความสะอาดเครื่อง[\s\S]*?ทุก 12 เดือน/.test(productSelectSource), 'Wash Tower แสดงบริการเป็นรายการพร้อมรอบบริการ ไม่ยุบเป็นย่อหน้าเดียว');
 check((productSelectSource.match(/details =/g) || []).length >= 10, 'ประเภทสินค้าหลักใช้โครงสร้างรายการบริการแบบเดียวกัน');
@@ -429,7 +431,7 @@ check(/<script src="analytics\.js" defer><\/script>/.test(home) && /<script src=
 check(/function syncCanonicalProducts\(\)/.test(home) && /DOMContentLoaded[\s\S]*syncCanonicalProducts\(\);[\s\S]*renderCats\(\);[\s\S]*renderLifestyle\(\);[\s\S]*renderProducts\(\);/.test(home), 'Home รอ canonical product data ก่อนคำนวณ Category/Lifestyle/Product Grid');
 check(/<link rel="stylesheet" href="premium\.css\?v=10">/.test(home) && /family=Anuphan:wght@400;500;600;700/.test(home), 'Home คง critical layout CSS แบบ blocking เพื่อป้องกัน CLS และตัด Anuphan 300 ที่ไม่จำเป็น');
 check(/UX\/UI MAX · Catalog conversion polish/.test(fs.readFileSync(path.join(ROOT, 'catalog.css'), 'utf8')) && /\.catalog-grid \.p-price strong[^}]*color: var\(--catalog-brand\)/s.test(fs.readFileSync(path.join(ROOT, 'catalog.css'), 'utf8')), 'Catalog UX/UI Max เน้นราคาและสถานะการ์ดอย่างสม่ำเสมอ');
-check(/catalog\.css\?v=4/.test(catalogHtml) && /\.catalog-grid \.p-model \{[\s\S]*?color: #6f666a/.test(fs.readFileSync(path.join(ROOT, 'catalog.css'), 'utf8')), 'Catalog model text ใช้ contrast ที่ผ่าน WCAG และ cache version ล่าสุด');
+check(/catalog\.css\?v=5/.test(catalogHtml) && /\.catalog-grid \.p-model \{[\s\S]*?color: #6f666a/.test(fs.readFileSync(path.join(ROOT, 'catalog.css'), 'utf8')), 'Catalog model text ใช้ contrast ที่ผ่าน WCAG และ cache version ล่าสุด');
 check(!/class="catalog-brand"[^>]*aria-label=/.test(catalogHtml) && !/loadMoreButton\.setAttribute\('aria-label'/.test(catalogSource), 'Catalog accessible names ใช้ข้อความที่มองเห็นโดยไม่ override aria-label');
 check(/th\.setAttribute\('aria-label', 'รูปสินค้า '/.test(pdp) && /ดูตะกร้า ' \+ visibleCount \+ ' รายการ'/.test(pdp), 'PDP thumbnail และตะกร้ามี accessible name ที่สื่อความหมาย');
 check(/\.crumbs a \{[^}]*text-decoration: underline/.test(pdp), 'PDP breadcrumb links แยกจากข้อความด้วย underline');
@@ -439,6 +441,11 @@ check(/\.opt-card\.selected::after/.test(premium) && /body\[data-page="product-d
 check(/บัตรเครดิต/.test(cart) && /บัตรเดบิต/.test(cart) && /Direct Debit/.test(cart), 'Cart แสดงช่องทางบัตรเครดิต บัตรเดบิต และหักบัญชี');
 check(/รองรับบัตรเดบิตทุกธนาคาร/.test(cart) && /SCB/.test(cart) && /BBL/.test(cart) && /ธนาคารไทยพาณิชย์/.test(cart) && /ธนาคารกรุงเทพ/.test(cart), 'Cart ระบุบัตรเดบิตทุกธนาคาร และ Direct Debit เฉพาะ SCB/BBL');
 check(/บัตรเดบิตทุกธนาคาร/.test(home) && /SCB/.test(home) && /BBL/.test(home), 'Home FAQ สอดคล้องกับช่องทางชำระเงินล่าสุด');
+check(/id="budgetOptions"/.test(catalogHtml) && /catalog_budget_filter/.test(catalogSource) && /state\.maxMonthly/.test(catalogSource) && /catalog\.js\?v=2/.test(catalogHtml), 'Catalog มี Product Discovery ตามงบรายเดือนจาก canonical plans และ cache version ล่าสุด');
+check(/new URLSearchParams\(window\.location\.search\)\.get\('q'\)/.test(catalogSource), 'Catalog รองรับ deep-link คำค้นหาจาก SEO content');
+check(/id="priceIntel"/.test(pdp) && /Array\.isArray\(s\.plan\.billSchedule\)/.test(pdp) && /ราคาแต่ละช่วง:/.test(pdp) && /ดูตารางราคาแต่ละช่วง/.test(pdp), 'PDP อธิบายราคาแต่ละช่วงจาก canonical billSchedule ก่อนเปิดรายละเอียด');
+check(/LG Subscribe คืออะไร/.test(guide) && /ค้นหารุ่นตามงบรายเดือน/.test(guide) && /ยอดรวมตลอดสัญญา/.test(guide), 'SEO guide ตอบ intent เรื่อง Subscribe งบ และค่าใช้จ่าย');
+check(/subscribe-guide\.html/.test(home) && /subscribe-guide\.html/.test(sitemap), 'Home และ sitemap เชื่อมไปคู่มือ LG Subscribe');
 check(!/#why, #products, #promotions, #compare, #how, #services, #faq, footer \{ content-visibility: auto/.test(home), 'Home ไม่ใช้ intrinsic placeholder กับทุก section จนเกิดช่องว่าง/scroll jump');
 check(/\.campaign-card img \{[^}]*height: auto;[^}]*aspect-ratio: 8\/3/.test(promotions), 'Promotion campaign artwork รักษาสัดส่วน 8:3 โดยไม่ยืดความสูง');
 check(/\.schedule-table \{ min-width: 520px/.test(cart) && /\.schedule-toggle \{ overflow-x: auto/.test(cart), 'Cart mobile ตารางชำระเลื่อนได้โดยไม่บีบข้อมูล');

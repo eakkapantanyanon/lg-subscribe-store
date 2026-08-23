@@ -283,6 +283,13 @@ body[data-page="catalog"] :focus-visible {
   box-shadow: 0 8px 20px rgba(165, 0, 52, .2);
 }
 .catalog-filter-count { margin-left: 4px; opacity: .72; font-size: 10px; }
+.budget-finder { margin-top: 30px; padding: 22px; border: 1px solid rgba(165,0,52,.12); border-radius: 18px; background: linear-gradient(135deg,#fff,#fff7f9); }
+.budget-finder .catalog-filter-head { margin-top: 0; }
+.budget-options { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 14px; }
+.budget-options button { min-height: 42px; padding: 8px 14px; border: 1px solid rgba(92,47,64,.16); border-radius: 999px; background: #fff; color: #62565b; cursor: pointer; font-size: 12px; font-weight: 700; }
+.budget-options button:hover { border-color: rgba(165,0,52,.38); color: var(--catalog-brand); }
+.budget-options button[aria-pressed="true"] { border-color: var(--catalog-brand); background: var(--catalog-brand); color: #fff; }
+.budget-note { margin: 10px 0 0; color: var(--catalog-muted); font-size: 11px; }
 
 /* Results and cards */
 .catalog-results {

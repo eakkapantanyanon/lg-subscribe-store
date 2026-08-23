@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anuphan:wght@300;400;500;600;700&family=Bai+Jamjuree:wght@500;600;700&display=swap">
     <title>เครื่องใช้ไฟฟ้า LG Subscribe | FLEXI-SUB</title>
     <link rel="stylesheet" href="premium.css?v=9">
-    <link rel="stylesheet" href="catalog.css?v=4">
+    <link rel="stylesheet" href="catalog.css?v=5">
 </head>
 <body data-page="catalog">
     <a class="skip-link" href="#catalogMain">ข้ามไปยังรายการสินค้า</a>
@@ -74,6 +74,21 @@
                     <p>เลือกได้ครั้งละหนึ่งหมวด และใช้ร่วมกับคำค้นหาได้</p>
                 </div>
                 <div class="catalog-filters" id="catalogFilters" role="group" aria-label="กรองตามหมวดสินค้า"></div>
+
+                <div class="budget-finder" aria-labelledby="budgetFinderTitle">
+                    <div class="catalog-filter-head">
+                        <h2 id="budgetFinderTitle">ช่วยเลือกรุ่นตามงบรายเดือน</h2>
+                        <p>เลือกราคาสูงสุดที่สะดวกจ่ายต่อเดือน ระบบจะคัดจากแพ็กเกจจริงของสินค้าทั้งหมด</p>
+                    </div>
+                    <div class="budget-options" id="budgetOptions" role="group" aria-label="กรองตามงบรายเดือน">
+                        <button type="button" data-budget="0" aria-pressed="true">ไม่จำกัดงบ</button>
+                        <button type="button" data-budget="500" aria-pressed="false">ไม่เกิน ฿500/เดือน</button>
+                        <button type="button" data-budget="800" aria-pressed="false">ไม่เกิน ฿800/เดือน</button>
+                        <button type="button" data-budget="1200" aria-pressed="false">ไม่เกิน ฿1,200/เดือน</button>
+                        <button type="button" data-budget="2000" aria-pressed="false">ไม่เกิน ฿2,000/เดือน</button>
+                    </div>
+                    <p class="budget-note">* ใช้ราคาแพ็กเกจรายเดือนปกติเป็นเกณฑ์ ก่อนส่วนลดเฉพาะช่วง โปรคอมโบ หรือเงื่อนไขลูกค้าเดิม</p>
+                </div>
             </div>
         </section>
 
@@ -112,6 +127,6 @@
 
     <script src="analytics.js"></script>
     <script src="products.js"></script>
-    <script src="catalog.js?v=1"></script>
+    <script src="catalog.js?v=2"></script>
 </body>
 </html>

@@ -4,7 +4,7 @@
     const PRODUCTS = Array.isArray(window.LG_PRODUCTS) ? window.LG_PRODUCTS : [];
     const INITIAL_BATCH_SIZE = 16;
     const LOAD_MORE_BATCH_SIZE = 16;
-    const state = { query: '', category: '', visibleLimit: INITIAL_BATCH_SIZE };
+    const state = { query: '', category: '', maxMonthly: 0, visibleLimit: INITIAL_BATCH_SIZE };
 
     const grid = document.getElementById('catalogGrid');
     const filters = document.getElementById('catalogFilters');
@@ -18,6 +18,7 @@
     const loadMoreWrap = document.getElementById('catalogLoadMoreWrap');
     const loadMoreButton = document.getElementById('catalogLoadMore');
     const loadMoreStatus = document.getElementById('catalogLoadMoreStatus');
+const budgetOptions = document.getElementById('budgetOptions');
 
     let searchTrackTimer = 0;
 
@@ -120,6 +121,7 @@
 
         return PRODUCTS.filter(function (product) {
             if (state.category && product.category !== state.category) return false;
+            if (state.maxMonthly > 0 && minimumMonthlyPrice(product) > state.maxMonthly) return false;
             if (!query) return true;
 
             const haystack = [product.name, product.model, product.category]
@@ -214,6 +216,10 @@
     function resetCatalog() {
         state.query = '';
         state.category = '';
+        state.maxMonthly = 0;
+        if (budgetOptions) budgetOptions.querySelectorAll('button[data-budget]').forEach(function (button) {
+            button.setAttribute('aria-pressed', String(Number(button.dataset.budget || 0) === 0));
+        });
         resetVisibleLimit();
         searchInput.value = '';
         updateClearButton();
@@ -234,6 +240,18 @@
             category: state.category || 'all',
             result_count: count
         });
+    });
+
+    if (budgetOptions) budgetOptions.addEventListener('click', function (event) {
+        const button = event.target.closest('button[data-budget]');
+        if (!button) return;
+        state.maxMonthly = Number(button.dataset.budget || 0);
+        budgetOptions.querySelectorAll('button[data-budget]').forEach(function (item) {
+            item.setAttribute('aria-pressed', String(item === button));
+        });
+        resetVisibleLimit();
+        const count = renderProducts();
+        track('catalog_budget_filter', { max_monthly: state.maxMonthly || 'all', result_count: count });
     });
 
     searchInput.addEventListener('input', function () {
@@ -282,6 +300,12 @@
         image.hidden = true;
     }, true);
 
+    const initialQuery = new URLSearchParams(window.location.search).get('q');
+    if (initialQuery) {
+        state.query = initialQuery.slice(0, 100);
+        searchInput.value = state.query;
+        updateClearButton();
+    }
     total.textContent = PRODUCTS.length + ' รายการ';
     renderFilters();
     renderProducts();
