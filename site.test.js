@@ -424,6 +424,7 @@ check(/\.care-detail-trigger \{ position: relative/.test(pdp) && !/\.care-detail
 const productSelectSource = fs.readFileSync(path.join(ROOT, 'product-select.js'), 'utf8');
 const serviceCycleSource = fs.readFileSync(path.join(ROOT, 'service-cycles.js'), 'utf8');
 check(/service-cycles\.js\?v=20260823/.test(pdp) && /Price list_Aug_V3\.pdf/.test(serviceCycleSource), 'PDP โหลดรอบบริการจาก Price List ที่ตรวจสอบแล้ว');
+check(/WD516AN\|Self\|24\|31410/.test(serviceCycleSource) && /WD518AN\|Visit\|24\|34110/.test(serviceCycleSource), 'Outright 2Y ของ WD516AN/WD518AN mapping Visit/Self ครบทั้ง 4 แผน');
 check(!/ตรวจและทำความสะอาดเครื่อง[\s\S]*?ทุก 12 เดือน/.test(productSelectSource) && /รอบเข้าดูแล/.test(productSelectSource), 'PDP ไม่สร้างรายละเอียดงานบริการเฉพาะหมวดโดยไม่มี source ยืนยัน');
 check(!/ทุก 6\/12 เดือน/.test(productSelectSource) && !/ค่าเช่าถูกลง/.test(productSelectSource) && !/รับประกันเท่านั้น/.test(productSelectSource), 'ข้อความ Care fallback ไม่อ้างรอบ/ประโยชน์/การรับประกันที่ไม่ได้ยืนยันกับทุกรุ่น');
 check(/รายละเอียดงานขึ้นอยู่กับรุ่นและเงื่อนไขบริการ/.test(productSelectSource) && /รายการอุปกรณ์ขึ้นอยู่กับรุ่นและเงื่อนไขบริการ/.test(productSelectSource), 'Care fallback บอกขอบเขตข้อมูลอย่างตรงไปตรงมา');

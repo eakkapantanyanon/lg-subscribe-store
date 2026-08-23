@@ -6,25 +6,8 @@
     "productsWithCarePlans": 66,
     "productsWithVerifiedCycle": 66,
     "carePlanCount": 164,
-    "carePlansWithVerifiedCycle": 162,
-    "unresolvedCarePlans": [
-      {
-        "model": "WD516AN",
-        "serviceType": "Self",
-        "termMonths": 24,
-        "price": 31410,
-        "outright": true,
-        "currentCycle": "ไม่มีบริการ"
-      },
-      {
-        "model": "WD518AN",
-        "serviceType": "Visit",
-        "termMonths": 24,
-        "price": 34110,
-        "outright": true,
-        "currentCycle": "ทุก 6 เดือน"
-      }
-    ],
+    "carePlansWithVerifiedCycle": 164,
+    "unresolvedCarePlans": [],
     "productsWithVerifiedDetail": 66,
     "verifiedDetailModels": [
       "WD516AN",

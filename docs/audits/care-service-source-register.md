@@ -69,4 +69,13 @@ Self Service:
 
 Coverage ปัจจุบันดูได้จาก `care-service-coverage.json` ซึ่งสร้างใหม่ด้วย `node scripts/audit-care-service.js` ทุกครั้งก่อน regression/deploy.
 
-หมายเหตุ: Price List ปัจจุบันยังมี 2 outright care plans ที่ mapping source ไม่ชัดเจน คือ WD516AN Self 2Y และ WD518AN Visit 2Y; audit จะรายงานไว้ใน `unresolvedCarePlans` และไม่เดารอบบริการเพิ่มเอง.
+### WD516AN / WD518AN — Outright 2Y
+สถานะ: VERIFIED — manual reconciliation
+
+Price List หน้า 3 ใช้ model cell ร่วม `WD516 / WD518` ครอบทั้งแถว Visit และ Self จึงต้องตีความเป็น service-type pricing ที่ใช้กับทั้งสองรุ่น ไม่ใช่แบ่ง Visit ให้ WD516 และ Self ให้ WD518 คนละรุ่น. หลัง cross-check กับโครงสร้าง Outright + 2Y Service และ Care Service 2026 ที่ระบุ WD516/WD518 รองรับทั้ง Visit Service และ Self Service จึงยืนยัน mapping ครบ 4 แผน:
+- WD516AN Visit 2Y — ฿34,110 — ทุก 6 เดือน
+- WD516AN Self 2Y — ฿31,410 — ทุก 6 เดือน
+- WD518AN Visit 2Y — ฿34,110 — ทุก 6 เดือน
+- WD518AN Self 2Y — ฿31,410 — ทุก 6 เดือน
+
+`service-cycles.js` จึงมี Price List p.3 mapping ครบทั้ง 4 แผน และ `unresolvedCarePlans` ต้องเป็น 0.

@@ -1,8 +1,12 @@
 /* Generated from docs/audits/price-reconciliation-report.json
-   Source: Price list_Aug_V3.pdf. Do not hand-edit service cycles here. */
+   Source: Price list_Aug_V3.pdf. WD516AN/WD518AN Outright 2Y includes a documented manual reconciliation in docs/audits/care-service-source-register.md. */
 (function(){'use strict';
 var map={
   "WD516AN|Visit|24|34110": {
+    "cycle": "ทุก 6 เดือน",
+    "page": 3
+  },
+  "WD516AN|Self|24|31410": {
     "cycle": "ทุก 6 เดือน",
     "page": 3
   },
@@ -21,6 +25,10 @@ var map={
   "WD516AN|Self|84|499": {
     "cycle": "ทุก 6 เดือน",
     "page": 4
+  },
+  "WD518AN|Visit|24|34110": {
+    "cycle": "ทุก 6 เดือน",
+    "page": 3
   },
   "WD518AN|Self|24|31410": {
     "cycle": "ทุก 6 เดือน",
