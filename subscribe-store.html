@@ -818,7 +818,7 @@
                     <span style="font-size: 13px; font-weight: normal; color: #666;">/เดือน</span>
                 </div>
             </div>
-            <p class="first-bill-note">* ยอดชำระครั้งแรก: งวดที่ 1 (฿149) สำหรับแผน Visit/Self · ทีวี/จอ/ลำโพง = ชำระล่วงหน้า 12 เดือน 50% · ซื้อขาด = จ่ายครั้งเดียว (รวมเครื่อง + บริการ 2 ปี)</p>
+            <p class="first-bill-note">* ยอดชำระครั้งแรกคำนวณตามแพ็กเกจที่เลือก และแสดงในสรุปด้านบน โปรดตรวจสอบตารางชำระเงินของแต่ละรายการก่อนส่งให้เจ้าหน้าที่</p>
             <section class="officer-contact" aria-labelledby="officerContactTitle">
                 <div class="officer-qr">
                     <img src="images/line-lgthailand-qr.png" width="800" height="800" alt="QR Code สำหรับเพิ่ม LINE ไอดี @lgthailand">
@@ -1202,8 +1202,7 @@
             const banner = document.getElementById('promoBanner');
             const special = info.promo === PROMO_SPECIAL;
             if (subtotal === 0) {
-                banner.innerHTML = '🎉 โปรสิงหาคม 2569: บิลแรก ฿149 (แผน Visit/Self) + คอมโบลดเพิ่ม 10%' +
-                    (special ? ' · คอมโบพิเศษ 15% ถึง 25 ส.ค.' : '');
+                banner.innerHTML = 'เลือกสินค้าเพื่อดูโปรโมชั่น ยอดชำระครั้งแรก และส่วนลดคอมโบจากแพ็กเกจจริง';
                 return;
             }
             const pct = Math.round(info.rate * 100);

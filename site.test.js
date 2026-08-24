@@ -489,6 +489,7 @@ check(!/#why, #products, #promotions, #compare, #how, #services, #faq, footer \{
 check(/\.campaign-card img \{[^}]*height: auto;[^}]*aspect-ratio: 8\/3/.test(promotions), 'Promotion campaign artwork รักษาสัดส่วน 8:3 โดยไม่ยืดความสูง');
 check(/\.schedule-table \{ min-width: 520px/.test(cart) && /\.schedule-toggle \{ overflow-x: auto/.test(cart), 'Cart mobile ตารางชำระเลื่อนได้โดยไม่บีบข้อมูล');
 check(/\.contact-btn \{ border-radius: 10px; min-height: 52px/.test(cart), 'Cart mobile CTA ส่งเจ้าหน้าที่มี touch target 52px');
+check(/ยอดชำระครั้งแรกคำนวณตามแพ็กเกจที่เลือก/.test(cart) && /เลือกสินค้าเพื่อดูโปรโมชั่น ยอดชำระครั้งแรก และส่วนลดคอมโบจากแพ็กเกจจริง/.test(cart) && !/บิลแรก ฿149 \(แผน Visit\/Self\)/.test(cart), 'Cart ไม่ hardcode งวดแรก ฿149 ให้ทุก Visit/Self และอ้างอิงยอดจากแพ็กเกจจริง');
 check(/const cartKey = \(productId, sku\)/.test(cart) && /entry\.sku/.test(cart) && /entry\.color/.test(cart), 'Cart แยกรายการตาม product + SKU และรักษาสีจาก PDP');
 check(/สี ' \+ color/.test(cart) && /SKU ' \+ sku/.test(cart), 'ข้อความส่งเจ้าหน้าที่ระบุสีและ SKU ของ variant');
 check(/สัญญา: ' \+ item\.months/.test(cart) && /จ่ายล่วงหน้า ฿' \+ fmt\(item\.advancePayment\)/.test(cart), 'ข้อความส่งเจ้าหน้าที่ระบุระยะสัญญาและยอดล่วงหน้าเมื่อมี');
