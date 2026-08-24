@@ -388,6 +388,19 @@ check(/สายเกมมิ่ง \(Gaming Lifestyle\)/.test(home) && !/ค�
 check(/id: 'gaming'[\s\S]*27gx704a[\s\S]*oled48c6psa/.test(home), 'Gaming Lifestyle แนะนำมอนิเตอร์และทีวี OLED');
 check(/เดือนแรก ฿149 \+ ลด 50% นาน 11 รอบบิล/.test(home) && /images\/promotions\/wp-kum-2-tor\.jpg/.test(home) && !/คอมโบช่วงโปรครบรอบ ลด 15% ตลอดสัญญา/.test(home), 'Home Promotion ถอดโปรครบรอบที่หมดอายุและแสดงคุ้ม 2 ต่อปัจจุบัน');
 check(/images\/promotions\/air-purifier-kum-2-tor\.jpg/.test(home) && /images\/promotions\/oled48-xboom\.jpg/.test(home), 'Home Promotion ใช้ภาพใหม่สำหรับลด 50% และของแถม');
+const firstBill149Products = canonicalProducts.filter(product => (product.plans || []).some(plan => String(plan.promo || '').includes('บิลแรก ฿149')));
+const half50Durations = [];
+canonicalProducts.forEach(product => (product.plans || []).forEach(plan => {
+  const promo = String(plan.promo || '');
+  let match = promo.match(/50% เดือน (\d+)-(\d+)/);
+  if (match) half50Durations.push(Number(match[2]) - Number(match[1]) + 1);
+  match = promo.match(/50% เพิ่ม (\d+) เดือน/);
+  if (match) half50Durations.push(Number(match[1]));
+}));
+const canonicalGifts = canonicalProducts.map(product => String(product.gift || '')).filter(Boolean).join(' | ');
+check(firstBill149Products.length === 52 && /เฉพาะรุ่นและแพ็กเกจที่ระบุสิทธิ์บิลแรก ฿149/.test(home), 'Home จำกัดข้อความบิลแรก ฿149 เฉพาะแพ็กเกจที่มีสิทธิ์จริงใน canonical data');
+check(Math.max(...half50Durations) === 20 && Math.min(...half50Durations) === 2 && /สูงสุด 20 เดือน/.test(home) && /ตั้งแต่ 2–20 เดือน/.test(home), 'Home ช่วงโปร 50% ตรงกับระยะจริงใน canonical plans');
+check(/AeroMini/.test(canonicalGifts) && /Soundbar/.test(canonicalGifts) && /xboom/i.test(canonicalGifts) && /AeroMini · Soundbar · xboom/.test(home) && !/เครื่องกรองน้ำ · AeroMini · ลำโพง/.test(home), 'Home สรุปของแถมเฉพาะประเภทที่มีอยู่จริงใน product data');
 check((home.match(/promo-card[^"\n]*featured/g) || []).length === 2 && /promo-card\.featured/.test(premium), 'Home โปรบิลแรกและลด 50% มี accent เด่น');
 check(/body\[data-page="home"\] \.h-btn-solid/.test(premium) && /service-banner \.btn-pill\.light/.test(premium), 'Home CTA แยกปุ่มหลักสีแบรนด์และปุ่มรองแบบ outline');
 check((home.match(/<svg class="payment-mark"/g) || []).length === 4 && (promotions.match(/<svg class="payment-mark"/g) || []).length === 4 && !/TrueMoney Wallet|Rabbit LINE Pay|ShopeePay|PromptPay/.test(home + promotions), 'Footer แสดงเฉพาะเครือข่ายบัตรเครดิต/บัตรชำระเงิน');
