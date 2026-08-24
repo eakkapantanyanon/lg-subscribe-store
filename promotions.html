@@ -488,7 +488,7 @@
             const name = p.name || '';
             if (txt.includes('บิลแรก')) set.add('firstbill');
             if (txt.includes('โปร 50%') || /50% เดือน/.test(txt)) set.add('half50');
-            if (name.includes('ของแถม') || txt.includes('ของแถม')) set.add('gift');
+            if (p.gift || name.includes('ของแถม') || txt.includes('ของแถม')) set.add('gift');
             if (txt.includes('รุ่นใหม่') || /NEW/i.test(name)) set.add('new');
             if ((p.plans || []).some(x => (x.label || '').includes('Outright'))) set.add('outright');
             return set;

@@ -253,6 +253,8 @@ check(/ทุกรุ่น 99 รายการ/.test(home) && /<strong>99 �
 check(new Set(canonicalProducts.map(product => product.id)).size === canonicalProducts.length, 'Canonical products.js ไม่มี product id ซ้ำ');
 check(new Set(canonicalProducts.map(product => product.model)).size === canonicalProducts.length, 'Canonical products.js ไม่มี model ซ้ำ');
 check(canonicalProducts.filter(product => /\(ของแถม\)/.test(product.name || '')).every(product => Boolean(product.gift)), 'สินค้าที่ระบุของแถมมี gift field สำหรับ PDP และข้อความส่งฝ่ายขายครบ');
+check(/if \(p\.gift \|\| name\.includes\('ของแถม'\) \|\| txt\.includes\('ของแถม'\)\) set\.add\('gift'\);/.test(promotions), 'Promotions ใช้ canonical product.gift จัด badge ของแถม ไม่พึ่งชื่อหรือ promo text อย่างเดียว');
+check(canonicalProducts.filter(product => Boolean(product.gift)).length === 8 && canonicalProducts.some(product => product.model === 'xboom STAGE501' && Boolean(product.gift)), 'Canonical data มีของแถม 8 รุ่นรวม xboom STAGE501');
 const sitemapUrls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(match => match[1]);
 const expectedProductUrls = canonicalProducts.map(product => 'https://eakkapantanyanon.github.io/lg-subscribe-store/product.html?slug=' + encodeURIComponent(product.id));
 check(expectedProductUrls.every(url => sitemapUrls.includes(url)) && sitemapUrls.filter(url => /product\.html\?slug=/.test(url)).length === canonicalProducts.length, 'Sitemap มี PDP slug ครบทุก product record และไม่มีรายการเกิน');
