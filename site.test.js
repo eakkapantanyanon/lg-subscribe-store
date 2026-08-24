@@ -468,6 +468,7 @@ check(/care-service-coverage\.json/.test(careRegister), 'ทะเบียน C
 check(/id="cartItems"/.test(cart), 'Cart มีรายการสินค้า');
 check(/\.catalog-grid \.p-cta a \{ min-height: 48px/.test(fs.readFileSync(path.join(ROOT, 'catalog.css'), 'utf8')), 'Catalog mobile CTA มี touch target อย่างน้อย 48px');
 check(/aside \.btn-primary \{ min-height: 52px/.test(pdp), 'PDP mobile sticky CTA มี touch target 52px');
+check(/class="mobile-lead-assist"/.test(pdp) && /สอบถามเจ้าหน้าที่ก่อนเลือกแพ็กเกจ/.test(pdp) && /https:\/\/line\.me\/R\/ti\/p\/@lgthailand/.test(pdp) && /\.mobile-lead-assist \{[\s\S]*?display: flex;/.test(pdp), 'PDP mobile มีทางสอบถามก่อนเลือกแพ็กเกจโดยไม่เพิ่มปุ่มใน sticky bar');
 check(/--premium-radius-md: 16px/.test(fs.readFileSync(path.join(ROOT, 'premium.css'), 'utf8')) && /--premium-focus:/.test(fs.readFileSync(path.join(ROOT, 'premium.css'), 'utf8')), 'Premium UI มี radius/focus design tokens');
 check(/family=Anuphan/.test(home + pdp + cart + promotions + catalogHtml) && /family=Bai\+Jamjuree/.test(home + pdp + cart + promotions + catalogHtml), 'ทุกหน้าหลักโหลด FLEXI-SUB signature font pair');
 check(/--font-body: "Anuphan"/.test(premium) && /--font-display: "Bai Jamjuree"/.test(premium), 'Typography system แยก body และ display font ชัดเจน');
