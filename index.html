@@ -737,7 +737,7 @@
             </div>
             <div class="hero-nav">
                 <button id="heroPrev" type="button" title="ก่อนหน้า" aria-label="แบนเนอร์ก่อนหน้า" onclick="goHero(heroIndex - 1)">←</button>
-                <button class="play-btn" id="heroPlay" type="button" title="เล่น/หยุดอัตโนมัติ" aria-label="หยุดการเลื่อนแบนเนอร์อัตโนมัติ" aria-pressed="false" onclick="toggleHeroPlay()">⏸</button>
+                <button class="play-btn" id="heroPlay" type="button" title="เล่น/หยุดอัตโนมัติ" aria-label="หยุดการเลื่อนแบนเนอร์อัตโนมัติ" aria-pressed="false" onclick="toggleHeroPlay()"><span class="line-icon icon-pause" aria-hidden="true"></span></button>
                 <button id="heroNext" type="button" title="ถัดไป" aria-label="แบนเนอร์ถัดไป" onclick="goHero(heroIndex + 1)">→</button>
             </div>
         </div>
@@ -899,7 +899,7 @@
                         <div class="s-feat"><span class="f-emoji"><i class="line-icon icon-shield" aria-hidden="true"></i></span><div><b>บริการซ่อมตามเงื่อนไขสัญญา</b><span>อะไหล่และค่าแรงเป็นไปตามเงื่อนไขของแต่ละแพ็กเกจ</span></div></div>
                         <div class="s-feat"><span class="f-emoji"><i class="line-icon icon-refresh" aria-hidden="true"></i></span><div><b>เลือกแพ็กเกจได้ตามต้องการ</b><span>มีหลายแพ็กเกจให้เลือกตามการใช้งาน</span></div></div>
                     </div>
-                    <a class="btn-pill light" href="https://line.me/R/ti/p/@lgthailand">💬 ปรึกษาเจ้าหน้าที่</a>
+                    <a class="btn-pill light" href="https://line.me/R/ti/p/@lgthailand"><i class="line-icon icon-chat" aria-hidden="true"></i> ปรึกษาเจ้าหน้าที่</a>
                 </div>
                 <div class="service-img" style="background-image:url('images/services/lg-care-service.png')"></div>
             </div>
@@ -915,7 +915,7 @@
                 <div class="lg-mark">LG Subscribe By E-Promoter</div>
                 <p>ตัวแทนจำหน่ายบริการ LG Subscribe — เช่าเครื่องใช้ไฟฟ้า LG รายเดือน ครบทุกไลฟ์สไตล์</p>
                 <div class="socials">
-                    <a href="https://line.me/R/ti/p/@lgthailand" title="ติดต่อผ่าน LINE" aria-label="ติดต่อ LG Thailand ผ่าน LINE">💬</a>
+                    <a href="https://line.me/R/ti/p/@lgthailand" title="ติดต่อผ่าน LINE" aria-label="ติดต่อ LG Thailand ผ่าน LINE"><i class="line-icon icon-chat" aria-hidden="true"></i></a>
                 </div>
             </div>
             <div class="f-col">
@@ -1360,7 +1360,7 @@
         function toggleHeroPlay() {
             heroPlaying = !heroPlaying;
             const playBtn = document.getElementById('heroPlay');
-            playBtn.textContent = heroPlaying ? '⏸' : '▶';
+            playBtn.innerHTML = heroPlaying ? '<span class="line-icon icon-pause" aria-hidden="true"></span>' : '<span class="line-icon icon-play" aria-hidden="true"></span>';
             playBtn.setAttribute('aria-pressed', heroPlaying ? 'false' : 'true');
             playBtn.setAttribute('aria-label', heroPlaying ? 'หยุดการเลื่อนแบนเนอร์อัตโนมัติ' : 'เล่นแบนเนอร์อัตโนมัติ');
             restartHero();
@@ -1415,7 +1415,7 @@
         /* โหมดอ่านเร็ว: เริ่มแบบหยุดนิ่ง ไม่เลื่อนอัตโนมัติ (ยังสลับสไลด์ด้วยปุ่มได้) */
         if (reducedMotion) {
             heroPlaying = false;
-            document.getElementById('heroPlay').textContent = '▶';
+            document.getElementById('heroPlay').innerHTML = '<span class="line-icon icon-play" aria-hidden="true"></span>';
         }
         restartHero();
     </script>
