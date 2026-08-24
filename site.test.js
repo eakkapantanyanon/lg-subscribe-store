@@ -243,9 +243,9 @@ check(/-Birthday_1920x720\.jpg/.test(home) === false, 'Home Hero ไม่มี
 check(/ซับ 2 แถม 1/.test(home) && /ซับ 1 แถม 1/.test(home), 'Home Hero มีสไลด์โปร IXY และ OLED');
 check((home.match(/btn2: \{ text: 'เลือกสินค้า', href: 'products\.html' \}/g) || []).length === 2, 'Hero โปร IXY/OLED ส่งลูกค้าไป Catalog ก่อนตะกร้า');
 check(!/โปรปัง/.test(home) && !/โปรคุ้ม 2 ต่อ/.test(home) && !/ชวนเพื่อน/.test(home) && !/AWO/.test(home), 'Home Hero ไม่มีสไลด์ที่ลบแล้ว');
-check(/แคมเปญจาก LG/.test(promotions) && /ลด 15% ตลอดสัญญา/.test(promotions), 'Promotions มีแคมเปญล่าสุดจาก LG Thailand');
-check(/15–23 ส\.ค\. 2569/.test(promotions) && /หมดเขตโปรโมชัน 31 ส\.ค\. 2569/.test(promotions), 'Promotions ระบุช่วงเวลาแคมเปญและวันหมดเขตรอบเดือน');
-check(/href="products\.html">เลือกสินค้าที่ร่วมรายการ/.test(promotions), 'Promotion CTA พาลูกค้าไปเลือกสินค้าก่อนเข้าตะกร้า');
+check(/แคมเปญจาก LG/.test(promotions) && /เดือนแรก 149 บาท และลด 50% นาน 11 รอบบิล/.test(promotions), 'Promotions มีแคมเปญปัจจุบันจาก LG Thailand');
+check(!/โปรปังฉลองวันครบรอบ 38 ปี LG/.test(promotions) && !/15–23 ส\.ค\. 2569/.test(promotions) && /หมดเขตโปรโมชัน 31 ส\.ค\. 2569/.test(promotions), 'Promotions ถอดแคมเปญที่หมดอายุ 23 ส.ค. และคงวันหมดเขตรอบเดือน');
+check(/href="products\.html">สร้างแพ็กเกจของคุณ/.test(promotions) && /href="#promos">ดูรุ่นและแพ็กเกจ/.test(promotions), 'Promotion CTA พาลูกค้าไปดูรุ่นหรือเลือกสินค้าก่อนเข้าตะกร้า');
 check(/images\/promotions\/ktc-credit\.jpg/.test(promotions) && /images\/promotions\/uob-credit\.jpg/.test(promotions), 'Promotions มีรูปจริงโปรบัตรเครดิต KTC และ UOB');
 check(!/id="conditions"/.test(promotions) && !/สิทธิพิเศษหลักในเดือนนี้/.test(promotions), 'Promotions ไม่มีส่วนสิทธิพิเศษที่ซ้ำกับแคมเปญด้านบน');
 check(canonicalProducts.length === 99 && canonicalProducts.reduce((total, product) => total + product.plans.length, 0) === 197, 'Canonical products.js มีสินค้า 99 รายการขายและ 197 แผน');
@@ -386,7 +386,7 @@ check(pages.every(page => fs.readFileSync(path.join(ROOT, page), 'utf8').include
 check(!/💳|🔧|🛡️|🔄|🔍|🛒/.test(pages.map(page => fs.readFileSync(path.join(ROOT, page), 'utf8')).join('\n')), 'แทน emoji UI ที่กำหนดด้วย line icon แล้ว');
 check(/สายเกมมิ่ง \(Gaming Lifestyle\)/.test(home) && !/คาเฟ่ \/ ธุรกิจเล็ก/.test(home), 'Home เปลี่ยน Lifestyle ธุรกิจเล็กเป็นสายเกมมิ่ง');
 check(/id: 'gaming'[\s\S]*27gx704a[\s\S]*oled48c6psa/.test(home), 'Gaming Lifestyle แนะนำมอนิเตอร์และทีวี OLED');
-check(/คอมโบช่วงโปรครบรอบ ลด 15% ตลอดสัญญา/.test(home) && /images\/promotions\/birthday-38\.jpg/.test(home), 'Home Promotion แสดงโปรคอมโบปัจจุบันลด 15%');
+check(/เดือนแรก ฿149 \+ ลด 50% นาน 11 รอบบิล/.test(home) && /images\/promotions\/wp-kum-2-tor\.jpg/.test(home) && !/คอมโบช่วงโปรครบรอบ ลด 15% ตลอดสัญญา/.test(home), 'Home Promotion ถอดโปรครบรอบที่หมดอายุและแสดงคุ้ม 2 ต่อปัจจุบัน');
 check(/images\/promotions\/air-purifier-kum-2-tor\.jpg/.test(home) && /images\/promotions\/oled48-xboom\.jpg/.test(home), 'Home Promotion ใช้ภาพใหม่สำหรับลด 50% และของแถม');
 check((home.match(/promo-card[^"\n]*featured/g) || []).length === 2 && /promo-card\.featured/.test(premium), 'Home โปรบิลแรกและลด 50% มี accent เด่น');
 check(/body\[data-page="home"\] \.h-btn-solid/.test(premium) && /service-banner \.btn-pill\.light/.test(premium), 'Home CTA แยกปุ่มหลักสีแบรนด์และปุ่มรองแบบ outline');

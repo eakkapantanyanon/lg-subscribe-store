@@ -6,7 +6,6 @@
   "subscriptionPriceSource": "Sale Price8 - Subscription_V3.pdf",
   "officialCampaignUrl": "https://www.lg.com/th/subscribe/promotion_subscription/",
   "campaigns": [
-    { "name": "โปรปังฉลองวันครบรอบ 38 ปี LG", "displayDate": "15–23 ส.ค. 2569", "activeThrough": "2026-08-23T23:59:59+07:00" },
     { "name": "โปรใจป้ำ คุ้ม 2 ต่อ", "displayDate": "1–31 ส.ค. 2569", "activeThrough": "2026-08-31T23:59:59+07:00" },
     { "name": "ซับ 2 แถม 1", "displayDate": "1–31 ส.ค. 2569", "activeThrough": "2026-08-31T23:59:59+07:00" },
     { "name": "ซับ 1 แถม 1", "displayDate": "1–31 ส.ค. 2569", "activeThrough": "2026-08-31T23:59:59+07:00" },
