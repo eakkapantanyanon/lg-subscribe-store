@@ -127,6 +127,8 @@
     .g-thumb img.is-loaded { opacity: 1; }
     .g-thumb img[hidden] { display: none; }
     .g-thumb .t-emoji { font-size: 30px; }
+    .g-thumb.has-image .t-emoji { visibility: hidden; }
+    .g-thumb.has-image:has(img[hidden]) .t-emoji { visibility: visible; }
     .g-thumb.active { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-glow); }
 
     .gallery-lightbox {
@@ -845,6 +847,7 @@
             th.setAttribute('aria-label', 'รูปสินค้า ' + (i + 1) + ' จาก ' + items.length);
             const fallbackEmoji = p.emoji || CAT_EMOJI[p.category] || '📦';
             th.innerHTML = it.type === 'img' ? '<span class="t-emoji" aria-hidden="true">' + fallbackEmoji + '</span><img src="' + it.src + '" alt="" width="90" height="90" loading="lazy" decoding="async">' : '<span class="t-emoji">' + it.emoji + '</span>';
+            if (it.type === 'img') th.classList.add('has-image');
             const thumbImg = th.querySelector('img');
             if (thumbImg) {
                 revealWhenLoaded(thumbImg);
