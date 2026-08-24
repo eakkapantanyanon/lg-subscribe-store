@@ -498,7 +498,8 @@ check(/id="rememberedCustomerType"/.test(cart) && !/name="custType"/.test(cart),
 check(/cart\.customerType = c\[0\]/.test(pdp), 'PDP บันทึกประเภทลูกค้าทันทีที่เลือก');
 check(/copyOrderForOfficer\(\)/.test(cart), 'Cart มี flow คัดลอกรายการส่งเจ้าหน้าที่');
 check(/lead_validation_error/.test(cart) && /lead_order_copied/.test(cart), 'Cart แยก validation และ successful copy event');
-check(/line\.me\/R\/ti\/p\/@lgthailand/.test(cart), 'Cart มีลิงก์ติดต่อ LINE @lgthailand');
+check([home, pdp, promotions, cart].every((page) => /line\.me\/R\/ti\/p\/@lgthailand/.test(page)), 'CTA ติดต่อ LINE ทุก flow ที่มีช่องทางติดต่อส่งไป LG Thailand @lgthailand');
+check(/line_contact_click/.test(analyticsSource) && /lead_line_open/.test(cart), 'Analytics ติดตามการเปิด LINE โดยไม่เปลี่ยนปลายทาง LG Thailand');
 check(/061-267-0518/.test(cart) && /tel:0612670518/.test(cart), 'Cart แสดงเบอร์โทรเจ้าหน้าที่และลิงก์โทรออก');
 check(/line-lgthailand-qr\.png/.test(cart), 'Cart แสดง QR Code สำหรับ LINE');
 check(/LG Subscribe By E-Promoter ช่วยคุณเลือกสินค้าและเตรียมรายการ/.test(cart) && /เจ้าหน้าที่ LG ยืนยันอีกครั้ง/.test(cart), 'Cart อธิบายบทบาท E-Promoter และการยืนยันขั้นสุดท้ายโดยเจ้าหน้าที่ LG ชัดเจน');
