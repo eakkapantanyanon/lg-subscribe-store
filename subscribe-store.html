@@ -831,11 +831,11 @@
                     <div class="contact-detail"><span>โทรศัพท์</span><a href="tel:0612670518">061-267-0518</a></div>
                 </div>
             </section>
-            <p class="copy-help">กรอกชื่อและเบอร์โทร แล้วเตรียมรายการสำหรับส่งให้ฝ่ายขาย LG</p>
-            <button class="contact-btn" id="sendToOfficerBtn" onclick="copyOrderForOfficer()">คัดลอกรายการสำหรับส่ง LINE</button>
-            <a class="line-open-btn" id="openLineBtn" href="https://line.me/R/ti/p/@lgthailand" target="_blank" rel="noopener" onclick="trackLineOpen()">เปิด LINE @lgthailand</a>
+            <p class="copy-help">กรอกชื่อและเบอร์โทร จากนั้นทำ 2 ขั้นตอนด้านล่างเพื่อส่งรายการให้เจ้าหน้าที่</p>
+            <button class="contact-btn" id="sendToOfficerBtn" onclick="copyOrderForOfficer()">1. คัดลอกรายการ</button>
+            <a class="line-open-btn" id="openLineBtn" href="https://line.me/R/ti/p/@lgthailand" target="_blank" rel="noopener" onclick="trackLineOpen()">2. เปิด LINE @lgthailand</a>
             <p class="checkout-status" id="checkoutStatus" role="status" aria-live="polite"></p>
-            <p class="contact-note">ขั้นตอน: คัดลอกรายการ → เปิด LINE → วางข้อความและส่งให้ฝ่ายขาย LG</p>
+            <p class="contact-note">เมื่อ LINE เปิดขึ้น ให้วางข้อความที่คัดลอกแล้วส่งให้เจ้าหน้าที่ LG</p>
             <div class="checkout-assurance"><span><b>✓</b>ตรวจสอบราคาก่อนส่ง</span><span><b>◇</b>ยังไม่มีการชำระเงินบนเว็บ</span><span><b>↗</b>เจ้าหน้าที่ช่วยยืนยันสิทธิ์</span></div>
         </aside>
     </main>
@@ -1339,7 +1339,7 @@
                     if (!document.execCommand('copy')) throw new Error('copy failed');
                     textarea.remove();
                 }
-                document.getElementById('checkoutStatus').textContent = '✓ คัดลอกรายการแล้ว ขั้นต่อไปเปิด LINE @lgthailand แล้ววางข้อความส่งให้ฝ่ายขาย LG';
+                document.getElementById('checkoutStatus').textContent = '✓ คัดลอกแล้ว — กดขั้นตอน 2 เพื่อเปิด LINE แล้ววางข้อความส่งได้เลย';
                 if (window.FLEXIAnalytics) window.FLEXIAnalytics.push('lead_order_copied', {
                     cart_item_count: Object.keys(selected).length,
                     customer_type: custType

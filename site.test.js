@@ -515,6 +515,7 @@ check(/ของแถม: ' \+ product\.gift/.test(cart), 'ข้อควา�
 check(/id="rememberedCustomerType"/.test(cart) && !/name="custType"/.test(cart), 'Cart แสดงประเภทลูกค้าที่จำไว้และไม่มีตัวเลือกซ้ำ');
 check(/cart\.customerType = c\[0\]/.test(pdp), 'PDP บันทึกประเภทลูกค้าทันทีที่เลือก');
 check(/copyOrderForOfficer\(\)/.test(cart), 'Cart มี flow คัดลอกรายการส่งเจ้าหน้าที่');
+check(/1\. คัดลอกรายการ/.test(cart) && /2\. เปิด LINE @lgthailand/.test(cart) && /กดขั้นตอน 2 เพื่อเปิด LINE/.test(cart), 'Cart handoff แสดง 2 ขั้นตอนคัดลอกแล้วเปิด LINE อย่างชัดเจน');
 check(/lead_validation_error/.test(cart) && /lead_order_copied/.test(cart), 'Cart แยก validation และ successful copy event');
 check([home, pdp, promotions, cart].every((page) => /line\.me\/R\/ti\/p\/@lgthailand/.test(page)), 'CTA ติดต่อ LINE ทุก flow ที่มีช่องทางติดต่อส่งไป LG Thailand @lgthailand');
 check(/line_contact_click/.test(analyticsSource) && /lead_line_open/.test(cart), 'Analytics ติดตามการเปิด LINE โดยไม่เปลี่ยนปลายทาง LG Thailand');
