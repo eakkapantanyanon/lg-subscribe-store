@@ -137,6 +137,12 @@
           // Link navigation must continue even if analytics parsing fails.
         }
       }
+      if (pageType() === 'guide' && target.matches('[data-guide-action]')) {
+        push('guide_conversion_click', {
+          guide_action: target.dataset.guideAction || 'unknown',
+          link_text: text(target)
+        });
+      }
       if (target.matches('a[href*="line.me"]')) {
         push('line_contact_click', { placement: target.className || target.closest('section,footer,aside')?.id || 'link' });
       }
