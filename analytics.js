@@ -57,6 +57,8 @@
       if (!Array.isArray(window.dataLayer)) window.dataLayer = [];
       const payload = Object.assign({
         event: event,
+        event_schema_version: 1,
+        event_scope: 'lg_subscribe_store',
         page_path: location.pathname,
         page_title: document.title,
         page_type: pageType(),
