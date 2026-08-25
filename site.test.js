@@ -455,6 +455,9 @@ check(/id="variantSelect"/.test(productCard) && /LG_PRODUCT_SKU_GALLERIES/.test(
 check(/service-cycles\.js\?v=20260823/.test(productCard) && /plan\.serviceCycle/.test(productCard) && /id="showService"/.test(productCard), 'Product Card Phase 3 แสดงประเภทบริการและรอบดูแลจากข้อมูลจริง');
 check(/id="templateSelect"/.test(productCard) && /template-promo/.test(productCard) && /template-minimal/.test(productCard) && /id="showPromo"/.test(productCard), 'Product Card Phase 3 มี 3 templates และเลือกซ่อน/แสดงข้อความโปรโมชั่นได้');
 check(/crossOrigin='anonymous'/.test(productCard) && /Export ไม่สำเร็จ: รูปสินค้าจากแหล่งภายนอกไม่อนุญาต CORS/.test(productCard), 'Product Card Export จัดการ remote image CORS แบบ fail-safe โดยไม่ส่งออกการ์ดที่รูปผิด');
+check(/id="productSearch"/.test(productCard) && /function matchesSearch/.test(productCard) && /id="planFilter"/.test(productCard) && /function planMatches/.test(productCard), 'Product Card Phase 4 ค้นหารุ่นและกรองแพ็กเกจได้จาก canonical data');
+check(/id="lineText"/.test(productCard) && /function buildLineText/.test(productCard) && /id="copyTextBtn"/.test(productCard) && /navigator\.clipboard/.test(productCard), 'Product Card Phase 4 สร้างและคัดลอกข้อความพร้อมส่ง LINE จากข้อมูลที่เลือก');
+check(/id="openLineBtn"/.test(productCard) && /https:\/\/line\.me\//.test(productCard), 'Product Card Phase 4 เปิด LINE จากหน้าขายเดียวกันได้');
 const promotionConfig = require('./promotion-config.js');
 const productSelectSource = fs.readFileSync(path.join(ROOT, 'product-select.js'), 'utf8');
 const serviceCycleSource = fs.readFileSync(path.join(ROOT, 'service-cycles.js'), 'utf8');
