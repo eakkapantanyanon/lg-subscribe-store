@@ -450,7 +450,11 @@ const productCard = fs.readFileSync(path.join(ROOT, 'product-card.html'), 'utf8'
 check(/Product Card Generator/.test(productCard) && /<script src="products\.js"><\/script>/.test(productCard) && /calculator-core\.js/.test(productCard) && /promotion-config\.js\?v=20260825-1/.test(productCard), 'Product Card Generator ใช้ canonical products/calculator/promotion config');
 check(/object-fit:contain/.test(productCard) && /plan\.promo/.test(productCard) && /promo\.customerDiscount/.test(productCard), 'Product Card แสดงรูปเต็มและดึงข้อความแผน/กฎลูกค้าจากข้อมูลจริง');
 check(/id="customerType"/.test(productCard) && /id="itemQty"/.test(productCard) && /SEL\.itemSummary/.test(productCard) && /LG\.netMonthly/.test(productCard), 'Product Card Phase 2 คำนวณสิทธิ์ลูกค้าและราคาหลังส่วนลดด้วยสูตรกลาง');
-check(/id="exportBtn"/.test(productCard) && /canvas\.toDataURL\('image\/png'\)/.test(productCard) && /download='LG-Subscribe-/.test(productCard), 'Product Card มี Export PNG จากรูปสินค้าและข้อมูลจริง');
+check(/id="exportBtn"/.test(productCard) && /canvas\.toBlob/.test(productCard) && /download='lg-subscribe-'/.test(productCard), 'Product Card มี Export PNG 1080x1350 จากรูปสินค้าและข้อมูลจริง');
+check(/id="variantSelect"/.test(productCard) && /LG_PRODUCT_SKU_GALLERIES/.test(productCard) && /SKU /.test(productCard), 'Product Card Phase 3 เลือก variant/SKU และใช้รูป SKU gallery จริงเมื่อมี');
+check(/service-cycles\.js\?v=20260823/.test(productCard) && /plan\.serviceCycle/.test(productCard) && /id="showService"/.test(productCard), 'Product Card Phase 3 แสดงประเภทบริการและรอบดูแลจากข้อมูลจริง');
+check(/id="templateSelect"/.test(productCard) && /template-promo/.test(productCard) && /template-minimal/.test(productCard) && /id="showPromo"/.test(productCard), 'Product Card Phase 3 มี 3 templates และเลือกซ่อน/แสดงข้อความโปรโมชั่นได้');
+check(/crossOrigin='anonymous'/.test(productCard) && /Export ไม่สำเร็จ: รูปสินค้าจากแหล่งภายนอกไม่อนุญาต CORS/.test(productCard), 'Product Card Export จัดการ remote image CORS แบบ fail-safe โดยไม่ส่งออกการ์ดที่รูปผิด');
 const promotionConfig = require('./promotion-config.js');
 const productSelectSource = fs.readFileSync(path.join(ROOT, 'product-select.js'), 'utf8');
 const serviceCycleSource = fs.readFileSync(path.join(ROOT, 'service-cycles.js'), 'utf8');
