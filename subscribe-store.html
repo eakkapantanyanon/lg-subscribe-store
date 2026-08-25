@@ -320,7 +320,8 @@
         }
         .contact-btn:hover { opacity: 0.9; }
         .line-open-btn { width: 100%; min-height: 48px; margin-top: 8px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--accent); border-radius: 10px; color: var(--accent-text); background: #fff; font-size: 14px; font-weight: 600; text-decoration: none; box-sizing: border-box; }
-        .line-open-btn:hover, .line-open-btn:focus-visible { background: var(--accent-soft); outline: 2px solid transparent; }
+        .line-open-btn:hover { background: var(--accent-soft); }
+        .line-open-btn:focus-visible { background: var(--accent-soft); outline: 3px solid rgba(165,0,52,.35); outline-offset: 3px; }
         .contact-note { font-size: 12px; color: #6f666a; text-align: center; margin-top: 10px; }
 
         /* ---- แถบแจ้งเตือนโปรโมชัน ---- */
@@ -416,7 +417,7 @@
             color: #666;
         }
         .qty-btn {
-            width: 26px; height: 26px;
+            width: 32px; height: 32px;
             border: 1px solid #ddd;
             background: #fff;
             border-radius: 4px;
@@ -1145,12 +1146,12 @@
                         (plan.promo ? '<div class="cart-item-promo">' + plan.promo + '</div>' : '') +
                         '<div class="cart-item-qty">' +
                             '<span>จำนวน:</span>' +
-                            '<button class="qty-btn" onclick="addQty(\'' + id + '\', -1)">−</button>' +
+                            '<button class="qty-btn" aria-label="ลดจำนวน ' + product.name + '" onclick="addQty(\'' + id + '\', -1)">−</button>' +
                             '<span class="qty-num">' + q + '</span>' +
-                            '<button class="qty-btn" onclick="addQty(\'' + id + '\', 1)">+</button>' +
+                            '<button class="qty-btn" aria-label="เพิ่มจำนวน ' + product.name + '" onclick="addQty(\'' + id + '\', 1)">+</button>' +
                             '<span class="qty-sub">' + (item.outright ? '× ฿' + fmt(item.advancePayment || 0) : '× ฿' + fmt(item.postPromoPrice) + '/เดือน') + '</span>' +
                         '</div>' +
-                        '<details class="schedule-toggle"><summary>📅 ตารางชำระเงิน</summary>' +
+                        '<details class="schedule-toggle"><summary>ตารางชำระเงิน</summary>' +
                             scheduleTableHTML(item, cr, q) +
                         '</details>' +
                         '<div style="text-align:right;margin-top:4px;">' +

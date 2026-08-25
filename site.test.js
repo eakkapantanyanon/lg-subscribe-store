@@ -438,6 +438,7 @@ check(/care-popover-summary/.test(pdp) && /care-popover-groups/.test(pdp) && /�
 check(/\.care-popover \{ position: static; z-index: auto; width: 100%; max-height: none; overflow: visible/.test(pdp) && /\.care-popover-groups \{ display: grid; grid-template-columns: 1fr/.test(pdp), 'Care detail เปิดแบบ inline 1 คอลัมน์ ไม่ทับหน้าและไม่ซ่อนรายการหลัง scroll ภายใน');
 check(/background: #fff; color: #231d20/.test(pdp) && /care-cycle-group \{ padding: 11px 12px/.test(pdp), 'Care popover ใช้พื้นสว่าง contrast สูงและแยกรอบบริการเป็นกลุ่ม');
 check(/\.care-detail-trigger \{ position: relative/.test(pdp) && !/\.care-detail-trigger \{ position: absolute/.test(pdp), 'ปุ่มรายละเอียดบริการไม่ซ้อนตำแหน่งกับเครื่องหมายเลือกแพ็กเกจ');
+check(/\.care-detail-trigger:focus-visible \{ background: #fff0f4; outline: 3px solid rgba\(165,0,52,\.35\)/.test(pdp), 'ปุ่มรายละเอียดบริการมี focus ring ที่มองเห็นชัด');
 const productSelectSource = fs.readFileSync(path.join(ROOT, 'product-select.js'), 'utf8');
 const serviceCycleSource = fs.readFileSync(path.join(ROOT, 'service-cycles.js'), 'utf8');
 check(/service-cycles\.js\?v=20260823/.test(pdp) && /Price list_Aug_V3\.pdf/.test(serviceCycleSource), 'PDP โหลดรอบบริการจาก Price List ที่ตรวจสอบแล้ว');
@@ -507,6 +508,9 @@ check(!/#why, #products, #promotions, #compare, #how, #services, #faq, footer \{
 check(/\.campaign-card img \{[^}]*height: auto;[^}]*aspect-ratio: 8\/3/.test(promotions), 'Promotion campaign artwork รักษาสัดส่วน 8:3 โดยไม่ยืดความสูง');
 check(/\.schedule-table \{ min-width: 520px/.test(cart) && /\.schedule-toggle \{ overflow-x: auto/.test(cart), 'Cart mobile ตารางชำระเลื่อนได้โดยไม่บีบข้อมูล');
 check(/\.contact-btn \{ border-radius: 10px; min-height: 52px/.test(cart), 'Cart mobile CTA ส่งเจ้าหน้าที่มี touch target 52px');
+check(/\.qty-btn \{\s*width: 32px; height: 32px;/.test(cart) && /aria-label=\"ลดจำนวน /.test(cart) && /aria-label=\"เพิ่มจำนวน /.test(cart), 'Cart ปุ่มเพิ่มลดจำนวนมี touch target 32px และ accessible name ตามสินค้า');
+check(/\.line-open-btn:focus-visible \{ background: var\(--accent-soft\); outline: 3px solid rgba\(165,0,52,\.35\)/.test(cart), 'Cart ปุ่มเปิด LINE มี focus ring ที่มองเห็นชัด');
+check(!/📅 ตารางชำระเงิน/.test(cart) && /<summary>ตารางชำระเงิน<\/summary>/.test(cart), 'Cart disclosure ตารางชำระเงินไม่พึ่ง emoji เป็น UI icon');
 check(/ยอดชำระครั้งแรกคำนวณตามแพ็กเกจที่เลือก/.test(cart) && /เลือกสินค้าเพื่อดูโปรโมชั่น ยอดชำระครั้งแรก และส่วนลดคอมโบจากแพ็กเกจจริง/.test(cart) && !/บิลแรก ฿149 \(แผน Visit\/Self\)/.test(cart), 'Cart ไม่ hardcode งวดแรก ฿149 ให้ทุก Visit/Self และอ้างอิงยอดจากแพ็กเกจจริง');
 check(/const cartKey = \(productId, sku\)/.test(cart) && /entry\.sku/.test(cart) && /entry\.color/.test(cart), 'Cart แยกรายการตาม product + SKU และรักษาสีจาก PDP');
 check(/สี ' \+ color/.test(cart) && /SKU ' \+ sku/.test(cart), 'ข้อความส่งเจ้าหน้าที่ระบุสีและ SKU ของ variant');
