@@ -768,7 +768,7 @@
     </section>
 
     <div class="combo-banner" id="comboBanner" role="status" aria-live="polite">
-        โปรโมชั่น: ลูกค้าใหม่ทำรายการตั้งแต่ 2 เครื่องขึ้นไป ลด 10%* / ลูกค้าเก่าทำรายการตั้งแต่ 1 เครื่องขึ้นไป ลด 10%*
+        โปรโมชั่นตามประเภทลูกค้าจะคำนวณอัตโนมัติจากกฎโปรโมชั่นปัจจุบัน
     </div>
 
     <main class="main-layout" id="mainContent" tabindex="-1">
@@ -903,19 +903,19 @@
 <script src="analytics.js?v=ga4-4"></script>
 <script src="products.js"></script>
 <script src="calculator-core.js"></script>
+    <script src="promotion-config.js?v=20260825-1"></script>
     <script src="cart.js"></script>
-    <script src="product-select.js?v=20260823-care4"></script>
+    <script src="product-select.js?v=20260825-promo1"></script>
     <script>
         const LG = window.LGCalc;
         const CART = window.FLEXICart;
         const SEL = window.FLEXISelect;
         const DEFAULT_PRODUCTS = (window.LG_PRODUCTS || []).map(p => ({ ...p, plans: (p.plans || []).map(LG.normalizePlan) }));
         let PRODUCTS = [];
-        let adminSettings = { comboPct: 10, oldMin: 1, newMin: 2 };
 
-        /* โปรโมชันคอมโบ — ใช้ค่ากลางจาก product-select.js (ชุดเดียวกับหน้า PDP) */
+        /* โปรโมชัน — อ่านจาก promotion-config.js จุดเดียว */
+        const PROMO_CONFIG = window.LG_PROMOTION_CONFIG;
         const PROMO_NORMAL = SEL.PROMOS.normal;
-        const PROMO_SPECIAL = SEL.PROMOS.special;
         const SHOCK_PROMO = SEL.PROMOS.shock;
 
         /* โหลดข้อมูล (รองรับการแก้ไขจากโหมดผู้ดูแลที่บันทึกใน localStorage) */
@@ -923,8 +923,7 @@
             try {
                 const saved = localStorage.getItem('flexiAdminProducts');
                 PRODUCTS = saved ? JSON.parse(saved) : JSON.parse(JSON.stringify(DEFAULT_PRODUCTS));
-                const s = JSON.parse(localStorage.getItem('flexiAdminSettings') || 'null');
-                if (s) adminSettings = Object.assign({ comboPct: 10, oldMin: 1, newMin: 2 }, s);
+                // ส่วนลดลูกค้าอ่านจาก promotion-config.js เท่านั้น ไม่ใช้ localStorage override
                 // normalize แผนทุกครั้ง — รองรับข้อมูลเก่า + การแก้จากโหมดผู้ดูแล
                 PRODUCTS = PRODUCTS.map(p => ({ ...p, plans: (p.plans || []).map(LG.normalizePlan) }));
             } catch (e) {
@@ -974,7 +973,7 @@
 
         /* ---------- คอมโบ (rate ตามช่วงเวลา + ประเภทลูกค้า) — logic กลางจาก product-select.js ---------- */
         function activePromo() { return SEL.activePromo(); }
-        function comboInfo() { return SEL.comboInfo(custType, totalQty(), adminSettings); }
+        function comboInfo() { return SEL.comboInfo(custType, totalQty()); }
         function comboRate() { return comboInfo().rate; }
 
         /* ---------- รายการในตะกร้า (1 แถวต่อ 1 เครื่อง — combo นับจำนวนเครื่องรวม) ---------- */
@@ -1169,9 +1168,8 @@
             document.getElementById('subTotal').innerText = tMonthly === 0 ? '฿0' : '฿' + fmt(tMonthly);
             const discApplies = cr > 0 && disc > 0;
             document.getElementById('discountRow').style.display = discApplies ? 'flex' : 'none';
-            const promoTag = info.promo === PROMO_SPECIAL ? ' <span class="special-tag">SPECIAL</span>' : '';
             document.getElementById('discountLabel').innerHTML =
-                'ส่วนลดคอมโบ (-' + Math.round(cr * 100) + '%) · ' + info.promo.name + promoTag;
+                'ส่วนลดคอมโบ (-' + Math.round(cr * 100) + '%) · ' + info.promo.name;
             document.getElementById('discountAmt').innerText = '-฿' + fmt(disc);
             document.getElementById('cartTotal').innerText = net === 0 ? '0' : fmt(net);
             document.getElementById('topTotal').innerText = '฿' + (net === 0 ? '0' : fmt(net));
@@ -1208,16 +1206,20 @@
                 banner.innerHTML = 'เลือกสินค้าเพื่อดูโปรโมชั่น ยอดชำระครั้งแรก และส่วนลดจากแพ็กเกจจริง';
                 return;
             }
+            const rule = PROMO_CONFIG.customerDiscount[custType === 'old' ? 'old' : 'new'];
             const pct = Math.round(info.rate * 100);
             if (info.rate > 0 && info.needed === 0) {
-                banner.innerHTML = 'ได้รับส่วนลด ' + pct + '% ตามสิทธิ์ลูกค้าแล้ว';
+                banner.innerHTML = 'ได้รับส่วนลด ' + pct + '% ตามสิทธิ์' + rule.label + 'แล้ว';
             } else {
-                banner.innerHTML = 'เลือกเพิ่มอีก ' + info.needed + ' รายการ เพื่อรับส่วนลด 10% (' +
-                    (custType === 'new' ? 'ลูกค้าใหม่ ต้อง 2 เครื่องขึ้นไป' : 'ลูกค้าเก่า ต้อง 1 เครื่องขึ้นไป') + ')';
+                banner.innerHTML = 'เลือกเพิ่มอีก ' + info.needed + ' รายการ เพื่อรับส่วนลด ' + rule.ratePct + '% (' +
+                    rule.label + ' ต้อง ' + rule.minItems + ' เครื่องขึ้นไป)';
             }
             const cb = document.getElementById('comboBanner');
             if (cb) {
-                cb.innerHTML = 'โปรโมชั่น: ลูกค้าใหม่ทำรายการตั้งแต่ 2 เครื่องขึ้นไป ลด 10%* / ลูกค้าเก่าทำรายการตั้งแต่ 1 เครื่องขึ้นไป ลด 10%*';
+                const newRule = PROMO_CONFIG.customerDiscount.new;
+                const oldRule = PROMO_CONFIG.customerDiscount.old;
+                cb.innerHTML = 'โปรโมชั่น: ' + newRule.label + 'ทำรายการตั้งแต่ ' + newRule.minItems + ' เครื่องขึ้นไป ลด ' + newRule.ratePct + '%* / ' +
+                    oldRule.label + 'ทำรายการตั้งแต่ ' + oldRule.minItems + ' เครื่องขึ้นไป ลด ' + oldRule.ratePct + '%*';
             }
         }
 
@@ -1390,7 +1392,11 @@
                     '</div>' +
                     '<div class="admin-section">' +
                         '<label>เงื่อนไขโปรโมชั่นที่ใช้คำนวณ</label>' +
-                        '<div class="admin-note" style="margin-top:4px;">ลูกค้าใหม่: ตั้งแต่ 2 เครื่องขึ้นไป ลด 10%*<br>ลูกค้าเก่า: ตั้งแต่ 1 เครื่องขึ้นไป ลด 10%*</div>' +
+                        '<div class="admin-note" style="margin-top:4px;">' +
+                            PROMO_CONFIG.customerDiscount.new.label + ': ตั้งแต่ ' + PROMO_CONFIG.customerDiscount.new.minItems + ' เครื่องขึ้นไป ลด ' + PROMO_CONFIG.customerDiscount.new.ratePct + '%*<br>' +
+                            PROMO_CONFIG.customerDiscount.old.label + ': ตั้งแต่ ' + PROMO_CONFIG.customerDiscount.old.minItems + ' เครื่องขึ้นไป ลด ' + PROMO_CONFIG.customerDiscount.old.ratePct + '%*<br>' +
+                            'Config: ' + PROMO_CONFIG.configId +
+                        '</div>' +
                     '</div>' +
                     '<div class="admin-section">' +
                         '<label>แก้ไขสินค้า (ราคา/เดือน, โปรโมชัน และรูป)</label>' +
@@ -1408,14 +1414,6 @@
                 '</div>';
         }
 
-        function adminSaveSettings() {
-            adminSettings.comboPct = parseInt(document.getElementById('admPct').value, 10) || 10;
-            adminSettings.oldMin = parseInt(document.getElementById('admOldMin').value, 10) || 1;
-            adminSettings.newMin = parseInt(document.getElementById('admNewMin').value, 10) || 2;
-            localStorage.setItem('flexiAdminSettings', JSON.stringify(adminSettings));
-            updateCart();
-            alert('บันทึกเงื่อนไขแล้ว');
-        }
 
         function adminSaveProduct() {
             const p = PRODUCTS.find(x => x.id === adminProductId);
@@ -1448,9 +1446,7 @@
         function adminReset() {
             if (!confirm('ล้างข้อมูลที่แก้ไขทั้งหมดและกลับเป็นข้อมูลเริ่มต้น?')) return;
             localStorage.removeItem('flexiAdminProducts');
-            localStorage.removeItem('flexiAdminSettings');
             PRODUCTS = JSON.parse(JSON.stringify(DEFAULT_PRODUCTS));
-            adminSettings = { comboPct: 10, oldMin: 1, newMin: 2 };
             updateCart();
             renderAdmin();
         }

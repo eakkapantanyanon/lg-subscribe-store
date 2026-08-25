@@ -14,6 +14,7 @@ const vm = require('vm');
 const assert = require('assert');
 const LG = require('./calculator-core.js');
 const CART = require('./cart.js');
+const PROMO_CONFIG = require('./promotion-config.js');
 const SEL = require('./product-select.js');
 
 /* โหลดข้อมูลจริงจาก products.js (หลัง migration) */
@@ -179,12 +180,14 @@ t('ตู้เย็น GC-B257SQYL: 5Y (549) ↔ 6Y (449) — เปลี่�
   const p = data.find(x => x.id === 'gc-b257sqyl');
   const i5 = p.plans.findIndex(x => x.totalContractMonths === 60);
   const i6 = p.plans.findIndex(x => x.totalContractMonths === 72);
-  // ลูกค้าเก่า 1 เครื่อง → ส่วนลดคงที่ 10%
+  // ลูกค้าเก่า 1 เครื่อง → ใช้กฎจาก promotion-config.js
+  const oldRule = PROMO_CONFIG.customerDiscount.old;
+  const oldRate = oldRule.ratePct / 100;
   const s5 = SEL.itemSummary(p, i5, 'old', 0, {});
   const s6 = SEL.itemSummary(p, i6, 'old', 0, {});
   eq(s5.strike, 549, '5Y ราคาเต็ม'); eq(s6.strike, 449, '6Y ราคาเต็ม');
-  eq(s5.contract, 29280, '5Y รวมสัญญา (cr 10%)');
-  eq(s6.contract, 28818, '6Y รวมสัญญา (cr 10% — เคส C)');
+  eq(s5.contract, LG.grandTotal([SEL.planToItem(p, p.plans[i5])], oldRate), '5Y รวมสัญญาตาม config');
+  eq(s6.contract, LG.grandTotal([SEL.planToItem(p, p.plans[i6])], oldRate), '6Y รวมสัญญาตาม config');
   // บิลแรกเท่ากัน (149) แต่ราคาเต็ม/ยอดรวมต่างกัน → สรุปต้องสะท้อนความต่าง
   assert.notStrictEqual(s5.strike, s6.strike);
   assert.notStrictEqual(s5.contract, s6.contract);
@@ -246,11 +249,10 @@ t('TV OLED48C6PSA: รุ่นปกติ 8 เดือน ↔ รุ่น�
    ================================================================ */
 console.log('\n· itemSummary ใช้สูตรเดียวกับ LGCalc (single source of truth)');
 t('ทุกแผน: firstPay/contract/segments ตรง LGCalc ที่ cr เดียวกัน', () => {
-  const settings = { comboPct: 10, oldMin: 1, newMin: 2 };
   data.forEach(p => {
     p.plans.forEach((plan, planIndex) => {
-      // ลูกค้าเก่า 1 เครื่อง → cr คงที่ 10% ตามกฎล่าสุด
-      const s = SEL.itemSummary(p, planIndex, 'old', 0, settings);
+      // ลูกค้าเก่าใช้กฎจาก promotion-config.js
+      const s = SEL.itemSummary(p, planIndex, 'old', 0);
       const item = SEL.planToItem(p, plan);
       const cr = s.comboRate;
       eq(s.firstPay, LG.itemFirstPayment(item, cr), p.id + '#' + planIndex + ' firstPay');
@@ -266,18 +268,17 @@ t('ทุกแผน: firstPay/contract/segments ตรง LGCalc ที่ cr 
   });
 });
 
-t('comboInfo: ใช้กฎคงที่ 10% · เกณฑ์ ใหม่ 2 / เก่า 1 ทุกวัน', () => {
+t('comboInfo: ใช้กฎลูกค้าใหม่/เก่าจาก promotion-config.js จุดเดียว', () => {
+  const newRule = PROMO_CONFIG.customerDiscount.new;
+  const oldRule = PROMO_CONFIG.customerDiscount.old;
   const aug18 = new Date(2026, 7, 18);
-  const aug01 = new Date(2026, 7, 1);
-  const aug31 = new Date(2026, 7, 31);
-  let c = SEL.comboInfo('old', 1, {}, aug18);
-  eq(c.rate, 0.10, 'เก่า 1 ชิ้น ได้ 10%'); eq(c.special, false);
-  c = SEL.comboInfo('new', 1, {}, aug18);
-  eq(c.rate, 0, 'ใหม่ 1 ชิ้น ยังไม่ได้ส่วนลด'); eq(c.needed, 1);
-  c = SEL.comboInfo('new', 2, {}, aug18);
-  eq(c.rate, 0.10, 'ใหม่ 2 ชิ้น ได้ 10%');
-  eq(SEL.comboInfo('old', 1, {}, aug01).rate, 0.10, 'ต้นเดือนเก่า 1 = 10%');
-  eq(SEL.comboInfo('new', 2, {}, aug31).rate, 0.10, 'สิ้นเดือนใหม่ 2 = 10%');
+  let c = SEL.comboInfo('old', oldRule.minItems, {}, aug18);
+  eq(c.rate, oldRule.ratePct / 100, 'ลูกค้าเก่าครบขั้นต่ำได้ส่วนลดตาม config'); eq(c.special, false);
+  c = SEL.comboInfo('new', Math.max(0, newRule.minItems - 1), {}, aug18);
+  eq(c.rate, 0, 'ลูกค้าใหม่ยังไม่ครบขั้นต่ำไม่ได้ส่วนลด'); eq(c.needed, 1);
+  c = SEL.comboInfo('new', newRule.minItems, {}, aug18);
+  eq(c.rate, newRule.ratePct / 100, 'ลูกค้าใหม่ครบขั้นต่ำได้ส่วนลดตาม config');
+  eq(c.configId, PROMO_CONFIG.configId, 'comboInfo ระบุ configId ที่ใช้งาน');
 });
 
 t('shock 8.8: อยู่ในช่วง (8–10 ส.ค.) → บิลแรก 88 · นอกช่วง → 149', () => {

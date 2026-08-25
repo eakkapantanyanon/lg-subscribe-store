@@ -622,14 +622,16 @@
 <script src="service-cycles.js?v=20260823"></script>
 <script src="product-galleries.js?v=20260820-sku-galleries"></script>
 <script src="calculator-core.js"></script>
+<script src="promotion-config.js?v=20260825-1"></script>
 <script src="cart.js"></script>
-<script src="product-select.js?v=20260823-care4"></script>
+<script src="product-select.js?v=20260825-promo1"></script>
 <script>
 (function () {
     'use strict';
     const LG = window.LGCalc;
     const SEL = window.FLEXISelect;
     const CART = window.FLEXICart;
+    const PROMO_CONFIG = window.LG_PROMOTION_CONFIG;
     const fmt = n => LG.fmtMoney(n);
     const galleryLightbox = document.getElementById('galleryLightbox');
     const galleryLightboxImage = document.getElementById('galleryLightboxImage');
@@ -700,7 +702,6 @@
 
     let PRODUCTS = [];
     let product = null;
-    let adminSettings = { comboPct: 10, oldMin: 1, newMin: 2 };
     const sel = { customerType: null, planType: 'monthly', careType: null, term: null, variant: null };
     let currentPlanIndex = -1;
     let selectedVariant = null;  // { sku, color, colorTh } or null
@@ -725,8 +726,6 @@
         try {
             const saved = localStorage.getItem('flexiAdminProducts');
             PRODUCTS = saved ? JSON.parse(saved) : JSON.parse(JSON.stringify(DEFAULT));
-            const s = JSON.parse(localStorage.getItem('flexiAdminSettings') || 'null');
-            if (s) adminSettings = Object.assign({ comboPct: 10, oldMin: 1, newMin: 2 }, s);
             PRODUCTS = PRODUCTS.map(p => ({ ...p, plans: (p.plans || []).map(LG.normalizePlan) }));
         } catch (e) { PRODUCTS = JSON.parse(JSON.stringify(DEFAULT)); }
     }
@@ -963,8 +962,10 @@
         // 1) ข้อมูลลูกค้า
         wrap.appendChild(group('ข้อมูลลูกค้า', true, '', function () {
             const g = document.createElement('div'); g.className = 'opt-cards';
-            [['old', 'ลูกค้าเดิม LG Subscribe', 'เคยใช้บริการอยู่แล้ว — คอมโบเริ่มที่ 1 เครื่อง'],
-             ['new', 'ลูกค้าใหม่', 'ยังไม่เคยใช้บริการ — คอมโบเริ่มที่ 2 เครื่อง']].forEach(function (c) {
+            const oldRule = PROMO_CONFIG.customerDiscount.old;
+            const newRule = PROMO_CONFIG.customerDiscount.new;
+            [['old', 'ลูกค้าเดิม LG Subscribe', 'เคยใช้บริการอยู่แล้ว — ลด ' + oldRule.ratePct + '% ตั้งแต่ ' + oldRule.minItems + ' เครื่อง'],
+             ['new', 'ลูกค้าใหม่', 'ยังไม่เคยใช้บริการ — ลด ' + newRule.ratePct + '% ตั้งแต่ ' + newRule.minItems + ' เครื่อง']].forEach(function (c) {
                 const b = optCard('<span class="t">' + c[1] + '</span><span class="d">' + c[2] + '</span>',
                     sel.customerType === c[0] ? 'selected' : '');
                 b.onclick = () => {
@@ -1242,7 +1243,7 @@
         }
 
         const cartQty = CART.totalQty(CART.load());
-        const s = SEL.itemSummary(product, idx, sel.customerType || 'new', cartQty, adminSettings);
+        const s = SEL.itemSummary(product, idx, sel.customerType || 'new', cartQty);
 
         // ราคาเต็ม (ขีดฆ่า) + ราคาจริงเดือนนี้
         el('sumStrike').innerHTML = s.strike ? 'ราคาเต็ม ฿' + fmt(s.strike) + ' <small>' + s.strikeLabel + '</small>' : '';
@@ -1286,12 +1287,13 @@
         // หมายเหตุคอมโบ
         const combo = s.combo;
         const comboEl = el('sumCombo');
+        const comboRule = PROMO_CONFIG.customerDiscount[sel.customerType === 'old' ? 'old' : 'new'];
         if (combo.rate > 0 && combo.needed === 0) {
-            comboEl.textContent = 'ได้รับส่วนลด 10% ตามสิทธิ์ลูกค้าแล้ว ราคาข้างต้นรวมส่วนลดแล้ว';
+            comboEl.textContent = 'ได้รับส่วนลด ' + comboRule.ratePct + '% ตามสิทธิ์' + comboRule.label + 'แล้ว ราคาข้างต้นรวมส่วนลดแล้ว';
             comboEl.className = 'combo-hint';
         } else if (combo.needed > 0) {
-            comboEl.textContent = 'เพิ่มอีก ' + combo.needed + ' รายการ (รวมรายการนี้) เพื่อรับส่วนลด 10%. ' +
-                (sel.customerType === 'old' ? 'ลูกค้าเก่าเริ่มที่ 1 เครื่อง' : 'ลูกค้าใหม่เริ่มที่ 2 เครื่อง');
+            comboEl.textContent = 'เพิ่มอีก ' + combo.needed + ' รายการ (รวมรายการนี้) เพื่อรับส่วนลด ' + comboRule.ratePct + '%. ' +
+                comboRule.label + 'เริ่มที่ ' + comboRule.minItems + ' เครื่อง';
             comboEl.className = 'combo-hint off';
         } else {
             comboEl.textContent = '';
@@ -1303,7 +1305,7 @@
     function openBreakdown() {
         if (currentPlanIndex < 0) return;
         breakdownReturnFocus = document.activeElement;
-        const s = SEL.itemSummary(product, currentPlanIndex, sel.customerType || 'new', CART.totalQty(CART.load()), adminSettings);
+        const s = SEL.itemSummary(product, currentPlanIndex, sel.customerType || 'new', CART.totalQty(CART.load()));
         const modal = breakdownModal;
         document.getElementById('modalTitle').textContent = 'ค่าบริการและรายละเอียดทั้งหมด';
         document.getElementById('modalSub').textContent = (product.name || '') + ' · ' + s.plan.label;

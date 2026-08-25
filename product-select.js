@@ -7,16 +7,23 @@
    - itemSummary: สรุปราคาสำหรับกล่องสรุปบน PDP (คำนวณด้วยฟังก์ชันเดียวกับหน้าตะกร้า)
    ===================================================================== */
 (function (root, factory) {
-  if (typeof module === 'object' && module.exports) module.exports = factory(require('./calculator-core.js'));
-  else root.FLEXISelect = factory(root.LGCalc);
-})(typeof self !== 'undefined' ? self : this, function (LG) {
+  if (typeof module === 'object' && module.exports) module.exports = factory(require('./calculator-core.js'), require('./promotion-config.js'));
+  else root.FLEXISelect = factory(root.LGCalc, root.LG_PROMOTION_CONFIG);
+})(typeof self !== 'undefined' ? self : this, function (LG, PROMOTION_CONFIG) {
   'use strict';
 
-  /* ---------- โปรโมชันกลาง (วันที่เป็นปฏิทิน พ.ศ.) — ใช้ที่เดียวทั้งเว็บ ---------- */
+  if (!PROMOTION_CONFIG || !PROMOTION_CONFIG.customerDiscount) {
+    throw new Error('Missing promotion-config.js');
+  }
+
+  /* ---------- โปรโมชันกลาง — อ่านจาก promotion-config.js จุดเดียว ---------- */
   var PROMOS = {
-    normal: { name: 'August Combo', dateStart: '2569-08-01', dateEnd: '2569-08-31' },
-    special: { name: 'LG Special Birthday Combo Promotion', dateStart: '2569-08-15', dateEnd: '2569-08-25' },
-    shock: { name: 'DOUBLE DAY 8.8 SHOCK PRICE', dateStart: '2569-08-08', dateEnd: '2569-08-10', fromPrice: 149, toPrice: 88 }
+    normal: {
+      name: PROMOTION_CONFIG.campaignName,
+      dateStart: PROMOTION_CONFIG.dateStart,
+      dateEnd: PROMOTION_CONFIG.dateEnd
+    },
+    shock: PROMOTION_CONFIG.shock
   };
 
   var CARE_INFO = {
@@ -496,23 +503,23 @@
     return miss;
   }
 
-  /* ---------- คอมโบ (ช่วงเวลา + ประเภทลูกค้า) — ใช้ร่วมกับหน้าตะกร้า ---------- */
-  function activePromo(now) {
-    return LG.isDateInRange(PROMOS.special.dateStart, PROMOS.special.dateEnd, now)
-      ? PROMOS.special : PROMOS.normal;
+  /* ---------- ส่วนลดตามประเภทลูกค้า — อ่านจาก promotion-config.js ---------- */
+  function activePromo() {
+    return PROMOS.normal;
   }
-  function comboInfo(customerType, cartQty, settings, now) {
+  function comboInfo(customerType, cartQty) {
     var n = Number(cartQty) || 0;
-    var promo = activePromo(now);
-    var tiers = customerType === 'old'
-      ? [{ min: 1, rate: 10 }]
-      : [{ min: 2, rate: 10 }];
+    var promo = activePromo();
+    var rule = PROMOTION_CONFIG.customerDiscount[customerType === 'old' ? 'old' : 'new'];
+    var tiers = [{ min: Number(rule.minItems) || 1, rate: Number(rule.ratePct) || 0 }];
     var need = LG.minTierItems(tiers);
     return {
       promo: promo, tiers: tiers,
       rate: LG.comboRateFor(tiers, n),
       needed: n >= need ? 0 : need - n,
-      special: false
+      special: false,
+      rule: rule,
+      configId: PROMOTION_CONFIG.configId
     };
   }
 
@@ -587,6 +594,7 @@
   }
 
   return {
+    PROMOTION_CONFIG: PROMOTION_CONFIG,
     PROMOS: PROMOS, CARE_INFO: CARE_INFO, careInfo: careInfo,
     planTypes: planTypes, careTypes: careTypes, terms: terms,
     filterPlans: filterPlans, variantOptions: variantOptions,

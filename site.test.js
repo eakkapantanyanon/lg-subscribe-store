@@ -11,6 +11,7 @@ const requiredAssets = [
   'products.js',
   'product-galleries.js',
   'calculator-core.js',
+  'promotion-config.js',
   'product-select.js',
   'cart.js',
   'analytics.js',
@@ -443,6 +444,8 @@ check(/\.care-popover \{ position: static; z-index: auto; width: 100%; max-heigh
 check(/background: #fff; color: #231d20/.test(pdp) && /care-cycle-group \{ padding: 11px 12px/.test(pdp), 'Care popover ใช้พื้นสว่าง contrast สูงและแยกรอบบริการเป็นกลุ่ม');
 check(/\.care-detail-trigger \{ position: relative/.test(pdp) && !/\.care-detail-trigger \{ position: absolute/.test(pdp), 'ปุ่มรายละเอียดบริการไม่ซ้อนตำแหน่งกับเครื่องหมายเลือกแพ็กเกจ');
 check(/\.care-detail-trigger:focus-visible \{ background: #fff0f4; outline: 3px solid rgba\(165,0,52,\.35\)/.test(pdp), 'ปุ่มรายละเอียดบริการมี focus ring ที่มองเห็นชัด');
+const promotionConfigSource = fs.readFileSync(path.join(ROOT, 'promotion-config.js'), 'utf8');
+const promotionConfig = require('./promotion-config.js');
 const productSelectSource = fs.readFileSync(path.join(ROOT, 'product-select.js'), 'utf8');
 const serviceCycleSource = fs.readFileSync(path.join(ROOT, 'service-cycles.js'), 'utf8');
 check(/service-cycles\.js\?v=20260823/.test(pdp) && /Price list_Aug_V3\.pdf/.test(serviceCycleSource), 'PDP โหลดรอบบริการจาก Price List ที่ตรวจสอบแล้ว');
@@ -452,7 +455,9 @@ check(!/ทุก 6\/12 เดือน/.test(productSelectSource) && !/ค่�
 check(/รายละเอียดงานขึ้นอยู่กับรุ่นและเงื่อนไขบริการ/.test(productSelectSource) && /รายการอุปกรณ์ขึ้นอยู่กับรุ่นและเงื่อนไขบริการ/.test(productSelectSource), 'Care fallback บอกขอบเขตข้อมูลอย่างตรงไปตรงมา');
 check(/window\.LG_SERVICE_CYCLE_MAP=map/.test(serviceCycleSource) && /serviceSource/.test(serviceCycleSource), 'รอบบริการทุกหมวดใช้ source map เดียวจาก Price List ที่ตรวจสอบแล้ว');
 check(/CARE_DETAIL_OVERRIDES/.test(productSelectSource) && /override\.source/.test(productSelectSource), 'Care detail เฉพาะรุ่นเก็บ source แยกจาก fallback อย่างชัดเจน');
-check(/product-select\.js\?v=20260823-care4/.test(pdp) && /product-select\.js\?v=20260823-care4/.test(cart), 'PDP/Cart cache-bust Care Service runtime เวอร์ชันล่าสุด');
+check(/promotion-config\.js\?v=20260825-1/.test(pdp) && /promotion-config\.js\?v=20260825-1/.test(cart) && /product-select\.js\?v=20260825-promo1/.test(pdp) && /product-select\.js\?v=20260825-promo1/.test(cart), 'PDP/Cart โหลด Promotion Config ก่อน product-select และ cache-bust runtime เวอร์ชันล่าสุด');
+check(/^2026-\d{2}-customer-discount-v\d+$/.test(promotionConfig.configId) && promotionConfig.customerDiscount && ['new','old'].every(key => Number(promotionConfig.customerDiscount[key].minItems) >= 1 && Number(promotionConfig.customerDiscount[key].ratePct) >= 0), 'Promotion Config กลางมี configId และกฎลูกค้าใหม่/เก่าที่แก้รายเดือนได้จากจุดเดียว');
+check(/require\('\.\/promotion-config\.js'\)/.test(productSelectSource) && /PROMOTION_CONFIG\.customerDiscount/.test(productSelectSource) && !/\? \[\{ min: 1, rate: 10 \}\]/.test(productSelectSource), 'product-select อ่านกฎส่วนลดจาก promotion-config.js แทน hardcode threshold/rate');
 check(/Care Service AS25GCBY0/.test(productSelectSource) && /ครบ 36 เดือน/.test(productSelectSource), 'AeroCat ใช้รายละเอียด Care Service ล่าสุดเฉพาะรุ่น');
 check(!/อ้างอิงรอบบริการจาก/.test(pdp) && /รายละเอียดบริการเป็นไปตามรุ่น แพ็กเกจ และเงื่อนไขบริการที่เลือก/.test(pdp), 'Tooltip ลูกค้าไม่แสดงชื่อ source ทางเทคนิคและใช้หมายเหตุที่อ่านง่าย');
 check(fs.existsSync(path.join(ROOT, 'docs', 'audits', 'care-service-source-register.md')), 'มีทะเบียน Source of Truth สำหรับ Care Service');
@@ -523,8 +528,8 @@ check(/ของแถม: ' \+ product\.gift/.test(cart), 'ข้อควา�
 check(/id="rememberedCustomerType"/.test(cart) && !/name="custType"/.test(cart), 'Cart แสดงประเภทลูกค้าที่จำไว้และไม่มีตัวเลือกซ้ำ');
 check(/cart\.customerType = c\[0\]/.test(pdp), 'PDP บันทึกประเภทลูกค้าทันทีที่เลือก');
 check(/copyOrderForOfficer\(\)/.test(cart), 'Cart มี flow คัดลอกรายการส่งเจ้าหน้าที่');
-check(/ลูกค้าใหม่ทำรายการตั้งแต่ 2 เครื่องขึ้นไป ลด 10%\*/.test(cart) && /ลูกค้าเก่าทำรายการตั้งแต่ 1 เครื่องขึ้นไป ลด 10%\*/.test(cart), 'Cart แสดงกฎโปรโมชั่นล่าสุดใหม่ 2 เครื่อง 10% / เก่า 1 เครื่อง 10%');
-check(/\? \[\{ min: 1, rate: 10 \}\]/.test(productSelectSource) && /: \[\{ min: 2, rate: 10 \}\]/.test(productSelectSource) && /special: false/.test(productSelectSource), 'Calculator combo ใช้ส่วนลดคงที่ 10% ตามประเภทลูกค้าและไม่ใช้ Birthday 15%');
+check(/PROMO_CONFIG\.customerDiscount\.new/.test(cart) && /PROMO_CONFIG\.customerDiscount\.old/.test(cart) && /กฎโปรโมชั่นปัจจุบัน/.test(cart), 'Cart แสดงโปรโมชั่นจาก Promotion Config กลางแทนข้อความ hardcode รายเดือน');
+check(/PROMOTION_CONFIG\.customerDiscount/.test(productSelectSource) && /special: false/.test(productSelectSource) && !/PROMOS\.special/.test(productSelectSource), 'Calculator combo อ่าน threshold/rate จาก Promotion Config และไม่ใช้ Birthday 15%');
 check(/\.logo-sub \{[^}]*font-size: 11px; letter-spacing: \.07em;/.test(cart) && /\.price-hint \{ font-size: 12px; color: #6f666a;/.test(cart), 'Cart metadata และคำอธิบายราคาไม่เล็กหรือจางเกินไป');
 check(/<label class="cust-label" for="custName">ชื่อ-นามสกุล<\/label>/.test(cart) && /<label class="cust-label" for="custPhone">เบอร์โทรศัพท์<\/label>/.test(cart), 'Cart ใช้ label ที่มองเห็นได้สำหรับข้อมูลติดต่อ ไม่พึ่ง placeholder');
 check(/กรอกชื่อ-นามสกุลเพื่อให้เจ้าหน้าที่ติดต่อกลับ/.test(cart) && /กรอกเบอร์โทรศัพท์ไทย เช่น 0812345678/.test(cart), 'Cart error copy บอกวิธีแก้โดยตรงและกระชับ');
