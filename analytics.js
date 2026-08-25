@@ -23,7 +23,9 @@
 
   const FUNNEL_SESSION_KEY = 'flexi_funnel_session_v1';
   const FUNNEL_STAGE_BY_PAGE = {
-    guide: 'guide',
+    home: 'awareness',
+    guide: 'education',
+    promotions: 'promotion',
     catalog: 'discovery',
     'product-detail': 'consideration',
     cart: 'lead_handoff'
