@@ -8,6 +8,7 @@ const { execFileSync } = require('child_process');
 const ROOT = __dirname;
 const pages = ['index.html', 'products.html', 'product.html', 'promotions.html', 'subscribe-store.html', 'subscribe-guide.html'];
 const requiredAssets = [
+  'sales-toolkit.html',
   'quotation.html',
   'product-card.html',
   'products.js',
@@ -447,6 +448,9 @@ check(/background: #fff; color: #231d20/.test(pdp) && /care-cycle-group \{ paddi
 check(/\.care-detail-trigger \{ position: relative/.test(pdp) && !/\.care-detail-trigger \{ position: absolute/.test(pdp), 'ปุ่มรายละเอียดบริการไม่ซ้อนตำแหน่งกับเครื่องหมายเลือกแพ็กเกจ');
 check(/\.care-detail-trigger:focus-visible \{ background: #fff0f4; outline: 3px solid rgba\(165,0,52,\.35\)/.test(pdp), 'ปุ่มรายละเอียดบริการมี focus ring ที่มองเห็นชัด');
 const promotionConfigSource = fs.readFileSync(path.join(ROOT, 'promotion-config.js'), 'utf8');
+const salesToolkit = fs.readFileSync(path.join(ROOT, 'sales-toolkit.html'), 'utf8');
+check(/LG SUBSCRIBE SALES TOOLKIT/.test(salesToolkit) && /href="product-card\.html"/.test(salesToolkit) && /href="quotation\.html"/.test(salesToolkit) && /href="subscribe-store\.html"/.test(salesToolkit) && /href="products\.html"/.test(salesToolkit), 'Sales Toolkit Home รวมทางเข้า Product Card / Quotation / Calculator / Catalog');
+check(/promotion-config\.js\?v=20260825-1/.test(salesToolkit) && /p\.customerDiscount/.test(salesToolkit), 'Sales Toolkit Home แสดงกฎโปรโมชั่นจาก Promotion Config กลาง');
 const productCard = fs.readFileSync(path.join(ROOT, 'product-card.html'), 'utf8');
 const quotation = fs.readFileSync(path.join(ROOT, 'quotation.html'), 'utf8');
 check(/Quotation \/ Multi-product Summary/.test(quotation) && /products\.js/.test(quotation) && /calculator-core\.js/.test(quotation) && /promotion-config\.js\?v=20260825-1/.test(quotation) && /product-select\.js\?v=20260825-promo1/.test(quotation), 'Quotation Generator ใช้ canonical products/calculator/promotion config');
@@ -456,6 +460,7 @@ check(/id="productSearch"/.test(quotation) && /visibleProductIndexes/.test(quota
 check(/editQuoteQty/.test(quotation) && /editQuotePlan/.test(quotation) && /เปลี่ยนแพ็กเกจ/.test(quotation) && /เปลี่ยนจำนวน/.test(quotation), 'Quotation Phase 2 แก้แพ็กเกจและจำนวนจากรายการที่เพิ่มแล้วได้');
 check(/id="quoteNoInput"/.test(quotation) && /defaultQuoteNo/.test(quotation) && /id="validUntilInput"/.test(quotation) && /defaultValidUntil/.test(quotation) && /id="salesNoteInput"/.test(quotation), 'Quotation Phase 2 มีเลขที่ใบเสนอราคา วันหมดอายุ และหมายเหตุฝ่ายขาย');
 check(/Product Card Generator/.test(productCard) && /<script src="products\.js"><\/script>/.test(productCard) && /calculator-core\.js/.test(productCard) && /promotion-config\.js\?v=20260825-1/.test(productCard), 'Product Card Generator ใช้ canonical products/calculator/promotion config');
+check(/href="sales-toolkit\.html"/.test(productCard) && /href="sales-toolkit\.html"/.test(quotation), 'Product Card และ Quotation กลับ Sales Toolkit Home ได้');
 check(/object-fit:contain/.test(productCard) && /plan\.promo/.test(productCard) && /promo\.customerDiscount/.test(productCard), 'Product Card แสดงรูปเต็มและดึงข้อความแผน/กฎลูกค้าจากข้อมูลจริง');
 check(/id="customerType"/.test(productCard) && /id="itemQty"/.test(productCard) && /SEL\.itemSummary/.test(productCard) && /LG\.netMonthly/.test(productCard), 'Product Card Phase 2 คำนวณสิทธิ์ลูกค้าและราคาหลังส่วนลดด้วยสูตรกลาง');
 check(/id="exportBtn"/.test(productCard) && /canvas\.toBlob/.test(productCard) && /download='lg-subscribe-'/.test(productCard), 'Product Card มี Export PNG 1080x1350 จากรูปสินค้าและข้อมูลจริง');
