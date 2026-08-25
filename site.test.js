@@ -8,6 +8,7 @@ const { execFileSync } = require('child_process');
 const ROOT = __dirname;
 const pages = ['index.html', 'products.html', 'product.html', 'promotions.html', 'subscribe-store.html', 'subscribe-guide.html'];
 const requiredAssets = [
+  'quotation.html',
   'product-card.html',
   'products.js',
   'product-galleries.js',
@@ -447,6 +448,10 @@ check(/\.care-detail-trigger \{ position: relative/.test(pdp) && !/\.care-detail
 check(/\.care-detail-trigger:focus-visible \{ background: #fff0f4; outline: 3px solid rgba\(165,0,52,\.35\)/.test(pdp), 'ปุ่มรายละเอียดบริการมี focus ring ที่มองเห็นชัด');
 const promotionConfigSource = fs.readFileSync(path.join(ROOT, 'promotion-config.js'), 'utf8');
 const productCard = fs.readFileSync(path.join(ROOT, 'product-card.html'), 'utf8');
+const quotation = fs.readFileSync(path.join(ROOT, 'quotation.html'), 'utf8');
+check(/Quotation \/ Multi-product Summary/.test(quotation) && /products\.js/.test(quotation) && /calculator-core\.js/.test(quotation) && /promotion-config\.js\?v=20260825-1/.test(quotation) && /product-select\.js\?v=20260825-promo1/.test(quotation), 'Quotation Generator ใช้ canonical products/calculator/promotion config');
+check(/LG\.totalMonthly\(its\)/.test(quotation) && /LG\.comboDiscount\(tMonthly,cr\)/.test(quotation) && /LG\.firstPaymentTotal\(its,cr\)/.test(quotation) && /LG\.grandTotal\(its,cr\)/.test(quotation) && /LG\.grandTotalSaving\(its,cr\)/.test(quotation), 'Quotation ใช้สูตรรวมชุดเดียวกับ Cart');
+check(/id="copyBtn"/.test(quotation) && /navigator\.clipboard\.writeText/.test(quotation) && /id="lineBtn"/.test(quotation) && /window\.print\(\)/.test(quotation), 'Quotation มี Copy LINE / Open LINE / Print-PDF workflow');
 check(/Product Card Generator/.test(productCard) && /<script src="products\.js"><\/script>/.test(productCard) && /calculator-core\.js/.test(productCard) && /promotion-config\.js\?v=20260825-1/.test(productCard), 'Product Card Generator ใช้ canonical products/calculator/promotion config');
 check(/object-fit:contain/.test(productCard) && /plan\.promo/.test(productCard) && /promo\.customerDiscount/.test(productCard), 'Product Card แสดงรูปเต็มและดึงข้อความแผน/กฎลูกค้าจากข้อมูลจริง');
 check(/id="customerType"/.test(productCard) && /id="itemQty"/.test(productCard) && /SEL\.itemSummary/.test(productCard) && /LG\.netMonthly/.test(productCard), 'Product Card Phase 2 คำนวณสิทธิ์ลูกค้าและราคาหลังส่วนลดด้วยสูตรกลาง');
