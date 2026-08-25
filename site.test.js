@@ -209,7 +209,7 @@ check(/product\.html\?slug=/.test(home), 'Home เชื่อมไป PDP');
 check(/href="products\.html"[^>]*id="allProductsLink"/.test(home) && /PRODUCTS\.length/.test(home), 'Home เชื่อม Catalog และแสดงจำนวนสินค้าจากข้อมูลจริง');
 check(/id="catalogSearch"/.test(catalogHtml) && /id="catalogFilters"/.test(catalogHtml) && /id="catalogGrid"/.test(catalogHtml), 'Catalog มี search, category filter และ product grid');
 check(/window\.LG_PRODUCTS/.test(catalogSource) && /state\.category/.test(catalogSource) && /state\.query/.test(catalogSource), 'Catalog ใช้ Product data เดิมและรองรับ search ร่วมกับ filter');
-check(/id="catalogLoadMore"/.test(catalogHtml) && /INITIAL_BATCH_SIZE = 16/.test(catalogSource) && /LOAD_MORE_BATCH_SIZE = 16/.test(catalogSource), 'Catalog progressive rendering เริ่ม 16 รายการและมีปุ่มดูเพิ่มเติม');
+check(/id="catalogLoadMore"/.test(catalogHtml) && /แสดงสินค้าเพิ่ม/.test(catalogHtml) && /INITIAL_BATCH_SIZE = 16/.test(catalogSource) && /LOAD_MORE_BATCH_SIZE = 16/.test(catalogSource), 'Catalog progressive rendering เริ่ม 16 รายการและใช้ CTA แสดงสินค้าเพิ่มที่บอกผลลัพธ์ชัดเจน');
 check(/filteredProducts\(\)/.test(catalogSource) && /matchedProducts\.slice\(0, state\.visibleLimit\)/.test(catalogSource), 'Catalog Search และ Filter คำนวณจาก dataset ทั้งหมดก่อนจำกัดจำนวนที่ render');
 check(/insertAdjacentHTML\('beforeend'/.test(catalogSource) && /catalog_load_more/.test(catalogSource), 'Catalog ดูเพิ่มเติม append batch ใหม่และส่ง analytics');
 check(/loading="/.test(catalogSource) && /addEventListener\('error'/.test(catalogSource) && /fallbackSrc/.test(catalogSource), 'Catalog ใช้ lazy loading และ image fallback จุดเดียว');
@@ -434,6 +434,7 @@ check(/care-detail-trigger/.test(pdp) && /care-popover-title/.test(pdp) && /บ�
 check(/ดูบริการทั้งหมด:/.test(pdp) && !/ⓘ/.test(pdp) && /care-popover-plan/.test(pdp) && /aria-controls/.test(pdp), 'ปุ่มบริการผูกกับประเภทบริการของการ์ดชัดเจนโดยไม่ใช้ info glyph ซ้ำซ้อน');
 check(/\.care-option \{ position: relative; padding-bottom: 11px; border-bottom: 1px solid/.test(pdp) && /\.care-detail-trigger \{ position: relative;/.test(pdp), 'การ์ดบริการแต่ละตัวมีขอบเขตชัดและปุ่มรายละเอียดไม่ซ้อนกับสถานะเลือก');
 check(/care-popover-close/.test(pdp) && /role', 'region'/.test(pdp), 'Care detail มีปุ่มปิดและ semantics แบบ disclosure region');
+check(/ดูสเปกและแผนทั้งหมด<\/summary>/.test(pdp) && !/คลิกเพื่อขยาย/.test(pdp), 'PDP disclosure ใช้ข้อความผลลัพธ์โดยไม่สั่งผู้ใช้ด้วยกลไกคลิก');
 check(/care-popover-summary/.test(pdp) && /care-popover-groups/.test(pdp) && /แสดงบริการทั้งหมดของแพ็กเกจนี้/.test(pdp), 'Care popover แสดงจำนวนรายการและจัดกลุ่มบริการทั้งหมดให้เห็นชัด');
 check(/\.care-popover \{ position: static; z-index: auto; width: 100%; max-height: none; overflow: visible/.test(pdp) && /\.care-popover-groups \{ display: grid; grid-template-columns: 1fr/.test(pdp), 'Care detail เปิดแบบ inline 1 คอลัมน์ ไม่ทับหน้าและไม่ซ่อนรายการหลัง scroll ภายใน');
 check(/background: #fff; color: #231d20/.test(pdp) && /care-cycle-group \{ padding: 11px 12px/.test(pdp), 'Care popover ใช้พื้นสว่าง contrast สูงและแยกรอบบริการเป็นกลุ่ม');
@@ -519,6 +520,8 @@ check(/ของแถม: ' \+ product\.gift/.test(cart), 'ข้อควา�
 check(/id="rememberedCustomerType"/.test(cart) && !/name="custType"/.test(cart), 'Cart แสดงประเภทลูกค้าที่จำไว้และไม่มีตัวเลือกซ้ำ');
 check(/cart\.customerType = c\[0\]/.test(pdp), 'PDP บันทึกประเภทลูกค้าทันทีที่เลือก');
 check(/copyOrderForOfficer\(\)/.test(cart), 'Cart มี flow คัดลอกรายการส่งเจ้าหน้าที่');
+check(/<label class="cust-label" for="custName">ชื่อ-นามสกุล<\/label>/.test(cart) && /<label class="cust-label" for="custPhone">เบอร์โทรศัพท์<\/label>/.test(cart), 'Cart ใช้ label ที่มองเห็นได้สำหรับข้อมูลติดต่อ ไม่พึ่ง placeholder');
+check(/กรอกชื่อ-นามสกุลเพื่อให้เจ้าหน้าที่ติดต่อกลับ/.test(cart) && /กรอกเบอร์โทรศัพท์ไทย เช่น 0812345678/.test(cart), 'Cart error copy บอกวิธีแก้โดยตรงและกระชับ');
 check(/1\. คัดลอกรายการ/.test(cart) && /2\. เปิด LINE @lgthailand/.test(cart) && /กดขั้นตอน 2 เพื่อเปิด LINE/.test(cart), 'Cart handoff แสดง 2 ขั้นตอนคัดลอกแล้วเปิด LINE อย่างชัดเจน');
 check(/lead_validation_error/.test(cart) && /lead_order_copied/.test(cart), 'Cart แยก validation และ successful copy event');
 check([home, pdp, promotions, cart].every((page) => /line\.me\/R\/ti\/p\/@lgthailand/.test(page)), 'CTA ติดต่อ LINE ทุก flow ที่มีช่องทางติดต่อส่งไป LG Thailand @lgthailand');

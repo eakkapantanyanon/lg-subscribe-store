@@ -359,6 +359,7 @@
         }
         .radio-option input { accent-color: var(--accent); }
         .customer-info-zone { margin-bottom: 14px; }
+        .cust-label { display: block; margin: 3px 2px 5px; color: #4d4447; font-size: 12px; font-weight: 700; }
         .cust-input {
             width: 100%;
             padding: 10px 12px;
@@ -780,10 +781,12 @@
             <div class="customer-grid">
             <div class="customer-info-zone">
                 <div class="remembered-customer"><span>ประเภทลูกค้าที่เลือกไว้</span><strong id="rememberedCustomerType">ลูกค้าใหม่</strong></div>
-                <input type="text" id="custName" class="cust-input" aria-label="ชื่อและนามสกุลสำหรับติดต่อ" aria-describedby="custNameError" autocomplete="name" maxlength="120" placeholder="ชื่อ-นามสกุล (สำหรับติดต่อ)">
-                <span class="field-error" id="custNameError">กรุณากรอกชื่อ-นามสกุล</span>
-                <input type="tel" id="custPhone" class="cust-input" aria-label="เบอร์โทรศัพท์" aria-describedby="custPhoneError" autocomplete="tel" inputmode="tel" maxlength="20" placeholder="เบอร์โทรศัพท์ เช่น 081-234-5678">
-                <span class="field-error" id="custPhoneError">กรุณากรอกเบอร์โทรศัพท์ไทยให้ถูกต้อง เช่น 0812345678</span>
+                <label class="cust-label" for="custName">ชื่อ-นามสกุล</label>
+                <input type="text" id="custName" class="cust-input" aria-describedby="custNameError" autocomplete="name" maxlength="120" placeholder="เช่น สมชาย ใจดี">
+                <span class="field-error" id="custNameError">กรอกชื่อ-นามสกุลเพื่อให้เจ้าหน้าที่ติดต่อกลับ</span>
+                <label class="cust-label" for="custPhone">เบอร์โทรศัพท์</label>
+                <input type="tel" id="custPhone" class="cust-input" aria-describedby="custPhoneError" autocomplete="tel" inputmode="tel" maxlength="20" placeholder="เช่น 081-234-5678">
+                <span class="field-error" id="custPhoneError">กรอกเบอร์โทรศัพท์ไทย เช่น 0812345678</span>
                 <p class="lead-privacy-note">ข้อมูลชื่อและเบอร์โทรใช้เพื่อให้เจ้าหน้าที่ติดต่อกลับเกี่ยวกับรายการที่คุณเลือกเท่านั้น และยังไม่ถูกส่งไปเก็บในฐานข้อมูลจากหน้าเว็บนี้</p>
             </div>
             </div>
@@ -1254,20 +1257,20 @@
         function buildOfficerMessage() {
             const ids = Object.keys(selected);
             if (ids.length === 0) {
-                setCheckoutError(null, 'กรุณาเลือกสินค้าอย่างน้อย 1 รายการก่อนส่งให้เจ้าหน้าที่');
+                setCheckoutError(null, 'เลือกสินค้าอย่างน้อย 1 รายการก่อนส่งให้เจ้าหน้าที่');
                 return null;
             }
 
             const name = document.getElementById('custName').value.trim();
             const phone = document.getElementById('custPhone').value.trim();
             if (!name) {
-                setCheckoutError('custName', 'กรุณากรอกชื่อ-นามสกุลของคุณ');
+                setCheckoutError('custName', 'กรอกชื่อ-นามสกุลเพื่อให้เจ้าหน้าที่ติดต่อกลับ');
                 return null;
             }
             clearCheckoutError('custName');
             const phoneDigits = phone.replace(/[-\s]/g, '');
             if (!/^0\d{8,9}$/.test(phoneDigits)) {
-                setCheckoutError('custPhone', 'กรุณากรอกเบอร์โทรศัพท์ให้ถูกต้อง เช่น 0812345678');
+                setCheckoutError('custPhone', 'กรอกเบอร์โทรศัพท์ไทย เช่น 0812345678');
                 return null;
             }
             clearCheckoutError('custPhone');
