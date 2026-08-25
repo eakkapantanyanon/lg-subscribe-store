@@ -86,7 +86,7 @@ body[data-page="catalog"] :focus-visible {
 }
 .catalog-brand > span:last-child { display: flex; flex-direction: column; line-height: 1.05; }
 .catalog-brand strong { font-size: 17px; letter-spacing: -.025em; }
-.catalog-brand small { margin-top: 5px; color: var(--catalog-muted); font-size: 9px; letter-spacing: .14em; }
+.catalog-brand small { margin-top: 5px; color: var(--catalog-muted); font-size: 11px; letter-spacing: .08em; }
 .catalog-lg-mark {
   display: grid;
   place-items: center;
