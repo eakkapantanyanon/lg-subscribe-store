@@ -1287,12 +1287,11 @@
         const combo = s.combo;
         const comboEl = el('sumCombo');
         if (combo.rate > 0 && combo.needed === 0) {
-            comboEl.textContent = 'ได้รับส่วนลดคอมโบ ' + Math.round(combo.rate * 100) + '% (' + combo.promo.name + (combo.special ? ' · SPECIAL' : '') + ') แล้ว ราคาข้างต้นรวมส่วนลดแล้ว';
+            comboEl.textContent = 'ได้รับส่วนลด 10% ตามสิทธิ์ลูกค้าแล้ว ราคาข้างต้นรวมส่วนลดแล้ว';
             comboEl.className = 'combo-hint';
         } else if (combo.needed > 0) {
-            comboEl.textContent = 'เพิ่มอีก ' + combo.needed + ' รายการ (รวมรายการนี้) ถึงได้คอมโบ ' +
-                (combo.special ? '15%' : adminSettings.comboPct + '%') +
-                '. ' + (sel.customerType === 'old' ? 'ลูกค้าเดิมเริ่ม 1 เครื่อง' : 'ลูกค้าใหม่เริ่ม 2 เครื่อง');
+            comboEl.textContent = 'เพิ่มอีก ' + combo.needed + ' รายการ (รวมรายการนี้) เพื่อรับส่วนลด 10%. ' +
+                (sel.customerType === 'old' ? 'ลูกค้าเก่าเริ่มที่ 1 เครื่อง' : 'ลูกค้าใหม่เริ่มที่ 2 เครื่อง');
             comboEl.className = 'combo-hint off';
         } else {
             comboEl.textContent = '';

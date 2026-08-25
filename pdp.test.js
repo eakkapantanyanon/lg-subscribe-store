@@ -179,12 +179,12 @@ t('ตู้เย็น GC-B257SQYL: 5Y (549) ↔ 6Y (449) — เปลี่�
   const p = data.find(x => x.id === 'gc-b257sqyl');
   const i5 = p.plans.findIndex(x => x.totalContractMonths === 60);
   const i6 = p.plans.findIndex(x => x.totalContractMonths === 72);
-  // ลูกค้าเก่า 1 เครื่อง (วันนี้ 18 ส.ค. = combo 15% active)
+  // ลูกค้าเก่า 1 เครื่อง → ส่วนลดคงที่ 10%
   const s5 = SEL.itemSummary(p, i5, 'old', 0, {});
   const s6 = SEL.itemSummary(p, i6, 'old', 0, {});
   eq(s5.strike, 549, '5Y ราคาเต็ม'); eq(s6.strike, 449, '6Y ราคาเต็ม');
-  eq(s5.contract, 27679, '5Y รวมสัญญา (cr 15%)');
-  eq(s6.contract, 27248, '6Y รวมสัญญา (cr 15% — เคส C)');
+  eq(s5.contract, 29280, '5Y รวมสัญญา (cr 10%)');
+  eq(s6.contract, 28818, '6Y รวมสัญญา (cr 10% — เคส C)');
   // บิลแรกเท่ากัน (149) แต่ราคาเต็ม/ยอดรวมต่างกัน → สรุปต้องสะท้อนความต่าง
   assert.notStrictEqual(s5.strike, s6.strike);
   assert.notStrictEqual(s5.contract, s6.contract);
@@ -249,7 +249,7 @@ t('ทุกแผน: firstPay/contract/segments ตรง LGCalc ที่ cr 
   const settings = { comboPct: 10, oldMin: 1, newMin: 2 };
   data.forEach(p => {
     p.plans.forEach((plan, planIndex) => {
-      // ลูกค้าเก่า 1 เครื่อง → cr ตามช่วง (วันนี้ 18 ส.ค. = special 15%)
+      // ลูกค้าเก่า 1 เครื่อง → cr คงที่ 10% ตามกฎล่าสุด
       const s = SEL.itemSummary(p, planIndex, 'old', 0, settings);
       const item = SEL.planToItem(p, plan);
       const cr = s.comboRate;
@@ -266,26 +266,18 @@ t('ทุกแผน: firstPay/contract/segments ตรง LGCalc ที่ cr 
   });
 });
 
-t('comboInfo: ช่วง Birthday → 15% · นอกช่วง → 10% · เกณฑ์ ใหม่ 2 / เก่า 1', () => {
-  const aug18 = new Date(2026, 7, 18);   // 18 ส.ค. 69 — ในช่วง Birthday
-  const aug01 = new Date(2026, 7, 1);    // 1 ส.ค. 69 — นอกช่วง
-  const aug31 = new Date(2026, 7, 31);   // 31 ส.ค. 69 — นอกช่วง (หมด 25)
-  // ในช่วง: เก่า 1 เครื่อง → 15%
+t('comboInfo: ใช้กฎคงที่ 10% · เกณฑ์ ใหม่ 2 / เก่า 1 ทุกวัน', () => {
+  const aug18 = new Date(2026, 7, 18);
+  const aug01 = new Date(2026, 7, 1);
+  const aug31 = new Date(2026, 7, 31);
   let c = SEL.comboInfo('old', 1, {}, aug18);
-  eq(c.rate, 0.15, 'เก่า 1 ชิ้น ในช่วง'); assert.ok(c.special);
-  // ในช่วง: ใหม่ 1 เครื่อง → 0 (ต้อง 2)
+  eq(c.rate, 0.10, 'เก่า 1 ชิ้น ได้ 10%'); eq(c.special, false);
   c = SEL.comboInfo('new', 1, {}, aug18);
-  eq(c.rate, 0, 'ใหม่ 1 ชิ้น ในช่วง'); eq(c.needed, 1);
+  eq(c.rate, 0, 'ใหม่ 1 ชิ้น ยังไม่ได้ส่วนลด'); eq(c.needed, 1);
   c = SEL.comboInfo('new', 2, {}, aug18);
-  eq(c.rate, 0.15, 'ใหม่ 2 ชิ้น ในช่วง');
-  // นอกช่วง: เก่า 1 → 10% · ใหม่ 2 → 10% · ใหม่ 1 → 0
-  c = SEL.comboInfo('old', 1, {}, aug01);
-  eq(c.rate, 0.10, 'เก่า 1 นอกช่วง');
-  c = SEL.comboInfo('new', 2, {}, aug01);
-  eq(c.rate, 0.10, 'ใหม่ 2 นอกช่วง');
-  eq(SEL.comboInfo('new', 1, {}, aug01).rate, 0, 'ใหม่ 1 นอกช่วง');
-  c = SEL.comboInfo('old', 1, {}, aug31);
-  eq(c.rate, 0.10, '31 ส.ค. กลับเป็นปกติ');
+  eq(c.rate, 0.10, 'ใหม่ 2 ชิ้น ได้ 10%');
+  eq(SEL.comboInfo('old', 1, {}, aug01).rate, 0.10, 'ต้นเดือนเก่า 1 = 10%');
+  eq(SEL.comboInfo('new', 2, {}, aug31).rate, 0.10, 'สิ้นเดือนใหม่ 2 = 10%');
 });
 
 t('shock 8.8: อยู่ในช่วง (8–10 ส.ค.) → บิลแรก 88 · นอกช่วง → 149', () => {

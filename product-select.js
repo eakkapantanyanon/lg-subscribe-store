@@ -504,21 +504,15 @@
   function comboInfo(customerType, cartQty, settings, now) {
     var n = Number(cartQty) || 0;
     var promo = activePromo(now);
-    var s = settings || {};
-    var tiers;
-    if (promo === PROMOS.special) {
-      tiers = customerType === 'old' ? [{ min: 1, rate: 15 }] : [{ min: 2, rate: 15 }];
-    } else {
-      tiers = customerType === 'old'
-        ? [{ min: s.oldMin || 1, rate: s.comboPct || 10 }]
-        : [{ min: s.newMin || 2, rate: s.comboPct || 10 }];
-    }
+    var tiers = customerType === 'old'
+      ? [{ min: 1, rate: 10 }]
+      : [{ min: 2, rate: 10 }];
     var need = LG.minTierItems(tiers);
     return {
       promo: promo, tiers: tiers,
       rate: LG.comboRateFor(tiers, n),
       needed: n >= need ? 0 : need - n,
-      special: promo === PROMOS.special
+      special: false
     };
   }
 

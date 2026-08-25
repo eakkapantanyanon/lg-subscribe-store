@@ -768,7 +768,7 @@
     </section>
 
     <div class="combo-banner" id="comboBanner" role="status" aria-live="polite">
-        คอมโบ: สมัคร 2 เครื่องขึ้นไป ลดเพิ่มอีก 10% สำหรับลูกค้าใหม่ (2 เครื่องขึ้นไป) / ลูกค้าเดิม LG Subscribe (1 เครื่องขึ้นไป)
+        โปรโมชั่น: ลูกค้าใหม่ทำรายการตั้งแต่ 2 เครื่องขึ้นไป ลด 10%* / ลูกค้าเก่าทำรายการตั้งแต่ 1 เครื่องขึ้นไป ลด 10%*
     </div>
 
     <main class="main-layout" id="mainContent" tabindex="-1">
@@ -1204,26 +1204,20 @@
 
         function updatePromoBanner(info, subtotal) {
             const banner = document.getElementById('promoBanner');
-            const special = info.promo === PROMO_SPECIAL;
             if (subtotal === 0) {
-                banner.innerHTML = 'เลือกสินค้าเพื่อดูโปรโมชั่น ยอดชำระครั้งแรก และส่วนลดคอมโบจากแพ็กเกจจริง';
+                banner.innerHTML = 'เลือกสินค้าเพื่อดูโปรโมชั่น ยอดชำระครั้งแรก และส่วนลดจากแพ็กเกจจริง';
                 return;
             }
             const pct = Math.round(info.rate * 100);
             if (info.rate > 0 && info.needed === 0) {
-                banner.innerHTML = 'ได้รับส่วนลดคอมโบ ' + pct + '% (' + info.promo.name + ')' +
-                    (special ? ' <span class="special-tag">SPECIAL</span>' : '') + ' แล้ว';
+                banner.innerHTML = 'ได้รับส่วนลด ' + pct + '% ตามสิทธิ์ลูกค้าแล้ว';
             } else {
-                banner.innerHTML = 'เลือกเพิ่มอีก ' + info.needed + ' รายการ เพื่อรับส่วนลดคอมโบ ' +
-                    (special ? '15%' : adminSettings.comboPct + '%') +
-                    ' (' + (custType === 'new' ? 'ลูกค้าใหม่ ต้อง 2 เครื่องขึ้นไป' : 'ลูกค้าเดิม ต้อง 1 เครื่องขึ้นไป') + ')';
+                banner.innerHTML = 'เลือกเพิ่มอีก ' + info.needed + ' รายการ เพื่อรับส่วนลด 10% (' +
+                    (custType === 'new' ? 'ลูกค้าใหม่ ต้อง 2 เครื่องขึ้นไป' : 'ลูกค้าเก่า ต้อง 1 เครื่องขึ้นไป') + ')';
             }
             const cb = document.getElementById('comboBanner');
             if (cb) {
-                cb.innerHTML = 'คอมโบ: ' + (special
-                    ? 'LG Special Birthday Combo 15% · 15–25 ส.ค. 69'
-                    : 'สมัคร ' + (custType === 'new' ? '2' : '1') + ' เครื่องขึ้นไป ลดเพิ่ม ' + adminSettings.comboPct + '%') +
-                    '. ลูกค้าใหม่ (2 เครื่องขึ้นไป) / ลูกค้าเดิม LG Subscribe (1 เครื่องขึ้นไป)';
+                cb.innerHTML = 'โปรโมชั่น: ลูกค้าใหม่ทำรายการตั้งแต่ 2 เครื่องขึ้นไป ลด 10%* / ลูกค้าเก่าทำรายการตั้งแต่ 1 เครื่องขึ้นไป ลด 10%*';
             }
         }
 
@@ -1395,14 +1389,8 @@
                         '<button class="admin-close" onclick="closeAdmin()">✕</button>' +
                     '</div>' +
                     '<div class="admin-section">' +
-                        '<label>เงื่อนไขส่วนลดคอมโบ (คอมโบเดือนปกติ)</label>' +
-                        '<div class="admin-settings-row">' +
-                            '<span>ลด</span><input id="admPct" class="admin-input" type="number" value="' + adminSettings.comboPct + '" style="width:70px;">%' +
-                            '<span>ลูกค้าเดิม ตั้งแต่</span><input id="admOldMin" class="admin-input" type="number" value="' + adminSettings.oldMin + '" style="width:60px;"> เครื่อง' +
-                            '<span>ลูกค้าใหม่ ตั้งแต่</span><input id="admNewMin" class="admin-input" type="number" value="' + adminSettings.newMin + '" style="width:60px;"> เครื่อง' +
-                        '</div>' +
-                        '<div class="admin-note" style="margin-top:4px;">คอมโบพิเศษ ' + PROMO_SPECIAL.name + ' (15%) อัตโนมัติในช่วง ' + PROMO_SPECIAL.dateStart + ' – ' + PROMO_SPECIAL.dateEnd + '</div>' +
-                        '<button class="admin-btn" onclick="adminSaveSettings()">บันทึกเงื่อนไข</button>' +
+                        '<label>เงื่อนไขโปรโมชั่นที่ใช้คำนวณ</label>' +
+                        '<div class="admin-note" style="margin-top:4px;">ลูกค้าใหม่: ตั้งแต่ 2 เครื่องขึ้นไป ลด 10%*<br>ลูกค้าเก่า: ตั้งแต่ 1 เครื่องขึ้นไป ลด 10%*</div>' +
                     '</div>' +
                     '<div class="admin-section">' +
                         '<label>แก้ไขสินค้า (ราคา/เดือน, โปรโมชัน และรูป)</label>' +

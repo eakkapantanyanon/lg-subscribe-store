@@ -515,7 +515,7 @@ check(/\.contact-btn \{ border-radius: 10px; min-height: 52px/.test(cart), 'Cart
 check(/\.qty-btn \{\s*width: 32px; height: 32px;/.test(cart) && /aria-label=\"ลดจำนวน /.test(cart) && /aria-label=\"เพิ่มจำนวน /.test(cart), 'Cart ปุ่มเพิ่มลดจำนวนมี touch target 32px และ accessible name ตามสินค้า');
 check(/\.line-open-btn:focus-visible \{ background: var\(--accent-soft\); outline: 3px solid rgba\(165,0,52,\.35\)/.test(cart), 'Cart ปุ่มเปิด LINE มี focus ring ที่มองเห็นชัด');
 check(!/📅 ตารางชำระเงิน/.test(cart) && /<summary>ตารางชำระเงิน<\/summary>/.test(cart), 'Cart disclosure ตารางชำระเงินไม่พึ่ง emoji เป็น UI icon');
-check(/ยอดชำระครั้งแรกคำนวณตามแพ็กเกจที่เลือก/.test(cart) && /เลือกสินค้าเพื่อดูโปรโมชั่น ยอดชำระครั้งแรก และส่วนลดคอมโบจากแพ็กเกจจริง/.test(cart) && !/บิลแรก ฿149 \(แผน Visit\/Self\)/.test(cart), 'Cart ไม่ hardcode งวดแรก ฿149 ให้ทุก Visit/Self และอ้างอิงยอดจากแพ็กเกจจริง');
+check(/ยอดชำระครั้งแรกคำนวณตามแพ็กเกจที่เลือก/.test(cart) && /เลือกสินค้าเพื่อดูโปรโมชั่น ยอดชำระครั้งแรก และส่วนลดจากแพ็กเกจจริง/.test(cart) && !/บิลแรก ฿149 \(แผน Visit\/Self\)/.test(cart), 'Cart ไม่ hardcode งวดแรก ฿149 ให้ทุก Visit/Self และอ้างอิงยอดจากแพ็กเกจจริง');
 check(/const cartKey = \(productId, sku\)/.test(cart) && /entry\.sku/.test(cart) && /entry\.color/.test(cart), 'Cart แยกรายการตาม product + SKU และรักษาสีจาก PDP');
 check(/สี ' \+ color/.test(cart) && /SKU ' \+ sku/.test(cart), 'ข้อความส่งเจ้าหน้าที่ระบุสีและ SKU ของ variant');
 check(/สัญญา: ' \+ item\.months/.test(cart) && /จ่ายล่วงหน้า ฿' \+ fmt\(item\.advancePayment\)/.test(cart), 'ข้อความส่งเจ้าหน้าที่ระบุระยะสัญญาและยอดล่วงหน้าเมื่อมี');
@@ -523,6 +523,8 @@ check(/ของแถม: ' \+ product\.gift/.test(cart), 'ข้อควา�
 check(/id="rememberedCustomerType"/.test(cart) && !/name="custType"/.test(cart), 'Cart แสดงประเภทลูกค้าที่จำไว้และไม่มีตัวเลือกซ้ำ');
 check(/cart\.customerType = c\[0\]/.test(pdp), 'PDP บันทึกประเภทลูกค้าทันทีที่เลือก');
 check(/copyOrderForOfficer\(\)/.test(cart), 'Cart มี flow คัดลอกรายการส่งเจ้าหน้าที่');
+check(/ลูกค้าใหม่ทำรายการตั้งแต่ 2 เครื่องขึ้นไป ลด 10%\*/.test(cart) && /ลูกค้าเก่าทำรายการตั้งแต่ 1 เครื่องขึ้นไป ลด 10%\*/.test(cart), 'Cart แสดงกฎโปรโมชั่นล่าสุดใหม่ 2 เครื่อง 10% / เก่า 1 เครื่อง 10%');
+check(/\? \[\{ min: 1, rate: 10 \}\]/.test(productSelectSource) && /: \[\{ min: 2, rate: 10 \}\]/.test(productSelectSource) && /special: false/.test(productSelectSource), 'Calculator combo ใช้ส่วนลดคงที่ 10% ตามประเภทลูกค้าและไม่ใช้ Birthday 15%');
 check(/\.logo-sub \{[^}]*font-size: 11px; letter-spacing: \.07em;/.test(cart) && /\.price-hint \{ font-size: 12px; color: #6f666a;/.test(cart), 'Cart metadata และคำอธิบายราคาไม่เล็กหรือจางเกินไป');
 check(/<label class="cust-label" for="custName">ชื่อ-นามสกุล<\/label>/.test(cart) && /<label class="cust-label" for="custPhone">เบอร์โทรศัพท์<\/label>/.test(cart), 'Cart ใช้ label ที่มองเห็นได้สำหรับข้อมูลติดต่อ ไม่พึ่ง placeholder');
 check(/กรอกชื่อ-นามสกุลเพื่อให้เจ้าหน้าที่ติดต่อกลับ/.test(cart) && /กรอกเบอร์โทรศัพท์ไทย เช่น 0812345678/.test(cart), 'Cart error copy บอกวิธีแก้โดยตรงและกระชับ');
