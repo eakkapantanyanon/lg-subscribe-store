@@ -8,6 +8,7 @@ const { execFileSync } = require('child_process');
 const ROOT = __dirname;
 const pages = ['index.html', 'products.html', 'product.html', 'promotions.html', 'subscribe-store.html', 'subscribe-guide.html'];
 const requiredAssets = [
+  'product-card.html',
   'products.js',
   'product-galleries.js',
   'calculator-core.js',
@@ -445,6 +446,11 @@ check(/background: #fff; color: #231d20/.test(pdp) && /care-cycle-group \{ paddi
 check(/\.care-detail-trigger \{ position: relative/.test(pdp) && !/\.care-detail-trigger \{ position: absolute/.test(pdp), 'ปุ่มรายละเอียดบริการไม่ซ้อนตำแหน่งกับเครื่องหมายเลือกแพ็กเกจ');
 check(/\.care-detail-trigger:focus-visible \{ background: #fff0f4; outline: 3px solid rgba\(165,0,52,\.35\)/.test(pdp), 'ปุ่มรายละเอียดบริการมี focus ring ที่มองเห็นชัด');
 const promotionConfigSource = fs.readFileSync(path.join(ROOT, 'promotion-config.js'), 'utf8');
+const productCard = fs.readFileSync(path.join(ROOT, 'product-card.html'), 'utf8');
+check(/Product Card Generator/.test(productCard) && /<script src="products\.js"><\/script>/.test(productCard) && /calculator-core\.js/.test(productCard) && /promotion-config\.js\?v=20260825-1/.test(productCard), 'Product Card Generator ใช้ canonical products/calculator/promotion config');
+check(/object-fit:contain/.test(productCard) && /plan\.promo/.test(productCard) && /promo\.customerDiscount/.test(productCard), 'Product Card แสดงรูปเต็มและดึงข้อความแผน/กฎลูกค้าจากข้อมูลจริง');
+check(/id="customerType"/.test(productCard) && /id="itemQty"/.test(productCard) && /SEL\.itemSummary/.test(productCard) && /LG\.netMonthly/.test(productCard), 'Product Card Phase 2 คำนวณสิทธิ์ลูกค้าและราคาหลังส่วนลดด้วยสูตรกลาง');
+check(/id="exportBtn"/.test(productCard) && /canvas\.toDataURL\('image\/png'\)/.test(productCard) && /download='LG-Subscribe-/.test(productCard), 'Product Card มี Export PNG จากรูปสินค้าและข้อมูลจริง');
 const promotionConfig = require('./promotion-config.js');
 const productSelectSource = fs.readFileSync(path.join(ROOT, 'product-select.js'), 'utf8');
 const serviceCycleSource = fs.readFileSync(path.join(ROOT, 'service-cycles.js'), 'utf8');
