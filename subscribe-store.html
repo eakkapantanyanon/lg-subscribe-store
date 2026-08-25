@@ -766,7 +766,7 @@
     </section>
 
     <div class="combo-banner" id="comboBanner" role="status" aria-live="polite">
-        🎁 คอมโบ: สมัคร 2 เครื่องขึ้นไป ลดเพิ่มอีก 10% — ลูกค้าใหม่ (2 เครื่องขึ้นไป) / ลูกค้าเดิม LG Subscribe (1 เครื่องขึ้นไป)
+        คอมโบ: สมัคร 2 เครื่องขึ้นไป ลดเพิ่มอีก 10% สำหรับลูกค้าใหม่ (2 เครื่องขึ้นไป) / ลูกค้าเดิม LG Subscribe (1 เครื่องขึ้นไป)
     </div>
 
     <main class="main-layout" id="mainContent" tabindex="-1">
@@ -1142,7 +1142,7 @@
                             '<div class="cart-item-price">' + cartItemPriceLabel(item) + '</div>' +
                         '</div>' +
                         '<div class="cart-item-plan"><select aria-label="เลือกแผนสำหรับ ' + product.name + '" onchange="changeCartPlan(\'' + id + '\', this.value)">' + opts + '</select></div>' +
-                        (plan.promo ? '<div class="cart-item-promo">🏷️ ' + plan.promo + '</div>' : '') +
+                        (plan.promo ? '<div class="cart-item-promo">' + plan.promo + '</div>' : '') +
                         '<div class="cart-item-qty">' +
                             '<span>จำนวน:</span>' +
                             '<button class="qty-btn" onclick="addQty(\'' + id + '\', -1)">−</button>' +
@@ -1207,19 +1207,19 @@
             }
             const pct = Math.round(info.rate * 100);
             if (info.rate > 0 && info.needed === 0) {
-                banner.innerHTML = '✅ ได้รับส่วนลดคอมโบ ' + pct + '% (' + info.promo.name + ')' +
+                banner.innerHTML = 'ได้รับส่วนลดคอมโบ ' + pct + '% (' + info.promo.name + ')' +
                     (special ? ' <span class="special-tag">SPECIAL</span>' : '') + ' แล้ว';
             } else {
-                banner.innerHTML = '🎁 เลือกเพิ่มอีก ' + info.needed + ' รายการ เพื่อรับส่วนลดคอมโบ ' +
+                banner.innerHTML = 'เลือกเพิ่มอีก ' + info.needed + ' รายการ เพื่อรับส่วนลดคอมโบ ' +
                     (special ? '15%' : adminSettings.comboPct + '%') +
                     ' (' + (custType === 'new' ? 'ลูกค้าใหม่ ต้อง 2 เครื่องขึ้นไป' : 'ลูกค้าเดิม ต้อง 1 เครื่องขึ้นไป') + ')';
             }
             const cb = document.getElementById('comboBanner');
             if (cb) {
-                cb.innerHTML = '🎁 คอมโบ: ' + (special
+                cb.innerHTML = 'คอมโบ: ' + (special
                     ? 'LG Special Birthday Combo 15% · 15–25 ส.ค. 69'
                     : 'สมัคร ' + (custType === 'new' ? '2' : '1') + ' เครื่องขึ้นไป ลดเพิ่ม ' + adminSettings.comboPct + '%') +
-                    ' — ลูกค้าใหม่ (2 เครื่องขึ้นไป) / ลูกค้าเดิม LG Subscribe (1 เครื่องขึ้นไป)';
+                    '. ลูกค้าใหม่ (2 เครื่องขึ้นไป) / ลูกค้าเดิม LG Subscribe (1 เครื่องขึ้นไป)';
             }
         }
 

@@ -1035,7 +1035,7 @@
                 detailBtn.className = 'care-detail-trigger';
                 detailBtn.setAttribute('aria-label', 'ดูบริการทั้งหมด ' + info.label);
                 detailBtn.setAttribute('aria-expanded', 'false');
-                detailBtn.innerHTML = '<span aria-hidden="true">ⓘ</span> ดูบริการทั้งหมด — ' + (info.short || info.label);
+                detailBtn.textContent = 'ดูบริการทั้งหมด: ' + (info.short || info.label);
                 const popover = document.createElement('div');
                 popover.className = 'care-popover';
                 popover.hidden = true;
@@ -1269,7 +1269,7 @@
 
         // ของแถม
         const giftEl = el('sumGift');
-        if (product.gift) { giftEl.textContent = '🎁 ' + product.gift; giftEl.style.display = ''; }
+        if (product.gift) { giftEl.textContent = product.gift; giftEl.style.display = ''; }
         else { giftEl.style.display = 'none'; }
 
         // ระยะเวลาสัญญา
@@ -1286,12 +1286,12 @@
         const combo = s.combo;
         const comboEl = el('sumCombo');
         if (combo.rate > 0 && combo.needed === 0) {
-            comboEl.textContent = '🎉 ได้ส่วนลดคอมโบ ' + Math.round(combo.rate * 100) + '% (' + combo.promo.name + (combo.special ? ' · SPECIAL' : '') + ') แล้ว — ราคาข้างต้นรวมส่วนลดแล้ว';
+            comboEl.textContent = 'ได้รับส่วนลดคอมโบ ' + Math.round(combo.rate * 100) + '% (' + combo.promo.name + (combo.special ? ' · SPECIAL' : '') + ') แล้ว ราคาข้างต้นรวมส่วนลดแล้ว';
             comboEl.className = 'combo-hint';
         } else if (combo.needed > 0) {
-            comboEl.textContent = '🎁 เพิ่มอีก ' + combo.needed + ' รายการ (รวมรายการนี้) ถึงได้คอมโบ ' +
+            comboEl.textContent = 'เพิ่มอีก ' + combo.needed + ' รายการ (รวมรายการนี้) ถึงได้คอมโบ ' +
                 (combo.special ? '15%' : adminSettings.comboPct + '%') +
-                ' — ' + (sel.customerType === 'old' ? 'ลูกค้าเดิมเริ่ม 1 เครื่อง' : 'ลูกค้าใหม่เริ่ม 2 เครื่อง');
+                '. ' + (sel.customerType === 'old' ? 'ลูกค้าเดิมเริ่ม 1 เครื่อง' : 'ลูกค้าใหม่เริ่ม 2 เครื่อง');
             comboEl.className = 'combo-hint off';
         } else {
             comboEl.textContent = '';
